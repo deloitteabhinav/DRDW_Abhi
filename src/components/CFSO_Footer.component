@@ -1,0 +1,12 @@
+<apex:component >
+
+    <footer id="page-footer" class="content-mini content-mini-full font-s12 clearfix">
+        <div class="pull-right text-white">
+            V2S - Search Engine
+        </div>
+        <div class="pull-left text-white">
+            Eli Lilly &copy; <span class="js-year-copy"></span>
+        </div>
+    </footer>
+    
+</apex:component>

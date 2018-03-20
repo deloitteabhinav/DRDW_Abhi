@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Business Description: This object is used as a Risks and Issues register to capture and escalate risks and issues, and track their resolution.
+
+Used In: Release Tracker App</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Category__c</fullName>
+        <description>A categorisation of the risk and issue
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <label>Category</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Organisation</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Methodology</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Tools</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Training</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Project Delivery</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Budget</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Closed_Date__c</fullName>
+        <description>The date the risk or issue is closed
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <label>Closed Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Raised__c</fullName>
+        <defaultValue>Today()</defaultValue>
+        <description>The date an issue was raised. May pre date the issue being added to Mission Control
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Record the date the issue was raised. NB: This may be different to the day it was logged in Mission Control</inlineHelpText>
+        <label>Date Raised</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <description>A detailed description of this risk or issue
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <length>32000</length>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>15</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Identified_By__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The person who raised or identified this risk. NB This may be different to the person who added this to Mission Control
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The person who raised or identified this risk. NB This may be different to the person who added this to Mission Control</inlineHelpText>
+        <label>Identified By</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Risks_Issues17</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Impact_CC__c</fullName>
+        <description>The business impact that this risk would have. Used in calculating the Risk Score
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Links to Impact &amp; Likelihood Rating Grids can be located on the Global IT Risk Management collaboration site.</inlineHelpText>
+        <label>Business Impact</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Minor</fullName>
+                    <color>#33CC00</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Moderate</fullName>
+                    <color>#F3D904</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Material</fullName>
+                    <color>#FF9900</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Catastrophic</fullName>
+                    <color>#990000</color>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Meeting__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>A meeting that this risk or issue was raised in
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>A meeting this risk or issue was raised in.</inlineHelpText>
+        <label>Meeting</label>
+        <referenceTo>TRAK_Meeting__c</referenceTo>
+        <relationshipLabel>Risks &amp; Issues</relationshipLabel>
+        <relationshipName>Risks_Issues</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Mitigating_Actions__c</fullName>
+        <description>What will be done to treat or mitigate this risk or issue
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What will be done to treat or mitigate this risk or issue</inlineHelpText>
+        <label>Treatment Plan</label>
+        <length>32000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Probability__c</fullName>
+        <description>The probability or likelihood of this risk occuring
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Unlikely: New incident not expected
+Possible: New incident not expected within next 3 years
+Probable: New incident anticipated within the year
+Very Likely/Imminent: New incident anticipated within the next quarter</inlineHelpText>
+        <label>Likelihood</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Unlikely</fullName>
+                    <color>#33CC00</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Possible</fullName>
+                    <color>#F3D904</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Probable</fullName>
+                    <color>#E27001</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Very Likely / Imminent</fullName>
+                    <color>#990000</color>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Risk_Level_Icon__c</fullName>
+        <description>An icon that shows the visually the risk score. 
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <formula>CASE( Weighting__c , 
+1, IMAGE(&quot;/img/msg_icons/confirm16.png&quot;, &quot;Low&quot;), 
+2, IMAGE(&quot;/img/msg_icons/confirm16.png&quot;, &quot;Low&quot;), 
+3, IMAGE(&quot;/img/msg_icons/info16.png&quot;, &quot;Medium&quot;), 
+4, IMAGE(&quot;/img/msg_icons/info16.png&quot;, &quot;Medium&quot;),  
+6, IMAGE(&quot;/img/msg_icons/warning16.png&quot;, &quot;High&quot;), 
+8, IMAGE(&quot;/img/msg_icons/warning16.png&quot;, &quot;High&quot;), 
+9, IMAGE(&quot;/img/msg_icons/error16.png&quot;, &quot;Severe&quot;),
+9, IMAGE(&quot;/img/msg_icons/error16.png&quot;, &quot;Severe&quot;),
+12,IMAGE(&quot;/img/msg_icons/error16.png&quot;, &quot;Severe&quot;),
+16,IMAGE(&quot;/img/msg_icons/error16.png&quot;, &quot;Severe&quot;),
+&quot;&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Risk Icon</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Risk_Level__c</fullName>
+        <description>A calculated risk level based on multiplying Likelihood and Business Impact
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <formula>CASE( Weighting__c , 
+1, &quot;Low&quot;,
+2, &quot;Low&quot;,
+3, &quot;Medium&quot;,
+4, &quot;Medium&quot;,
+6, &quot;High&quot;,
+8, &quot;High&quot;,
+9, &quot;Severe&quot;,
+9,&quot;Severe&quot;,
+12,&quot;Severe&quot;,
+16,&quot;Severe&quot;,
+&quot;N/A&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>A calculated risk level based on the Likelihood and the Business Impact of this risk.</inlineHelpText>
+        <label>Risk Level</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <description>The status of this risk or issue
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>In Progress</fullName>
+                    <color>#AFCADF</color>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>Resolved</fullName>
+                    <color>#78C953</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Duplicate</fullName>
+                    <color>#B6E32E</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>No Issue</fullName>
+                    <color>#A845DC</color>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Sub_Type__c</fullName>
+        <description>The sub type of this risk / issue</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The sub type of this risk / issue</inlineHelpText>
+        <label>Sub Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Financial</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Organisational</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>People</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Scope</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Technical</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Title__c</fullName>
+        <description>A brief summary of this risk or issue
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <label>Summary</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Treatment__c</fullName>
+        <description>How is this risk or issue to be dealt with
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <label>Treatment</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Transfer</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Avoid</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Reduce</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Accept</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <description>Type: Risk or Issue
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Risk: an event that has the probability of occurring and an impact to the project quality, scope, time, cost and/or schedule.
+
+Issue: has occurred and has a negative impact that must be dealt with (recovery).</inlineHelpText>
+        <label>Type</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Risk</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Issue</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>User_Story__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lookup to user story if this risk or issue relates to one
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <label>User Story</label>
+        <referenceTo>TRAK_User_Story__c</referenceTo>
+        <relationshipLabel>Risks &amp; Issues</relationshipLabel>
+        <relationshipName>TRAK_Risks_Issues</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Weighting__c</fullName>
+        <description>A score based on Likelihood and Business Impact
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <formula>CASE( Impact_CC__c , &quot;Catastrophic&quot;, 4, &quot;Material&quot;, 3,&quot;Moderate&quot;,2, 1)*
+CASE(  Probability__c  , &quot;Very Likely / Imminent&quot;, 4, &quot;Probable&quot;, 3,&quot;Possible&quot;,2,1)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>A score based on Likelihood and Business Impact</inlineHelpText>
+        <label>Risk Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Risk &amp; Issue</label>
+    <nameField>
+        <displayFormat>RI-{0000}</displayFormat>
+        <label>Risk/Issue ID</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Risks &amp; Issues</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Type__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Title__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Date_Raised__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Weighting__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Risk_Level_Icon__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <lookupDialogsAdditionalFields>Date_Raised__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Type__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Title__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Status__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Date_Raised__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Type__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Title__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Status__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>Type__c</searchFilterFields>
+        <searchFilterFields>Title__c</searchFilterFields>
+        <searchFilterFields>Status__c</searchFilterFields>
+        <searchResultsAdditionalFields>Date_Raised__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Title__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>No_future_dates</fullName>
+        <active>true</active>
+        <description>Prevents date raised being later than today</description>
+        <errorConditionFormula>Date_Raised__c &gt;TODAY()</errorConditionFormula>
+        <errorDisplayField>Date_Raised__c</errorDisplayField>
+        <errorMessage>&quot;Date Raised&quot; cannot be in the future</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Risk_requires_probability</fullName>
+        <active>true</active>
+        <description>If Type is Risk - then Probability is required</description>
+        <errorConditionFormula>AND( ISPICKVAL( Type__c , &quot;Risk&quot;), ISBLANK( TEXT(Probability__c )) )</errorConditionFormula>
+        <errorDisplayField>Probability__c</errorDisplayField>
+        <errorMessage>Risks must have a probability value</errorMessage>
+    </validationRules>
+</CustomObject>

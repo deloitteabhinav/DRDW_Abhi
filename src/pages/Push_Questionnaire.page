@@ -1,0 +1,26 @@
+<apex:page standardController="Project__c" extensions="Push_Questionnaire" recordSetvar="Project">
+  <!--  c:ACED_StatusSpinner /-->
+    <apex:pageBlock title="Studies List Views">
+        <apex:form >
+        <br/>
+            <apex:panelGrid columns="2">
+                <apex:outputLabel value="View:"/>
+                <apex:selectList value="{!filterId}" size="1">
+                    <apex:actionSupport event="onchange" rerender="list" status="LoadingStatusSpinner"/>
+                    <apex:selectOptions value="{!listviewoptions}"/>
+                </apex:selectList>
+            </apex:panelGrid>
+                <apex:pageblocktable var="a" value="{!Project}" width="100%" id="list">
+                    <apex:column value="{!a.name}" width="40%"/>
+                    <apex:column value="{!a.Study_Project_ID__c}"/>
+                    <apex:column value="{!a.Owner.Name}"/>
+                    <apex:column value="{!a.Project_Status__c}"/>
+                </apex:pageblocktable>
+                <apex:commandButton value="<" action="{!previous}" rendered="{!HasPrevious}" rerender="list" status="LoadingStatusSpinner"/>
+                <apex:commandButton value=">" action="{!next}" rendered="{!HasNext}" rerender="list" status="LoadingStatusSpinner"/>
+                <br/><br/>
+                <apex:commandbutton value="Push" action="{!PushQuestionnaire}"/>
+
+        </apex:form>
+    </apex:pageBlock>
+</apex:page>

@@ -1,0 +1,17 @@
+{!Request__c.Requestor__c},
+
+Thank you for your {!Request__c.RecordType} Request submission.
+
+Request Name: {!Request__c.Name}
+
+Request ID: {!Request__c.Request_ID__c}
+
+Date Submitted: {!Request__c.Date_Submitted__c}
+
+Description: {!Request__c.Description__c}
+
+{!IF(ISBLANK(Request__c.Proposed_Due_Date__c),"","Proposed Due Date :")} {!Request__c.Proposed_Due_Date__c}
+
+Link to Request:  {!Request__c.Link}
+
+You will be receiving a follow-up message shortly to confirm the planned completion date.

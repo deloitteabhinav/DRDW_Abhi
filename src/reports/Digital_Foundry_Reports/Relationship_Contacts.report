@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Contact$Title</field>
+    </columns>
+    <columns>
+        <field>Contact$FirstName</field>
+    </columns>
+    <columns>
+        <field>Contact$LastName</field>
+    </columns>
+    <columns>
+        <field>Contact$Department</field>
+    </columns>
+    <columns>
+        <field>Contact$Role__c</field>
+    </columns>
+    <columns>
+        <field>Contact$Status__c</field>
+    </columns>
+    <columns>
+        <field>Contact$Preferred_Communication_Method__c</field>
+    </columns>
+    <currency>USD</currency>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Contact$Account</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Relationship Contacts</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Relationships_with_Contacts__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+</Report>

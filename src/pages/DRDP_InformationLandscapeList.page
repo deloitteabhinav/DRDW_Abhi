@@ -1,0 +1,322 @@
+<apex:page docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="false" controller="InformationLandscapeList" readonly="true" id="thePage">
+
+
+    <script type='text/javascript'>
+        function isValidSearchString(searchString) {
+            var SEARCH_TRIGGER_THRESHOLD = 2;
+            var trimmedSearchString = searchString.trim();
+
+            if (trimmedSearchString.length >= SEARCH_TRIGGER_THRESHOLD) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function noenter(ev) {
+            if (window.event && window.event.keyCode == 13 || ev.which == 13) {
+                var searchString = (document.getElementsByClassName("keyword_DataAsset_Search_Text"))[0].value;
+                if (isValidSearchString(searchString)) {
+                    doSearchAf();
+                }
+                return false;
+            } else {
+                return true;
+            }
+        }
+    </script>
+
+    <title>Information Sources</title>
+
+    <c:DRDP_IndexNew />
+
+    <apex:form id="theForm">
+
+        <apex:actionFunction name="doSearchAf" action="{!FetchDataForCriteria}" rerender="PaginationPanel,therapueticareaCol,resultsize" />
+        <apex:actionFunction name="toggleflagoff" action="{!toggleOff}" oncomplete="drdw.listView.handlerSeeMoreFilters();" rerender="PaginationPanel,therapueticareaCol,resultsize" />
+        <div class='content'>
+
+            <div class='fixed-container list-view'>
+
+                <div class='filters-wrapper'>
+
+                    <!--The below page logic will display the total number of data assets per filter-->
+                    <div class="filter-header container">
+                        <apex:outputpanel id="resultsize">
+                            <span class='result-count'>{!cLandscapeListController.ResultSize} Information Sources</span>
+                        </apex:outputpanel>   
+                        <apex:outputlink value="/apex/DRDP_CreateLandscape?isEdit=true" styleClass="create-new enabled l-gold-2 hidden-xs">Create an Information Source</apex:outputlink>
+                        <a href="#" class='create-new enabled l-gold-2 hidden-xs' data-toggle="modal" data-target="#horizontal-organization-modal">Compare Organizations</a>                        
+                        <span class='icon-large-caret down'></span>
+                    </div>
+
+                    <!--The below page logic will display the check box filters for various fields and the pivot-->
+                    <div class='filter-container container'>
+
+                        <!--Start of Output Panel-->
+                        <apex:outputpanel id="therapueticareaCol">
+
+                            <div class='filter-column-wrapper col-md-3'>
+                                <ul class='filter-column'>
+                                    <li>Source Type</li>
+                                    <apex:repeat value="{!mInfoLandscapeStructure['Source_Type__c']}" var="SourceType">
+                                        <li>
+                                            <apex:inputCheckbox value="{!SourceType.isSelected}">
+                                                <apex:actionSupport event="onchange" action="{!FetchDataForCriteria}" rerender="PaginationPanel,therapueticareaCol,resultsize" oncomplete="drdw.listViewComparo.handlers();" />
+                                            </apex:inputCheckbox>
+                                            <label>{!SourceType.Label} ({!mCategoyCount[SourceType.Label]})</label>
+                                        </li>
+                                    </apex:repeat>
+                                </ul>
+                            </div>
+
+                            <div class='filter-column-wrapper col-md-3'>
+                                <ul class='filter-column'>
+                                    <li>Information Type</li>
+                                    <apex:repeat value="{!mInfoLandscapeStructure['Information_Type__c']}" var="InfoType">
+                                        <li>
+                                            <apex:inputCheckbox value="{!InfoType.isSelected}">
+                                                <apex:actionSupport event="onchange" action="{!FetchDataForCriteria}" rerender="PaginationPanel,therapueticareaCol,resultsize" oncomplete="drdw.listViewComparo.handlers();" />
+                                            </apex:inputCheckbox>
+                                            <label>{!InfoType.Label} ({!mCategoyCount[InfoType.Label]})</label>
+                                        </li>
+                                    </apex:repeat>
+                                </ul>
+                            </div>
+
+                            <div class='filter-column-wrapper col-md-3'>
+                                <ul class='filter-column'>
+                                    <li>Regulatory Type</li>
+                                    <apex:repeat value="{!mInfoLandscapeStructure['Regulatory_Indicator__c']}" var="Reg">
+                                        <li>
+                                            <apex:inputCheckbox value="{!Reg.isSelected}">
+                                                <apex:actionSupport event="onchange" action="{!FetchDataForCriteria}" rerender="PaginationPanel,therapueticareaCol,resultsize" oncomplete="drdw.listViewComparo.handlers();" />
+                                            </apex:inputCheckbox>
+                                            <label>{!Reg.Label} ({!mCategoyCount[Reg.Label]})</label>
+                                        </li>
+                                    </apex:repeat>
+                                </ul>
+                            </div>
+
+                            <div class='filter-column-wrapper col-md-2'>
+                                <ul class='filter-column'>
+                                    <li>Sensitivity</li>
+                                    <apex:repeat value="{!mInfoLandscapeStructure['Sensitivity__c']}" var="Sen">
+                                        <li>
+                                            <apex:inputCheckbox value="{!Sen.isSelected}">
+                                                <apex:actionSupport event="onchange" action="{!FetchDataForCriteria}" rerender="PaginationPanel,therapueticareaCol,resultsize" oncomplete="drdw.listViewComparo.handlers();" />
+                                            </apex:inputCheckbox>
+                                            <label>{!Sen.Label} ({!mCategoyCount[Sen.Label]})</label>
+                                        </li>
+                                    </apex:repeat>
+                                </ul>
+                            </div>
+
+                            <!--Pivot for Owner Types-->
+                            
+                            <div class='pivot-container col-md-12'>
+                                <span class='label'>{!oLandscapeOptions.size-1} SDLC Classification</span>
+                                <label>
+                                    <apex:selectList multiselect="false" size="1" value="{!sAccessDetailType}">
+                                        <apex:actionSupport event="onchange" action="{!FetchDataForCriteria}" rerender="PaginationPanel,therapueticareaCol,resultsize" oncomplete="drdw.listViewComparo.handlers();" />
+                                        <apex:selectOptions value="{!oLandscapeOptions}" />
+                                    </apex:selectList>
+                                </label>
+                            </div> 
+
+                            <!--End of Output Panel-->
+                        </apex:outputpanel>
+
+                    </div>
+
+                </div>
+
+
+                <!--Below page logic contains local search Bar-->
+                <div class='type-ahead-search-wrapper container'>
+                    <span class='icon-find'></span>
+                    <apex:inputtext value="{!sSearchWord}" html-placeholder="Search Information Source" onkeypress=".listViewComparo.handlers(),return noenter(event);" styleClass="keyword_DataAsset_Search_Text" />
+                    <apex:commandButton Value="Go" action="{!FetchDataForCriteria}" Styleclass="button create-new l-gold-2" disabled="false" rerender="PaginationPanel,therapueticareaCol,resultsize" oncomplete="drdw.listViewComparo.handlers();" />
+                    <apex:outputlink value="/apex/DRDP_InformationLandscapeList" StyleClass="filter-reset">Clear All</apex:outputlink>
+                </div>
+
+
+                <!--Start of Output Panel which contains Results after filter search-->
+                <apex:outputpanel id="Listcontent">
+
+                    <!--Results container HTML-->
+                    <div class='results-header with-comparo container l-gold-2'>
+
+                        <!-- Selection of Landscapes -->
+                        
+                        <div class='result-header-item col-md-1'>
+                           Select
+                        </div>
+
+                        <!--Name column of the results displayed-->
+                        <div class='result-header-item col-md-2 sort-by'>
+                            <apex:commandlink value="Name" action="{!sort}" rerender="Listcontent,PaginationPanel" oncomplete="drdw.listViewComparo.handlers();">
+                                <apex:param name="Name" value="Name" assignTo="{!sField}" />
+                            </apex:commandlink>
+                            <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Name'}" />
+                        </div>
+
+                        <!--Therapeutic Area column of the results displayed-->
+                        <div class='result-header-item col-md-3 sort-by'>
+                            <apex:commandlink value="Description" action="{!sort}" rerender="Listcontent,PaginationPanel" oncomplete="drdw.listViewComparo.handlers();">
+                                <apex:param name="Source_Description__c" value="Source_Description__c" assignTo="{!sField}" />
+                            </apex:commandlink>
+                            <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up ","icon-arrow down ")}" rendered="{!sField='Source_Description__c'}" />
+                        </div>
+
+
+                        <!--Database Type column of the results displayed-->
+                        <div class='result-header-item col-md-2 sort-by hidden-xs'>
+                            <apex:commandlink value="Group Name" action="{!sort}" rerender="Listcontent,PaginationPanel" oncomplete="drdw.listViewComparo.handlers();">
+                                <apex:param name="Group_Name__c" value="Group_Name__c" assignTo="{!sField}" />
+                            </apex:commandlink>
+
+                            <apex:commandLink styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up ","icon-arrow down ")}" rendered="{!sField='Group_Name__c'}" />
+
+                        </div>
+
+                        <!--Access method column of the results displayed-->
+                        <div class='result-header-item col-md-2 sort-by hidden-xs'>
+                            <apex:commandlink value="Target Decommission Indicator" action="{!sort}" rerender="Listcontent,PaginationPanel" oncomplete="drdw.listViewComparo.handlers();">
+                                <apex:param name="Target_Decommissioning_Indicator__c" value="Target_Decommissioning_Indicator__c" assignTo="{!sField}" />
+                            </apex:commandlink>
+                            <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up ","icon-arrow down ")}" rendered="{!sField='Target_Decommissioning_Indicator__c'}" />
+                        </div>
+
+
+
+                        <!--Asset Status column of the results displayed-->
+                        <div class='result-header-item col-md-2 sort-by hidden-xs'>
+                            <apex:commandlink value="Integration Mechanism" action="{!sort}" rerender="Listcontent,PaginationPanel" oncomplete="drdw.listViewComparo.handlers();">
+                                <apex:param name="Integration_Mechanism__c" value="Integration_Mechanism__c" assignTo="{!sField}" />
+                            </apex:commandlink>
+                            <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up ","icon-arrow down ")}" rendered="{!sField='Integration_Mechanism__c'}" />
+                        </div>
+
+                    </div>
+
+                    <!--End of Output Panel which contains Results after filter search-->
+                </apex:outputpanel>
+
+            </div>
+
+            <!--Start of div for pagination-->
+            <div class='results-wrapper'>
+                <apex:outputpanel id="PaginationPanel">
+                <a href="#" class='create-new enabled l-gold-2 compare-data-assets hidden floating-action-button' data-toggle="modal" data-target="#horizontal-filter-modal">Compare</a>
+                   <div class='results with-comparo container'>
+                        <apex:repeat value="{!lLandscapeRecordWrap}" var="Landscape">
+                            <div class='result-item col-md-12'>
+                                <div class='col-md-1'>
+                                    <apex:inputCheckbox value="{!Landscape.IsSelected}"></apex:inputCheckbox>
+                                </div>
+                                <div class='col-md-2'><apex:outputLink value="/apex/DRDP_CreateLandscape?Id={!Landscape.oLandscape.Id}&IsEdit=false" target="_blank">{!Landscape.oLandscape.Name}</apex:outputLink></div>
+                                <div class='col-md-3'>{!Landscape.oLandscape.Source_Description__c}</div>
+                                <div class='col-md-2 hidden-xs'>{!Landscape.oLandscape.Group_Name__c}</div>
+                                <div class='col-md-2 hidden-xs'>{!Landscape.oLandscape.Target_Decommissioning_Indicator__c}</div>
+                                <div class='col-md-2 hidden-xs'>{!Landscape.oLandscape.Integration_Mechanism__c}</div>
+                            </div>
+                        </apex:repeat>
+                    </div>
+
+                    <apex:outputPanel rendered="{!cLandscapeListController.ResultSize>0}">
+                        <div class='pagination container'>
+                            <span class='col-md-12'>Displaying {!((cLandscapeListController.pagenumber-1)*cLandscapeListController.pagesize)+1}-{!IF(cLandscapeListController.ResultSize < ((cLandscapeListController.pagenumber)*cLandscapeListController.pagesize),cLandscapeListController.ResultSize,((cLandscapeListController.pagenumber)*cLandscapeListController.pagesize))} of {!cLandscapeListController.ResultSize}</span>
+                            <div class='indicator-container col-md-12'>
+                                <apex:actionregion >
+                                    <apex:commandlink styleClass="indicator icon-arrow left" rendered="{!IF(AND(lPageNumbers.size <> 0,lPageNumbers[0]!=1),true,false)}" action="{!PreviousPageSeries}" oncomplete="drdw.listViewComparo.handlers();" rerender="Listcontent,PaginationPanel" />
+                                    <apex:repeat value="{!lPageNumbers}" var="obj">
+                                        <apex:commandlink styleClass="{!if(obj==cLandscapeListController.pagenumber,'indicator current','indicator')}" value="{!obj}" action="{!GoToPageNumber}" oncomplete="drdw.listViewComparo.handlers();"  rerender="PaginationPanel">
+                                            <apex:param name="{!obj}" value="{!obj}" assignTo="{!iPageNumber}" />
+                                        </apex:commandlink>
+                                    </apex:repeat>
+                                    <apex:commandlink styleClass="indicator icon-arrow right" action="{!NextPageSeries}" rendered="{!IF(AND(lPageNumbers.size <> 0,dPageCount > lPageNumbers[lPageNumbers.size-1]),true,false)}" oncomplete="drdw.listViewComparo.handlers();" rerender="Listcontent,PaginationPanel" />
+                                </apex:actionregion>
+                            </div>
+                        </div>
+                        <c:DRDP_FooterComponent />
+                    </apex:outputPanel>
+                </apex:outputpanel>
+            </div>
+            
+            <div class="modal fade filter-modal horizontal-render" id="horizontal-filter-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h1 class="modal-title" id="myModalLabel">Select Comparison Parameters...</h1>
+                        </div>
+                        <div class="modal-body">
+                            <!-- start -->
+                            <div class='filter-container container-fluid'>
+                                <apex:repeat value="{!lSections}" var="s">
+                                    <div class="row">
+                                        <h2>{!s}</h2>
+                                        <apex:repeat value="{!FieldList}" var="f">
+                                            <apex:outputPanel rendered="{!If(f.Section==s,true,false)}" id="SelectFields">
+                                                <div class="col-xs-3">
+                                                    <apex:inputCheckbox styleClass="{!If(f.Label == 'Source Name','js-preselected','')}" value="{!f.fSelected}">
+                                                    </apex:inputCheckbox>
+                                                    <label for='{!f.Label}'>{!f.Label}</label>
+                                                </div>
+                                            </apex:outputPanel>
+                                        </apex:repeat>
+                                    </div>
+                                </apex:repeat>
+                            </div>
+                            <!-- end -->
+                        </div>
+                        <!-- modal-body ends -->
+                        <div class="modal-footer">
+                            <apex:commandlink styleClass="btn button" value="Generate Report" action="{!Generate}" target="_blank" />
+                            <apex:commandlink styleClass="btn button" action="{!ExportToExcel}"><span class="ico-full-icon-file-excel"></span> Export to Excel</apex:commandlink>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="modal fade filter-modal horizontal-render" id="horizontal-organization-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog modal-lg" role="document">
+                   <apex:actionFunction id="CheckItemSelect" name="CheckItemSelect" action="{!ShowButton}" reRender="orgbutton"/> 
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h1 class="modal-title" id="myModalLabel2">Select Organizations...</h1>
+                        </div>
+                        <div class="modal-body">
+                            <!-- start -->
+                            <div class='filter-container container-fluid'>
+                                    <div class="row">
+                                        <h2>Organizations</h2>
+                                        <apex:repeat value="{!lwOrganisation }" var="f">
+                                                <div class="col-xs-3">
+                                                    <apex:inputCheckbox value="{!f.bSelected}" onchange="CheckItemSelect();">
+                                                    </apex:inputCheckbox>
+                                                    <label for='{!f.oAccount.Name}'>{!f.oAccount.Name}</label>
+                                                </div>
+                                        </apex:repeat>
+                                    </div>
+                            </div>
+                            <!-- end -->
+                        </div>
+                        <!-- modal-body ends -->
+                        <div class="modal-footer">
+                            <apex:outputPanel id="orgbutton">
+                            <apex:commandlink rendered="{!bShowButton}" styleClass="btn button" value="Generate Report" action="{!GenerateOrgReport}" target="_blank" />
+                            </apex:outputPanel>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </apex:form>
+</apex:page>

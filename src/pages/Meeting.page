@@ -1,0 +1,481 @@
+<apex:page showHeader="false" docType="html-5.0" StandardController="Event" extensions="MeetingController" showChat="false" showQuickActionVfHeader="false" standardStylesheets="true">
+    <apex:pageMessages rendered="{!!IsAccess}"></apex:pageMessages>
+    <apex:form Rendered="{!IsAccess}" styleClass="meeting-console-form">
+        <html>
+
+        <head>
+            <title>
+                Meetings
+            </title>
+
+            <apex:stylesheet value="{!URLFOR($Resource.Resource, '/Lilly_SMI/vendor/bootstrap/bootstrap.css')}" />
+            <apex:stylesheet value="{!URLFOR($Resource.Resource, '/Lilly_SMI/vendor/jqueryui/themes/smoothness/jquery-ui.min.css')}" />
+            <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,100,400italic,700italic,100italic' rel='stylesheet' type='text/css' />
+            <apex:stylesheet value="{!URLFOR($Resource.Resource, '/Lilly_SMI/src/scss/style.css')}" />
+            <apex:stylesheet value="{!URLFOR($Resource.Resource, '/Lilly_SMI/src/scss/global.css')}" />
+
+            <apex:includeScript value="{!URLFOR($Resource.Resource, '/Lilly_SMI/vendor/jquery/jquery.min.js')}" />
+            <apex:includeScript value="{!URLFOR($Resource.Resource, '/Lilly_SMI/vendor/jqueryui/jquery-ui.min.js')}" />
+            <apex:includeScript value="{!URLFOR($Resource.Resource, '/Lilly_SMI/vendor/bootstrap/bootstrap.min.js')}" />
+            <apex:includeScript value="{!URLFOR($Resource.Resource, '/Lilly_SMI/src/js/meetings.js')}" />
+            <apex:includeScript value="{!URLFOR($Resource.Resource, '/Lilly_SMI/vendor/jquery-validation/jquery.validate.min.js')}" />
+
+        </head>
+
+        <script type="text/javascript">
+            function selectAllCheckboxes(obj, receivedInputID) {
+                var inputCheckBox = document.getElementsByTagName("input");
+                for (var i = 0; i < inputCheckBox.length; i++) {
+                    if (inputCheckBox[i].id.indexOf(receivedInputID) != -1) {
+                        inputCheckBox[i].checked = obj.checked;
+                    }
+                }
+            }
+        </script>
+
+        <script>
+            function TaskValues(Subject, Priority, ActivityDate, User, Id) {
+                jQuery('input[id$=SubjectInput]').val(Subject);
+                jQuery('input[id$=UserInput]').val(User);
+                jQuery('select[id$=PriInput]').val(Priority);
+                jQuery('input[id$=DueByInput]').val(ActivityDate);
+                jQuery('input[id$=TaskIdInput]').val(Id);
+            }
+        </script>
+
+        <!---------------------------------------------------------------------Start Of Body------------------------------------------------------------------------------------------------>
+
+        <body>
+
+            <div id="loading-results">
+                <div class="loading-message">
+                    <img src="{!URLFOR($Resource.Resource, '/Lilly_SMI/src/assets/rolling.gif')}" alt="Fetching Results" />
+                    <span>Processing...</span>
+                </div>
+            </div>
+
+
+            <!---------------------------------------------------------------------Meeting Details Section------------------------------------------------------------------------------------------------>
+            <div class="meetings container">
+                <apex:outputLink styleClass="btn button back-to-record" value="/{!oEvent.AccountId}" id="theLink">Go Back</apex:outputLink>
+                <div class="meeting-header container">
+                    <h1 class="meeting-name">{!oEvent.Subject}</h1>
+                </div>
+                <div class="meeting-details">
+                    <div>Supplier name:
+                        <apex:outputlabel styleClass="bold">{!oAccount.Name}</apex:outputlabel>
+                    </div>
+                    <div>On
+                        <apex:outputlabel styleClass="bold">
+                            <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+                                <apex:param value="{!oEvent.ActivityDate}" /></apex:outputText>
+                        </apex:outputlabel>
+                    </div>
+                    <div>At
+                        <apex:outputlabel styleClass="bold">{!oEvent.Location}</apex:outputlabel>
+                    </div>
+                    <div>Regarding
+                        <apex:outputlabel styleClass="bold">{!oEvent.Description}</apex:outputlabel>
+                    </div>
+                </div>
+
+                <!---------------------------------------------------------------------Attendees Section------------------------------------------------------------------------------------------------>
+
+                <div class="attendees">
+                    <apex:outputPanel rendered="{!If(lContacts.size > 0, true,false)}">
+                        <div class="title">
+                            <h3>Attended by 
+                    <a href="#" class="show-hide-toggle-handle">Show</a>
+                </h3>
+                        </div>
+                        <div class="content row">
+                            <apex:repeat value="{!lContacts}" var="oContact">
+                                <div class="col-xs-4">
+                                    {!oContact.Name}
+                                </div>
+                            </apex:repeat>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!If(lContacts.size == 0, true,false)}">
+                        <div class="title">
+                            <h3>This meeting has no attendees. 
+                </h3>
+                        </div>
+                    </apex:outputPanel>
+                </div>
+
+                
+                <!---------------------------------------------------------------------Edit Only Version of Agendas and Notes/Tasks------------------------------------------------------------------------------------------------>
+                <apex:outputPanel rendered="{!IsEdit}">                
+                <!---------------------------------------------------------------------Agenda Section------------------------------------------------------------------------------------------------>
+                <!-- Agenda accordion -->
+                <div class="accordion agenda">
+                    <div class="accordion-title">
+                        <h3>Agenda
+                    <a href="#" class="show-hide-toggle-handle">Show</a>
+                </h3>
+                    </div>
+                    <div class="accordion-content row">
+                        <apex:actionRegion >
+                            <apex:outputPanel id="AgendaSection">
+                                <div class="supplier-fields-list col-xs-12">
+                                    <h3>Select agenda topics</h3>
+                                    <table class="table table-striped table-hover table-responsive">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <input type="checkbox" onClick="selectAllCheckboxes(this,'inputId')" />
+                                                </th>
+                                                <th>Agenda</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <apex:repeat value="{!lwFieldList}" var="wField">
+                                                <tr>
+                                                    <td>
+                                                        <apex:inputCheckbox value="{!wField.fSelected}" id="inputId" />
+                                                    </td>
+                                                    <td>{!wField.sName}</td>
+                                                    <td>
+                                                        <apex:outputText rendered="{!!If(OR(wField.sType == 'URL', wField.bRichText = TRUE),TRUE,FALSE)}" value="{!If(wField.sType == 'CURRENCY','USD '+wField.sDescription,wField.sDescription)}" />
+                                                        <apex:outputLink rendered="{!If(AND(wField.sType == 'TEXTAREA', wField.bRichText == TRUE),TRUE,FALSE)}" value="/{!oAccount.Id}" target="_blank">Link to supplier record</apex:outputLink>
+                                                        <apex:outputLink rendered="{!If(wField.sType == 'URL',TRUE,FALSE)}" value="http://{!wField.sDescription}" target="_blank">Link to {!wField.sName}</apex:outputLink>
+                                                    </td>
+                                                </tr>
+                                            </apex:repeat>
+                                        </tbody>
+                                    </table>
+                                    <div class="centered-content">
+                                        <apex:commandButton styleClass="btn button" value="Add to Agenda" onclick="showWaitSpinner();" action="{!AddNewAgenda}" reRender="AgendaSection,NoteTaskPanel" status="statusSave" oncomplete="handlers(); hideWaitSpinner();" />
+                                    </div>
+                                </div>
+                                <div id="AgendaMsg" class="proposed-agenda col-xs-12">
+                                    <apex:pageMessages rendered="{!IsAgenda}" />
+                                </div>
+                                <apex:actionFunction name="DeleteAgenda" action="{!DeleteAgenda}" reRender="AgendaSection,NoteTaskPanel" status="statusSave" oncomplete="handlers(); hideWaitSpinner(); postSaveAgendaAction();">
+                                    <apex:param name="DeleteAgenda" value="" assignTo="{!oAgenda.Id}" />
+                                </apex:actionFunction>
+
+                                <div class="proposed-agenda col-xs-12">
+                                    <h3>Proposed agenda</h3>
+                                    <apex:outputPanel id="AgendaTable">
+                                        <table class="table table-striped table-hover table-responsive">
+                                            <thead>
+                                                <tr>
+                                                    <th class="col-xs-1">Order</th>
+                                                    <th class="col-xs-2">Topic </th>
+                                                    <th class="col-xs-8">Description</th>
+                                                    <th class="col-xs-1">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <apex:repeat value="{!lwAgendaWrap}" var="oRecord">
+                                                    <tr>
+                                                        <td>
+                                                            <apex:inputField value="{!oRecord.oAgenda.Order__c}" />
+                                                        </td>
+                                                        <td>
+                                                            <apex:outputText value="{!oRecord.oAgenda.Name}" />
+                                                        </td>
+                                                        <td>
+                                                            <apex:inputField value="{!oRecord.oAgenda.Agenda_Topic_Details__c}" />
+                                                        </td>
+                                                        <td>
+                                                            <apex:commandlink Value="Delete" onclick="showWaitSpinner(); DeleteAgenda('{!oRecord.oAgenda.Id}'); return false;" />
+                                                        </td>
+                                                    </tr>
+                                                </apex:repeat>
+                                            </tbody>
+                                        </table>
+                                    </apex:outputPanel>
+                                    <div class="centered-content">
+                                        <button formnovalidate="formnovalidate" class="btn button btn-trigger-add-custom-agenda-modal">Add new agenda</button>
+                                        <apex:commandButton styleClass="btn button" value="Save changes" onclick="showWaitSpinner();" action="{!SaveChanges}" reRender="AgendaSection,NoteTaskPanel" oncomplete="handlers(); hideWaitSpinner(); postSaveAgendaAction();" />
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:actionRegion>
+                    </div>
+                </div>
+
+
+                <!---------------------------------------------------------------------Notes and Tasks Section------------------------------------------------------------------------------------------------>
+
+                <!-- Notes and tasks accordion -->
+                <div class="accordion notes-and-tasks">
+                    <div class="accordion-title">
+                        <h3>Notes and Tasks
+                    <a href="#" class="show-hide-toggle-handle">Show</a>
+                </h3>
+                    </div>
+                    <div class="accordion-content row">
+                        <apex:outputPanel id="NoteTaskPanel">
+                                <div id="NoteTaskMsg" class="col-xs-12">
+                                    <apex:pageMessages rendered="{!IsTask}" />
+                                </div>
+                                <!--Notes-->
+                                <apex:actionRegion >
+                                    <apex:outputPanel Id="MeetingNote">
+                                        <div class="col-xs-12">
+                                            <div class="notes">
+                                                <h3>Notes</h3>
+                                                <div class="quick-add-note">
+                                                    <apex:outputPanel rendered="{!If(oMeeting.Meeting_Notes__c == NULL,TRUE,FALSE)}">
+                                                        <apex:inputtextarea value="{!oMeeting.Meeting_Notes__c}" styleClass="col-xs-12 notes-text" html-placeholder="Type notes here..." />
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel rendered="{!If(oMeeting.Meeting_Notes__c != NULL,TRUE,FALSE)}">
+                                                        <apex:inputField value="{!oMeeting.Meeting_Notes__c}" styleClass="col-xs-12 notes-text" />
+                                                    </apex:outputPanel>
+                                                    <div class="center-block">
+                                                        <apex:commandLink styleClass="btn button save-notes" onclick="showWaitSpinner();" value="Save note" action="{!AddMeetingNotes}" reRender="NoteTaskPanel,AgendaSection" oncomplete="displayAfterSaveNotesAction(); handlers();" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </apex:outputPanel>
+                                </apex:actionRegion>
+
+                                <apex:actionRegion >
+                                    <apex:outputPanel Id="TaskPanel">
+                                        <div class="col-xs-12">
+                                            <div class="actions">
+                                                <h3>Tasks
+                                        <a class="btn-create-new-task pull-right">New task</a>
+                                        </h3>
+
+                                                <table class="tasks-table table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Task</th>
+                                                            <th>Assigned to</th>
+                                                            <th>Priority</th>
+                                                            <th>Due by</th>
+                                                            <th>Edit</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <apex:repeat value="{!lTasks}" var="oTask">
+                                                            <tr>
+                                                                <td>{!oTask.Subject}</td>
+                                                                <td>{!oTask.Owner.Name}</td>
+                                                                <td>{!oTask.Priority}</td>
+                                                                <td>
+                                                                    <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+                                                                        <apex:param value="{!oTask.ActivityDate}" />
+                                                                    </apex:outputText>
+                                                                </td>
+                                                                <td>
+                                                                    <apex:commandlink Value="Edit" onclick="TaskValues('{!oTask.Subject}','{!oTask.Priority}','{!oTask.ActivityDate}','{!oTask.Owner.Name}','{!oTask.Id}'); showEditTaskModal(); return false;" />
+                                                                </td>
+                                                            </tr>
+                                                        </apex:repeat>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </apex:outputPanel>
+                                </apex:actionRegion>
+                        </apex:outputPanel>
+                    </div>
+                </div>
+                </apex:outputPanel>   
+                <!---------------------------------------------------------------------End of Edit Section------------------------------------------------------------------------------------------------>
+
+                <!---------------------------------------------------------------------Read Only Version of Agendas and Notes/Tasks------------------------------------------------------------------------------------------------>
+                <apex:outputPanel rendered="{!!IsEdit}">
+                    <!---------------------------------------------------------------------Agenda Section------------------------------------------------------------------------------------------------>
+                    <!-- Agenda accordion -->
+                    <div class="accordion agenda">
+                        <div class="accordion-title">
+                            <h3>Agenda
+                    <a href="#" class="show-hide-toggle-handle">Show</a>
+                </h3>
+                        </div>
+                        <div class="accordion-content row">
+                            <div class="proposed-agenda col-xs-12">
+                                <h3>Proposed agenda</h3>
+                                <table class="table table-striped table-hover table-responsive">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-xs-1">Order</th>
+                                            <th class="col-xs-2">Topic </th>
+                                            <th class="col-xs-8">Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <apex:repeat value="{!lwAgendaWrap}" var="oRecord">
+                                            <tr>
+                                                <td>
+                                                    <apex:outputField value="{!oRecord.oAgenda.Order__c}" />
+                                                </td>
+                                                <td>
+                                                    <apex:outputField value="{!oRecord.oAgenda.Name}" />
+                                                </td>
+                                                <td>
+                                                    <apex:outputField value="{!oRecord.oAgenda.Agenda_Topic_Details__c}" />
+                                                </td>
+                                            </tr>
+                                        </apex:repeat>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!---------------------------------------------------------------------Notes and Tasks Section------------------------------------------------------------------------------------------------>
+
+                    <!-- Notes and tasks accordion -->
+                    <div class="accordion">
+                        <div class="accordion-title">
+                            <h3>Notes and Tasks
+                    <a href="#" class="show-hide-toggle-handle">Show</a>
+                </h3>
+                        </div>
+                        <div class="accordion-content row">
+                            <div id="NoteTaskMsg" class="col-xs-12">
+                                <apex:pageMessages rendered="{!IsTask}" />
+                            </div>
+                            <!--Notes-->
+                            <div class="col-xs-12">
+                                <div class="notes">
+                                    <h3>Notes</h3>
+                                    <div class="quick-add-note read-only">
+                                        <apex:outputField rendered="{!If(oMeeting.Meeting_Notes__c != NULL,TRUE,FALSE)}" value="{!oMeeting.Meeting_Notes__c}" styleClass="col-xs-12 notes-text" />
+                                        <apex:outputText rendered="{!If(oMeeting.Meeting_Notes__c == NULL,TRUE,FALSE)}" value="No notes to display" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="actions">
+                                    <h3>Tasks
+                                        </h3>
+
+                                    <table class="tasks-table table">
+                                        <thead>
+                                            <tr>
+                                                <th>Task</th>
+                                                <th>Assigned to</th>
+                                                <th>Priority</th>
+                                                <th>Due by</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <apex:repeat value="{!lTasks}" var="oTask">
+                                                <tr>
+                                                    <td>{!oTask.Subject}</td>
+                                                    <td>{!oTask.Owner.Name}</td>
+                                                    <td>{!oTask.Priority}</td>
+                                                    <td>
+                                                        <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+                                                            <apex:param value="{!oTask.ActivityDate}" />
+                                                        </apex:outputText>
+                                                    </td>
+                                                </tr>
+                                            </apex:repeat>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </apex:outputPanel>
+                <!---------------------------------------------------------------------End of Read Only Section------------------------------------------------------------------------------------------------>
+
+                <!-- modal start -->
+                <!-- Modal -->
+
+                <!---------------------------------------------------------------------Modal Window for Tasks------------------------------------------------------------------------------------------------>
+
+                <apex:actionRegion >
+                    <div class="modal fade add-task" id="edit-action-modal" tabindex="-1" role="dialog" aria-labelledby="">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h1 class="modal-title add-task-component">Add task</h1>
+                                    <h1 class="modal-title edit-task-component">Edit task</h1>
+                                </div>
+                                <apex:outputPanel id="TaskModalFields">
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-xs-2 spacer">Task<span class="required-marker">*</span></div>
+                                            <div class="col-xs-10 spacer input-field task-lookup">
+                                                <apex:inputField id="SubjectInput" styleClass="col-xs-11" value="{!oTask.Subject}" />
+                                            </div>
+                                            <div class="clear"></div>
+                                            <div class="col-xs-2 spacer">Assigned to<span class="required-marker">*</span></div>
+                                            <div class="col-xs-10 spacer input-field lookup">
+                                                <apex:inputField id="UserInput" value="{!oTask.OwnerId}" />
+                                            </div>
+                                            <div class="clear"></div>
+                                            <div class="col-xs-2 spacer">Priority<span class="required-marker">*</span></div>
+                                            <div class="col-xs-10 spacer input-field">
+                                                <apex:inputField id="PriInput" value="{!oTask.Priority}" />
+                                            </div>
+                                            <div class="clear"></div>
+                                            <div class="col-xs-2 spacer">Due by</div>
+                                            <div class="col-xs-10 spacer input-field">
+                                                <apex:inputField id="DueByInput" styleClass="due-by-calendar ignore-validation" value="{!oTask.ActivityDate}" />
+                                            </div>
+                                            <apex:inputHidden id="TaskIdInput" value="{!oTask.Id}" />
+                                        </div>
+                                    </div>
+                                </apex:outputPanel>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn button" data-dismiss="modal">Cancel</button>
+                                    <button type="button" class="btn button save-changes add-task-component">Add task</button>
+                                    <apex:actionFunction name="ValidateNewTask" action="{!AddTasks}" reRender="NoteTaskPanel,AgendaSection" onComplete="handlers(); hideWaitSpinner();dismissAddEditTaskModal(); scrollToLocation('.notes-and-tasks');" />
+                                    <button type="button" class="btn button save-changes edit-task-component">Save changes</button>
+                                    <apex:actionFunction name="ValidateUpdateTask" action="{!UpdateTasks}" reRender="NoteTaskPanel,AgendaSection" onComplete="handlers(); hideWaitSpinner(); dismissAddEditTaskModal(); scrollToLocation('.notes-and-tasks');" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </apex:actionRegion>
+                <!-- modal end -->
+
+                <!-- Add Custom Agenda modal start -->
+                <!-- Modal -->
+                <!---------------------------------------------------------------------Modal Window for Agenda------------------------------------------------------------------------------------------------>
+                <apex:actionRegion >
+                    <div class="modal fade" id="add-custom-agenda-modal" tabindex="-1" role="dialog" aria-labelledby="">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h1 class="modal-title">Add new agenda</h1>
+                                </div>
+                                <apex:outputPanel id="AgendaModalFields">
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-xs-2 spacer">Topic<span class="required-marker">*</span></div>
+                                            <div class="col-xs-10 spacer input-field">
+                                                <apex:inputField Id="AgendaName" styleClass="col-xs-12" value="{!oAgenda.Name}" />
+                                            </div>
+                                            <div class="clear"></div>
+                                            <div class="col-xs-2 spacer">Description</div>
+                                            <div class="col-xs-10 spacer input-field">
+                                                <apex:inputField id="AgendaDescription" styleClass="col-xs-12" value="{!oAgenda.Agenda_Topic_Details__c}" />
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                </apex:outputPanel>
+                                <div class="modal-footer">
+                                    <button type="button" formnovalidate="formnovalidate" class="btn button formnovalidate" data-dismiss="modal">Cancel</button>
+                                    <button type="button" class="btn button save-changes btn-add-custom-agenda">Add to agenda</button>
+                                    <apex:actionFunction name="ValidateAgenda" action="{!AddCustomAgenda}" reRender="AgendaTable,AgendaSection,NoteTaskPanel" onComplete="handlers(); hideWaitSpinner(); dismissAddCustomAgendaModal(); postSaveAgendaAction();" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </apex:actionRegion>
+                <!-- modal end -->
+            </div>
+            <apex:inputHidden id="LoggedInUser" value="{!UserName}" />
+        </body>
+        </html>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>A new release requires approval</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>TRAK_Tracker_Standard</letterhead>
+    <name>Release Approval</name>
+    <style>freeForm</style>
+    <subject>A new release is waiting your approval</subject>
+    <textOnly>Release {!TRAK_Environment_Release__c.00N11000000iDQ3} is waiting your approval to be pushed in to {!TRAK_Environment_Release__c.Environment__c}.
+
+
+Planned Start: {!TRAK_Environment_Release__c.Planned_Start__c}
+Planned Finish: {!TRAK_Environment_Release__c.Planned_Finish__c}
+
+More information on this release is available in Tracker https://cs7.salesforce.com/{!TRAK_Environment_Release__c.Id}</textOnly>
+    <type>html</type>
+</EmailTemplate>

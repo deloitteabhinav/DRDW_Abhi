@@ -1,0 +1,10 @@
+<apex:page standardController="TPO__c">
+<div>
+<p>
+There is information contained on this site that is considered personal information (e.g., vendor employee name, business telephone number, business email address of residents of the European Union/European Economic Area or Switzerland). Vendors are required to secure all necessary authorizations from its employees and approved subcontractors to allow Lilly to process the personal information of these individuals as necessary for the performance of the contract by Lilly, including information required to access Lilly systems or facilities, the maintenance of individual performance metrics and similar information.
+</p>
+<p>
+Lilly employees must ensure that the use of this personal information is consistent with the notice provided (i.e., as necessary for the performance of the contract by Lilly).
+</p>
+</div>
+</apex:page>

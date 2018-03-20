@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <description>Store some field ids which are used in javascript codes in a custom button &apos;create secondary request&apos;.</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Business_Unit_Primary__c</fullName>
+        <externalId>false</externalId>
+        <label>Business Unit Primary</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Primary_Therapeutic_Area__c</fullName>
+        <externalId>false</externalId>
+        <label>Primary Therapeutic Area</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Region__c</fullName>
+        <externalId>false</externalId>
+        <label>Region</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Related_Project__c</fullName>
+        <externalId>false</externalId>
+        <label>Related Project</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Request_Molecule__c</fullName>
+        <externalId>false</externalId>
+        <label>Request (Request Molecule)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Request_Stage__c</fullName>
+        <description>Autopopulates Request Tracking&apos;s Request Stage</description>
+        <externalId>false</externalId>
+        <label>Request Stage</label>
+        <length>200</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Request_Status__c</fullName>
+        <description>for autopopulating Request Tracking</description>
+        <externalId>false</externalId>
+        <label>Request Status</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Requestor_Functional_Area__c</fullName>
+        <externalId>false</externalId>
+        <label>Requestor Functional Area</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Requestor__c</fullName>
+        <externalId>false</externalId>
+        <label>Requestor</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Study_Molecule__c</fullName>
+        <externalId>false</externalId>
+        <label>Study (Study Molecule)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Request FieldId Settings</label>
+    <visibility>Protected</visibility>
+</CustomObject>

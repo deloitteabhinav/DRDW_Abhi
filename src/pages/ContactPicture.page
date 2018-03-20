@@ -1,0 +1,3 @@
+<apex:page standardController="Contact" extensions="ContactPicture">
+<apex:image value="/servlet/servlet.FileDownload?file={!sAttachmentId}" width="110" height="110" rendered="{!if(sAttachmentId!=null,true,false)}" style="display: block;margin-left: auto;margin-right: auto;"/>
+</apex:page>

@@ -1,0 +1,529 @@
+<apex:page sidebar="false" docType="html-5.0" showHeader="false" standardStylesheets="false" controller="GlobalSearch" readonly="true" id="thePage" >
+
+<script type='text/javascript'>
+        function isValidSearchString(searchString) {
+            var SEARCH_TRIGGER_THRESHOLD = 2;
+            var trimmedSearchString = searchString.trim();
+
+                if (trimmedSearchString.length >= SEARCH_TRIGGER_THRESHOLD) {
+                    return true;
+                } else {
+                    return false;
+                }
+        }
+        
+        
+        function noenter(ev)  {
+            if (window.event && window.event.keyCode == 13 || ev.which == 13) {
+                var searchString = (document.getElementsByClassName("keyword_Global_Search_Text"))[0].value;
+                if (isValidSearchString(searchString)){
+                    doSearchAf();
+                }   
+                return false;
+             } else {
+                  return true;
+             }
+         }
+    </script>
+    
+    <title>Global Search</title>
+    <c:DRDP_IndexNew />
+    <apex:form id="theForm">
+    <apex:actionFunction name="doSearchAf" action="{!FetchDataForCriteria}" rerender="filterColumns,resultsize,results,Studyresults,LandscapeResults,Requestresults,Partnrresults,studycount,LandscapeCount,partnershipcount,requestcount,RelationshipResults,ContactCount"/>
+    <apex:actionFunction name="toggleflagoff" action="{!toggleOff}" oncomplete="drdw.listView.handlerSeeMoreFilters();" rerender="PaginationPanel,therapueticareaCol,resultsize" />
+        <div class='content'>
+
+            <div class='fixed-container global-search'>
+                <div class='filters-wrapper'>
+                    <div class="filter-header container">
+                    
+                        <apex:outputpanel id="resultsize">
+                            <span class="{!IF(isShrink==TRUE,'result-count condensed','result-count')}"><apex:outputtext value="{!IF($ObjectType.Project__c.accessible,(lProjects.size+lPartnerships.size+lRequests.size+lLandscapes.size+lRelationships.size),(lPartnerships.size+lRequests.size+lLandscapes.size+lRelationships.size))}"></apex:outputtext> Results for '{!$CurrentPage.parameters.searchWord}'</span>
+                        </apex:outputpanel>
+                        
+                        <span class='icon-large-caret down'></span>
+                    </div>
+                    <div class='filter-container container'>                       
+                            <div class='filter-column-wrapper col-md-4'>
+                                <ul class='{!IF(bShowMoreFlag,"filter-column","filter-column show-scroll")}'>
+                                    <li>Therapeutic Area</li>
+                                    <apex:repeat value="{!mStudyObjectStructure['TherapeuticArea']}" var="tArea">
+                                        <li>
+                                            <apex:inputCheckbox value="{!tArea.isSelected}">
+                                                <apex:actionSupport event="onchange" action="{!FetchDataForCriteria}" oncomplete="drdw.listView.handlerSeeMoreFilters();" rerender="studycount,ContactCount,LandscapeCount,partnershipcount,requestcount,filterColumns,resultsize,results,Studyresults,RelationshipResults,LandscapeResults,Requestresults,Partnrresults" />
+                                            </apex:inputCheckbox>
+                                            <label>{!tArea.Label}</label>
+                                        </li>
+                                    </apex:repeat>
+                                </ul>
+                                <apex:outputPanel rendered="{!bShowMoreFlag}">
+                                    <a class="see-more-filters pull-left" onclick="toggleflagoff();">See more...</a>
+                                </apex:outputPanel>
+                            </div>
+
+                            <!--Benefitting Region field filter checkboxes-->
+                            <div class='filter-column-wrapper col-md-4'>
+                                <ul class='filter-column'>
+                                    <li class='col-xs-12'>Business Unit</li>
+                                    <apex:repeat value="{!mStudyObjectStructure['BU']}" var="Tarea">
+                                        <li class='col-xs-12'>
+                                            <apex:inputCheckbox value="{!Tarea.isSelected}">
+                                                <apex:actionSupport event="onchange"  action="{!FetchDataForCriteria}" rerender="studycount,ContactCount,LandscapeCount,partnershipcount,requestcount,filterColumns,resultsize,results,Studyresults,RelationshipResults,LandscapeResults,Requestresults,Partnrresults"/>
+                                            </apex:inputCheckbox>
+                                            <label>{!Tarea.Label}</label>
+                                        </li>
+                                    </apex:repeat>
+                                </ul>
+                            </div>
+
+                            <!--Time Frame field filter checkboxes-->
+                            <div class='filter-column-wrapper col-md-4'>
+                                <ul class='filter-column'>
+                                    <li class='col-xs-12'>Last Modified</li>                                    
+                                        <li class='col-xs-12'>
+                                            <apex:inputCheckbox value="{!mTimeFrameFilter['This Week']}">
+                                                <apex:actionSupport event="onchange"  action="{!FetchDataForCriteria}" rerender="studycount,ContactCount,LandscapeCount,partnershipcount,requestcount,filterColumns,resultsize,results,Studyresults,Requestresults,RelationshipResults,LandscapeResults,Partnrresults"/>
+                                            </apex:inputCheckbox>
+                                            <label>This Week</label>
+                                        </li>
+                                        <li class='col-xs-12'>
+                                            <apex:inputCheckbox value="{!mTimeFrameFilter['This Month']}">
+                                                <apex:actionSupport event="onchange"  action="{!FetchDataForCriteria}" rerender="studycount,ContactCount,LandscapeCount,partnershipcount,requestcount,filterColumns,resultsize,results,Studyresults,Requestresults,RelationshipResults,LandscapeResults,RelationshipResults,Partnrresults"/>
+                                            </apex:inputCheckbox>
+                                            <label>This Month</label>
+                                        </li>
+                                        <li class='col-xs-12'>
+                                            <apex:inputCheckbox value="{!mTimeFrameFilter['This Quarter']}">
+                                                <apex:actionSupport event="onchange"  action="{!FetchDataForCriteria}" rerender="studycount,ContactCount,LandscapeCount,partnershipcount,requestcount,filterColumns,resultsize,results,Studyresults,Requestresults,LandscapeResults,RelationshipResults,Partnrresults"/>
+                                            </apex:inputCheckbox>
+                                            <label>This Quarter</label>
+                                        </li>
+                                        <li class='col-xs-12'>
+                                            <apex:inputCheckbox value="{!mTimeFrameFilter['This Year']}">
+                                                <apex:actionSupport event="onchange"  action="{!FetchDataForCriteria}" rerender="studycount,ContactCount,LandscapeCount,partnershipcount,requestcount,filterColumns,resultsize,results,Studyresults,Requestresults,LandscapeResults,RelationshipResults,Partnrresults"/>
+                                            </apex:inputCheckbox>
+                                            <label>This Year</label>
+                                        </li>
+                                        <li class='col-xs-12'>
+                                            <apex:inputCheckbox value="{!mTimeFrameFilter['Previous Years']}">
+                                                <apex:actionSupport event="onchange"  action="{!FetchDataForCriteria}" rerender="studycount,ContactCount,LandscapeCount,partnershipcount,requestcount,filterColumns,resultsize,results,Studyresults,Requestresults,LandscapeResults,RelationshipResults,Partnrresults"/>
+                                            </apex:inputCheckbox>
+                                            <label>Previous Years</label>
+                                        </li>
+                                </ul>
+                            </div>
+                  </div>
+                </div>
+
+                <!--Below page logic contains local search Bar-->
+                <div class='type-ahead-search-wrapper container'>
+                    <span class='icon-find'></span>
+                    <apex:inputtext value="{!sLocalSearch}" html-placeholder="Search Results" onkeypress="return noenter(event);" styleClass="keyword_Global_Search_Text"/>
+                    <apex:commandButton Value="Go" action="{!FetchDataForCriteria}" Styleclass="button create-new l-medium-gray" disabled="false" rerender="studycount,ContactCount,LandscapeCount,partnershipcount,requestcount,filterColumns,resultsize,results,Studyresults,Requestresults,RelationshipResults,LandscapeResults,Partnrresults"/>
+                    <apex:outputlink value="/apex/Global_Search?searchWord={!$CurrentPage.parameters.searchWord}" StyleClass="filter-reset">Clear All</apex:outputlink>
+                </div>
+                
+<div class="tab-wrapper">
+    <div class="container tabs">
+        <div class="row">
+            <div class="col-xs-12 tab-well">
+                <input id="tab1" type="radio" name="tabs" checked="checked"></input>
+                <label for="tab1" data-id="content1" class="l-blue" >Research&nbsp;&nbsp;<apex:outputpanel id="studycount">({!lProjects.size})</apex:outputpanel></label>
+                <input id="tab2" type="radio" name="tabs"></input>
+                <label for="tab2" data-id="content2" class="l-orange" >Partnerships&nbsp;&nbsp;<apex:outputpanel id="partnershipcount">({!lPartnerships.size})</apex:outputpanel></label>
+                <input id="tab3" type="radio" name="tabs"></input>
+                <label for="tab3" data-id="content3" class="l-green" >Requests&nbsp;&nbsp;<apex:outputpanel id="requestcount">({!lRequests.size})</apex:outputpanel></label>
+                <input id="tab4" type="radio" name="tabs"></input>
+                <label for="tab4" data-id="content4" class="l-gold-2" >Info Landscapes&nbsp;&nbsp;<apex:outputpanel id="LandscapeCount">({!lLandscapes.size})</apex:outputpanel></label>
+                <input id="tab5" type="radio" name="tabs"></input>
+                <label for="tab5" data-id="content5" class="l-teal" >Relationships&nbsp;&nbsp;<apex:outputpanel id="ContactCount">({!lRelationships.size})</apex:outputpanel></label>
+                <section id="content1">
+                
+                <apex:outputpanel id="studiesHeaderOfResults">
+                    <div class="results-header l-blue col-md-12">
+                        <div class="result-header-item sort-by col-md-2">
+                            <apex:commandlink value="Name" action="{!sortStudies}" rerender="studiesHeaderOfResults,Studyresults">
+                                <apex:param name="Name" value="Name" assignTo="{!sField}" />
+                            </apex:commandlink>
+                            <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Name'}"/>    
+                        </div>
+                        <div class="result-header-item col-md-2 sort-by">
+                            <apex:commandlink value="Study/Project ID" action="{!sortStudies}" rerender="studiesHeaderOfResults,Studyresults">
+                                <apex:param name="Study_Project_ID__c" value="Study_Project_ID__c" assignTo="{!sField}" />
+                            </apex:commandlink>
+                            <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Study_Project_ID__c'}"/>
+                        </div>
+                        <div class='result-header-item col-md-2 sort-by hidden-xs'>
+                            <apex:commandlink value="Study/Project Lead" action="{!sortStudies}" rerender="studiesHeaderOfResults,Studyresults">
+                                <apex:param name="Project_Lead_Owner_TF__c" value="Project_Lead_Owner_TF__c" assignTo="{!sField}" />
+                            </apex:commandlink>
+                            <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Project_Lead_Owner_TF__c'}" />
+                            
+                        </div>
+                        <div class='result-header-item col-md-2 sort-by hidden-xs'>
+                            <apex:commandlink value="Executing Function" action="{!sortStudies}" rerender="studiesHeaderOfResults,Studyresults">
+                                <apex:param name="Execution_Function__c" value="Execution_Function__c" assignTo="{!sField}" />
+                            </apex:commandlink>
+                            <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Execution_Function__c'}"/>
+                        </div>
+                        <div class='result-header-item col-md-2 sort-by hidden-xs'>
+                            <apex:commandlink value="Status" action="{!sortStudies}" rerender="studiesHeaderOfResults,Studyresults">
+                                <apex:param name="Project_Status__c" value="Project_Status__c" assignTo="{!sField}" />
+                            </apex:commandlink>
+                            <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Project_Status__c'}"/>
+                        </div>
+                        <div class='result-header-item col-md-2 sort-by hidden-xs'>
+                            <apex:commandlink value="Type" action="{!sortStudies}" rerender="studiesHeaderOfResults,Studyresults">
+                                <apex:param name="Study_Description__c" value="Study_Description__c" assignTo="{!sField}" />
+                            </apex:commandlink>
+                            <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Study_Description__c'}"/>
+                        </div>
+                    </div>
+                </apex:outputpanel>
+                </section>
+
+                <section id="content2">
+                <apex:outputpanel id="PartnershipsHeaderOfResults">
+                    <div class="results-header l-orange col-md-12">
+                        <div class="result-header-item sort-by col-md-2">
+                            <apex:commandlink value="Name" action="{!sortRequests}" rerender="PartnershipsHeaderOfResults,Partnrresults">
+                                <apex:param name="Name" value="Name" assignTo="{!sField}" />
+                            </apex:commandlink>
+                            <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Name'}"/>    
+                        </div>
+                        <div class="result-header-item sort-by col-md-3">
+                            <apex:commandlink value="Partnership Sponsor" action="{!sortRequests}" rerender="PartnershipsHeaderOfResults,Partnrresults">
+                                <apex:param name="Partnership_Sponsor__c" value="Partnership_Sponsor__c" assignTo="{!sField}" />
+                            </apex:commandlink>
+                            <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Partnership_Sponsor__c'}"/>    
+                        </div>
+                        <div class="result-header-item sort-by col-md-3 hidden-xs">Partner Type</div>
+                        
+                        <div class="result-header-item sort-by col-md-2 hidden-xs">
+                            <apex:commandlink value="Partner Region" action="{!sortRequests}" rerender="PartnershipsHeaderOfResults,Partnrresults">
+                                <apex:param name="Region__c" value="Region__c" assignTo="{!sField}" />
+                            </apex:commandlink>
+                            <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Region__c'}"/>    
+                        </div>
+                        <div class="result-header-item sort-by col-md-2 hidden-xs">
+                            <apex:commandlink value="Business Criticality" action="{!sortRequests}" rerender="PartnershipsHeaderOfResults,Partnrresults">
+                                <apex:param name="Priority__c" value="Priority__c" assignTo="{!sField}" />
+                            </apex:commandlink>
+                            <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Priority__c'}"/>    
+                        </div>
+                    </div> 
+                </apex:outputpanel>                       
+                </section>
+
+                <section id="content3">
+                <apex:outputpanel id="RequestsHeaderOfResults">
+                    <div class="results-header l-green col-md-12">
+                        <div class="result-header-item sort-by col-md-3">
+                            <apex:commandlink value="Request Name" action="{!sortRequests}" rerender="RequestsHeaderOfResults,Requestresults">
+                                <apex:param name="Name" value="Name" assignTo="{!sField}" />
+                            </apex:commandlink>
+                            <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Name'}"/>    
+                        </div>
+                        <div class="result-header-item sort-by col-md-2">
+                            <apex:commandlink value="Requestor" action="{!sortRequests}" rerender="RequestsHeaderOfResults,Requestresults">
+                                <apex:param name="Requestor__r.name" value="Requestor__r.name" assignTo="{!sField}" />
+                            </apex:commandlink>
+                            <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Requestor__r.name'}"/>    
+                        </div>
+                        <div class="result-header-item sort-by col-md-2 hidden-xs">
+                            <apex:commandlink value="Requestor Functional Area" action="{!sortRequests}" rerender="RequestsHeaderOfResults,Requestresults">
+                                <apex:param name="Requestor_Functional_Area__c" value="Requestor_Functional_Area__c" assignTo="{!sField}" />
+                            </apex:commandlink>
+                            <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Requestor_Functional_Area__c'}"/>    
+                        </div>
+                        <div class="result-header-item sort-by col-md-2 hidden-xs">
+                            <apex:commandlink value="Business Criticality" action="{!sortRequests}" rerender="RequestsHeaderOfResults,Requestresults">
+                                <apex:param name="Priority__c" value="Priority__c" assignTo="{!sField}" />
+                            </apex:commandlink>
+                            <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Priority__c'}"/>    
+                        </div>
+                        <div class="result-header-item sort-by col-md-3 hidden-xs">
+                            <apex:commandlink value="Request Duration" action="{!sortRequests}" rerender="RequestsHeaderOfResults,Requestresults">
+                                <apex:param name="Request_Duration__c" value="Request_Duration__c" assignTo="{!sField}" />
+                            </apex:commandlink>
+                            <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Request_Duration__c'}"/>    
+                        </div>
+                    </div>
+                </apex:outputpanel>
+                </section>
+                
+                <section id="content4">    
+                <apex:outputpanel id="sLandscapeHeaderOfResults">
+                    <div class="results-header l-gold-2 col-md-12">
+                        <div class="result-header-item sort-by col-md-2">
+                            <apex:commandlink value="Name" action="{!sortLandscapes}" rerender="sLandscapeHeaderOfResults,LandscapeResults">
+                                <apex:param name="Name" value="Name" assignTo="{!sField}" />
+                            </apex:commandlink>
+                            <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Name'}"/>    
+                        </div>
+                        <div class="result-header-item col-md-2 sort-by">
+                            <apex:commandlink value="Description" action="{!sortLandscapes}" rerender="sLandscapeHeaderOfResults,LandscapeResults">
+                                <apex:param name="Source_Description__c" value="Source_Description__c" assignTo="{!sField}" />
+                            </apex:commandlink>
+                            <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Source_Description__c'}"/>
+                        </div>
+                        <div class='result-header-item col-md-2 sort-by hidden-xs'>
+                            <apex:commandlink value="Group Name" action="{!sortLandscapes}" rerender="sLandscapeHeaderOfResults,LandscapeResults">
+                                <apex:param name="Group_Name__c" value="Group_Name__c" assignTo="{!sField}" />
+                            </apex:commandlink>
+                            <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Group_Name__c'}"/>
+                        </div>
+                        <div class='result-header-item col-md-2 sort-by hidden-xs'>
+                            <apex:commandlink value="Target Decommission Indicator" action="{!sortLandscapes}" rerender="sLandscapeHeaderOfResults,LandscapeResults">
+                                <apex:param name="Target_Decommissioning_Indicator__c" value="Target_Decommissioning_Indicator__c" assignTo="{!sField}" />
+                            </apex:commandlink>
+                            <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Target_Decommissioning_Indicator__c'}"/>
+                        </div>
+                        <div class='result-header-item col-md-2 sort-by hidden-xs'>
+                            <apex:commandlink value="Integration Mechanism" action="{!sortLandscapes}" rerender="sLandscapeHeaderOfResults,LandscapeResults">
+                                <apex:param name="Integration_Mechanism__c" value="Integration_Mechanism__c" assignTo="{!sField}" />
+                            </apex:commandlink>
+                            <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Integration_Mechanism__c'}"/>
+                        </div>
+                    </div>
+                </apex:outputpanel>
+                </section>
+                
+                <section id="content5">    
+                <apex:outputpanel id="sRelationshipHeaderofResults">
+                    <div class="results-header l-teal col-md-12">
+                        <div class="result-header-item sort-by col-md-3">
+                            <apex:commandlink value="Name" action="{!sortRelationships}" rerender="sRelationshipHeaderofResults,RelationshipResults">
+                                <apex:param name="Name" value="Name" assignTo="{!sField}" />
+                            </apex:commandlink>
+                            <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Name'}"/>    
+                        </div>
+                        <div class="result-header-item col-md-3 sort-by">
+                        Combined Address
+                        </div>
+                        <div class='result-header-item col-md-3 sort-by hidden-xs'>
+                            <apex:commandlink value="Organization" action="{!sortRelationships}" rerender="sRelationshipHeaderofResults,RelationshipResults">
+                                <apex:param name="Account.Name" value="Account.Name" assignTo="{!sField}" />
+                            </apex:commandlink>
+                            <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Account.Name'}" />
+                            
+                        </div>
+                        <div class='result-header-item col-md-3 sort-by hidden-xs'>
+                        Language(s)
+                        </div>
+                    </div>
+                </apex:outputpanel>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</div>                
+
+</div>
+<!----------------------------------------------------------- search-results-container starts------------------------------------------------------------------------->
+
+<div class='search-results-container container-fluid'>
+    <main class="container">
+        <div class="row">
+            <div class="col-xs-12 tab-content">
+<!-------------------------------------------------------Studies Results----------------------------------------------------------------------------------->
+                <section data-id="content1" style="display:block;">
+                    <apex:outputpanel id="Studyresults"> 
+                       <div class="results container">
+                            <apex:repeat value="{!Studies}" var="OStudy">
+                                <div class='result-item col-md-12'>
+                                    <div class='col-md-2'><apex:outputLink value="{!if(OStudy.Research_Type__c=='Research Topic','/apex/research_topics?id='+OStudy.Id,'/apex/CreateStudy?id='+OStudy.Id)}" target="_blank">{!OStudy.Name}</apex:outputLink></div>
+                                    <div class='col-md-2'>{!OStudy.Study_Project_ID__c}</div>
+                                    <div class='col-md-2 hidden-xs'><apex:outputLink value="/{!OStudy.Owner}" target="_blank">{!OStudy.Owner.Name}</apex:outputLink></div>
+                                    <div class='col-md-2 hidden-xs'>{!OStudy.Execution_Function__c }</div>
+                                    <div class='col-md-2 hidden-xs'>{!OStudy.Project_Status__c}</div>
+                                    <div class='col-md-2 hidden-xs'>{!OStudy.Study_Description__c}</div>
+                                </div>
+                            </apex:repeat>  
+                            <apex:outputPanel rendered="{!if(lProjects.size==0,true,false)}">
+                                <div class='result-item col-md-12'>No Studies/Projects Found</div> 
+                            </apex:outputPanel>                                                                                        
+                        </div>
+                        <apex:outputPanel rendered="{!if(lProjects.size>20,true,false)}">
+                        <div class='pagination container'>                    
+                            <span class='col-md-12'>Displaying{!((cStudiesListController.pagenumber-1)*cStudiesListController.pagesize)+1}-{!IF(cStudiesListController.ResultSize < ((cStudiesListController.pagenumber)*cStudiesListController.pagesize),cStudiesListController.ResultSize,((cStudiesListController.pagenumber)*cStudiesListController.pagesize))} of {!cStudiesListController.ResultSize}</span>
+                            <div class='indicator-container col-md-12'>
+                                <apex:actionregion >
+                                    <apex:commandlink styleClass="indicator icon-arrow left" action="{!PreviousStudyPageSeries}" rendered="{!IF(AND(lStudyPageNumbers.size <> 0,lStudyPageNumbers[0]!=1),true,false)}"  rerender="Studyresults"/>
+                                        
+                                    <apex:repeat value="{!lStudyPageNumbers}" var="obj">
+                                        <apex:commandlink styleClass="{!if(obj==cStudiesListController.pagenumber,'indicator current','indicator')}" value="{!obj}" action="{!GoToStudyPageNumber}" rerender="Studyresults">
+                                            <apex:param name="{!obj}" value="{!obj}" assignTo="{!iPageNumber}" />
+                                        </apex:commandlink>
+                                    </apex:repeat>
+                                    <apex:commandlink styleClass="indicator icon-arrow right" action="{!NextStudyPageSeries}" rendered="{!IF(AND(lStudyPageNumbers.size <> 0,dStudyPageCount> lStudyPageNumbers[lStudyPageNumbers.size-1]),true,false)}" rerender="Studyresults" />
+                                        
+                                </apex:actionregion>
+                            </div>
+                        </div>
+                    </apex:outputPanel>
+                    </apex:outputPanel>             
+                </section>
+<!-------------------------------------------------------Partnership Results----------------------------------------------------------------------------------->
+                <section data-id="content2">
+                <apex:outputpanel id="Partnrresults">
+                        <div class="results container">
+                            <apex:repeat value="{!PartnerShips}" var="OStudy">
+                                <div class='result-item col-md-12'>
+                                    <div class='col-md-2'><apex:outputLink value="/{!OStudy.Id}" target="_blank">{!OStudy.Name}</apex:outputLink></div>
+                                    <div class='col-md-3'>{!OStudy.Partnership_Sponsor__c}</div>
+                                    <div class='col-md-3 hidden-xs'>{!OStudy.Type_of_Partner__c }</div>
+                                    <div class='col-md-2 hidden-xs'>{!OStudy.Region__c}</div>
+                                    <div class='col-md-2 hidden-xs'>{!OStudy.Priority__c}</div>
+                                </div>
+                            </apex:repeat>  
+                            <apex:outputPanel rendered="{!if(lPartnerShips.size==0,true,false)}">
+                                <div class='result-item col-md-12'>No Partnerships Found</div> 
+                            </apex:outputPanel>                          
+                        </div>
+                        <apex:outputPanel rendered="{!if(lPartnerShips.size>20,true,false)}">
+                        <div class='pagination container'>                    
+                            <span class='col-md-12'>Displaying {!((cPartnershipListController.pagenumber-1)*cPartnershipListController.pagesize)+1}-{!IF(cPartnershipListController.ResultSize < ((cPartnershipListController.pagenumber)*cPartnershipListController.pagesize),cPartnershipListController.ResultSize,((cPartnershipListController.pagenumber)*cPartnershipListController.pagesize))} of {!cPartnershipListController.ResultSize}</span>
+                            <div class='indicator-container col-md-12'>
+                                <apex:actionregion >
+                                    <apex:commandlink styleClass="indicator icon-arrow left" rendered="{!IF(AND(lPartnershipPageNumbers.size <> 0,lPartnershipPageNumbers[0]!=1),true,false)}" action="{!PreviousPartnershipPageSeries}" rerender="Partnrresults"/>
+                                    <apex:repeat value="{!lPartnershipPageNumbers}" var="obj">
+                                        <apex:commandlink styleClass="{!if(obj==cPartnershipListController.pagenumber,'indicator current','indicator')}" value="{!obj}" action="{!GoToPartnershipPageNumber}" rerender="Partnrresults">
+                                            <apex:param name="{!obj}" value="{!obj}" assignTo="{!iPageNumber}" />
+                                        </apex:commandlink>
+                                    </apex:repeat>
+                                    <apex:commandlink styleClass="indicator icon-arrow right" action="{!NextPartnershipPageSeries}" rendered="{!IF(AND(lPartnershipPageNumbers.size <> 0,dPartnershipPageCount> lPartnershipPageNumbers[lPartnershipPageNumbers.size-1]),true,false)}" rerender="Partnrresults" />
+                                </apex:actionregion>
+                            </div>
+                        </div> 
+                    </apex:outputpanel>
+                    </apex:outputpanel>               
+                </section>
+<!-------------------------------------------------------Requests Results---------------------------------------------------------------------------------------------->
+                <section data-id="content3">
+                <apex:outputpanel id="Requestresults">
+                        <div class="results container">
+                            <apex:repeat value="{!Requests}" var="OStudy">
+                                <div class='result-item col-md-12'>
+                                    <div class='col-md-3'><apex:outputLink value="/{!OStudy.Id}?IsFromUI=TRUE" target="_blank">{!OStudy.Name}</apex:outputLink></div>
+                                    <div class='col-md-2'><apex:outputLink value="/{!OStudy.Requestor__c}" target="_blank">{!OStudy.Requestor__r.name}</apex:outputLink></div>
+                                    <div class='col-md-2 hidden-xs'>{!OStudy.Requestor_Functional_Area__c}</div>
+                                    <div class='col-md-2 hidden-xs'>{!OStudy.Priority__c}</div>
+                                    <div class='col-md-3 hidden-xs'>{!OStudy.Request_Duration__c}{!IF(OStudy.Request_Duration__c != null,'Day(s)','')}</div>
+                                </div>
+                            </apex:repeat>  
+                            <apex:outputPanel rendered="{!if(lRequests.size==0,true,false)}">
+                                <div class='result-item col-md-12'>No Requests Found</div> 
+                            </apex:outputPanel>                          
+                        </div>
+                        <apex:outputPanel rendered="{!if(lRequests.size>20,true,false)}">
+                        <div class='pagination container'>                    
+                            <span class='col-md-12'>Displaying {!((cRequestListController.pagenumber-1)*cRequestListController.pagesize)+1}-{!IF(cRequestListController.ResultSize < ((cRequestListController.pagenumber)*cRequestListController.pagesize),cRequestListController.ResultSize,((cRequestListController.pagenumber)*cRequestListController.pagesize))} of {!cRequestListController.ResultSize}</span>
+                            <div class='indicator-container col-md-12'>
+                                <apex:actionregion >
+                                    <apex:commandlink styleClass="indicator icon-arrow left" rendered="{!IF(AND(lRequestPageNumbers.size <> 0,lRequestPageNumbers[0]!=1),true,false)}" action="{!PreviousRequestPageSeries}" rerender="Requestresults"/>
+                                    <apex:repeat value="{!lRequestPageNumbers}" var="obj">
+                                        <apex:commandlink styleClass="{!if(obj==cRequestListController.pagenumber,'indicator current','indicator')}" value="{!obj}" action="{!GoToRequestPageNumber}" rerender="Requestresults">
+                                            <apex:param name="{!obj}" value="{!obj}" assignTo="{!iPageNumber}" />
+                                        </apex:commandlink>
+                                    </apex:repeat>
+                                    <apex:commandlink styleClass="indicator icon-arrow right" action="{!NextRequestPageSeries}" rendered="{!IF(AND(lRequestPageNumbers.size <> 0,dRequestPageCount> lRequestPageNumbers[lRequestPageNumbers.size-1]),true,false)}" rerender="Requestresults" />
+                                </apex:actionregion>
+                            </div>
+                        </div>
+                        </apex:outputpanel>
+                        </apex:outputpanel>
+                </section>
+                <!-------------------------------------------------------Landscape Results---------------------------------------------------------------------------------------------->
+                <section data-id="content4">
+                    <apex:outputpanel id="LandscapeResults"> 
+                       <div class="results container offset-title-row">
+                            <apex:repeat value="{!Landscapes}" var="oLandscape">
+                                <div class='result-item col-md-12'>
+                                    <div class='col-md-2'><apex:outputLink value="/apex/DRDP_CreateLandscape?Id={!oLandscape.Id}&IsEdit=false" target="_blank">{!oLandscape.Name}</apex:outputLink></div>
+                                    <div class='col-md-2'>{!oLandscape.Source_Description__c}</div>
+                                    <div class='col-md-2 hidden-xs'>{!oLandscape.Group_Name__c}</div>
+                                    <div class='col-md-2 hidden-xs'>{!oLandscape.Target_Decommissioning_Indicator__c}</div>
+                                    <div class='col-md-2 hidden-xs'>{!oLandscape.Integration_Mechanism__c}</div>
+                                </div>
+                            </apex:repeat>  
+                            <apex:outputPanel rendered="{!if(lLandscapes.size==0,true,false)}">
+                                <div class='result-item col-md-12'>No Information Landscapes Found</div> 
+                            </apex:outputPanel>                                                                                        
+                        </div>
+                        <apex:outputPanel rendered="{!if(lLandscapes.size>20,true,false)}">
+                        <div class='pagination container'>                    
+                            <span class='col-md-12'>Displaying{!((cLandscapeListController.pagenumber-1)*cLandscapeListController.pagesize)+1}-{!IF(cLandscapeListController.ResultSize < ((cLandscapeListController.pagenumber)*cLandscapeListController.pagesize),cLandscapeListController.ResultSize,((cLandscapeListController.pagenumber)*cLandscapeListController.pagesize))} of {!cLandscapeListController.ResultSize}</span>
+                            <div class='indicator-container col-md-12'>
+                                <apex:actionregion >
+                                    <apex:commandlink styleClass="indicator icon-arrow left" action="{!PreviousLandscapePageSeries}" rendered="{!IF(AND(lLandscapePageNumbers.size <> 0,lLandscapePageNumbers[0]!=1),true,false)}"  rerender="LandscapeResults"/>
+                                        
+                                    <apex:repeat value="{!lLandscapePageNumbers}" var="obj">
+                                        <apex:commandlink styleClass="{!if(obj==cLandscapeListController.pagenumber,'indicator current','indicator')}" value="{!obj}" action="{!GoToLandscapePageNumber}" rerender="LandscapeResults">
+                                            <apex:param name="{!obj}" value="{!obj}" assignTo="{!iPageNumber}" />
+                                        </apex:commandlink>
+                                    </apex:repeat>
+                                    <apex:commandlink styleClass="indicator icon-arrow right" action="{!NextLandscapePageSeries}" rendered="{!IF(AND(lLandscapePageNumbers.size <> 0,dLandscapePageCount> lLandscapePageNumbers[lLandscapePageNumbers.size-1]),true,false)}" rerender="LandscapeResults" />
+                                        
+                                </apex:actionregion>
+                            </div>
+                        </div>
+                    </apex:outputPanel>
+                    </apex:outputPanel>             
+                </section>
+                <!-------------------------------------------------------Relationship Results---------------------------------------------------------------------------------------------->
+                <section data-id="content5">
+                    <apex:outputpanel id="RelationshipResults"> 
+                       <div class="results container offset-title-row">
+                            <apex:repeat value="{!Relationships}" var="oContact">
+                                <div class='result-item col-md-12'>
+                                    <apex:variable var="absoluteurl" value="{!IF(CONTAINS(oContact.Account.RecordType.Name,"Partner"),"Partner",IF(CONTAINS(oContact.Account.RecordType.Name,"Vendor"),"Vendor","ResearchInstitutes"))}"/>
+                                    <div class='col-md-3'><apex:outputLink value="/apex/DRDP_CreateRelationshipContact?Id={!oContact.Id}&recTypeName={!absoluteurl}&IsEdit=false" target="_blank">{!oContact.Name}</apex:outputLink></div>
+                                    <div class='col-md-3'>{!oContact.MailingStreet}<br/>
+                                    {!oContact.MailingCity}<br/>
+                                    {!oContact.MailingState}<br/>
+                                    {!oContact.MailingPostalCode}<br/>
+                                    {!oContact.MailingCountry}<br/>
+                                    </div>
+                                    <apex:variable var="pagename" value="{!IF(CONTAINS(oContact.Account.RecordType.Name,"Partner"),"DRDP_CreatePartnerRelationship",IF(CONTAINS(oContact.Account.RecordType.Name,"Vendor"),"DRDP_CreateVendorRelationship","DRDP_CreateScientificLeadersRelationship"))}"/>
+                                    <div class='col-md-3 hidden-xs'><apex:outputLink value="/apex/{!pagename}?Id={!oContact.Account.Id}&recTypeName={!absoluteurl}&IsEdit=false" target="_blank">{!oContact.Account.Name}</apex:outputLink></div>
+                                    <div class='col-md-3 hidden-xs'>{!oContact.Language_s__c}</div>
+                                </div>
+                            </apex:repeat>  
+                            <apex:outputPanel rendered="{!if(lRelationships.size==0,true,false)}">
+                                <div class='result-item col-md-12'>No Relationships Found</div> 
+                            </apex:outputPanel>                                                                                        
+                        </div>
+                        <apex:outputPanel rendered="{!if(lRelationships.size>20,true,false)}">
+                        <div class='pagination container'>                    
+                            <span class='col-md-12'>Displaying{!((cRelationshipController.pagenumber-1)*cRelationshipController.pagesize)+1}-{!IF(cRelationshipController.ResultSize < ((cRelationshipController.pagenumber)*cRelationshipController.pagesize),cRelationshipController.ResultSize,((cRelationshipController.pagenumber)*cRelationshipController.pagesize))} of {!cRelationshipController.ResultSize}</span>
+                            <div class='indicator-container col-md-12'>
+                                <apex:actionregion >
+                                    <apex:commandlink styleClass="indicator icon-arrow left" action="{!PreviousRelationshipPageSeries}" rendered="{!IF(AND(lRelationshipPageNumbers.size <> 0,lRelationshipPageNumbers[0]!=1),true,false)}"  rerender="RelationshipResults"/>
+                                        
+                                    <apex:repeat value="{!lRelationshipPageNumbers}" var="obj">
+                                        <apex:commandlink styleClass="{!if(obj==cRelationshipController.pagenumber,'indicator current','indicator')}" value="{!obj}" action="{!GoToRelationshipPageNumber}" rerender="RelationshipResults">
+                                            <apex:param name="{!obj}" value="{!obj}" assignTo="{!iPageNumber}" />
+                                        </apex:commandlink>
+                                    </apex:repeat>
+                                    <apex:commandlink styleClass="indicator icon-arrow right" action="{!NextRelationshipPageSeries}" rendered="{!IF(AND(lRelationshipPageNumbers.size <> 0,dRelationshipPageCount> lRelationshipPageNumbers[lRelationshipPageNumbers.size-1]),true,false)}" rerender="RelationshipResults" />
+                                        
+                                </apex:actionregion>
+                            </div>
+                        </div>
+                    </apex:outputPanel>
+                    </apex:outputPanel>             
+                </section>
+                
+<!-----------------------------------------------------------------End of Tabbed Results--------------------------------------------------------------------------->
+            </div>
+        </div>
+    </main>
+<c:DRDP_FooterComponent />
+</div> 
+<!----------------------------------------------------------- search-results-container ends------------------------------------------------------------------------->
+        </div>
+    </apex:form>
+<c:Webtrends_Tracker />
+</apex:page>

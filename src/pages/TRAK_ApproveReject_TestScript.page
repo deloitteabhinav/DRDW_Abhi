@@ -1,0 +1,12 @@
+<apex:page standardController="TRAK_Test_Templates__c" extensions="TRAK_TestScriptApprovalClass">
+<apex:form style="margin-left:50%;">
+<apex:commandButton action="{!redirectToApprovalPage}" value="Approve/Reject" disabled="{!NOT(checkApproveRejectButton)}"/>
+<apex:outputPanel id="redirectPanel" >
+            <apex:outputText rendered="{!redirect}">
+                <script type="text/javascript">
+                    window.top.location.href = '{!redirectUrl}';
+                </script>
+            </apex:outputText>
+    </apex:outputPanel> 
+</apex:form>
+</apex:page>

@@ -1,0 +1,675 @@
+<apex:page docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="true" id="thePage" Standardcontroller="Account" extensions="DRDP_CreateRelationshipController">
+ 
+    <head>
+    <title>Create Scientific Leaders Organization</title>
+    </head>
+    <body>
+        <div class='df_drdw content'>
+        <!-- Using QFORs Index component for the Top Header- -->
+        <c:SR2_Index />
+        <div class="df_drdw-createstudy df_drdw-create-bp">
+            
+            <header>
+            <div class="pattern"></div> 
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xs-12 banner-properties">
+                            <!-- ------------------  Conditional header & buttons  here ----------------- -->
+                             <div class="container">
+                                <apex:outputpanel rendered="{!IF($CurrentPage.parameters.id == NULL,true,false)}">
+                                <h1><apex:outputText value="Create Scientific Leaders Organization"/></h1>
+                                </apex:outputPanel>
+                                <apex:outputpanel rendered="{!IF($CurrentPage.parameters.id != NULL,true,false)}">
+                                <h1><apex:outputText value="Scientific Leaders Organization"/></h1>
+                                <h1><apex:outputField value="{!oAccount.Name}"/></h1>
+                                <p></p>
+                                </apex:outputpanel>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+                <!-- ------------------  Error OutputPanel start here ---------------- -->    
+                <div class="sfdc-errorMessage font-s">
+                    <apex:pagemessages escape="false"></apex:pagemessages>
+                </div>
+                <script>
+                document.body.scrollTop = document.documentElement.scrollTop = 0;
+                </script>
+                <!-- ------------------  Error OutputPanel ends here ---------------- --->
+
+        <!--------------------  Overall MAIN container starts here ------------------->
+
+        <main class="container">
+
+
+            <apex:outputpanel id="EditBPPanel" rendered="{!IF($CurrentPage.parameters.isEdit=='true',true,false)}">
+            <apex:form id="editBP" styleclass="create-study-form accordion">
+            
+            <section class="row">
+                <div class="col-xs-12 required-label">* REQUIRED FIELD</div>
+            </section>
+
+            <!--------------------------------Information Section starts---------------------------------------------------------->
+            <section class="row">
+                <div class="col-xs-12">
+                    <h2 class="accordion-parent">Organization Information
+                    <span class="icon-large-caret pull-right down"></span></h2>
+                    <fieldset class="accordion-child">
+                    <apex:outputPanel id="Information">
+                    <apex:actionregion >
+                     
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>Organization Name</label><span class="required-label"> *</span> 
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.Name.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.Name.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oAccount.Name}" styleClass="required"/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.Research_Institute_Name__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.Research_Institute_Name__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.Research_Institute_Name__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oAccount.Research_Institute_Name__c}"/>
+                        </div>
+                    </div>
+                    
+                   <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.Services_Provided__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.Services_Provided__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.Services_Provided__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oAccount.Services_Provided__c}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.Locations_Operated_In__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.Locations_Operated_In__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.Locations_Operated_In__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oAccount.Locations_Operated_In__c}"/>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.Specialty__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.Specialty__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.Specialty__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oAccount.Specialty__c}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.Relationship_Owner__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.Relationship_Owner__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.Relationship_Owner__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper hide-user-select">
+                            <apex:inputField value="{!oAccount.Relationship_Owner__c}" Styleclass="select-based-lookup"/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.Sponsorship_Function__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.Sponsorship_Function__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.Sponsorship_Function__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oAccount.Sponsorship_Function__c}"/>
+                        </div>
+                    </div>
+
+                    </apex:actionRegion>
+                    </apex:outputPanel>
+                    </fieldset>
+                </div>
+            </section>
+            
+            <section class="row">
+                <div class="col-xs-12">
+                    <h2 class="accordion-parent">Research Institute Address
+                    <span class="icon-large-caret pull-right down"></span></h2>
+                    <fieldset class="accordion-child">
+                    <apex:outputPanel id="ResearchAdrress">
+                    <apex:actionregion >
+                     
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.BillingStreet.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.BillingStreet.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.BillingStreet.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oAccount.BillingStreet}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.BillingCity.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.BillingCity.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.BillingCity.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oAccount.BillingCity}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.BillingState.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.BillingState.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.BillingState.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oAccount.BillingState}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.BillingPostalCode.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.BillingPostalCode.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.BillingPostalCode.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oAccount.BillingPostalCode}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.BillingCountry.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.BillingCountry.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.BillingCountry.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oAccount.BillingCountry}"/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.ShippingStreet.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.ShippingStreet.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.ShippingStreet.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oAccount.ShippingStreet}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.ShippingCity.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.ShippingCity.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.ShippingCity.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oAccount.ShippingCity}"/>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.ShippingState.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.ShippingState.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.ShippingState.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oAccount.ShippingState}"/>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.ShippingPostalCode.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.ShippingPostalCode.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.ShippingPostalCode.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oAccount.ShippingPostalCode}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.ShippingCountry.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.ShippingCountry.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.ShippingCountry.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oAccount.ShippingCountry}"/>
+                        </div>
+                    </div> 
+                    
+                   <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.Phone.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.Phone.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.Phone.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oAccount.Phone}"/>
+                        </div>
+                    </div>
+                    
+                   <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.Fax.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.Fax.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.Fax.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oAccount.Fax}"/>
+                        </div>
+                    </div>
+                    
+                   <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.Email__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.Email__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.Email__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oAccount.Email__c}"/>
+                        </div>
+                    </div>
+                    
+                    
+                   <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.Website.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.Website.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.Website.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oAccount.Website}"/>
+                        </div>
+                    </div>
+
+
+                    </apex:actionRegion>
+                    </apex:outputPanel>
+                    </fieldset>
+                </div>
+            </section>
+            
+            
+            
+            <!---------------------------------------------------------Buttons Section---------------------------------------------------------------------------------------------->
+            <section class="row submit">
+                <div class="col-xs-12">
+                    <apex:commandButton action="{!save}" styleclass="submit-study button" value="Save" />
+                    <apex:actionFunction name="doSubmit" rerender="error" oncomplete="return false;"/>
+                    <apex:outputLink rendered="{!IF($CurrentPage.parameters.id==NULL,True,False)}" styleClass="button" value="/apex/DRDP_SelectRelationship">Cancel</apex:outputLink>
+                    <apex:outputLink rendered="{!IF($CurrentPage.parameters.id!=NULL,True,False)}" styleClass="button" value="/apex/DRDP_CreateScientificLeadersRelationship?id={!$CurrentPage.parameters.id}&recTypeName={!$CurrentPage.parameters.currentAccountType}&isEdit=false">Cancel</apex:outputLink>
+                </div>
+            </section>
+            <!---------------------------------------------------------Buttons Section---------------------------------------------------------------------------------------------->
+            </apex:form>
+            </apex:outputpanel>
+<!------~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  EDIT BP Form ends  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~---->
+
+    <apex:outputpanel rendered="{!IF(AND($CurrentPage.parameters.id != NULL,OR($CurrentPage.parameters.isEdit=='false',$CurrentPage.parameters.isEdit==NULL)),true,false)}">
+        <span class="hidden-xs">
+        <chatter:feedWithFollowers entityId="{!$CurrentPage.parameters.id}"/> 
+        </span>
+        <apex:form Styleclass="create-study-form accordion">
+
+
+            <!---------------------------------------------------------Buttons Section on the top---------------------------------------------------------------------------------------------->
+                    <section class="row submit hidden-xs">
+                        <div class="col-xs-12">
+                            <apex:commandButton styleClass="button" value="Edit" action="{!EditRecord}"/>
+                        </div>
+                    </section>
+                    
+            <!--------------------------------Information Section starts---------------------------------------------------------->
+            <section class="row">
+                <div class="col-xs-12">
+                    <h2 class="accordion-parent">Organization Information
+                    <span class="icon-large-caret pull-right down"></span></h2>
+                    <fieldset class="accordion-child">
+                    <apex:outputPanel id="Information">
+                    <apex:actionregion >
+                     
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>Organization Name</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.Name.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.Name.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oAccount.Name}"/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.Research_Institute_Name__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.Research_Institute_Name__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.Research_Institute_Name__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oAccount.Research_Institute_Name__c}"/>
+                        </div>
+                    </div>
+                    
+                   <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.Services_Provided__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.Services_Provided__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.Services_Provided__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oAccount.Services_Provided__c}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.Locations_Operated_In__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.Locations_Operated_In__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.Locations_Operated_In__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oAccount.Locations_Operated_In__c}"/>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.Specialty__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.Specialty__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.Specialty__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oAccount.Specialty__c}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.Relationship_Owner__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.Relationship_Owner__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.Relationship_Owner__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper hide-user-select">
+                            <apex:outputField value="{!oAccount.Relationship_Owner__c}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.Sponsorship_Function__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.Sponsorship_Function__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.Sponsorship_Function__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oAccount.Sponsorship_Function__c}"/>
+                        </div>
+                    </div>
+
+
+                    </apex:actionRegion>
+                    </apex:outputPanel>
+                    </fieldset>
+                </div>
+            </section>
+            
+            <section class="row">
+                <div class="col-xs-12">
+                    <h2 class="accordion-parent">Research Institute Address
+                    <span class="icon-large-caret pull-right down"></span></h2>
+                    <fieldset class="accordion-child">
+                    <apex:outputPanel id="ResearchAdrress">
+                    <apex:actionregion >
+                     
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.BillingStreet.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.BillingStreet.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.BillingStreet.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oAccount.BillingStreet}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.BillingCity.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.BillingCity.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.BillingCity.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oAccount.BillingCity}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.BillingState.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.BillingState.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.BillingState.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oAccount.BillingState}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.BillingPostalCode.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.BillingPostalCode.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.BillingPostalCode.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oAccount.BillingPostalCode}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.BillingCountry.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.BillingCountry.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.BillingCountry.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oAccount.BillingCountry}"/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.ShippingStreet.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.ShippingStreet.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.ShippingStreet.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oAccount.ShippingStreet}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.ShippingCity.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.ShippingCity.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.ShippingCity.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oAccount.ShippingCity}"/>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.ShippingState.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.ShippingState.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.ShippingState.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oAccount.ShippingState}"/>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.ShippingPostalCode.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.ShippingPostalCode.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.ShippingPostalCode.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oAccount.ShippingPostalCode}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.ShippingCountry.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.ShippingCountry.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.ShippingCountry.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oAccount.ShippingCountry}"/>
+                        </div>
+                    </div> 
+                    
+                   <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.Phone.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.Phone.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.Phone.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oAccount.Phone}"/>
+                        </div>
+                    </div>
+                    
+                   <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.Fax.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.Fax.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.Fax.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oAccount.Fax}"/>
+                        </div>
+                    </div>
+                    
+                   <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.Email__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.Email__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.Email__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oAccount.Email__c}"/>
+                        </div>
+                    </div>
+                    
+                    
+                   <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Account.Fields.Website.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Account.Fields.Website.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Account.Fields.Website.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oAccount.Website}"/>
+                        </div>
+                    </div>
+
+
+                    </apex:actionRegion>
+                    </apex:outputPanel>
+                    </fieldset>
+                </div>
+            </section>
+
+            
+            
+            <!-- -------------------------------------------------------Buttons Section on bottom-------------------------------------------------------------------------------------------- -->
+                    <section class="row submit hidden-xs">
+                        <div class="col-xs-12">
+                            <apex:commandButton styleClass="button" value="Edit" action="{!EditRecord}" />
+                        </div>
+                    </section>
+            </apex:form>
+            </apex:outputPanel>
+
+
+    </main>
+    </div>
+    </div>
+    <apex:form >
+    <c:SR2_FooterComponent />
+    </apex:form>
+    </body>
+</apex:page>

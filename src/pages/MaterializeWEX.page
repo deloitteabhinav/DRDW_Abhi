@@ -1,0 +1,40 @@
+<apex:page applyHtmlTag="false" applyBodyTag="false" showHeader="false">
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+      <!--Import materialize.css-->
+      <apex:stylesheet value="{!URLFOR($Resource.Materialize, '/materialize/css/materialize.min.css')}"/>
+      <apex:stylesheet value="{!URLFOR($Resource.JSTree, '/vakata-jstree-a6a0d0d/dist/themes/default/style.min.css')}"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <!--Import jQuery before materialize.js-->
+      <apex:includeScript value="{!URLFOR($Resource.JQuery, '/js/jquery-1.7.2.min.js')}"/>
+      <apex:includeScript value="{!URLFOR($Resource.JSTree, '/vakata-jstree-a6a0d0d/dist/jstree.js')}"/>
+      <apex:includeScript value="{!URLFOR($Resource.Materialize, '/materialize/js/materialize.min.js')}"/>
+    </head>
+  
+    <script>
+        $(function () { $('#jstree_demo_div').jstree(); });
+    </script>
+
+    <body>
+        <div class="container row">
+            <form class="col s12">
+              <div class="row">
+                <div class="input-field col s12 m6">
+                  <input id="last_name" type="text" class="validate"/>
+                  <label for="last_name">Search Text</label>
+                </div>
+                <div class="col s12 m6">
+                  <a class="waves-effect waves-light btn-large"><i class="material-icons right">send</i>Search</a>
+                  <!-- <a class="waves-effect waves-light btn-large">Search</a> -->
+                </div>
+              </div>
+            </form>
+        </div>
+        <div id="jstree_demo_div"></div>
+    </body>
+  </html>
+</apex:page>

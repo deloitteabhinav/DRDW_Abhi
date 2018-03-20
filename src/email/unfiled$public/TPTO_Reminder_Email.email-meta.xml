@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Lilly_Trialforce</letterhead>
+    <name>TPTO_Reminder Email</name>
+    <style>formalLetter</style>
+    <subject>Kindly approve the PTO</subject>
+    <textOnly>Hi,
+
+Kindly approve the PTO. You can access it with the below link:
+https://cs15.salesforce.com/{!TPTO_PTO_Request__c.Id}
+
+
+Regards,
+Trialforce</textOnly>
+    <type>html</type>
+</EmailTemplate>

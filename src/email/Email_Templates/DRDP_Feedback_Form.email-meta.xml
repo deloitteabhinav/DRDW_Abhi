@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>This template is used to send out the email to a user selected during the &apos;Initiate Feedback&apos; process</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>DRDP_FeedbackLetterhead</letterhead>
+    <name>DRDP_Feedback Form</name>
+    <style>freeForm</style>
+    <subject>{!Feedback_Providers__c.Feedback_Id__c} Provide Feedback about - {!Feedback_Providers__c.Supplier_Name__c}</subject>
+    <textOnly>Hi {!Feedback_Providers__c.Feedback_Provider_First_Name__c},
+
+In order to help me prepare for my upcoming meeting with {!Feedback_Providers__c.Supplier_Name__c}, I would like to collect some feedback about our recent activities with the Organization.
+
+Please navigate to the link below in order to provide some feedback about the Organization.
+
+Click here
+
+Thank You.
+{!User.Name}</textOnly>
+    <type>html</type>
+</EmailTemplate>

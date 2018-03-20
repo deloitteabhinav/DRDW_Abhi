@@ -1,0 +1,1138 @@
+<apex:page docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="true" standardcontroller="Data_Asset__c" extensions="CreateDataAssetController,RWEFinalDeliverablesList" action="{!AssetPage}">
+
+    <head>
+        <title>Data Asset</title>
+        <script>
+                $(document).ready(function() {
+                    $(".pbHeader").hide();
+                });
+         </script>
+        <style type="text/css">
+        .actionColumn {display:none; visibility:hidden}
+        </style>
+    </head>
+    <body>
+        <div class='qfor content'>
+            <!-- Using QFORs Index component for the Top Header- -->
+            <c:SR2_Index />
+            <div class="qfor-createstudy qfor-data-assets-read-only">
+                <header>
+                    <div class="pattern"></div>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xs-12 banner-properties">
+                                <div class="container">
+                                    <h1><apex:outputText value="{!oDataAsset.Name}"/></h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                
+                <main class="container">
+                    <apex:outputpanel rendered="{!IF(AND($CurrentPage.parameters.id != NULL,OR($CurrentPage.parameters.isEdit=='false',$CurrentPage.parameters.isEdit==NULL)),true,false)}">
+                        <chatter:feedWithFollowers entityId="{!$CurrentPage.parameters.id}" />
+                        <apex:form Styleclass="create-study-form accordion">
+
+                            <!--Information Section-->
+                            <section class="row">
+                                <div class="col-xs-12">
+                                    <h2 class="accordion-parent">Information<span class="icon-large-caret pull-right down"></span></h2>
+                                    <fieldset class="accordion-child">
+                                    
+                                        
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <div class="additional-links pull-right">
+                                                    <a href="/{!oDataAsset.id}">View Additional Details</a>
+                                                </div>
+                                           </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Name.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Name.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Name.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Name}"></apex:outputfield>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Overall_Rating_Data_Stars_Number__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Overall_Rating_Data_Stars_Number__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Overall_Rating_Data_Stars_Number__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Overall_Rating_Data_Stars_Number__c}"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Company_Name__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Company_Name__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Company_Name__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Company_Name__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Vendor_Contact__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Vendor_Contact__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Vendor_Contact__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Vendor_Contact__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Website__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Website__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Website__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Website__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Lilly_Internal_Contact__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Lilly_Internal_Contact__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Lilly_Internal_Contact__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Lilly_Internal_Contact__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Data_Steward__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Data_Steward__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Data_Steward__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Data_Steward__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Asset_Status__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Asset_Status__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Asset_Status__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Asset_Status__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+                                        
+                                                                                
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Relationship_Type__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Relationship_Type__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Relationship_Type__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Relationship_Type__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Access_Method__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Access_Method__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Access_Method__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Access_Method__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Access_Details__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Access_Details__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Access_Details__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Access_Details__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Accessed_for_In_house_Analysis__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Accessed_for_In_house_Analysis__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Accessed_for_In_house_Analysis__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Accessed_for_In_house_Analysis__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Ability_to_share_with_a_3rd_Party__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Ability_to_share_with_a_3rd_Party__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Ability_to_share_with_a_3rd_Party__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Ability_to_share_with_a_3rd_Party__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+                                                                                
+                                        
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Documentation_Link__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Name.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Documentation_Link__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Documentation_Link__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Data_Asset_Name_Comment__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Data_Asset_Name_Comment__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Data_Asset_Name_Comment__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Data_Asset_Name_Comment__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+
+                                    </fieldset>
+                                </div>
+                            </section>
+                            <!--End of Information Section-->
+
+                            <!--Overview Section-->
+                            <section class="row">
+                                <div class="col-xs-12">
+                                    <h2 class="accordion-parent">Overview<span class="icon-large-caret pull-right down"></span></h2>
+                                    <fieldset class="accordion-child">
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Description_of_Database__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Description_of_Database__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Description_of_Database__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Description_of_Database__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Type_of_Database__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Type_of_Database__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Type_of_Database__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Type_of_Database__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <apex:outputpanel rendered="{!IF(oDataAsset.Claims_Type__c != NULL, TRUE, FALSE)}">
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Claims_Type__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Claims_Type__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Claims_Type__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Claims_Type__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+                                        </apex:outputpanel>
+                                        
+                                        
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Linkable_Details__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Linkable_Details__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Linkable_Details__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Linkable_Details__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Setting_of_Care__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Setting_of_Care__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Setting_of_Care__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Setting_of_Care__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Region__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Region__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Region__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Region__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Generalizability__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Generalizability__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Generalizability__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Generalizability__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Business_Unit_Primary__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Business_Unit_Primary__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Business_Unit_Primary__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Business_Unit_Primary__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Relevant_Therapeutic_Area__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Relevant_Therapeutic_Area__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Relevant_Therapeutic_Area__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Relevant_Therapeutic_Area__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <apex:outputpanel rendered="{!IF(oDataAsset.Disease_State__c != NULL, TRUE, FALSE)}">
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Disease_State__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Disease_State__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Disease_State__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Disease_State__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+                                        </apex:outputpanel>
+                                        
+                                        
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Data_De_Identified__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Data_De_Identified__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Data_De_Identified__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Data_De_Identified__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Differentiating_Attributes_of_this_data__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Differentiating_Attributes_of_this_data__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Differentiating_Attributes_of_this_data__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Differentiating_Attributes_of_this_data__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Key_considerations_Notes__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Key_considerations_Notes__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Key_considerations_Notes__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Key_considerations_Notes__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Additional_Capabilities__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Additional_Capabilities__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Additional_Capabilities__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Additional_Capabilities__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Description_of_Database_Comment__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Description_of_Database_Comment__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Description_of_Database_Comment__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Description_of_Database_Comment__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                    </fieldset>
+                                </div>
+                            </section>
+                            <!--End of Overview Section-->
+
+                            <!--Data Continuity & Enrollment Section -->
+                            <section class="row">
+                                <div class="col-xs-12">
+                                    <h2 class="accordion-parent">Data Continuity &amp; Enrollment<span class="icon-large-caret pull-right down"></span></h2>
+                                    <fieldset class="accordion-child">
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Enrollment_Number_Of_Patients__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Enrollment_Number_Of_Patients__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Enrollment_Number_Of_Patients__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Enrollment_Number_Of_Patients__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Enrollment_Most_Recent_2_Year__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Enrollment_Most_Recent_2_Year__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Enrollment_Most_Recent_2_Year__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Enrollment_Most_Recent_2_Year__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Measure_of_Continuous_Enrollment__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Measure_of_Continuous_Enrollment__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Measure_of_Continuous_Enrollment__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Measure_of_Continuous_Enrollment__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Data_Continuity__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Data_Continuity__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Data_Continuity__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Data_Continuity__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Start_Year_of_Available__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Start_Year_of_Available__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Start_Year_of_Available__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Start_Year_of_Available__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.End_Date__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.End_Date__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.End_Date__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.End_Date__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Ongoing_Updates__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Ongoing_Updates__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Ongoing_Updates__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Ongoing_Updates__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Time_Lag__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Time_Lag__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Time_Lag__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Time_Lag__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Enrollment_Number_of_Patients_Comment__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Enrollment_Number_of_Patients_Comment__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Enrollment_Number_of_Patients_Comment__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Enrollment_Number_of_Patients_Comment__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                    </fieldset>
+                                </div>
+                            </section>
+                            <!--End Of Data Continuity & Enrollment Section-->
+
+                            <!--Patient Characteristics & Vital Signs Section-->
+                            <section class="row">
+                                <div class="col-xs-12">
+                                    <h2 class="accordion-parent">Patient Characteristics &amp; Vital Signs<span class="icon-large-caret pull-right down"></span></h2>
+                                    <fieldset class="accordion-child">
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Demographics__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Demographics__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Demographics__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Demographics__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Patient_History__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Patient_History__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Patient_History__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Patient_History__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Vital_Signs__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Vital_Signs__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Vital_Signs__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Vital_Signs__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Contains_AE_s__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Contains_AE_s__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Contains_AE_s__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Contains_AE_s__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Mortality_Data_Available__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Mortality_Data_Available__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Mortality_Data_Available__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Mortality_Data_Available__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Patient_History_Comment__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Patient_History_Comment__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Patient_History_Comment__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Patient_History_Comment__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+
+                                    </fieldset>
+                                </div>
+                            </section>
+                            <!--End of Patient Characteristics & Vital Signs Section-->
+
+                            <!--Medications Section-->
+                            <section class="row">
+                                <div class="col-xs-12">
+                                    <h2 class="accordion-parent">Medications<span class="icon-large-caret pull-right down"></span></h2>
+                                    <fieldset class="accordion-child">
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.PharmacyRx_Data_Available__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.PharmacyRx_Data_Available__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.PharmacyRx_Data_Available__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.PharmacyRx_Data_Available__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Drugs_Prescribed_Data_Available__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Drugs_Prescribed_Data_Available__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Drugs_Prescribed_Data_Available__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Drugs_Prescribed_Data_Available__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Drugs_Dispensed_Data_Available__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Drugs_Dispensed_Data_Available__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Drugs_Dispensed_Data_Available__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Drugs_Dispensed_Data_Available__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Pharmacy_Type__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Pharmacy_Type__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Pharmacy_Type__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Pharmacy_Type__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Pharmacy_Details__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Pharmacy_Details__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Pharmacy_Details__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Pharmacy_Details__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Pharmacy_Details_Comment__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Pharmacy_Details_Comment__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Pharmacy_Details_Comment__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Pharmacy_Details_Comment__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                    </fieldset>
+                                </div>
+                            </section>
+                            <!--End of Medications Section-->
+
+                            <!--Labs & Diagnostics Section-->
+                            <section class="row">
+                                <div class="col-xs-12">
+                                    <h2 class="accordion-parent">Labs &amp; Diagnostics<span class="icon-large-caret pull-right down"></span></h2>
+                                    <fieldset class="accordion-child">
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Lab_Test__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Lab_Test__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Lab_Test__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Lab_Test__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Lab_Values_Available__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Lab_Values_Available__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Lab_Values_Available__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Lab_Values_Available__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Lab_Test_Dates__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Lab_Test_Dates__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Lab_Test_Dates__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Lab_Test_Dates__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Diagnostic_Procedures__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Diagnostic_Procedures__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Diagnostic_Procedures__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Diagnostic_Procedures__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <apex:outputpanel rendered="{!IF(oDataAsset.Diagnostic_Values__c != NULL, TRUE, FALSE)}">
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Diagnostic_Values__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Diagnostic_Values__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Diagnostic_Values__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Diagnostic_Values__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+                                        </apex:outputpanel>
+                                        
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Diagnostic_Value__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Diagnostic_Value__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Diagnostic_Value__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Diagnostic_Value__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <apex:outputpanel rendered="{!IF(oDataAsset.Diagnostic_Values_Details__c!= NULL, TRUE, FALSE)}">
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Diagnostic_Values_Details__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Diagnostic_Values_Details__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Diagnostic_Values_Details__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Diagnostic_Values_Details__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+                                        </apex:outputpanel>
+                                        
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Diagnostic_Procedure_Dates__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Diagnostic_Procedure_Dates__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Diagnostic_Procedure_Dates__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Diagnostic_Procedure_Dates__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Disease_Severity_Available__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Disease_Severity_Available__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Disease_Severity_Available__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Disease_Severity_Available__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Tumor_Stage_Available__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Tumor_Stage_Available__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Tumor_Stage_Available__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Tumor_Stage_Available__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Biobank_Available__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Biobank_Available__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Biobank_Available__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Biobank_Available__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Access_to_Physician_Notes_or_Others__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Access_to_Physician_Notes_or_Others__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Access_to_Physician_Notes_or_Others__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Access_to_Physician_Notes_or_Others__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Lab_Details_Comment__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Lab_Details_Comment__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Lab_Details_Comment__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Lab_Details_Comment__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                    </fieldset>
+                                </div>
+                            </section>
+                            <!--End of Labs & Diagnostics Section-->
+
+                            <!--Other Measures Section-->
+                            <section class="row">
+                                <div class="col-xs-12">
+                                    <h2 class="accordion-parent">Other Measures<span class="icon-large-caret pull-right down"></span></h2>
+                                    <fieldset class="accordion-child">
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.QOL_Perform_Status_measures_available__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.QOL_Perform_Status_measures_available__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.QOL_Perform_Status_measures_available__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.QOL_Perform_Status_measures_available__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Functional_Measures_Available__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Functional_Measures_Available__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Functional_Measures_Available__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Functional_Measures_Available__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Clinical_Efficacy_measures_available__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Clinical_Efficacy_measures_available__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Clinical_Efficacy_measures_available__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Clinical_Efficacy_measures_available__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Cost_Data_Available__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Cost_Data_Available__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Cost_Data_Available__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Cost_Data_Available__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Cost_Data_Detail__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Cost_Data_Detail__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Cost_Data_Detail__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Cost_Data_Detail__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Type_of_Database_Comments__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Type_of_Database_Comments__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Type_of_Database_Comments__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Type_of_Database_Comments__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                    </fieldset>
+                                </div>
+                            </section>
+                            <!--End of Other Measures Section-->
+
+                            <!--Coding Specifications Section-->
+                            <section class="row">
+                                <div class="col-xs-12">
+                                    <h2 class="accordion-parent">Coding Specifications<span class="icon-large-caret pull-right down"></span></h2>
+                                    <fieldset class="accordion-child">
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Diagnosis_Coding_Systems__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Diagnosis_Coding_Systems__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Diagnosis_Coding_Systems__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Diagnosis_Coding_Systems__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Procedure_Coding_System__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Procedure_Coding_System__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Procedure_Coding_System__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Procedure_Coding_System__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Prescription_Coding_System__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Prescription_Coding_System__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Prescription_Coding_System__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Prescription_Coding_System__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Coding_System__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Coding_System__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Coding_System__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Coding_System__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.AE_Coding_System__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.AE_Coding_System__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.AE_Coding_System__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.AE_Coding_System__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Data_Asset__c.Fields.Diagnosis_Coding_Systems_Comment__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Data_Asset__c.Fields.Diagnosis_Coding_Systems_Comment__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip"><span>{!$ObjectType.Data_Asset__c.Fields.Diagnosis_Coding_Systems_Comment__c.inlinehelptext}</span></div>
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oDataAsset.Diagnosis_Coding_Systems_Comment__c}"></apex:outputfield>
+                                            </div>
+                                        </div>
+
+                                    </fieldset>
+                                </div>
+                            </section>
+                            <!--End Of Coding Specifications Section-->
+                            <!--Related List Section -->
+                        <!--Related Library Section-->
+                        <section class="row">
+                            <div class="col-xs-12">
+                            <h2 class="accordion-parent">Related Library Content<span class="icon-large-caret pull-right down"></span></h2>
+                            <fieldset class="accordion-child">
+                                <div class="related-list"> 
+                                <apex:pageBlock id="CustomList">
+                                    <apex:pageBlockTable value="{!cdAsset}" var="c" rendered="{!(cdAsset.size>0)}">
+                                        <apex:column headervalue="Title">
+                                            <apex:outputLink title="{!c.title}" value="/{!c.id}" target="_parent">{!If(LEN(c.Title)>50,(LEFT(c.Title,25)+'...'),c.Title)}</apex:outputlink>
+                                        </apex:column>
+                                        <apex:column headerValue="Document Type" value="{!c.Document_Type__c}" />
+                                        <apex:column headerValue="Library Name" value="{!mLibraryNameStoredInMap[c.ContentDocumentId]}" />
+                                        <apex:column value="{!c.CreatedDate}" />
+                                        <apex:column value="{!c.ContentModifiedDate}" />
+                                        <apex:column headerValue="Author" value="{!c.Owner.Name}" />
+                                    </apex:pageBlockTable>
+                                    <apex:pageBlockSection id="Msgid">
+                                        <apex:outputLabel value="No records to display" rendered="{!(cdAsset.size==0)}" styleClass="noRowsHeader"></apex:outputLabel>
+                                    </apex:pageBlockSection>
+                                </apex:pageblock>
+                                </div>
+                            </fieldset>
+                            </div>
+                        </section>
+                        <!--End of Related Library Section-->      
+                        </apex:form>
+                        <div class = "create-study-form accordion outside-form-section" >
+                        <section class="row">
+                                <div class="col-xs-12">
+                                    <h2 class="accordion-parent">Related Studies<span class="icon-large-caret pull-right down"></span></h2>
+                                    <fieldset class="accordion-child">
+                                         <div class="related-list"> 
+                                            <apex:relatedList list="RWE_Related_Data_Assets__r"/>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </section>
+                        </div>
+                        <div class = "create-study-form accordion outside-form-section">
+                        <section class="row">
+                                <div class="col-xs-12">
+                                    <h2 class="accordion-parent">Related Requests<span class="icon-large-caret pull-right down"></span></h2>
+                                    <fieldset class="accordion-child">
+                                         <div class="related-list"> 
+                                            <apex:relatedList list="RWE_Related_Data_Assets1__r"/>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </section>
+                        </div>
+                    </apex:outputPanel>
+                </main>
+
+            </div>
+        </div>
+        <c:SR2_FooterComponent />
+        <c:Webtrends_Tracker />
+    </body>
+</apex:page>

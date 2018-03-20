@@ -1,0 +1,52 @@
+<apex:page docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="true" id="thePage">
+ 
+    <head>
+    <title>Plan a Research</title>
+    <c:SR2_Index />
+    </head>
+        
+     <div class='qfor content'>
+       <div class="qfor-createstudy qfor-bp-interim">
+        <header>
+            <div class="pattern"></div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12 banner-properties">
+                        <div class="container">
+                        <h1>Plan a Research</h1>
+                        <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="container">
+            <div class="request-types-container ">
+                
+                <div class="col-md-6 request-item">
+                     <div class="hover-wrapper">
+                     <span class="name bold font-m">Research Topics</span>
+                     <p class="description font-s">To support ongoing discovery, pre-clinical, and clinical studies this section is used to capture information from journal articles, industry reports, dissertation from leading research institutions, news release, and industry brochures. Research topics help group information around particular topics to give researchers access to additional information sources specific to their needs. Researchers have the ability to collaborate with their teams on selected research topics and determine what publications are critical to meeting their R&amp;D objectives. 
+ <br/>Research topics provides insight information on latest advances in all areas of Life Sciences to promote rapid communication and idea exchange amongst teams throughout your organization</p>
+                     
+                     <apex:outputlink styleclass="navigate-to-link" value="/apex/Research_Topics?BPType=Research_Study">Create</apex:outputlink>
+                     </div>
+                </div>
+                <div class="col-md-6 request-item">
+                    <div class="hover-wrapper">
+                    <span class="name bold font-m">Research Study</span>
+                    <p class="description font-s">The choice of study type is a critical aspect of the design of medical studies to identify new therapies, drugs, and techniques. Study design, which covers planning, performance, documentation, analysis, and publication aspect of the study is also dependent on the study type which serves as an important determinant of selected studies quality and clinical value. 
+
+When designing a study, please specify study category: <br/><br/>
+(1) Basic Research - also known as experimental research that focuses on animal experiments, cell studies, biochemical, genetic, and physiological investigations on new drugs and therapies.<br/><br/>
+(2) Clinical Research - includes experimental and observational studies on new drugs and therapies (i.e. Phase I - IV clinical studies).<br/><br/>
+(3) Epidemiological research - investigation of the distribution and historical changes in disease frequency across various groups and geographies.</p>
+                    <apex:outputlink styleclass="navigate-to-link" value="/apex/CreateStudy?BPType=Study_BP">Create</apex:outputlink>
+                    </div>
+                </div>
+            </div>
+        </main>
+        </div>
+        </div>
+       <c:SR2_FooterComponent />
+</apex:page>

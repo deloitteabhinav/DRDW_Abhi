@@ -1,0 +1,148 @@
+<apex:page controller="PartnershipDashboard" docType="html-5.0" readonly="true" standardStylesheets="false" showHeader="false" sidebar="false">
+    <html>
+
+    <head>
+        <title>RWE Partnerships</title>
+    </head>
+
+    <body>
+        <div class="executive-dashboard">
+            <c:Executive_Dashboard_Navbar />
+            <div class="container top-nav-offset detail-page">
+                <h3 class="app-title visible-xs">Executive Scorecards</h3>
+                <div class="row zero-margin">
+                    <!-- Panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                    <img class="panel-icon" src="{!URLFOR($Resource.ExecutiveDashboardResource,'assets/img/icons/Oval@1.5x.svg')}"/>
+                    RWE Partnerships</h3>
+                        </div>
+                        <div id="responseErrors"></div>
+                        <!-- .panel-heading-ends -->
+                        <div class="panel-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-2 col-lg-2 contains-highlight-numbers">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12">
+                                                <p class="highlight-data">
+                                                    <span class="highlight-number blue"><span id="nStudyCount"></span></span>
+                                                    <span class="highlight-data-text">Studies</span>
+                                                </p>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12">
+                                                <p class="highlight-data">
+                                                    <span class="highlight-number orange"><span id="nPartnershipCount"></span></span>
+                                                    <span class="highlight-data-text">Approved RWE Partnerships</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- .contains-highlight-numbers ends -->
+                                    <div class="col-xs-12 col-md-10 col-lg-10 contains-graphics">
+                                        <div class="row item-row item-container-margin-offset">
+                                            <div class="col-xs-12 col-md-12 col-lg-12">
+                                                <div class="item-container">
+                                                    <p class="item-title">No. of Studies by  Approved Partnerships​</p>
+                                                    <div class="PartnershipStudyChart">
+                                                        <apex:chart resizable="false" data="getPartnershipStudyChart" name="RemotingChart2" height="250" width="500">
+                                                            <apex:axis type="Category" position="left"  fields="Name">
+                                                                <apex:chartLabel />
+                                                            </apex:axis>
+                                                            <apex:axis type="Numeric" minimum="0" steps="4" position="bottom"  fields="Data" >
+                                                                <apex:chartLabel />
+                                                            </apex:axis>
+                                                            <apex:barSeries yPadding="0" colorSet="#53A8E2" orientation="horizontal" axis="bottom" xField="Data" yField="Name">
+                                                                <apex:chartTips height="40" width="120" />
+                                                            </apex:barSeries>
+                                                        </apex:chart>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-md-12 col-lg-12">
+                                            <div class="item-container">
+                                                    <p class="item-title">No. of Approved Partnerships by RWE Partnership Sponsor​</p>
+                                                    <div class="ApprovedPartnershipChart">
+                                                        <apex:chart resizable="false" data="getApprovedPartnershipChart" name="RemotingChart1" height="250" width="500">
+                                                            <apex:axis type="Category" position="left"  fields="Name">
+                                                                <apex:chartLabel />
+                                                            </apex:axis>
+                                                            <apex:axis type="Numeric" minimum="0" steps="4" position="bottom"  fields="Data" >
+                                                                <apex:chartLabel />
+                                                            </apex:axis>
+                                                            <apex:barSeries yPadding="0" colorSet="#ff6d22" orientation="horizontal" axis="bottom" xField="Data" yField="Name">
+                                                                <apex:chartTips height="40" width="120" />
+                                                            </apex:barSeries>
+                                                        </apex:chart>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- .row.item-row ends -->
+                                    </div>
+                                    <!-- .contains-graphics ends -->
+                                </div>
+                            </div>
+                            <!-- .panel-body .container ends -->
+                        </div>
+                        <!-- .panel-body ends -->
+                    </div>
+                    <!-- .panel.panel-default ends -->
+                </div>
+                <!-- .row.zero-margin ends -->
+            </div>
+            <!-- .detail-page ends -->
+            <div class="footer-common detail-page-footer partnership-dashboard">
+                <c:Executive_Dashboard_Footer />
+            </div>
+        </div>
+        <!-- .executive-dashboard ends -->
+    </body>
+    <script type="text/javascript">
+    function getPartnershipStudyChart(callback) {
+        showWaitSpinner();
+        Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.PartnershipDashboard.GeneratePartnershipStudyWrapper}',
+            function(result, event) {
+                if (event.status) {
+                    // Get DOM IDs for HTML and Visualforce elements like this
+                    document.getElementById('nStudyCount').innerHTML = (result.StudyCount).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+                    document.getElementById('nPartnershipCount').innerHTML = (result.PartnershipCount).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+                    callback(result.lStudyPartnership);
+                    RemotingChart2.show();
+                    hideWaitSpinner();
+                } else if (event.type === 'exception') {
+                    document.getElementById("responseErrors").innerHTML =
+                        event.message + "<br/>\n<pre>" + event.where + "</pre>";
+                } else {
+                    document.getElementById("responseErrors").innerHTML = event.message;
+                }
+            }, {
+                escape: true
+            }
+        );
+    }
+    
+    function getApprovedPartnershipChart(callback) {
+        showWaitSpinner();
+        Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.PartnershipDashboard.GenerateApprovedPartnershipWrapper}',
+            function(result, event) {
+                if (event.status) {
+                    callback(result.lApprovedPartnership);
+                    RemotingChart1.show();
+                    hideWaitSpinner();
+                } else if (event.type === 'exception') {
+                    document.getElementById("responseErrors").innerHTML =
+                        event.message + "<br/>\n<pre>" + event.where + "</pre>";
+                } else {
+                    document.getElementById("responseErrors").innerHTML = event.message;
+                }
+            }, {
+                escape: true
+            }
+        );
+    }
+    </script>
+
+    </html>
+</apex:page>

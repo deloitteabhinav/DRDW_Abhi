@@ -1,0 +1,22 @@
+<apex:page sidebar="true" controller="ImportLandscapes" showHeader="true" tabStyle="Information_Landscape__c">
+   <apex:form >
+      <apex:sectionHeader title="Upload data from CSV file"/>
+      <apex:pagemessages />
+      <apex:pageBlock >
+             <!--  Component to allow user to upload file from local machine -->
+              <center>
+              <apex:inputFile value="{!contentFile}" filename="{!nameFile}" /> <apex:commandButton action="{!ReadFile}" value="Upload File" id="theButton" style="width:70px;"/>
+              <br/> <br/> <font color="red"> <b>Note: Please use the standard template to upload Sources. <a href="/servlet/servlet.FileDownload?file=01546000000jdcO" target="_blank"> Click here </a> to download the template. </b> </font>
+             </center>    
+      
+      <!-- After the user clicks the 'Upload File' button, this section displays the inserted data -->
+      <apex:outputLabel value="Uploaded Records" rendered="{!NOT(ISNULL(uploadedLandscapes))}"></apex:outputLabel>
+      <apex:pageblocktable value="{!uploadedLandscapes}" var="acc" rendered="{!NOT(ISNULL(uploadedLandscapes))}">
+          <apex:column headerValue="Source Name">
+              <apex:outputLink value="/{!acc.id}" target="_blank">{!acc.Name}</apex:outputLink>
+          </apex:column>
+      </apex:pageblocktable> 
+      
+      </apex:pageBlock>       
+   </apex:form>   
+</apex:page>

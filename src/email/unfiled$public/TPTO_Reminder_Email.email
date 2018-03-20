@@ -1,0 +1,14 @@
+<table border="0" cellpadding="5" width="600" cellspacing="5" height="400" >
+<tr valign="top" height="50" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[]]></td>
+</tr>
+<tr valign="top" height="300" >
+<td tEditID="c1r2" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r2" locked="0" >
+<![CDATA[Hi {!ApprovalRequest.Process_Approver},<div><br></div><div>This is to remind you to kindly approve the PTO raised by {!TPTO_PTO_Request__c.OwnerFullName} for the period : {!TPTO_PTO_Request__c.Start_Date__c} - {!TPTO_PTO_Request__c.End_Date__c}. You can access it through the below link:</div><div><a href="https://cs15.salesforce.com/{!TPTO_PTO_Request__c.Id}" style="background-color: rgb(255, 255, 255);">https://cs15.salesforce.com/{!TPTO_PTO_Request__c.Id}</a><span style="background-color: rgb(255, 255, 255);">&nbsp;</span><br><div><br></div><div><br></div></div>]]></td>
+</tr>
+<tr valign="top" height="50" >
+<td tEditID="c1r3" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r3" locked="0" >
+<![CDATA[Regards,<div>Trialforce</div>]]></td>
+</tr>
+</table>

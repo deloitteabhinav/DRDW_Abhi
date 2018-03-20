@@ -1,0 +1,178 @@
+<apex:page docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="true" standardcontroller="Request__c" extensions="CreateRequestController">
+
+    <c:DRDP_IndexNew />
+    <title>Create Partnership</title>
+
+    <div class='content'>
+        <apex:form id="datasourcingform">
+
+            <div class="datasourcingrequest container-fluid">
+                <div class="col-md-12 section-1 center bannercolor l-orange">
+                    <div class="pattern"></div>
+                    <div class="dsr-heading heading font-xxl">Partnership Exploration Request</div>
+                    <div class="dsr-content container font-xl">
+                        Initiate the exploration of a new Partnership between an external organization.
+                    </div>
+                </div>
+                <div class="container"><!-- section-2 container begins -->
+                <div class="section-2 col-md-12 center">
+                    <div class="sfdc-errorMessage">
+                        <apex:pagemessages escape="false"></apex:pagemessages>
+                    </div>
+                    <apex:outputPanel rendered="{!oRequest.id==null}">
+                        <div class="instruction font-s">* Required Field</div>
+
+                        <!--form action="" method="" id='datasourcingform'-->
+                        <div class="table">
+                            <div class="table-row">
+                                <div class="table-cell font-m bold bold">Request Name <span class='required'>*</span></div>
+                                <div class="table-cell font-r">
+                                    <div class="table-row">
+                                        <!--input type="text" placeholder="Request Name" name="requestname" validate='true' validationtype="alphabets" /-->
+                                        <apex:inputField required="true" value="{!oRequest.Name}" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-row">
+                                <div class="table-cell font-m bold">Description</div>
+                                <div class="table-cell font-r">
+                                    <div class="table-row">
+                                        <label>
+                                            <apex:inputField value="{!oRequest.Description__c}" />
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-row">
+                                <div class="table-cell font-m bold">Requestor<span class='required'>*</span></div>
+                                <div class="table-cell font-r">
+                                    <div class="table-row requestor-field">
+                                        <!--<input type="text" placeholder="Requestor Name" name="requestorname" validate='true' />-->
+                                        <Apex:inputField required="true" value="{!oRequest.Requestor__c}" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-row">
+                                <div class="table-cell font-m bold">Requestor Functional Area<span class='required'>*</span></div>
+                                <div class="table-cell font-r">
+                                    <div class="table-row">
+                                        <label>
+                                            <apex:inputField required="true" value="{!oRequest.Requestor_Functional_Area__c}" />
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                           <div class="table-row">
+                                <div class="table-cell font-m bold">Partner Region<span class='required'>*</span></div>
+                                <div class="table-cell font-r">
+                                    <div class="table-row">
+                                        <label>
+                                            <apex:inputField required="true" value="{!oRequest.Region__c}" />
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="table-row">
+                                <div class="table-cell font-m bold">{!$ObjectType.Request__c.Fields.Partnership_Exploration_Initiator__c.Label}</div>
+                                <div class="table-cell font-r">
+                                    <div class="table-row">
+                                        <label>
+                                            <apex:inputField value="{!oRequest.Partnership_Exploration_Initiator__c}" />
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-row">
+                                <div class="table-cell font-m bold">Partnership Sponsor</div>
+                                <div class="table-cell font-r">
+                                    <div class="table-row">
+                                        <label>
+                                            <apex:inputField value="{!oRequest.Partnership_Sponsor__c}" />
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="table-row">
+                                    <div class="table-cell font-m bold">Therapeutic Area<span class='required'>*</span></div>
+                                    <div class="table-cell font-r">
+                                        <div class="table-row">
+                                            <label>
+                                                <apex:inputField required="true" value="{!oRequest.Therapeutic_Area_Primary__c}" />
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <div class="table-row">
+                                <div class="table-cell font-m bold">Business Unit<span class='required'>*</span></div>
+                                <div class="table-cell font-r">
+                                    <div class="table-row">
+                                        <label>
+                                            <apex:inputField required="true" value="{!oRequest.Business_Unit_Primary__c}" />
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-row">
+                                    <div class="table-cell font-m bold">Business Criticality<span class='required'>*</span></div>
+                                    <div class="table-cell font-r">
+                                        <div class="table-row">
+                                            <label>
+                                                <apex:inputField required="true" value="{!oRequest.Priority__c}" />
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- div class="table-row">
+                                    <div class="table-cell font-m bold">Business Criticality Comments</div>
+                                    <div class="table-cell font-r">
+                                        <div class="table-row">
+                                            <label>
+                                                <apex:inputField value="{!oRequest.Business_Criticality_Comments__c}" />
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div -->
+                             
+                            <div class="table-row">
+                                <div class="table-cell font-m bold">What Makes It Unique</div>
+                                <div class="table-cell font-r">
+                                    <div class="table-row">
+                                        <label>
+                                            <apex:inputField value="{!oRequest.What_Makes_It_Unique__c}" />
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!------------Uploading Documents--------------------------->
+                        <div class="center highlight-section">
+                        <h3>{!$label.Form_AttachmentTitle}</h3>
+                        <p class="attachment-note font-m">{!$Label.AttachmentText}</p>
+                        <br/><br/>           
+                
+                        <apex:inputfile value="{!attachmentBody1}" filename="{!attachmentName1}" size="10" />   <br/><br/>
+                        <apex:inputfile value="{!attachmentBody2}" filename="{!attachmentName2}" size="10" />   <br/><br/>
+                        <apex:inputfile value="{!attachmentBody3}" filename="{!attachmentName3}" size="10" />   <br/><br/>
+
+                        </div>
+                        <!------------Saving the Form--------------------------->
+                        <div class="center">
+                            <apex:commandButton styleClass="button btn-submit font-m" value="Submit" action="{!save}" />
+                        </div>
+                        <div class="center">
+                                <apex:outputLink styleClass="lnk-cancel" value="{!If($CurrentPage.Parameters.studyID !=NULL,'/apex/CreateStudy?id='+$CurrentPage.Parameters.studyID , '/apex/PartnershipList')}">Cancel</apex:outputLink>
+                         </div>
+                        <!--/form-->
+                    </apex:outputPanel>
+                </div>
+            </div> <!-- section-2 container ends--> 
+            </div>
+             <c:DRDP_FooterComponent />
+        </apex:form>
+        
+    </div>
+</apex:page>

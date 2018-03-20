@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Comments__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please provide any specific comments regarding the data in relation to this study/project.</inlineHelpText>
+        <label>Comments</label>
+        <length>32768</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Data_Asset__c</fullName>
+        <externalId>false</externalId>
+        <label>Data Asset</label>
+        <referenceTo>Data_Asset__c</referenceTo>
+        <relationshipLabel>Data Asset Feedback</relationshipLabel>
+        <relationshipName>RWE_Data_Asset_Feedbacks</relationshipName>
+        <relationshipOrder>1</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Data_Recommendation__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Would you recommend this data for another study?</inlineHelpText>
+        <label>Data Recommendation</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Data_TF__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(CONTAINS( TEXT(Data__c ), &quot;1&quot;), 1, 
+IF(CONTAINS( TEXT(Data__c), &quot;2&quot;), 2, 
+IF(CONTAINS( TEXT(Data__c ), &quot;3&quot;), 3, 
+IF(CONTAINS( TEXT(Data__c), &quot;4&quot;), 4, 
+IF(CONTAINS( TEXT(Data__c ), &quot;5&quot;), 5,0)))) )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Data TF</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Data__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Was the Data sufficient to answer your study question?</inlineHelpText>
+        <label>Data Rating</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1 Star - Lowest Rating</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>2 Stars</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>3 Stars</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>4 Stars</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>5 Stars - Highest Rating</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Gap_Comments__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please comment on the gaps</inlineHelpText>
+        <label>Gap Comments</label>
+        <length>32768</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Gaps_in_the_Data__c</fullName>
+        <externalId>false</externalId>
+        <label>Were there any gaps in the Data?</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>IsFeedbackComplete__c</fullName>
+        <description>Checks if All Required Fields are not Blank and ensure Feedback is complete or not.</description>
+        <externalId>false</externalId>
+        <formula>IF(AND(NOT(ISBLANK(TEXT(Data__c))),NOT(ISBLANK(TEXT(Data_Recommendation__c))),NOT(ISBLANK(TEXT(Gaps_in_the_Data__c)))),true,false)</formula>
+        <label>IsFeedbackComplete</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Study_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>Study__r.Study_Project_ID__c</formula>
+        <label>Study ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Study__c</fullName>
+        <externalId>false</externalId>
+        <label>Study</label>
+        <referenceTo>Project__c</referenceTo>
+        <relationshipLabel>Data Asset Feedback</relationshipLabel>
+        <relationshipName>RWE_Data_Asset_Feedbacks</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Unique_Study_DataAsset_TF__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>false</externalId>
+        <label>Unique Study DataAsset TF</label>
+        <length>200</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>User__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Provided By</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>RWE_Data_Asset_Feedbacks_DF</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Data Asset Feedback</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Data_Asset__c</columns>
+        <columns>Study__c</columns>
+        <columns>Data_Recommendation__c</columns>
+        <columns>Data__c</columns>
+        <columns>Gaps_in_the_Data__c</columns>
+        <columns>User__c</columns>
+        <columns>Comments__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>DA-{00000000}</displayFormat>
+        <label>Feedback Id</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Data Asset Feedbacks</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

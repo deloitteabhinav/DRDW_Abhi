@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Template used for email notification to last modifier for rejection</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>TRAK_Tracker_Standard</letterhead>
+    <name>TRAK Test Script Rejection Message</name>
+    <style>formalLetter</style>
+    <subject>Test Script Rejection Notification - {!TRAK_Test_Templates__c.Title__c}</subject>
+    <textOnly>Dear {!TRAK_Test_Templates__c.LastModifiedBy},
+The approval request for Test Script {!TRAK_Test_Templates__c.Title__c} has been rejected.
+
+Please click the link below to view the rejection comments.
+
+{!TRAK_Test_Templates__c.Link}
+Many thanks,
+{!TRAK_Test_Templates__c.Approver__c}</textOnly>
+    <type>html</type>
+</EmailTemplate>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>DRDP_Study_Approved_MailTemplate</name>
+    <style>none</style>
+    <subject>Notice of Approval of Research Study Item in Digital Foundry</subject>
+    <type>text</type>
+</EmailTemplate>

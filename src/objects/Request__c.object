@@ -1,0 +1,2541 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <content>Request_AutoPopulateOnEdit</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <content>FirewallChecker_Request</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Access_Method__c</fullName>
+        <externalId>false</externalId>
+        <label>Access Method</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Internal</fullName>
+                    <color>#0B6FCE</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>External</fullName>
+                    <color>#78C953</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>No Longer Accessible</fullName>
+                    <color>#E27001</color>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Business_Criticality_Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>Business Criticality Comments</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Business_Unit_Primary__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Business unit that is funding the activity or research study</inlineHelpText>
+        <label>Business Unit (Primary)</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Animal Health</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Biotech</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Consumer Health</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Generics</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Medical Devices</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Pharmaceuticals</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Vaccines</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Cancellation_Reason__c</fullName>
+        <externalId>false</externalId>
+        <label>Cancellation Reason</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Deprioritized</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Discontinued</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Outsourcing Services</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Scope change/no services needed</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Molecule development cancelled</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Other - please provide a description in Chatter</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Company_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Company Name</label>
+        <length>500</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Consultant_Resource_Effort__c</fullName>
+        <externalId>false</externalId>
+        <label>Consultation Effort</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Brief (conversations w/o draft review)</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Short Term (1-3 meetings including draft review)</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Long Term (&gt;3 meetings including draft review)</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Contracting_Phase_Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Contracting Phase Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Accepted__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Accepted</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Cancelled__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Cancelled</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Closed__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Archived</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Completed__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Completed</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_In_Progress__c</fullName>
+        <externalId>false</externalId>
+        <label>Date In Progress</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Submitted__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Submitted</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Request description and relevant information</inlineHelpText>
+        <label>Description</label>
+        <length>32768</length>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Differentiating_Attributes_of_this_data__c</fullName>
+        <externalId>false</externalId>
+        <label>Differentiating Attributes of this data</label>
+        <length>5000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Exploration_Phase_Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Exploration Phase Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Final_Outcome__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Summary of request output</inlineHelpText>
+        <label>Final Outcome</label>
+        <length>2000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Governance_Phase_Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Governance Phase Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Key_Considerations__c</fullName>
+        <externalId>false</externalId>
+        <label>Key Considerations</label>
+        <length>5000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Launch_Phase_Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Launch Phase Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Outcome_TF__c</fullName>
+        <externalId>false</externalId>
+        <label>Outcome_TF</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Partnership_Exploration_Initiator__c</fullName>
+        <externalId>false</externalId>
+        <label>Initiator for Partnership Exploration</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Internal</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Potential Partner</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Partnership_Sponsor__c</fullName>
+        <externalId>false</externalId>
+        <label>Partnership Sponsor</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Federal Funding</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Industry Funding</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Joint Ventury (Industry)</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Joint Ventury (Academia)</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Partnership_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Partnership Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Evaluated and Not Pursued</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Exploring</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Approved and Active</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Approved and Pursuing</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Pending_Inc_Action_Date__c</fullName>
+        <description>Trigger updates this field when Request Stage = Pending</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Trigger updates this field when Request Stage = Pending</inlineHelpText>
+        <label>Pending Inc Action Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Primary_Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Primary Contact</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>RWE_Requests3_DF</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Priority__c</fullName>
+        <externalId>false</externalId>
+        <label>Business Criticality</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>High (&lt;1 week)</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Medium (&lt;1 month)</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Low (&lt;2 months)</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Proposed_Due_Date__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Suggested completion date of request or response</inlineHelpText>
+        <label>Proposed Due Date</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Reason_Partnership_Not_Pursued__c</fullName>
+        <externalId>false</externalId>
+        <label>Reason Partnership Not Pursued</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Region__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Geographic region that the research study or data source represents.</inlineHelpText>
+        <label>Region</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Asia Pacific</fullName>
+                    <color>#0B6FCE</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Emerging Markets</fullName>
+                    <color>#78C953</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>EMEA</fullName>
+                    <color>#E27001</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Latin America</fullName>
+                    <color>#A845DC</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Global (Multiple Regions)</fullName>
+                    <color>#F3D904</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>North America</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Related_Project_TF__c</fullName>
+        <externalId>false</externalId>
+        <label>Related_Project_TF</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Related_Project__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>Research question</inlineHelpText>
+        <label>Related Study</label>
+        <referenceTo>Project__c</referenceTo>
+        <relationshipName>RWE_Requests</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Request_Duration__c</fullName>
+        <externalId>false</externalId>
+        <formula>DATETIMEVALUE(Date_Completed__c ) - CreatedDate</formula>
+        <label>Request Duration</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Request_ID__c</fullName>
+        <displayFormat>REQ-{000000000}</displayFormat>
+        <externalId>false</externalId>
+        <label>Request ID</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>AutoNumber</type>
+    </fields>
+    <fields>
+        <fullName>Request_Indicator__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(AND(CONTAINS(&quot;Internal_Real_World_Data_Access:EXPERT_Exception:EXPERT_Workstream:PFO_Review_Request:Asset_Assessment_Request:RWE_Partnership_Exploration:Real_World_Analytics_Assessment&quot;,RecordType.DeveloperName)),&quot;&quot;,IF(AND(CONTAINS(&quot;Complete:	Accepted:Archived:Cancelled:Deleted&quot;,TEXT(Request_Status__c))),&quot;&quot;,IF(AND(ISNULL(Proposed_Due_Date__c),AND(TEXT(Request_Status__c)==&apos;New&apos;,(TODAY() - Date_Submitted__c) &lt; 3 )),IMAGE(&quot;/resource/R3Style/assets/img/green_indicator.png&quot;,&quot;Green&quot;,15,15),IF(AND(ISNULL(Proposed_Due_Date__c),AND(TEXT(Request_Status__c)==&apos;New&apos;,(TODAY() - Date_Submitted__c) &lt; 6)),IMAGE(&quot;/resource/R3Style/assets/img/yellow_indicator.png&quot;,&quot;Yellow&quot;,15,15),IF(AND(ISNULL(Proposed_Due_Date__c),AND(TEXT(Request_Status__c)==&apos;New&apos;,(TODAY() - Date_Submitted__c) &gt; 5)),IMAGE(&quot;/resource/R3Style/assets/img/red_indicator.png&quot;,&quot;Red&quot;,15,15),IF(OR(AND(NOT ISNULL(Proposed_Due_Date__c),Proposed_Due_Date__c &gt;= TODAY()),AND(TEXT(Request_Status__c)==&apos;In Progress&apos;,Proposed_Due_Date__c &gt;= TODAY())),IMAGE(&quot;/resource/R3Style/assets/img/green_indicator.png&quot;,&quot;Green&quot;,15,15),IF(OR(AND(NOT ISNULL(Proposed_Due_Date__c),(TODAY() - Proposed_Due_Date__c) &lt; 8),AND(TEXT(Request_Status__c)==&apos;In Progress&apos;,(TODAY() - Proposed_Due_Date__c) &lt; 8)),IMAGE(&quot;/resource/R3Style/assets/img/yellow_indicator.png&quot;,&quot;Yellow&quot;,15,15),IF(OR(AND(NOT ISNULL(Proposed_Due_Date__c),(TODAY() - Proposed_Due_Date__c) &gt; 7),AND(TEXT(Request_Status__c)==&apos;In Progress&apos;,(TODAY() - Proposed_Due_Date__c) &gt; 7)),IMAGE(&quot;/resource/R3Style/assets/img/red_indicator.png&quot;,&quot;Red&quot;,15,15),&quot;&quot;))))))))</formula>
+        <label>Status Indicator</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Request_Selector__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Request Selector checkbox for Custom Partnership Compare Report</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Request Selector checkbox for Custom Partnership Compare Report</inlineHelpText>
+        <label>Request Selector</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Request_Status__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The status of the request</inlineHelpText>
+        <label>Request Status</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>New</fullName>
+                    <color>#0B6FCE</color>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>Accepted</fullName>
+                    <color>#78C953</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>In Progress</fullName>
+                    <color>#E27001</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Completed</fullName>
+                    <color>#A845DC</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Archived</fullName>
+                    <color>#F3D904</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Cancelled</fullName>
+                    <color>#A53711</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Deleted</fullName>
+                    <color>#66E9BD</color>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Request_Sub_Status__c</fullName>
+        <description>Controlled by Request Status. And Picklist Values are specific to Record Types also.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Additional status of Request</inlineHelpText>
+        <label>Request Stage</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Request_Status__c</controllingField>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Submitted</fullName>
+                    <color>#F3D904</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Pending Requestor Action</fullName>
+                    <color>#8F6429</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Pending Action</fullName>
+                    <color>#EFAE73</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Exploration</fullName>
+                    <color>#0B6FCE</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Governance</fullName>
+                    <color>#78C953</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Contracting</fullName>
+                    <color>#E27001</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Launch</fullName>
+                    <color>#A845DC</color>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>New</controllingFieldValue>
+                <valueName>Submitted</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Accepted</controllingFieldValue>
+                <valueName>Pending Requestor Action</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Accepted</controllingFieldValue>
+                <valueName>Pending Action</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>In Progress</controllingFieldValue>
+                <valueName>Exploration</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>In Progress</controllingFieldValue>
+                <valueName>Governance</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>In Progress</controllingFieldValue>
+                <valueName>Contracting</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>In Progress</controllingFieldValue>
+                <valueName>Launch</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Requestor_Functional_Area__c</fullName>
+        <description>This is done as we cannot look up this information on the User record</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Functional area of the requestor</inlineHelpText>
+        <label>Requestor Functional Area</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Clinical_Studies</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Discovery</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Forecasting</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Joint Venture</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Market Research</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Medical Affairs</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Pre-Clinical Studies</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Patient Enrollment</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Requestor_TF__c</fullName>
+        <externalId>false</externalId>
+        <label>Requestor_TF</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Requestor__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>Request contact</inlineHelpText>
+        <label>Requestor</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>RWE_Requests2_DF</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Send_Notification__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Requestor email notification preference (on submit)</inlineHelpText>
+        <label>Send Notification</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Sent_to_Customer_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Pending Addntl Info/Review Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Status_Accepted_to_In_Progress__c</fullName>
+        <description>Duration Request was in Status = Accepted before moving to In Progress</description>
+        <externalId>false</externalId>
+        <formula>IF( OR(ISPICKVAL(Request_Status__c, &quot;Archived&quot;),ISPICKVAL(Request_Status__c, &quot;Cancelled&quot;),ISPICKVAL(Request_Status__c, &quot;Deleted&quot;)) ,0,IF(ISNULL(Date_In_Progress__c ), TODAY()-Date_Accepted__c  , Date_In_Progress__c - Date_Accepted__c ))</formula>
+        <inlineHelpText>Duration Request was in Status = Accepted before moving to In Progress</inlineHelpText>
+        <label>Status: Accepted to In Progress</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status_Archived_to_Cancelled__c</fullName>
+        <description>Duration Request was in Status = New(Submitted) before moving to In Progress</description>
+        <externalId>false</externalId>
+        <formula>IF( OR(ISPICKVAL(Request_Status__c, &quot;Archived&quot;),ISPICKVAL(Request_Status__c, &quot;Cancelled&quot;),ISPICKVAL(Request_Status__c, &quot;Deleted&quot;)) ,0,IF(ISNULL(Date_In_Progress__c), TODAY()-Date_Submitted__c , Date_In_Progress__c- Date_Submitted__c ))</formula>
+        <inlineHelpText>Duration Request was in Status = New(Submitted) before moving to In Progress</inlineHelpText>
+        <label>Status: Archived to Cancelled</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status_Completed_to_Archived__c</fullName>
+        <description>Duration Request was in Status = Accepted before moving to Complete</description>
+        <externalId>false</externalId>
+        <formula>IF( OR(ISPICKVAL(Request_Status__c, &quot;Archived&quot;),ISPICKVAL(Request_Status__c, &quot;Cancelled&quot;),ISPICKVAL(Request_Status__c, &quot;Deleted&quot;)) ,0,IF(ISNULL(Date_Completed__c), TODAY()-Date_Accepted__c , Date_Completed__c- Date_Accepted__c  ) )</formula>
+        <inlineHelpText>Duration Request was in Status = Accepted before moving to Complete</inlineHelpText>
+        <label>Status: Completed to Archived</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status_Contracting_to_Launch__c</fullName>
+        <description>Duration Request was in Stage = Contracting before moving to Launch</description>
+        <externalId>false</externalId>
+        <formula>IF(ISNULL(Launch_Phase_Start_Date__c ), TODAY()-Contracting_Phase_Start_Date__c , Launch_Phase_Start_Date__c - Contracting_Phase_Start_Date__c )</formula>
+        <inlineHelpText>Duration Request was in Stage = Contracting before moving to Launch</inlineHelpText>
+        <label>Stage: Contracting to Launch</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status_Exploration_to_Governance__c</fullName>
+        <description>Duration Request was in Stage = Exploration before moving to Governance</description>
+        <externalId>false</externalId>
+        <formula>IF(ISNULL(Governance_Phase_Start_Date__c ), TODAY()-Exploration_Phase_Start_Date__c , Governance_Phase_Start_Date__c - Exploration_Phase_Start_Date__c )</formula>
+        <inlineHelpText>Duration Request was in Stage = Exploration before moving to Governance</inlineHelpText>
+        <label>Stage: Exploration to Governance</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status_Governance_to_Contracting__c</fullName>
+        <description>Duration Request was in Stage = Governance before moving to Contracting</description>
+        <externalId>false</externalId>
+        <formula>IF(ISNULL(Contracting_Phase_Start_Date__c ), TODAY()-Governance_Phase_Start_Date__c , Contracting_Phase_Start_Date__c - Governance_Phase_Start_Date__c )</formula>
+        <inlineHelpText>Duration Request was in Stage = Governance before moving to Contracting</inlineHelpText>
+        <label>Stage: Governance to Contracting</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status_In_Progress_to_Complete__c</fullName>
+        <description>Duration Request was in Status = In Progress before moving to Complete</description>
+        <externalId>false</externalId>
+        <formula>IF( OR(ISPICKVAL(Request_Status__c, &quot;Archived&quot;),ISPICKVAL(Request_Status__c, &quot;Cancelled&quot;),ISPICKVAL(Request_Status__c, &quot;Deleted&quot;)) ,0,IF(ISNULL(Date_Completed__c ), TODAY()-Date_In_Progress__c , Date_Completed__c - Date_In_Progress__c ))</formula>
+        <inlineHelpText>Duration Request was in Status = In Progress before moving to Complete</inlineHelpText>
+        <label>Status: In Progress to Complete</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status_New_to_Accepted__c</fullName>
+        <description>Duration Request was in Status = New(Submitted) before moving to Accepted</description>
+        <externalId>false</externalId>
+        <formula>IF( OR(ISPICKVAL(Request_Status__c, &quot;Archived&quot;),ISPICKVAL(Request_Status__c, &quot;Cancelled&quot;),ISPICKVAL(Request_Status__c, &quot;Deleted&quot;)) ,0,IF(ISNULL(Date_Accepted__c ), TODAY()-Date_Submitted__c , Date_Accepted__c - Date_Submitted__c ))</formula>
+        <inlineHelpText>Duration Request was in Status = New(Submitted) before moving to Accepted</inlineHelpText>
+        <label>Status: New to Accepted</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status_New_to_Complete__c</fullName>
+        <description>Duration Request was in Status = New(Submitted) before moving to Complete</description>
+        <externalId>false</externalId>
+        <formula>IF( OR(ISPICKVAL(Request_Status__c, &quot;Archived&quot;),ISPICKVAL(Request_Status__c, &quot;Cancelled&quot;),ISPICKVAL(Request_Status__c, &quot;Deleted&quot;)) ,0,IF(ISNULL(Date_Completed__c), TODAY()-Date_Submitted__c , Date_Completed__c - Date_Submitted__c ))</formula>
+        <inlineHelpText>Duration Request was in Status = New(Submitted) before moving to Complete</inlineHelpText>
+        <label>Status: New to Complete</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Submitted__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Submitted</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Therapeutic_Area_Primary__c</fullName>
+        <description>Disease state that is involved in the research project or would be served by the data asset</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Disease state that is involved in the research study or would be served by the data asset</inlineHelpText>
+        <label>Therapeutic Area (Primary)</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Autoimmune Diseases</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Cardiovascular</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Dermatology</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Diabetes</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Endocrinology</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Gastroenterology</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Gynecology</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Immunology</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Neurology</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Oncology</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Psychiatry &amp; Pain</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Rheumatology</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Urology</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Vaccines</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Non-Therapeutic Area Specific</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Type_of_Partner__c</fullName>
+        <externalId>false</externalId>
+        <label>Type of Partner</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Academic medical center</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Consultancy firm</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Government entity</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Healthcare IT/Informatics</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Integrated health system</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Non-profit</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Patient advocacy group</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Payer</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Pharma company</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Pharmacy benefit manager</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Professional society</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Research network</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Vendor_Contact_Information__c</fullName>
+        <externalId>false</externalId>
+        <label>Vendor Contact Information</label>
+        <length>2000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Website__c</fullName>
+        <externalId>false</externalId>
+        <label>Website</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>What_Makes_It_Unique__c</fullName>
+        <externalId>false</externalId>
+        <label>What Makes It Unique</label>
+        <length>2000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <label>Request</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>RECORDTYPE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>QUE_Data_Sourcing_Request</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Data Sourcing</label>
+        <queue>QUE_Data_Sourcing</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>QUE_EXPERT_Request</fullName>
+        <filterScope>Queue</filterScope>
+        <label>EXPERT</label>
+        <queue>QUE_EXPERT</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>QUE_RWA_Asmnt_Request</fullName>
+        <filterScope>Queue</filterScope>
+        <label>RWA Assessment</label>
+        <queue>QUE_RWA_Asmnt</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>QUE_RWD_Analysis_GPS_Request</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Data Mart Project GPS</label>
+        <queue>QUE_RWD_Analysis_GPS</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>QUE_RWD_Analysis_Request</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Data Mart Project</label>
+        <queue>QUE_RWD_Analysis</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>QUE_RWD_Operations_Request</fullName>
+        <filterScope>Queue</filterScope>
+        <label>RWD Operations</label>
+        <queue>QUE_RWD_Operations</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>QUE_RWD_Technical_Team_Request</fullName>
+        <filterScope>Queue</filterScope>
+        <label>RWD Technical Team</label>
+        <queue>QUE_RWD_Technical_Team</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>QUE_RWE_PFO_SRC_Review_Request</fullName>
+        <filterScope>Queue</filterScope>
+        <label>PFO SRC Review</label>
+        <queue>DRDP_Research_Study_Consultation</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>QUE_RWE_Partnership_Exploration_Request</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Partnership Exploration</label>
+        <queue>DRDP_Partnership_Exploration</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>QUE_Strategic_Consultants_Request</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Strategic Consultants</label>
+        <queue>DRDP_Scientific_Technology</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>RWE_Deleted_Records_Request</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Deleted Records</label>
+        <queue>DRDP_Deleted_Records</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <label>Request Name</label>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Requests</pluralLabel>
+    <recordTypeTrackFeedHistory>true</recordTypeTrackFeedHistory>
+    <recordTypeTrackHistory>true</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Partnership_Exploration</fullName>
+        <active>true</active>
+        <description>Initiate and develop a sustainable partnership within industry and academia to minimize discovery to market timeline during drug development process.</description>
+        <label>Partnership Exploration Request</label>
+        <picklistValues>
+            <picklist>Access_Method__c</picklist>
+            <values>
+                <fullName>External</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Longer Accessible</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Business_Unit_Primary__c</picklist>
+            <values>
+                <fullName>Animal Health</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Biotech</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consumer Health</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Generics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medical Devices</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pharmaceuticals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vaccines</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Cancellation_Reason__c</picklist>
+            <values>
+                <fullName>Deprioritized</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discontinued</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Molecule development cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other - please provide a description in Chatter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Outsourcing Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scope change%2Fno services needed</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Consultant_Resource_Effort__c</picklist>
+            <values>
+                <fullName>Brief %28conversations w%2Fo draft review%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Long Term %28%3E3 meetings including draft review%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Short Term %281-3 meetings including draft review%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Partnership_Exploration_Initiator__c</picklist>
+            <values>
+                <fullName>Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Potential Partner</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Partnership_Sponsor__c</picklist>
+            <values>
+                <fullName>Federal Funding</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Industry Funding</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Joint Ventury %28Academia%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Joint Ventury %28Industry%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Partnership_Status__c</picklist>
+            <values>
+                <fullName>Approved and Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approved and Pursuing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Evaluated and Not Pursued</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exploring</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Priority__c</picklist>
+            <values>
+                <fullName>High %28%3C1 week%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low %28%3C2 months%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium %28%3C1 month%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Region__c</picklist>
+            <values>
+                <fullName>Asia Pacific</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EMEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Emerging Markets</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global %28Multiple Regions%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Latin America</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>North America</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Request_Status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Archived</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deleted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Request_Sub_Status__c</picklist>
+            <values>
+                <fullName>Contracting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exploration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Governance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Launch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Requestor_Functional_Area__c</picklist>
+            <values>
+                <fullName>Clinical Studies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discovery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Forecasting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Joint Venture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Research</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medical Affairs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Patient Enrollment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pre-Clinical Studies</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Therapeutic_Area_Primary__c</picklist>
+            <values>
+                <fullName>Autoimmune Diseases</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cardiovascular</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dermatology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Diabetes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Endocrinology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gastroenterology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gynecology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Immunology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Neurology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Non-Therapeutic Area Specific</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oncology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Psychiatry %26 Pain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rheumatology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Urology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vaccines</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type_of_Partner__c</picklist>
+            <values>
+                <fullName>Academic medical center</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consultancy firm</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Government entity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare IT%2FInformatics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Integrated health system</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Non-profit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Patient advocacy group</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Payer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pharma company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pharmacy benefit manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional society</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Research network</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Scientific_Technology</fullName>
+        <active>true</active>
+        <description>Identify, explore, and assess new technologies that can support and enhance ongoing preclinical, clinical, and post-market safety monitoring studies.</description>
+        <label>Scientific Technology Assessment</label>
+        <picklistValues>
+            <picklist>Access_Method__c</picklist>
+            <values>
+                <fullName>External</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Longer Accessible</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Business_Unit_Primary__c</picklist>
+            <values>
+                <fullName>Animal Health</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Biotech</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consumer Health</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Generics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medical Devices</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pharmaceuticals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vaccines</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Cancellation_Reason__c</picklist>
+            <values>
+                <fullName>Deprioritized</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discontinued</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Molecule development cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other - please provide a description in Chatter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Outsourcing Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scope change%2Fno services needed</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Consultant_Resource_Effort__c</picklist>
+            <values>
+                <fullName>Brief %28conversations w%2Fo draft review%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Long Term %28%3E3 meetings including draft review%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Short Term %281-3 meetings including draft review%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Partnership_Exploration_Initiator__c</picklist>
+            <values>
+                <fullName>Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Potential Partner</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Partnership_Sponsor__c</picklist>
+            <values>
+                <fullName>Federal Funding</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Industry Funding</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Joint Ventury %28Academia%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Joint Ventury %28Industry%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Partnership_Status__c</picklist>
+            <values>
+                <fullName>Approved and Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approved and Pursuing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Evaluated and Not Pursued</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exploring</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Priority__c</picklist>
+            <values>
+                <fullName>High %28%3C1 week%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low %28%3C2 months%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium %28%3C1 month%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Region__c</picklist>
+            <values>
+                <fullName>Asia Pacific</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EMEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Emerging Markets</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global %28Multiple Regions%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Latin America</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>North America</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Request_Status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Archived</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deleted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Request_Sub_Status__c</picklist>
+            <values>
+                <fullName>Pending Action</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Requestor Action</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Requestor_Functional_Area__c</picklist>
+            <values>
+                <fullName>Clinical Studies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discovery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Forecasting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Joint Venture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Research</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medical Affairs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Patient Enrollment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pre-Clinical Studies</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Therapeutic_Area_Primary__c</picklist>
+            <values>
+                <fullName>Autoimmune Diseases</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cardiovascular</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dermatology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Diabetes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Endocrinology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gastroenterology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gynecology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Immunology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Neurology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Non-Therapeutic Area Specific</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oncology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Psychiatry %26 Pain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rheumatology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Urology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vaccines</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type_of_Partner__c</picklist>
+            <values>
+                <fullName>Academic medical center</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consultancy firm</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Government entity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare IT%2FInformatics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Integrated health system</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Non-profit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Patient advocacy group</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Payer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pharma company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pharmacy benefit manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional society</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Research network</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Study_Consultation</fullName>
+        <active>true</active>
+        <description>Establish a partnership with industry leading experts to identify new areas of research, draw new insights from ongoing studies, and discuss novel experimental techniques.</description>
+        <label>Research Study Consultation</label>
+        <picklistValues>
+            <picklist>Access_Method__c</picklist>
+            <values>
+                <fullName>External</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Longer Accessible</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Business_Unit_Primary__c</picklist>
+            <values>
+                <fullName>Animal Health</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Biotech</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consumer Health</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Generics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medical Devices</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pharmaceuticals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vaccines</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Cancellation_Reason__c</picklist>
+            <values>
+                <fullName>Deprioritized</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discontinued</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Molecule development cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other - please provide a description in Chatter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Outsourcing Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scope change%2Fno services needed</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Consultant_Resource_Effort__c</picklist>
+            <values>
+                <fullName>Brief %28conversations w%2Fo draft review%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Long Term %28%3E3 meetings including draft review%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Short Term %281-3 meetings including draft review%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Partnership_Exploration_Initiator__c</picklist>
+            <values>
+                <fullName>Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Potential Partner</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Partnership_Sponsor__c</picklist>
+            <values>
+                <fullName>Federal Funding</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Industry Funding</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Joint Ventury %28Academia%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Joint Ventury %28Industry%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Partnership_Status__c</picklist>
+            <values>
+                <fullName>Approved and Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approved and Pursuing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Evaluated and Not Pursued</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exploring</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Priority__c</picklist>
+            <values>
+                <fullName>High %28%3C1 week%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low %28%3C2 months%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium %28%3C1 month%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Region__c</picklist>
+            <values>
+                <fullName>Asia Pacific</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EMEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Emerging Markets</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global %28Multiple Regions%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Latin America</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>North America</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Request_Status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Archived</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deleted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Request_Sub_Status__c</picklist>
+            <values>
+                <fullName>Pending Action</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Requestor Action</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Requestor_Functional_Area__c</picklist>
+            <values>
+                <fullName>Clinical Studies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discovery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Forecasting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Joint Venture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Research</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medical Affairs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Patient Enrollment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pre-Clinical Studies</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Therapeutic_Area_Primary__c</picklist>
+            <values>
+                <fullName>Autoimmune Diseases</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cardiovascular</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dermatology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Diabetes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Endocrinology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gastroenterology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gynecology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Immunology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Neurology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Non-Therapeutic Area Specific</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oncology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Psychiatry %26 Pain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rheumatology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Urology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vaccines</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type_of_Partner__c</picklist>
+            <values>
+                <fullName>Academic medical center</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consultancy firm</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Government entity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare IT%2FInformatics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Integrated health system</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Non-profit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Patient advocacy group</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Payer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pharma company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pharmacy benefit manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional society</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Research network</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>Related_Project__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Request_Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>RECORDTYPE</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Proposed_Due_Date__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Date_Completed__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Region__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Partnership_Sponsor__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Type_of_Partner__c</lookupDialogsAdditionalFields>
+        <searchFilterFields>Related_Project__c</searchFilterFields>
+        <searchFilterFields>Request_Status__c</searchFilterFields>
+        <searchResultsAdditionalFields>RECORDTYPE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Request_Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Request_Sub_Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>OWNER.FIRST_NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>OWNER.LAST_NAME</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+    <validationRules>
+        <fullName>Making_Reason_Prtship_Not_Pursued_req</fullName>
+        <active>true</active>
+        <errorConditionFormula>IF( AND(ISPICKVAL(Partnership_Status__c, &apos;Evaluated and Not Pursued&apos;), RecordType.Name == &apos;Partnership Exploration Request&apos;, Reason_Partnership_Not_Pursued__c == &apos;&apos;) , true, false)</errorConditionFormula>
+        <errorDisplayField>Reason_Partnership_Not_Pursued__c</errorDisplayField>
+        <errorMessage>Please enter the reason for partnership not pursued</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Provide_Cancellation_Reason</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(ISPICKVAL(Request_Status__c,&apos;Cancelled&apos;),TEXT( Cancellation_Reason__c ) == &apos;&apos;)</errorConditionFormula>
+        <errorDisplayField>Cancellation_Reason__c</errorDisplayField>
+        <errorMessage>Please provide a cancellation reason.</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>Submit</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Submit</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/19.0/connection.js&quot;)} 
+
+var c = new sforce.SObject(&quot;Request__c&quot;); 
+c.id = &quot;{!Request__c.Id}&quot;; 
+c.Submitted__c = true; 
+result = sforce.connection.update([c]); 
+
+window.location.reload();</url>
+    </webLinks>
+</CustomObject>

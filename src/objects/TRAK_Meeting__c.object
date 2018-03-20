@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Business Description: Used to record meetings, including: minutes, attendees, outputs and links to risks and issues, decisions and questions.
+
+Used In: Release Tracker App</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Agenda__c</fullName>
+        <externalId>false</externalId>
+        <label>Agenda</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Attendance__c</fullName>
+        <defaultValue>$User.FirstName &amp; &quot; &quot; &amp;  $User.LastName &amp;&quot;, &quot;</defaultValue>
+        <description>People who attended the meeting.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The people who attended this meeting in person or by phone. 
+
+NB: Ensure you use same &quot;Firstname Lastname&quot; as listed in Tracker for all attendees to ensure this meeting appears in their list view &quot;Meetings I attended&quot;</inlineHelpText>
+        <label>Attendance</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>End__c</fullName>
+        <externalId>false</externalId>
+        <label>End</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Key_Output__c</fullName>
+        <externalId>false</externalId>
+        <label>Key Output</label>
+        <length>32000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Location__c</fullName>
+        <externalId>false</externalId>
+        <label>Location</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Non_Attendance__c</fullName>
+        <externalId>false</externalId>
+        <label>Non Attendance</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Outcome_Summary__c</fullName>
+        <description>Summary of the outcome of the meeting</description>
+        <externalId>false</externalId>
+        <label>Outcome Summary</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Purpose__c</fullName>
+        <externalId>false</externalId>
+        <label>Purpose</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Sprint__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Sprint</label>
+        <referenceTo>TRAK_Sprint__c</referenceTo>
+        <relationshipLabel>Meetings</relationshipLabel>
+        <relationshipName>TRAK_Sprint_Meetings</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Start__c</fullName>
+        <externalId>false</externalId>
+        <label>Start</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>TRAK_What_could_we_do_differently_to_imp__c</fullName>
+        <externalId>false</externalId>
+        <label>What could we do differently to improve?</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>TRAK_What_went_well__c</fullName>
+        <externalId>false</externalId>
+        <label>What went well?</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>TRAK_What_went_wrong__c</fullName>
+        <description>What could have been better?</description>
+        <externalId>false</externalId>
+        <label>What went wrong?</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Requirements Meeting</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Design Meeting</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Workshop</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Sprint Planning</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Sprint Review</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Sprint Retrospective</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Status Meeting</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Steering Committee</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Team Building</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Leadership Team</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Developer Demonstration</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Project Integration</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Meeting</label>
+    <listViews>
+        <fullName>All_Meetings</fullName>
+        <columns>NAME</columns>
+        <columns>Purpose__c</columns>
+        <columns>Type__c</columns>
+        <columns>Start__c</columns>
+        <columns>Location__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Meetings</label>
+    </listViews>
+    <listViews>
+        <fullName>Analytics_Insights_Meetings</fullName>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <columns>NAME</columns>
+        <columns>Purpose__c</columns>
+        <columns>Type__c</columns>
+        <columns>Start__c</columns>
+        <columns>Location__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>NAME</field>
+            <operation>contains</operation>
+            <value>Analytics</value>
+        </filters>
+        <filters>
+            <field>NAME</field>
+            <operation>contains</operation>
+            <value>Insights</value>
+        </filters>
+        <label>Analytics / Insights Meetings</label>
+    </listViews>
+    <listViews>
+        <fullName>Event_Medical_Meetings</fullName>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <columns>NAME</columns>
+        <columns>Purpose__c</columns>
+        <columns>Type__c</columns>
+        <columns>Start__c</columns>
+        <columns>Location__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>NAME</field>
+            <operation>contains</operation>
+            <value>Medical</value>
+        </filters>
+        <filters>
+            <field>NAME</field>
+            <operation>contains</operation>
+            <value>Event</value>
+        </filters>
+        <label>Event / Medical Meetings</label>
+    </listViews>
+    <listViews>
+        <fullName>Market_Access_Meetings</fullName>
+        <columns>NAME</columns>
+        <columns>Purpose__c</columns>
+        <columns>Type__c</columns>
+        <columns>Start__c</columns>
+        <columns>Location__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>NAME</field>
+            <operation>contains</operation>
+            <value>Market Access</value>
+        </filters>
+        <label>Market Access Meetings</label>
+    </listViews>
+    <listViews>
+        <fullName>Marketing_Multichannel_Meetings</fullName>
+        <booleanFilter>1 OR 2 OR 3</booleanFilter>
+        <columns>NAME</columns>
+        <columns>Purpose__c</columns>
+        <columns>Type__c</columns>
+        <columns>Start__c</columns>
+        <columns>Location__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>NAME</field>
+            <operation>contains</operation>
+            <value>Marketing</value>
+        </filters>
+        <filters>
+            <field>NAME</field>
+            <operation>contains</operation>
+            <value>Multichannel</value>
+        </filters>
+        <filters>
+            <field>NAME</field>
+            <operation>contains</operation>
+            <value>Campaign</value>
+        </filters>
+        <label>Marketing / Multichannel Meetings</label>
+    </listViews>
+    <listViews>
+        <fullName>Project_Connect_Meetings</fullName>
+        <columns>NAME</columns>
+        <filterScope>Everything</filterScope>
+        <label>Project Connect Meetings</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>SFA_Meetings</fullName>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <columns>NAME</columns>
+        <columns>Purpose__c</columns>
+        <columns>Type__c</columns>
+        <columns>Start__c</columns>
+        <columns>Location__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>NAME</field>
+            <operation>contains</operation>
+            <value>SFA</value>
+        </filters>
+        <filters>
+            <field>NAME</field>
+            <operation>contains</operation>
+            <value>Segmentation</value>
+        </filters>
+        <label>SFA Meetings</label>
+    </listViews>
+    <nameField>
+        <label>Meeting Name</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Meetings</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Start__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>End__c</customTabListAdditionalFields>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <lookupDialogsAdditionalFields>Start__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>End__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Start__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>End__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Start__c</searchFilterFields>
+        <searchFilterFields>End__c</searchFilterFields>
+        <searchResultsAdditionalFields>Start__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>End__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

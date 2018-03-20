@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Business Description: This object is used to automatically keep a track of all changes to Acceptance Criteria on a user story.
+
+Technical Description: Populated by a trigger on User Story this is an enhancement to the standard  user story history functionality as this does not log changes to rich text fields
+
+Used In: Release Tracker App</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Acceptance_Criteria__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The old acceptance criteria before this person edited the user story.
+To see what the acceptance criteria was changed to, compare this to the next Acceptance Criteria History record.</inlineHelpText>
+        <label>Previous Acceptance /Compliance Criteria</label>
+        <length>32000</length>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>40</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Created_by_me__c</fullName>
+        <externalId>false</externalId>
+        <formula>if(CreatedById = $User.Id , &quot;TRUE&quot;,&quot;FALSE&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Created by me</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Acceptance Criteria</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Compliance Criteria</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>User_Story__c</fullName>
+        <externalId>false</externalId>
+        <label>User Story</label>
+        <referenceTo>TRAK_User_Story__c</referenceTo>
+        <relationshipName>TRAK_AC_History</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>true</writeRequiresMasterRead>
+    </fields>
+    <label>User Story AC/CC History</label>
+    <nameField>
+        <displayFormat>ACH-{0000}</displayFormat>
+        <label>AC History Name</label>
+        <trackFeedHistory>true</trackFeedHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>User Story AC/CC History</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>User_Story__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Acceptance_Criteria__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CREATEDBY_USER.ALIAS</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CREATED_DATE</customTabListAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

@@ -1,0 +1,14 @@
+<table height="400" width="600" cellpadding="5" border="0" cellspacing="5" >
+<tr height="50" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[Dear&nbsp;{!TRAK_Test__c.Approver__c},]]></td>
+</tr>
+<tr height="300" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r2" locked="0" aEditID="c1r2" >
+<![CDATA[<font style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;" face="arial" size="3">This is an approval request for Test Execution {!TRAK_Test__c.Name}&nbsp;</font><font face="arial" style="font-size: 12pt;">-&nbsp;</font><font face="arial">{!TRAK_Test__c.Description__c}</font><div><div style="font-size: 12pt;"><div style="font-size: 12pt;"><br></div><div style="font-size: 12pt;">Please click on the link below to review and approve the request. You can also do this from your chatter feed.&nbsp;</div><div style="font-size: 12pt;"><br></div><div style="font-size: 12pt;">{!TRAK_Test__c.Link}<br></div></div><div style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><br></div></div>]]></td>
+</tr>
+<tr height="50" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r3" locked="0" aEditID="c1r3" >
+<![CDATA[<font face="arial" size="3">Many thanks,</font><div><font face="arial">{!TRAK_Test__c.CreatedBy}</font></div>]]></td>
+</tr>
+</table>

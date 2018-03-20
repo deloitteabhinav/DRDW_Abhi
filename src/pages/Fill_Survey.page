@@ -1,0 +1,67 @@
+<apex:page standardController="Feedback__c" extensions="FillSurveyController" tabStyle="Account" standardStylesheets="true" showHeader="false" showChat="false" showQuickActionVfHeader="false">
+  
+<head>
+    <title>
+        Feedback Form
+    </title>
+    <apex:stylesheet value="{!URLFOR($Resource.Resource, '/Lilly_SMI/vendor/bootstrap/bootstrap.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.Resource, '/Lilly_SMI/src/scss/global.css')}"/>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,100,400italic,700italic,100italic' rel='stylesheet' type='text/css' />
+    <apex:stylesheet value="{!URLFOR($Resource.Resource, '/Lilly_SMI/src/scss/feedbackform.css')}"/>
+</head>
+    <apex:includeScript value="{!URLFOR($Resource.Resource, '/Lilly_SMI/vendor/jquery/jquery.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Resource, '/Lilly_SMI/vendor/bootstrap/bootstrap.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Resource, '/Lilly_SMI/vendor/jquery-validation/jquery.validate.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Resource, '/Lilly_SMI/src/js/feedbackform.js')}"/>
+    
+<body>
+    <div class="feedback-page">
+    <apex:outputPanel id="Survey">
+        <div class="container-fluid">
+            <h1 class="title">Feedback for Organization -&nbsp;<apex:outputLink value="/{!sSupplierId}">{!sSupplierName}</apex:outputLink> 
+            </h1>
+              <div class="container">
+              <br></br>
+              <apex:pageMessages rendered="{!bIsShowMessage}" escape="false" />
+                <apex:form styleClass="feedback-form">
+                  <ul class="questionnaire">
+                  <apex:variable value="{!1}" var="questionIndex"/> 
+                  <apex:repeat value="{!lReviews}" var="rev">
+
+                        <li class="row">
+                            <p class="question">
+                            <apex:outputPanel >
+                            <apex:outputText value="{!questionIndex}"/>.&nbsp;
+                            <apex:outputText escape="false" value="{!IF(rev.Contact__c !=NULL, rev.Question_Text__c+' : ',rev.Question_Text__c)}"></apex:outputText> <apex:outputLink rendered="{!IF(rev.Contact__c !=NULL,true,false)}" value="/{!rev.Contact__r.Id}">{!rev.Contact__r.Name}</apex:outputLink>
+                            <!-- increment index -->
+                            <apex:variable value="{!questionIndex + 1}" var="questionIndex" />
+                            </apex:outputPanel>
+                            </p>
+
+                            <apex:outputPanel rendered="{!!bIsSubmitted}">
+                            <apex:inputField styleclass="col-xs-12 required" value="{!rev.Answer__c}"  html-placeholder="Type your response here..." />
+                            </apex:outputPanel>
+
+                            <apex:outputPanel rendered="{!bIsSubmitted}">
+                            <apex:outputText styleclass="col-xs-12 preserve-format" value="{!rev.Answer__c}"/>
+                            </apex:outputPanel>
+                        </li>
+                  </apex:repeat>
+                  </ul>
+                  
+
+                  <div class="row centered-content button-bar">
+                  <apex:outputPanel rendered="{!!bIsSubmitted}">
+                      <apex:commandButton styleclass="btn button save-as-draft" value="Save Feedback" action="{!saveSurvey}" reRender="Survey" oncomplete="scrollToTop(); formValidationHandler();" />
+                      <input type="button" class="btn button submit-feedback" value="Submit Feedback" />
+                      <apex:actionFunction name="doSubmit"  action="{!submitSurvey}"  reRender="Survey" oncomplete="scrollToTop();"  />
+                  </apex:outputPanel>
+                  </div>
+                </apex:form>
+              </div>
+            
+        </div>
+    </apex:outputPanel>
+    </div>
+</body>
+</apex:page>

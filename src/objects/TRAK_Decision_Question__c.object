@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Business Description: This object is used as a Decisions and Questions log. You can raise Questions and track these through to decisions. These can be linked to associated meetings, user stories and more.
+
+Used In: Release Tracker App</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Assigned__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The person who needs to take action over this question/decision</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The person who needs to take action over this question/decision</inlineHelpText>
+        <label>Assigned To</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Decisions1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Bug__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Defect</label>
+        <referenceTo>TRAK_Bug__c</referenceTo>
+        <relationshipLabel>Decisions &amp; Questions</relationshipLabel>
+        <relationshipName>TRAK_Decisions_Questions</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Decision__c</fullName>
+        <externalId>false</externalId>
+        <label>Decision or Question</label>
+        <length>10000</length>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Design__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Design</label>
+        <referenceTo>TRAK_Design__c</referenceTo>
+        <relationshipLabel>Decisions &amp; Questions</relationshipLabel>
+        <relationshipName>TRAK_Decisions_Questions</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Details__c</fullName>
+        <description>Further question details</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Further question details</inlineHelpText>
+        <label>Details</label>
+        <length>32768</length>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Meeting__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Meeting</label>
+        <referenceTo>TRAK_Meeting__c</referenceTo>
+        <relationshipName>Decisions</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Next_Steps__c</fullName>
+        <externalId>false</externalId>
+        <label>Next Steps</label>
+        <length>10000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Requirement__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>User Story</label>
+        <referenceTo>TRAK_User_Story__c</referenceTo>
+        <relationshipLabel>Decisions &amp; Questions</relationshipLabel>
+        <relationshipName>TRAK_Decisions_Questions</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Risks_Issues__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Risks &amp; Issues</label>
+        <referenceTo>TRAK_Risks_Issues__c</referenceTo>
+        <relationshipLabel>Decisions &amp; Questions</relationshipLabel>
+        <relationshipName>Decisions</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Source__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(LEN(TRIM(Bug__c &amp;  Requirement__c &amp;  Design__c &amp; Risks_Issues__c &amp;  Test_Result__c )) &gt; 18, &quot;Multiple&quot;, HYPERLINK(&quot;/&quot;&amp;TRIM(Bug__c &amp;  Requirement__c  &amp;  Design__c &amp;   Risks_Issues__c &amp;  Test_Result__c ), TRIM(Bug__r.Name &amp; Requirement__r.Name  &amp;  Design__r.Name &amp;   Risks_Issues__r.Name &amp;  Test_Result__r.Name)))</formula>
+        <inlineHelpText>The source of this particular question or decision as listed in Relationships</inlineHelpText>
+        <label>Source</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Question Raised</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Question Answered</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Decision Made</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Cancelled</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>In Discussion</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Test_Result__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Test Result</label>
+        <referenceTo>TRAK_Test__c</referenceTo>
+        <relationshipLabel>Decisions &amp; Questions</relationshipLabel>
+        <relationshipName>TRAK_Decisions_Questions</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Decision &amp; Question</label>
+    <listViews>
+        <fullName>Answered</fullName>
+        <columns>NAME</columns>
+        <columns>Decision__c</columns>
+        <columns>Next_Steps__c</columns>
+        <columns>Source__c</columns>
+        <columns>Assigned__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Question Answered</value>
+        </filters>
+        <label>3) Questions Answered</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>DecMade</fullName>
+        <columns>NAME</columns>
+        <columns>Details__c</columns>
+        <columns>Decision__c</columns>
+        <columns>Next_Steps__c</columns>
+        <columns>Source__c</columns>
+        <columns>Assigned__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Decision Made</value>
+        </filters>
+        <label>1) Decisions Made</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Mine</fullName>
+        <columns>NAME</columns>
+        <columns>Decision__c</columns>
+        <columns>Next_Steps__c</columns>
+        <columns>Source__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>0) My Questions</label>
+    </listViews>
+    <listViews>
+        <fullName>Raised</fullName>
+        <columns>NAME</columns>
+        <columns>Details__c</columns>
+        <columns>Decision__c</columns>
+        <columns>Next_Steps__c</columns>
+        <columns>Source__c</columns>
+        <columns>Assigned__c</columns>
+        <columns>Status__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Question Raised</value>
+        </filters>
+        <label>2) Questions Raised</label>
+    </listViews>
+    <nameField>
+        <displayFormat>QD-{000000}</displayFormat>
+        <label>Ref</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Decisions &amp; Questions</pluralLabel>
+    <recordTypeTrackFeedHistory>true</recordTypeTrackFeedHistory>
+    <recordTypeTrackHistory>true</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Decision</fullName>
+        <active>true</active>
+        <description>To store decisions made</description>
+        <label>Decision</label>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Decision Made</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Discussion</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Question</fullName>
+        <active>true</active>
+        <description>To raise questions &amp; collect answers</description>
+        <label>Question</label>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Question Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Question Raised</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>Decision__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Next_Steps__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Source__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Assigned__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <lookupDialogsAdditionalFields>Decision__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Status__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Decision__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Status__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Status__c</searchFilterFields>
+        <searchResultsAdditionalFields>Decision__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

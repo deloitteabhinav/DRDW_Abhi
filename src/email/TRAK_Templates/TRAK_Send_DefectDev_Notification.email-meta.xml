@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email Notification is sent to the Defect developer when a defect is assigned to the developer.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>TRAK_Cirrus_Normal</letterhead>
+    <name>TRAK_Send DefectDev Notification</name>
+    <style>freeForm</style>
+    <subject>A new Defect {!TRAK_Bug__c.Name} has been raised on User Story - {!TRAK_Bug__c.User_Story__c}.</subject>
+    <textOnly>{!TRAK_Bug__c.LastModifiedBy} has sent you a DEFECT  for {!TRAK_Bug__c.00N23000000LCa0}.
+Please click on the following link to navigate to the Defect {!TRAK_Bug__c.Link}
+
+Project Name           :- {!TRAK_Bug__c.00N23000000LCaP}
+Defect Reference   :- {!TRAK_Bug__c.Name}
+Problem Summary :-  {!TRAK_Bug__c.Problem__c}
+Business Impact     :- {!TRAK_Bug__c.BusinessImpact__c}</textOnly>
+    <type>html</type>
+</EmailTemplate>

@@ -1,0 +1,1180 @@
+<apex:page docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="false" readonly="false" id="thePage" controller="ClipboardController">
+<apex:form >
+    <html lang="en">
+
+    <head>        
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>My Dashboard</title>
+    </head>
+    <body>
+        <apex:actionRegion >
+        <div class='df_drdw content'>
+            <!-- body partial, used for adding pages to layout -->
+
+            <div class="df_drdw-clipboard">
+                <div class="return-drdw container-fluid">
+                    <div class="container">
+                        <div class="row">
+                            <apex:outputlink value="/apex/DRDP_DFHomePage" styleClass="pull-right">Return Home<span class="icon-close"></span></apex:outputlink>
+                        </div>
+                    </div>
+                </div>
+                
+                <apex:outputPanel id="HeaderSection"> <!-- will Render entire Header -->
+                <header>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-3">
+                                <div class="glyphicon glyphicon-list-alt page-icon col-md-3 col-xs-3"></div>
+                                <div class="col-xs-9 col-md-9 title">
+                                    <h1>My Dashboard</h1>
+                                    <apex:variable var="StudyCount" value="{!mStudyCategoryCount['Active']+mStudyCategoryCount['Approved']
+                                    +mStudyCategoryCount['Completed']+mStudyCategoryCount['On Hold']+mStudyCategoryCount['Closed']
+                                    +mStudyCategoryCount['Cancelled']+mStudyCategoryCount['Pending Approval']+mStudyCategoryCount['Rejected']+mStudyCategoryCount['In Progress']}"/>
+                                    <apex:variable var="RequestCount" value="{!mReqCategoryCount['New']+mReqCategoryCount['Accepted']+mReqCategoryCount['In Progress']
+                                    +mReqCategoryCount['Completed']+mReqCategoryCount['Archived']+mReqCategoryCount['Cancelled']}"/>
+                                    <apex:variable var="PartnershipCount" value="{!mPartnershipCategoryCount['Evaluated and Not Pursued']+mPartnershipCategoryCount['Exploring']
+                                    +mPartnershipCategoryCount['Approved and Active']+mPartnershipCategoryCount['Approved and Pursuing']}"/>
+                                    
+                                    <apex:outputPanel rendered="{!IsStudy}"> <!-- will Render Study count -->
+                                    <div class="count"><apex:outputtext value="{!StudyCount}"/><apex:outputtext value="{!IF(StudyCount==1,' Research',' Research')}"/><apex:outputtext value="{!IF(IsTopics,IF(StudyCount==1,' Topic',' Topics'),IF(StudyCount == 1,' Study',' Studies'))}"/></div>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!IsRequest}"><!-- will Render Request count -->
+                                    <div class="count"><apex:outputtext value="{!RequestCount}"/><apex:outputtext value="{!IF(RequestCount==1,' Request',' Requests')}"/></div>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!IsPartnership}"><!-- will Render Partnership count -->
+                                    <div class="count"><apex:outputtext value="{!PartnershipCount}"/><apex:outputtext value="{!IF(PartnershipCount==1,' Partnership',' Partnerships')}"/></div>
+                                    </apex:outputPanel>
+                                </div>
+                                
+                            </div>
+                            <div class="col-md-5 col-xs-12 object-selector-bar">
+                                <div class="object-selector-row">
+                                    <apex:commandLink value="Research" rerender="HeaderSection,MainContent,sCount" styleClass="{!If(IsStudy,'object-selector active l-blue','object-selector l-blue')}" action="{!ActivateStudy}">
+                                    <br></br><apex:outputtext value="{!IF(IsStudy==TRUE,'',StudyCount)}"/></apex:commandLink>
+
+                                    <apex:commandLink value="Requests" rerender="HeaderSection,MainContent" styleClass="{!If(IsRequest,'object-selector active l-green','object-selector  l-green')}" action="{!ActivateRequest}">
+                                    <br></br><apex:outputtext value="{!IF(IsRequest==TRUE,'',RequestCount)}"/></apex:commandLink>
+
+                                    <apex:commandLink value="Partnerships" rerender="HeaderSection,MainContent" styleClass="{!If(IsPartnership,'object-selector active l-orange','object-selector l-orange')}" action="{!ActivatePartnership}">
+                                    <br></br><apex:outputtext value="{!IF(IsPartnership==TRUE,'',PartnershipCount)}"/></apex:commandLink>
+
+                                </div>
+                                <apex:outputPanel rendered="{!IsStudy}">
+                                <div class="additional-options">
+                                    <apex:commandLink value="Research​ Studies" action="{!ActivateStudy}" rerender="HeaderSection,MainContent" styleClass="{!If(!IsTopics,'button active','button')}">
+                                        <apex:param value="FALSE" name="IsTopics" assignTo="{!IsTopics}"/>
+                                    </apex:commandLink>                             
+                                    <apex:commandLink value="Research​ Topics" action="{!ActivateStudy}" rerender="HeaderSection,MainContent" styleClass="{!If(IsTopics,'button active','button')}">
+                                        <apex:param value="TRUE" name="IsTopics" assignTo="{!IsTopics}"/>
+                                    </apex:commandLink>
+                                </div>
+                                </apex:outputPanel>
+                            </div>
+                            
+                            <apex:outputPanel rendered="{!!IsStudy}">
+                            <div class="col-xs-4 hidden-xs"> 
+                                <apex:outputPanel rendered="{!IsRequest}">                             
+                                    <apex:outputlink value="/apex/SelectRequest" styleClass="button pull-right l-green">Submit Your Request</apex:outputlink>
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!IsPartnership}">                             
+                                    <apex:outputlink value="/apex/CreatePartnership?recTypeName=Partnership_Exploration" styleClass="button pull-right l-orange">Submit Partnership Exploration Request</apex:outputlink>
+                                </apex:outputPanel>
+                            </div>
+                            </apex:outputPanel>
+                            
+                            <apex:outputPanel rendered="{!IsStudy}">
+                            <!--<div class="col-xs-2"> 
+                                <apex:outputPanel rendered="{!!IsTopics}">                             
+                                    <apex:commandLink value="View Research​ Topics" action="{!ActivateStudy}" rerender="HeaderSection,MainContent" styleClass="button l-teal aux-button">
+                                        <apex:param value="TRUE" name="IsTopics" assignTo="{!IsTopics}"/>
+                                    </apex:commandLink>
+                                </apex:outputPanel>  
+                                <apex:outputPanel rendered="{!IsTopics}">                             
+                                    <apex:commandLink value="View Research​ Studies" action="{!ActivateStudy}" rerender="HeaderSection,MainContent" styleClass="button l-teal aux-button">
+                                        <apex:param value="FALSE" name="IsTopics" assignTo="{!IsTopics}"/>
+                                    </apex:commandLink>
+                                </apex:outputPanel>
+                            </div> -->
+                            <div class="col-xs-4 hidden-xs">
+                            <apex:outputPanel rendered="{!IsStudy}">                             
+                                    <apex:outputlink value="/apex/PlanResearch" styleClass="button pull-right l-blue">Plan Research​</apex:outputlink>
+                                </apex:outputPanel>
+                            </div>
+                            </apex:outputPanel>
+                        </div>
+                    </div>
+                </header>
+                
+                </apex:outputPanel>  
+                                            
+                                        
+                <apex:outputPanel id="MainContent">
+                <main>
+                
+                 <apex:actionFunction name="SendApprove" action="{!HoldValues}" reRender="HiddenId,HiddenFlag" Oncomplete="df_drdw.clipboard.showApprovalsModal();">
+                    <apex:param name="StudyId " value="" assignTo="{!StudyId }"/>
+                    <apex:param name="IsApprove" value="" assignTo="{!IsApprove}"/>
+                 </apex:actionFunction>
+                                            
+                <apex:actionFunction name="SendReject" action="{!HoldValues}" reRender="HiddenId,HiddenFlag" Oncomplete="df_drdw.clipboard.showRejectionModal();">
+                    <apex:param name="StudyId" value="" assignTo="{!StudyId}"/>
+                    <apex:param name="IsApprove" value="" assignTo="{!IsApprove}"/>
+                </apex:actionFunction>
+                
+<!-- ************************************************************************************* Studies main content Section ****************************************************************** -->                                 
+                    <apex:outputPanel rendered="{!IsStudy}">
+                    <div class="container tabs">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <input id="tab1" type="radio" name="tabs" style="display:{!IF(IsTopics, '', 'None')}"/> 
+                                <label for="tab1" class="l-blue hidden-xs" style="display:{!IF(IsTopics, '', 'None')}">In Progress ({!mStudyCategoryCount['In Progress']})</label>
+                                <input id="tab2" type="radio" name="tabs" style="display:{!IF(IsTopics, 'None', '')}"/> 
+                                <label for="tab2" class="l-blue" style="display:{!IF(IsTopics, 'None', '')}">Pending Approval ({!mStudyCategoryCount['Pending Approval']})</label>
+                                <input checked="checked" id="tab3" type="radio" name="tabs" /> 
+                                <label for="tab3" class="l-blue">Approved ({!mStudyCategoryCount['Approved']})</label>
+                                <input id="tab4" type="radio" name="tabs" />
+                                <label for="tab4" class="l-blue hidden-xs">Active ({!mStudyCategoryCount['Active']})</label>                                
+                                <input id="tab5" type="radio" name="tabs" />
+                                <label for="tab5" class="l-blue hidden-xs">Completed ({!mStudyCategoryCount['Completed']})</label>
+                                <input id="tab6" type="radio" name="tabs" />
+                                <label for="tab6" class="l-blue hidden-xs">Closed ({!mStudyCategoryCount['Closed']})</label>
+                                <input id="tab7" type="radio" name="tabs" />
+                                <label for="tab7" class="l-blue hidden-xs">Cancelled ({!mStudyCategoryCount['Cancelled']})</label>                              
+                                <input  id="tab8" type="radio" name="tabs" />
+                                <label for="tab8" class="l-blue hidden-xs">On Hold ({!mStudyCategoryCount['On Hold']})</label>
+                                <input  id="tab9" type="radio" name="tabs" />
+                                <label for="tab9" class="l-blue hidden-xs">Rejected ({!mStudyCategoryCount['Rejected']})</label>
+                                <div class="links-container along-with-additional-options pull-right hidden-xs">
+                                <apex:outputlink value="/_ui/core/chatter/ui/ChatterPage" styleClass="sf-link pull-right">What I Follow</apex:outputlink>
+                                </div> 
+
+                               <!-------------------------------------------In Progress Studies--------------------------------------------------------------- -->
+                                <section id="content1" style="display:{!IF(IsTopics, '', 'None')}">
+                                    <apex:outputPanel id="InProgressSection" rendered="{!IF(AND(NOT(ISNULL(mStudyCategoryCount['In Progress'])),mStudyCategoryCount['In Progress']>0),true,false)}">
+                                        <table class="col-xs-12 table hidden-xs">
+                                            <tr class="l-blue">
+                                                
+                                                <th class="col-xs-3"><apex:commandlink value="Name" action="{!sort}" reRender="InProgressSection">
+                                                <apex:param name="SH1" value="Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Name'}" /></th>
+
+                                                <th class="col-xs-2"><apex:commandlink value="Study/Project ID" action="{!sort}" reRender="InProgressSection">
+                                                <apex:param name="SH2" value="Study_Project_ID__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Study_Project_ID__c'}"/></th>
+                                                
+                                                <th class="col-xs-2"><apex:commandlink value="Study Lead" action="{!sort}" reRender="InProgressSection">
+                                                <apex:param name="SH3" value="Owner.Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Owner.Name'}"/></th>
+                                                
+                                                <th class="col-xs-2"><apex:commandlink value="Classification" action="{!sort}" reRender="InProgressSection">
+                                                <apex:param name="SH4" value="Classification__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Classification__c'}"/></th>
+                                                
+
+                                                <th class="col-xs-2"><apex:commandlink value="Anticipated Start Date" action="{!sort}" reRender="InProgressSection">
+                                                <apex:param name="SH5" value="Anticipated_Start_Date__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Anticipated_Start_Date__c'}" /></th>
+                                                
+
+                                            </tr>
+                                            <apex:repeat value="{!mStudyRecordsPerStatus['In Progress']}" var="oInProgressStudy">
+                                                <tr>
+                                                    <td class="error"><strong><apex:outputLink value="{!If(oInProgressStudy.oProject.Research_Type__c == 'Research Topic','/apex/Research_Topics?id='+oInProgressStudy.oProject.Id,'/apex/CreateStudy?id='+oInProgressStudy.oProject.Id)}" target="_blank">{!oInProgressStudy.oProject.Name}</apex:outputLink></strong></td>
+                                                    <td>{!oInProgressStudy.oProject.Study_Project_ID__c}</td>
+                                                    <td>{!oInProgressStudy.oProject.Owner.Name}</td>
+                                                    <td>{!oInProgressStudy.oProject.Classification__c}</td>
+                                                    <td><apex:outputText value=" {0,date,MM'/'dd'/'yyyy}"><apex:param value="{!oInProgressStudy.oProject.Anticipated_Start_Date__c}"/></apex:outputText></td>
+                                                </tr>
+                                            </apex:repeat>
+                                        </table>
+                                    </apex:outputPanel>
+                                </section>                              
+
+                                <!-- -----------------------------------------Pending Approval Studies--------------------------------------------------------------- -->
+                                <section id="content2" style="display:{!IF(IsTopics, 'None', '')}">
+                                    <apex:outputPanel id="PendingSection" rendered="{!IF(AND(NOT(ISNULL(mStudyCategoryCount['Pending Approval'])),mStudyCategoryCount['Pending Approval']>0),true,false)}">
+                                        <table class="col-xs-12 table">
+                                            <tr class="l-blue">
+                                                
+                                                <th class="col-xs-2"><apex:commandlink value="Name" action="{!sort}" reRender="PendingSection">
+                                                <apex:param name="SH1" value="Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Name'}" /></th>
+
+                                                <th class="col-xs-2 hidden-xs"><apex:commandlink value="Study/Project ID" action="{!sort}" reRender="PendingSection">
+                                                <apex:param name="SH2" value="Study_Project_ID__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Study_Project_ID__c'}"/></th>
+                                                
+                                                <th class="col-xs-2 hidden-xs"><apex:commandlink value="Study Lead" action="{!sort}" reRender="PendingSection">
+                                                <apex:param name="SH3" value="Owner.Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Owner.Name'}"/></th>
+                                                
+                                                <th class="col-xs-2 hidden-xs"><apex:commandlink value="Classification" action="{!sort}" reRender="PendingSection">
+                                                <apex:param name="SH4" value="Classification__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Classification__c'}"/></th>
+                                                
+
+                                                <th class="col-xs-2 hidden-xs"><apex:commandlink value="Anticipated Start Date" action="{!sort}" reRender="PendingSection">
+                                                <apex:param name="SH5" value="Anticipated_Start_Date__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Anticipated_Start_Date__c'}" /></th>
+
+                                                <th class="col-xs-2">Approval</th>
+
+
+                                            </tr>
+                                            <apex:repeat value="{!mStudyRecordsPerStatus['Pending Approval']}" var="oPendingStudy">
+                                                <tr>
+                                                    <td class="error"><strong><apex:outputLink value="{!If(oPendingStudy.oProject.Research_Type__c == 'Research Topic','/apex/Research_Topics?id='+oPendingStudy.oProject.Id,'/apex/CreateStudy?id='+oPendingStudy.oProject.Id)}" target="_blank">{!oPendingStudy.oProject.Name}</apex:outputLink></strong></td>
+                                                    <td class="hidden-xs">{!oPendingStudy.oProject.Study_Project_ID__c}</td>
+                                                    <td class="hidden-xs">{!oPendingStudy.oProject.Owner.Name}</td>
+                                                    <td class="hidden-xs">{!oPendingStudy.oProject.Classification__c}</td>
+                                                    <td class="hidden-xs"><apex:outputText value=" {0,date,MM'/'dd'/'yyyy}"><apex:param value="{!oPendingStudy.oProject.Anticipated_Start_Date__c}"/></apex:outputText></td>
+                                                    <td class="action-button-holder">
+                                                    <apex:outputPanel >
+                                                    <apex:commandLink onclick="SendApprove('{!oPendingStudy.oProject.ID}','TRUE');" value="Approve" reRender="MainContent,HeaderSection" styleClass="btn button approval-button">
+                                                    </apex:commandLink>&nbsp;
+                                                    <apex:commandlink onclick="SendReject('{!oPendingStudy.oProject.ID}','FALSE');" value="Reject" rerender="MainContent,HeaderSection" styleClass="btn button reject-button"></apex:commandLink>
+                                                    </apex:outputPanel>
+                                                    </td>
+                                                </tr>
+                                            </apex:repeat>
+                                        </table>
+                                    </apex:outputPanel>
+                                </section>                         
+                                
+                                <!-- -----------------------------------------Approved Studies--------------------------------------------------------------- -->
+
+                                <section id="content3">
+                                    <apex:outputPanel id="ApprovedSection" rendered="{!IF(AND(NOT(ISNULL(mStudyCategoryCount['Approved'])),mStudyCategoryCount['Approved']>0),true,false)}">
+                                        <table class="col-xs-12 table">
+                                            <tr class="l-blue">
+                                                
+                                                <th class="col-xs-3"><apex:commandlink value="Name" action="{!sort}" reRender="ApprovedSection">
+                                                <apex:param name="SH1" value="Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Name'}" /></th>
+
+                                                <th class="col-xs-2"><apex:commandlink value="Study/Project ID" action="{!sort}" reRender="ApprovedSection">
+                                                <apex:param name="SH2" value="Study_Project_ID__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Study_Project_ID__c'}"/></th>
+                                                
+                                                <th class="col-xs-2 hidden-xs"><apex:commandlink value="Study Lead" action="{!sort}" reRender="ApprovedSection">
+                                                <apex:param name="SH3" value="Owner.Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Owner.Name'}"/></th>
+                                                
+                                                <th class="col-xs-2 hidden-xs"><apex:commandlink value="Classification" action="{!sort}" reRender="ApprovedSection">
+                                                <apex:param name="SH4" value="Classification__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Classification__c'}"/></th>
+                                                
+                                                <th class="col-xs-3 hidden-xs">Molecule(s)</th>
+
+                                                <th class="col-xs-2 hidden-xs"><apex:commandlink value="Anticipated Start Date" action="{!sort}" reRender="ApprovedSection">
+                                                <apex:param name="SH5" value="Anticipated_Start_Date__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Anticipated_Start_Date__c'}" /></th>
+                                                
+                                                <th class="col-xs-2 hidden-xs">Action</th>
+
+                                            </tr>
+                                            <apex:repeat value="{!mStudyRecordsPerStatus['Approved']}" var="oActiveStudy">
+                                                <tr>
+                                                    <td class="error"><strong><apex:outputLink value="{!If(oActiveStudy.oProject.Research_Type__c == 'Research Topic','/apex/Research_Topics?id='+oActiveStudy.oProject.Id,'/apex/CreateStudy?id='+oActiveStudy.oProject.Id)}" target="_blank">{!oActiveStudy.oProject.Name}</apex:outputLink></strong></td>
+                                                    <td>{!oActiveStudy.oProject.Study_Project_ID__c}</td>
+                                                    <td class="hidden-xs">{!oActiveStudy.oProject.Owner.Name}</td>
+                                                    <td class="hidden-xs">{!oActiveStudy.oProject.Classification__c}</td>
+                                                    <td class="hidden-xs">{!oActiveStudy.sMolecules}</td>
+                                                    <td class="hidden-xs"><apex:outputText value=" {0,date,MM'/'dd'/'yyyy}"><apex:param value="{!oActiveStudy.oProject.Anticipated_Start_Date__c}"/></apex:outputText></td>
+                                                    <td class="action-button-holder hidden-xs"><apex:outputLink value="/apex/CreateStudy?id={!oActiveStudy.oProject.Id}&isEdit=true&startStudy=true" target="_blank" Styleclass="btn button start-study">Start Research</apex:outputLink></td>
+                                                </tr>
+                                            </apex:repeat>
+                                        </table>
+                                    </apex:outputPanel>
+                                </section>
+                                
+                                <!-- -----------------------------------------Active Studies--------------------------------------------------------------- -->
+
+                                <section id="content4">
+                                    <apex:outputPanel id="ActiveSection" rendered="{!IF(AND(NOT(ISNULL(mStudyCategoryCount['Active'])),mStudyCategoryCount['Active']>0),true,false)}">
+                                        <table class="col-xs-12 table hidden-xs">
+                                            <tr class="l-blue">                                               
+
+                                                <th class="col-xs-3"><apex:commandlink value="Name" action="{!sort}" reRender="ActiveSection">
+                                                <apex:param name="SH1" value="Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Name'}" /></th>
+
+                                                <th class="col-xs-2"><apex:commandlink value="Study/Project ID" action="{!sort}" reRender="ActiveSection">
+                                                <apex:param name="SH2" value="Study_Project_ID__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Study_Project_ID__c'}"/></th>
+                                                
+                                                <th class="col-xs-2"><apex:commandlink value="Study Lead" action="{!sort}" reRender="ActiveSection">
+                                                <apex:param name="SH3" value="Owner.Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Owner.Name'}"/></th>
+                                                
+                                                <th class="col-xs-2"><apex:commandlink value="Classification" action="{!sort}" reRender="ActiveSection">
+                                                <apex:param name="SH4" value="Classification__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Classification__c'}"/></th>
+                                                
+                                                <th class="col-xs-3">Molecule(s)</th>
+
+                                                <th class="col-xs-2"><apex:commandlink value="Current stage" action="{!sort}" reRender="ActiveSection">
+                                                <apex:param name="SH6" value="Study_Stage__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Study_Stage__c'}" /></th>
+
+                                                <th class="col-xs-2"><apex:commandlink value="Last update" action="{!sort}" reRender="ActiveSection">
+                                                <apex:param name="SH7" value="LastModifiedDate" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='LastModifiedDate'}" /></th>
+                                            </tr>
+
+                                            <apex:repeat value="{!mStudyRecordsPerStatus['Active']}" var="oActiveStudy">
+                                                <tr>
+                                                    <td class="error"><span class="{!If(oActiveStudy.oProject.Study_Stage__c=='Questionnaire Needs Review','icon-alert','')}"></span>
+                                                    <strong><apex:outputLink value="{!If(oActiveStudy.oProject.Research_Type__c == 'Research Topic','/apex/Research_Topics?id='+oActiveStudy.oProject.Id,'/apex/CreateStudy?id='+oActiveStudy.oProject.Id)}" target="_blank">{!oActiveStudy.oProject.Name}</apex:outputLink></strong></td>
+                                                    <td>{!oActiveStudy.oProject.Study_Project_ID__c}</td>
+                                                    <td>{!oActiveStudy.oProject.Owner.Name}</td>
+                                                    <td>{!oActiveStudy.oProject.Classification__c}</td>
+                                                    <td>{!oActiveStudy.sMolecules}</td>
+                                                    <td><strong><apex:outputLink value="/apex/{!IF(oActiveStudy.oProject.Classification__c!=NULL
+                                                    ,If(OR(oActiveStudy.oProject.Study_Stage__c=='Questionnaire',oActiveStudy.oProject.Study_Stage__c=='Questionnaire Needs Review',oActiveStudy.oProject.Study_Stage__c==NULL),
+                                                            'Questionnaire',
+                                                            'Checklist'),
+                                                            'CreateStudy')}?id={!oActiveStudy.oProject.Id}" target="_blank" rendered="{!mCheckStudyQuestionnaire[oActiveStudy.oProject.Study_Description__c ]}">
+                                                    {!IF(AND(oActiveStudy.oProject.Study_Stage__c==NULL, oActiveStudy.oProject.Classification__c!=NULL),'Initiate Questionnaire',oActiveStudy.oProject.Study_Stage__c)}</apex:outputLink></strong></td>
+                                                    <td><apex:outputText value=" {0,date,MM'/'dd'/'yyyy}"><apex:param value="{!oActiveStudy.oProject.LastModifiedDate}"/></apex:outputText></td>                                                    
+                                                </tr>
+                                            </apex:repeat>
+                                        </table>
+                                    </apex:outputPanel>
+                                </section>
+                                
+                                <!-- -----------------------------------------Completed Studies--------------------------------------------------------------- -->
+                                
+                                <section id="content5">
+                                    <apex:outputPanel id="CompletedSection" rendered="{!IF(AND(NOT(ISNULL(mStudyCategoryCount['Completed'])),mStudyCategoryCount['Completed']>0),true,false)}">
+                                        <table class="col-xs-12 table hidden-xs">
+                                            <tr class="l-blue">                                               
+
+                                                <th class="col-xs-3"><apex:commandlink value="Name" action="{!sort}" reRender="CompletedSection">
+                                                <apex:param name="SH1" value="Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Name'}" /></th>
+
+                                                <th class="col-xs-2"><apex:commandlink value="Study/Project ID" action="{!sort}" reRender="CompletedSection">
+                                                <apex:param name="SH2" value="Study_Project_ID__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Study_Project_ID__c'}"/></th>
+                                                
+                                                <th class="col-xs-2"><apex:commandlink value="Study Lead" action="{!sort}" reRender="CompletedSection">
+                                                <apex:param name="SH3" value="Owner.Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Owner.Name'}"/></th>
+                                                
+                                                <th class="col-xs-2"><apex:commandlink value="Classification" action="{!sort}" reRender="CompletedSection">
+                                                <apex:param name="SH4" value="Classification__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Classification__c'}"/></th>
+                                                
+                                                <th class="col-xs-3">Molecule(s)</th>
+
+                                                <th class="col-xs-2"><apex:commandlink value="Current stage" action="{!sort}" reRender="CompletedSection">
+                                                <apex:param name="SH6" value="Study_Stage__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Study_Stage__c'}" /></th>
+
+                                                <th class="col-xs-2"><apex:commandlink value="Last update" action="{!sort}" reRender="CompletedSection">
+                                                <apex:param name="SH7" value="LastModifiedDate" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='LastModifiedDate'}" /></th>
+                                            </tr>
+
+                                            <apex:repeat value="{!mStudyRecordsPerStatus['Completed']}" var="oActiveStudy">
+                                                <tr>
+                                                    <td class="error"><span class="{!If(oActiveStudy.oProject.Study_Stage__c=='Questionnaire Needs Review','icon-alert','')}"></span>
+                                                    <strong><apex:outputLink value="{!If(oActiveStudy.oProject.Research_Type__c == 'Research Topic','/apex/Research_Topics?id='+oActiveStudy.oProject.Id,'/apex/CreateStudy?id='+oActiveStudy.oProject.Id)}" target="_blank">{!oActiveStudy.oProject.Name}</apex:outputLink></strong></td>
+                                                    <td>{!oActiveStudy.oProject.Study_Project_ID__c}</td>
+                                                    <td>{!oActiveStudy.oProject.Owner.Name}</td>
+                                                    <td>{!oActiveStudy.oProject.Classification__c}</td>
+                                                    <td>{!oActiveStudy.sMolecules}</td>
+                                                    <td><strong><apex:outputLink value="/apex/{!IF(oActiveStudy.oProject.Classification__c!=NULL
+                                                    ,If(OR(oActiveStudy.oProject.Study_Stage__c=='Questionnaire',oActiveStudy.oProject.Study_Stage__c=='Questionnaire Needs Review',oActiveStudy.oProject.Study_Stage__c==NULL),
+                                                            'Questionnaire',
+                                                            'Checklist'),
+                                                            'CreateStudy')}?id={!oActiveStudy.oProject.Id}" target="_blank" rendered="{!mCheckStudyQuestionnaire[oActiveStudy.oProject.Study_Description__c ]}">
+                                                    {!IF(AND(oActiveStudy.oProject.Study_Stage__c==NULL, oActiveStudy.oProject.Classification__c!=NULL),'Initiate Questionnaire',oActiveStudy.oProject.Study_Stage__c)}</apex:outputLink></strong></td>
+                                                    <td><apex:outputText value=" {0,date,MM'/'dd'/'yyyy}"><apex:param value="{!oActiveStudy.oProject.LastModifiedDate}"/></apex:outputText></td>                                                    
+                                                </tr>
+                                            </apex:repeat>
+                                        </table>
+                                    </apex:outputPanel>
+                                </section>
+                                
+                                <!-- -----------------------------------------Closed Studies--------------------------------------------------------------- -->
+                                
+                                <section id="content6">
+                                    <apex:outputPanel id="ClosedSection" rendered="{!IF(AND(NOT(ISNULL(mStudyCategoryCount['Closed'])),mStudyCategoryCount['Closed']>0),true,false)}">
+                                        <table class="col-xs-12 table hidden-xs">
+                                            <tr class="l-blue">                                               
+
+                                                <th class="col-xs-3"><apex:commandlink value="Name" action="{!sort}" reRender="ClosedSection">
+                                                <apex:param name="SH1" value="Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Name'}" /></th>
+
+                                                <th class="col-xs-2"><apex:commandlink value="Study/Project ID" action="{!sort}" reRender="ClosedSection">
+                                                <apex:param name="SH2" value="Study_Project_ID__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Study_Project_ID__c'}"/></th>
+                                                
+                                                <th class="col-xs-2"><apex:commandlink value="Study Lead" action="{!sort}" reRender="ClosedSection">
+                                                <apex:param name="SH3" value="Owner.Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Owner.Name'}"/></th>
+                                                
+                                                <th class="col-xs-2"><apex:commandlink value="Classification" action="{!sort}" reRender="ClosedSection">
+                                                <apex:param name="SH4" value="Classification__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Classification__c'}"/></th>
+                                                
+                                                <th class="col-xs-3">Molecule(s)</th>
+
+                                                <th class="col-xs-2"><apex:commandlink value="Current stage" action="{!sort}" reRender="ClosedSection">
+                                                <apex:param name="SH6" value="Study_Stage__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Study_Stage__c'}" /></th>
+
+                                                <th class="col-xs-2"><apex:commandlink value="Last update" action="{!sort}" reRender="ClosedSection">
+                                                <apex:param name="SH7" value="LastModifiedDate" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='LastModifiedDate'}" /></th>
+                                            </tr>
+
+                                            <apex:repeat value="{!mStudyRecordsPerStatus['Closed']}" var="oActiveStudy">
+                                                <tr>
+                                                    <td class="error"><span class="{!If(oActiveStudy.oProject.Study_Stage__c=='Questionnaire Needs Review','icon-alert','')}"></span>
+                                                    <strong><apex:outputLink value="{!If(oActiveStudy.oProject.Research_Type__c == 'Research Topic','/apex/Research_Topics?id='+oActiveStudy.oProject.Id,'/apex/CreateStudy?id='+oActiveStudy.oProject.Id)}" target="_blank">{!oActiveStudy.oProject.Name}</apex:outputLink></strong></td>
+                                                    <td>{!oActiveStudy.oProject.Study_Project_ID__c}</td>
+                                                    <td>{!oActiveStudy.oProject.Owner.Name}</td>
+                                                    <td>{!oActiveStudy.oProject.Classification__c}</td>
+                                                    <td>{!oActiveStudy.sMolecules}</td>
+                                                    <td><strong><apex:outputLink value="/apex/{!IF(oActiveStudy.oProject.Classification__c!=NULL
+                                                    ,If(OR(oActiveStudy.oProject.Study_Stage__c=='Questionnaire',oActiveStudy.oProject.Study_Stage__c=='Questionnaire Needs Review',oActiveStudy.oProject.Study_Stage__c==NULL),
+                                                            'Questionnaire',
+                                                            'Checklist'),
+                                                            'CreateStudy')}?id={!oActiveStudy.oProject.Id}" target="_blank" rendered="{!mCheckStudyQuestionnaire[oActiveStudy.oProject.Study_Description__c ]}">
+                                                    {!IF(AND(oActiveStudy.oProject.Study_Stage__c==NULL,oActiveStudy.oProject.Classification__c!=NULL),'Initiate Questionnaire',oActiveStudy.oProject.Study_Stage__c)}</apex:outputLink></strong></td>
+                                                    <td><apex:outputText value=" {0,date,MM'/'dd'/'yyyy}"><apex:param value="{!oActiveStudy.oProject.LastModifiedDate}"/></apex:outputText></td>
+                                                    
+                                                </tr>
+                                            </apex:repeat>
+                                        </table>
+                                    </apex:outputPanel>
+                                </section>
+                                
+                                <!-- -----------------------------------------Cancelled Studies--------------------------------------------------------------- -->
+                                
+                                <section id="content7">
+                                    <apex:outputPanel id="CancelledSection" rendered="{!IF(AND(NOT(ISNULL(mStudyCategoryCount['Cancelled'])),mStudyCategoryCount['Cancelled']>0),true,false)}">
+                                        <table class="col-xs-12 table hidden-xs">
+                                            <tr class="l-blue">                                               
+
+                                                <th class="col-xs-3"><apex:commandlink value="Name" action="{!sort}" reRender="CancelledSection">
+                                                <apex:param name="SH1" value="Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Name'}" /></th>
+
+                                                <th class="col-xs-2"><apex:commandlink value="Study/Project ID" action="{!sort}" reRender="CancelledSection">
+                                                <apex:param name="SH2" value="Study_Project_ID__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Study_Project_ID__c'}"/></th>
+                                                
+                                                <th class="col-xs-3">Molecule(s)</th>
+
+
+                                                <th class="col-xs-2"><apex:commandlink value="Last update" action="{!sort}" reRender="CancelledSection">
+                                                <apex:param name="SH5" value="LastModifiedDate" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='LastModifiedDate'}" /></th>
+                                            </tr>
+
+                                            <apex:repeat value="{!mStudyRecordsPerStatus['Cancelled']}" var="oActiveStudy">
+                                                <tr>
+                                                    <td class="error"><strong><apex:outputLink value="{!If(oActiveStudy.oProject.Research_Type__c == 'Research Topic','/apex/Research_Topics?id='+oActiveStudy.oProject.Id,'/apex/CreateStudy?id='+oActiveStudy.oProject.Id)}" target="_blank">{!oActiveStudy.oProject.Name}</apex:outputLink></strong></td>
+                                                    <td>{!oActiveStudy.oProject.Study_Project_ID__c}</td>
+                                                    <td>{!oActiveStudy.sMolecules}</td>
+                                                    <td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+                                                        <apex:param value="{!oActiveStudy.oProject.LastModifiedDate}" /> 
+                                                    </apex:outputText></td>
+                                                </tr>
+                                            </apex:repeat>
+                                        </table>
+                                    </apex:outputPanel>
+                                </section>
+                                
+                                <!-- -----------------------------------------On Hold Studies--------------------------------------------------------------- -->
+                                
+                                <section id="content8">
+                                    <apex:outputPanel id="OnHoldSection" rendered="{!IF(AND(NOT(ISNULL(mStudyCategoryCount['On Hold'])),mStudyCategoryCount['On Hold']>0),true,false)}">
+                                        <table class="col-xs-12 table hidden-xs">
+                                            <tr class="l-blue">                                               
+
+                                                <th class="col-xs-3"><apex:commandlink value="Name" action="{!sort}" reRender="OnHoldSection">
+                                                <apex:param name="SH1" value="Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Name'}" /></th>
+
+                                                <th class="col-xs-2"><apex:commandlink value="Study/Project ID" action="{!sort}" reRender="OnHoldSection">
+                                                <apex:param name="SH2" value="Study_Project_ID__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Study_Project_ID__c'}"/></th>
+                                                
+                                                <th class="col-xs-3">Molecule(s)</th>
+
+
+                                                <th class="col-xs-2"><apex:commandlink value="Last update" action="{!sort}" reRender="OnHoldSection">
+                                                <apex:param name="SH5" value="LastModifiedDate" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='LastModifiedDate'}" /></th>
+                                            </tr>
+                                            <apex:repeat value="{!mStudyRecordsPerStatus['On Hold']}" var="oActiveStudy">
+                                                <tr>
+                                                    <td class="error"><strong><apex:outputLink value="{!If(oActiveStudy.oProject.Research_Type__c == 'Research Topic','/apex/Research_Topics?id='+oActiveStudy.oProject.Id,'/apex/CreateStudy?id='+oActiveStudy.oProject.Id)}" target="_blank">{!oActiveStudy.oProject.Name}</apex:outputLink></strong></td>
+                                                    <td>{!oActiveStudy.oProject.Study_Project_ID__c}</td>
+                                                    <td>{!oActiveStudy.sMolecules}</td>
+                                                    <td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+                                                        <apex:param value="{!oActiveStudy.oProject.LastModifiedDate}" /> 
+                                                    </apex:outputText></td>
+                                                </tr>
+                                            </apex:repeat>
+                                        </table>
+                                    </apex:outputPanel>
+                                </section>
+                                
+                                <!-- -----------------------------------------Rejected Studies--------------------------------------------------------------- -->
+                                <section id="content9">
+                                    <apex:outputPanel id="RejectedSection" rendered="{!IF(AND(NOT(ISNULL(mStudyCategoryCount['Rejected'])),mStudyCategoryCount['Rejected']>0),true,false)}">
+                                        <table class="col-xs-12 table hidden-xs">
+                                            <tr class="l-blue">                                               
+
+                                                <th class="col-xs-3"><apex:commandlink value="Name" action="{!sort}" reRender="RejectedSection">
+                                                <apex:param name="SH1" value="Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Name'}" /></th>
+
+                                                <th class="col-xs-2"><apex:commandlink value="Study/Project ID" action="{!sort}" reRender="RejectedSection">
+                                                <apex:param name="SH2" value="Study_Project_ID__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Study_Project_ID__c'}"/></th>
+                                                
+
+                                                <th class="col-xs-2"><apex:commandlink value="Last update" action="{!sort}" reRender="RejectedSection">
+                                                <apex:param name="SH5" value="LastModifiedDate" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Study" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='LastModifiedDate'}" /></th>
+                                            </tr>
+                                            <apex:repeat value="{!mStudyRecordsPerStatus['Rejected']}" var="oRejectedStudy">
+                                                <tr>
+                                                    <td class="error"><strong><apex:outputLink value="{!If(oRejectedStudy.oProject.Research_Type__c == 'Research Topic','/apex/Research_Topics?id='+oRejectedStudy.oProject.Id,'/apex/CreateStudy?id='+oRejectedStudy.oProject.Id)}" target="_blank">{!oRejectedStudy.oProject.Name}</apex:outputLink></strong></td>
+                                                    <td>{!oRejectedStudy.oProject.Study_Project_ID__c}</td>
+                                                    <td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+                                                        <apex:param value="{!oRejectedStudy.oProject.LastModifiedDate}" /> 
+                                                    </apex:outputText></td>
+                                                </tr>
+                                            </apex:repeat>
+                                        </table>
+                                    </apex:outputPanel>
+                                </section>
+                                
+                 <!-- -------------------------------------------------------------------------------------------------------------------------------------------------- -->
+                            </div>
+                        </div>
+                    </div>
+                </apex:outputPanel>
+
+<!-- ************************************************************************************* Request main content Section ****************************************************************** -->
+                <apex:outputPanel rendered="{!IsRequest}">
+                    <div class="container tabs">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <input  id="tab1" type="radio" name="tabs" />
+                                <label for="tab1" class="l-green">New ({!mReqCategoryCount ['New']})</label>
+                                <input checked="checked" id="tab2" type="radio" name="tabs" />
+                                <label for="tab2" class="l-green">Accepted ({!mReqCategoryCount ['Accepted']})</label>
+                                <input id="tab3" type="radio" name="tabs" />
+                                <label for="tab3" class="l-green hidden-xs">In Progress ({!mReqCategoryCount ['In Progress']})</label>
+                                <input id="tab4" type="radio" name="tabs" />
+                                <label for="tab4" class="l-green hidden-xs">Completed ({!mReqCategoryCount ['Completed']})</label>                                
+                                <input id="tab5" type="radio" name="tabs" />
+                                <label for="tab5" class="l-green hidden-xs">Archived ({!mReqCategoryCount ['Archived']})</label>
+                                <input id="tab6" type="radio" name="tabs" />
+                                <label for="tab6" class="l-green hidden-xs">Cancelled ({!mReqCategoryCount ['Cancelled']})</label>
+                                <div class="links-container pull-right hidden-xs">
+                                <apex:outputlink value="/_ui/core/chatter/ui/ChatterPage" styleClass="sf-link pull-right">What I Follow</apex:outputlink>
+                                </div>                                
+                                <!-- -----------------------------------------New Requests--------------------------------------------------------------- -->
+                                <section id="content1">
+                                    <apex:outputPanel id="RNewSection" rendered="{!IF(AND(NOT(ISNULL(mReqCategoryCount['New'])),mReqCategoryCount['New']>0),true,false)}">
+                                        <table class="col-xs-12 table">
+                                            <tr class="l-green">
+                                                <th class="col-xs-2"><apex:commandlink value="Request Type" action="{!sort}" reRender="RNewSection">
+                                                <apex:param name="RH1" value="RecordType.Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Request" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='RecordType.Name'}" /></th>
+
+                                                <th class="col-xs-2"><apex:commandlink value="Request Name" action="{!sort}" reRender="RNewSection">
+                                                <apex:param name="RH2" value="Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Request" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Name'}"/></th>
+                                                
+                                                <th class="col-xs-2 hidden-xs"><apex:commandlink value="Request Stage" action="{!sort}" reRender="RNewSection">
+                                                <apex:param name="RH3" value="Request_Sub_Status__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Request" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Request_Sub_Status__c'}"/></th>
+                                                
+                                                <th class="col-xs-2 hidden-xs"><apex:commandlink value="Therapeutic Area" action="{!sort}" reRender="RNewSection">
+                                                <apex:param name="RH4" value="Therapeutic_Area_Primary__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Request" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Therapeutic_Area_Primary__c'}"/></th>
+                                                
+                                                <th class="col-xs-2 hidden-xs">Molecule</th>
+
+                                                <th class="col-xs-2 hidden-xs"><apex:commandlink value="Owner" action="{!sort}" reRender="RNewSection">
+                                                <apex:param name="RH6" value="Owner.Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Request" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Owner.Name'}"/></th>
+                                                
+                                                <th class="col-xs-2 hidden-xs"><apex:commandlink value="Proposed Due Date" action="{!sort}" reRender="RNewSection">
+                                                <apex:param name="RH7" value="Proposed_Due_Date__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Request" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Proposed_Due_Date__c'}"/></th>
+                                                                                                                                       
+                                            </tr>
+
+                                            
+                                            <apex:repeat value="{!mRequestRecordsPerStatus['New']}" var="oReq">
+                                                <tr>
+                                                    <td>{!oReq.oRequest.RecordType.Name}</td>
+                                                    <td><strong><apex:outputLink value="/{!oReq.oRequest.Id}" target="_blank">{!oReq.oRequest.Name}</apex:outputLink></strong></td>
+                                                    <td class="hidden-xs">{!oReq.oRequest.Request_Sub_Status__c}</td>
+                                                    <td class="hidden-xs">{!oReq.oRequest.Therapeutic_Area_Primary__c}</td>
+                                                    <td class="hidden-xs">{!oReq.sMolecules}</td>
+                                                    <td class="hidden-xs">{!oReq.oRequest.Owner.Name}</td>
+                                                    <td class="hidden-xs"><apex:outputText value=" {0,date,MM'/'dd'/'yyyy}"><apex:param value="{!oReq.oRequest.Proposed_Due_Date__c}"/></apex:outputText></td>                                                    
+                                                </tr>
+                                            </apex:repeat>
+                                            
+                                        </table>
+                                    </apex:outputPanel>
+                                </section>
+                                <!-- -----------------------------------------Accepted Requests--------------------------------------------------------------- -->
+                                
+                                <section id="content2">
+                                    <apex:outputPanel id="RAcceptedSection" rendered="{!IF(AND(NOT(ISNULL(mReqCategoryCount['Accepted'])),mReqCategoryCount['Accepted']>0),true,false)}">
+                                        <table class="col-xs-12 table">
+                                            <tr class="l-green">
+                                                <th class="col-xs-2"><apex:commandlink value="Request Type" action="{!sort}" reRender="RAcceptedSection">
+                                                <apex:param name="RH1" value="RecordType.Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Request" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='RecordType.Name'}" /></th>
+
+                                                <th class="col-xs-2"><apex:commandlink value="Request Name" action="{!sort}" reRender="RAcceptedSection">
+                                                <apex:param name="RH2" value="Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Request" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Name'}"/></th>
+                                                
+                                                <th class="col-xs-2 hidden-xs"><apex:commandlink value="Requestor Name" action="{!sort}" reRender="RAcceptedSection">
+                                                <apex:param name="RH2" value="Requestor__r.Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Request" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Requestor__r.Name'}"/></th>
+                                                
+                                                <th class="col-xs-2 hidden-xs">Molecule</th>
+
+                                                <th class="col-xs-2 hidden-xs"><apex:commandlink value="Owner" action="{!sort}" reRender="RAcceptedSection">
+                                                <apex:param name="RH6" value="Owner.Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Request" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Owner.Name'}"/></th>
+                                                
+                                                <th class="col-xs-2 hidden-xs"><apex:commandlink value="Proposed Due Date" action="{!sort}" reRender="RAcceptedSection">
+                                                <apex:param name="RH7" value="Proposed_Due_Date__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Request" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Proposed_Due_Date__c'}"/></th>
+                                                                                                                                       
+                                            </tr>
+                                            <apex:repeat value="{!mRequestRecordsPerStatus['Accepted']}" var="oReq">
+                                                <tr>
+                                                    <td>{!oReq.oRequest.RecordType.Name}</td>
+                                                    <td><strong><apex:outputLink value="/{!oReq.oRequest.Id}" target="_blank">{!oReq.oRequest.Name}</apex:outputLink></strong></td>
+                                                    <td class="hidden-xs">{!oReq.oRequest.Requestor__r.Name}</td>
+                                                    <td class="hidden-xs">{!oReq.sMolecules}</td>
+                                                    <td class="hidden-xs">{!oReq.oRequest.Owner.Name}</td>
+                                                    <td class="hidden-xs"><apex:outputText value=" {0,date,MM'/'dd'/'yyyy}"><apex:param value="{!oReq.oRequest.Proposed_Due_Date__c}"/></apex:outputText></td>
+                                                </tr>
+                                            </apex:repeat>
+                                        </table>
+                                    </apex:outputPanel>
+                                </section>
+                                
+
+                                <!-- -----------------------------------------In Progress Requests--------------------------------------------------------------- -->
+
+                                <section id="content3">
+                                    <apex:outputPanel id="RInProgressSection" rendered="{!IF(AND(NOT(ISNULL(mReqCategoryCount['In Progress'])),mReqCategoryCount['In Progress']>0),true,false)}">
+                                        <table class="col-xs-12 table hidden-xs">
+                                            <tr class="l-green">
+                                                <th class="col-xs-2"><apex:commandlink value="Request Type" action="{!sort}" reRender="RInProgressSection">
+                                                <apex:param name="RH1" value="RecordType.Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Request" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='RecordType.Name'}" /></th>
+
+                                                <th class="col-xs-2"><apex:commandlink value="Request Name" action="{!sort}" reRender="RInProgressSection">
+                                                <apex:param name="RH2" value="Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Request" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Name'}"/></th>
+                                                
+                                                <th class="col-xs-2"><apex:commandlink value="Requestor Name" action="{!sort}" reRender="RInProgressSection">
+                                                <apex:param name="RH2" value="Requestor__r.Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Request" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Requestor__r.Name'}"/></th>
+                                                
+                                                <th class="col-xs-2"><apex:commandlink value="Request Stage" action="{!sort}" reRender="RInProgressSection">
+                                                <apex:param name="RH3" value="Request_Sub_Status__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Request" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Request_Sub_Status__c'}"/></th>
+                                                
+                                                <th class="col-xs-2">Molecule</th>
+                                                
+                                                <th class="col-xs-2"><apex:commandlink value="Owner" action="{!sort}" reRender="RInProgressSection">
+                                                <apex:param name="RH6" value="Owner.Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Request" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Owner.Name'}"/></th>
+                                                
+                                                <th class="col-xs-2"><apex:commandlink value="Proposed Due Date" action="{!sort}" reRender="RInProgressSection">
+                                                <apex:param name="RH7" value="Proposed_Due_Date__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Request" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Proposed_Due_Date__c'}"/></th>
+                                                                                                                                       
+                                            </tr>
+                                            <apex:repeat value="{!mRequestRecordsPerStatus['In Progress']}" var="oReq">
+                                                <tr>
+                                                    <td>{!oReq.oRequest.RecordType.Name}</td>
+                                                    <td><strong><apex:outputLink value="/{!oReq.oRequest.Id}" target="_blank">{!oReq.oRequest.Name}</apex:outputLink></strong></td>
+                                                    <td>{!oReq.oRequest.Requestor__r.Name}</td>
+                                                    <td>{!oReq.oRequest.Request_Sub_Status__c}</td>
+                                                    <td>{!oReq.sMolecules}</td>
+                                                    <td>{!oReq.oRequest.Owner.Name}</td>
+                                                    <td><apex:outputText value=" {0,date,MM'/'dd'/'yyyy}"><apex:param value="{!oReq.oRequest.Proposed_Due_Date__c}"/></apex:outputText></td>
+                                                </tr>
+                                            </apex:repeat>
+                                        </table>
+                                    </apex:outputPanel>
+                                </section>
+                                
+                                <!-- -----------------------------------------Complete Requests--------------------------------------------------------------- -->
+
+                                <section id="content4">
+                                    <apex:outputPanel id="RCompleteSection" rendered="{!IF(AND(NOT(ISNULL(mReqCategoryCount['Completed'])),mReqCategoryCount['Completed']>0),true,false)}">
+                                        <table class="col-xs-12 table hidden-xs">
+                                            <tr class="l-green">
+                                                <th class="col-xs-2"><apex:commandlink value="Request Type" action="{!sort}" reRender="RCompleteSection">
+                                                <apex:param name="RH1" value="RecordType.Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Request" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='RecordType.Name'}" /></th>
+
+                                                <th class="col-xs-3"><apex:commandlink value="Request Name" action="{!sort}" reRender="RCompleteSection">
+                                                <apex:param name="RH2" value="Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Request" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Name'}"/></th>
+                                                
+                                                <th class="col-xs-2">Molecule</th>                                               
+                                                
+                                                <th class="col-xs-2"><apex:commandlink value="Date Complete" action="{!sort}" reRender="RCompleteSection">
+                                                <apex:param name="RH4" value="Date_Completed__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Request" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Date_Completed__c'}"/></th>
+                                                
+                                                <th class="col-xs-3"><apex:commandlink value="Outcome" action="{!sort}" reRender="RCompleteSection">
+                                                <apex:param name="RH5" value="Outcome_TF__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Request" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Outcome_TF__c'}"/></th>
+                                                
+                                            </tr>
+                                            <apex:repeat value="{!mRequestRecordsPerStatus['Completed']}" var="oReq">
+                                                <tr>
+                                                    <td>{!oReq.oRequest.RecordType.Name}</td>
+                                                    <td><strong><apex:outputLink value="/{!oReq.oRequest.Id}" target="_blank">{!oReq.oRequest.Name}</apex:outputLink></strong></td>
+                                                    <td>{!oReq.sMolecules}</td>
+                                                    <td><apex:outputText value=" {0,date,MM'/'dd'/'yyyy}"><apex:param value="{!oReq.oRequest.Date_Completed__c}"/></apex:outputText></td>
+                                                    <td><apex:outputLink rendered="{!If(oReq.oRequest.RecordType.Name =='Data Mart Project',True,False)}" value="{!oReq.oRequest.Outcome_TF__c}">{!If(LEN(oReq.oRequest.Outcome_TF__c)>40,(LEFT(oReq.oRequest.Outcome_TF__c,40)+'...'),oReq.oRequest.Outcome_TF__c)}</apex:outputLink><apex:outputText rendered="{!If(oReq.oRequest.RecordType.Name <>'Data Mart Project',True,False)}" value="{!oReq.oRequest.Outcome_TF__c}"/></td>                                
+                                                </tr>
+                                            </apex:repeat>
+                                        </table>
+                                    </apex:outputPanel>
+                                </section>
+                                
+                                <!-- -----------------------------------------Archived Requests--------------------------------------------------------------- -->
+                                
+                                <section id="content5">
+                                    <apex:outputPanel id="RArchivedSection" rendered="{!IF(AND(NOT(ISNULL(mReqCategoryCount['Archived'])),mReqCategoryCount['Archived']>0),true,false)}">
+                                        <table class="col-xs-12 table hidden-xs">
+                                            <tr class="l-green">
+                                                <th class="col-xs-2"><apex:commandlink value="Request Type" action="{!sort}" reRender="RArchivedSection">
+                                                <apex:param name="RH1" value="RecordType.Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Request" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='RecordType.Name'}" /></th>
+
+                                                <th class="col-xs-2"><apex:commandlink value="Request Name" action="{!sort}" reRender="RArchivedSection">
+                                                <apex:param name="RH2" value="Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Request" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Name'}"/></th>
+                                                
+                                                <th class="col-xs-2">Molecule</th>
+                                                
+                                                <th class="col-xs-2"><apex:commandlink value="Owner" action="{!sort}" reRender="RArchivedSection">
+                                                <apex:param name="RH4" value="Owner.Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Request" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Owner.Name'}"/></th>
+                                                
+                                                <th class="col-xs-2"><apex:commandlink value="Proposed Due Date" action="{!sort}" reRender="RArchivedSection">
+                                                <apex:param name="RH5" value="Proposed_Due_Date__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Request" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Proposed_Due_Date__c'}"/></th>
+                                                
+                                                <th class="col-xs-2"><apex:commandlink value="Outcome" action="{!sort}" reRender="RArchivedSection">
+                                                <apex:param name="RH6" value="Outcome_TF__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Request" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Outcome_TF__c'}"/></th>
+                                                
+                                            </tr>
+                                           <apex:repeat value="{!mRequestRecordsPerStatus['Archived']}" var="oReq">
+                                                <tr>
+                                                    <td>{!oReq.oRequest.RecordType.Name}</td>
+                                                    <td><strong><apex:outputLink value="/{!oReq.oRequest.Id}" target="_blank">{!oReq.oRequest.Name}</apex:outputLink></strong></td>
+                                                    <td>{!oReq.sMolecules}</td>
+                                                    <td>{!oReq.oRequest.Owner.Name}</td> 
+                                                    <td><apex:outputText value=" {0,date,MM'/'dd'/'yyyy}"><apex:param value="{!oReq.oRequest.Proposed_Due_Date__c}"/></apex:outputText></td>
+                                                    <td><apex:outputLink rendered="{!If(oReq.oRequest.RecordType.Name =='Data Mart Project',True,False)}" value="{!oReq.oRequest.Outcome_TF__c}">{!If(LEN(oReq.oRequest.Outcome_TF__c)>40,(LEFT(oReq.oRequest.Outcome_TF__c,40)+'...'),oReq.oRequest.Outcome_TF__c)}</apex:outputLink><apex:outputText rendered="{!If(oReq.oRequest.RecordType.Name <>'Data Mart Project',True,False)}" value="{!oReq.oRequest.Outcome_TF__c}"/></td>                                                    
+                                                </tr>
+                                            </apex:repeat>
+                                        </table>
+                                    </apex:outputPanel>
+                                </section>
+                                
+                                <!--  -----------------------------------------Cancelled Requests--------------------------------------------------------------- -->
+                                
+                                <section id="content6">
+                                    <apex:outputPanel id="RCancelledSection" rendered="{!IF(AND(NOT(ISNULL(mReqCategoryCount['Cancelled'])),mReqCategoryCount['Cancelled']>0),true,false)}">
+                                        <table class="col-xs-12 table hidden-xs">
+                                            <tr class="l-green">
+                                                <th class="col-xs-2"><apex:commandlink value="Request Type" action="{!sort}" reRender="RCancelledSection">
+                                                <apex:param name="RH1" value="RecordType.Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Request" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='RecordType.Name'}" /></th>
+
+                                                <th class="col-xs-2"><apex:commandlink value="Request Name" action="{!sort}" reRender="RCancelledSection">
+                                                <apex:param name="RH2" value="Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Request" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Name'}"/></th>
+                                                
+                                                <th class="col-xs-2">Molecule</th>
+
+                                                <th class="col-xs-2"><apex:commandlink value="Owner" action="{!sort}" reRender="RCancelledSection">
+                                                <apex:param name="RH4" value="Owner.Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Request" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Owner.Name'}"/></th>
+                                                
+                                                <th class="col-xs-2"><apex:commandlink value="Proposed Due Date" action="{!sort}" reRender="RCancelledSection">
+                                                <apex:param name="RH5" value="Proposed_Due_Date__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Request" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Proposed_Due_Date__c'}"/></th>
+                                                
+                                                <th class="col-xs-2"><apex:commandlink value="Cancellation Reason" action="{!sort}" reRender="RCancelledSection">
+                                                <apex:param name="RH6" value="Cancellation_Reason__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Request" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}"   rendered="{!sField='Cancellation_Reason__c'}"/></th>
+
+                                            </tr>
+                                            <apex:repeat value="{!mRequestRecordsPerStatus['Cancelled']}" var="oReq">
+                                                <tr>
+                                                    <td>{!oReq.oRequest.RecordType.Name}</td>
+                                                    <td><strong><apex:outputLink value="/{!oReq.oRequest.Id}" target="_blank">{!oReq.oRequest.Name}</apex:outputLink></strong></td>
+                                                    <td>{!oReq.sMolecules}</td>
+                                                    <td>{!oReq.oRequest.Owner.Name}</td> 
+                                                    <td><apex:outputText value=" {0,date,MM'/'dd'/'yyyy}" ><apex:param value="{!oReq.oRequest.Proposed_Due_Date__c}"/></apex:outputText></td>
+                                                    <td>{!oReq.oRequest.Cancellation_Reason__c}</td>                                                    
+                                                </tr>
+                                            </apex:repeat>
+                                        </table>
+                                    </apex:outputPanel>
+                                </section>
+
+                            </div>
+                        </div>
+                    </div>
+                </apex:outputPanel>
+<!-- ************************************************************************************* Partnership main content Section ****************************************************************** -->
+                <apex:outputPanel rendered="{!IsPartnership}">
+                    <div class="container tabs">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <input  id="tab1" type="radio" name="tabs" />
+                                <label for="tab1" Class="l-orange">Exploring ({!mPartnershipCategoryCount['Exploring']})</label>
+                                <input checked="checked" id="tab2" type="radio" name="tabs" />
+                                <label for="tab2" Class="l-orange">Approved and Pursuing ({!mPartnershipCategoryCount['Approved and Pursuing']})</label>
+                                <input id="tab3" type="radio" name="tabs" />
+                                <label for="tab3" Class="l-orange hidden-xs">Approved and Active ({!mPartnershipCategoryCount['Approved and Active']})</label>
+                                <input id="tab4" type="radio" name="tabs" />
+                                <label for="tab4" Class="l-orange hidden-xs">Evaluated and Not Pursued ({!mPartnershipCategoryCount['Evaluated and Not Pursued']})</label>
+                                <div class="links-container pull-right hidden-xs">
+                                <apex:outputlink value="/_ui/core/chatter/ui/ChatterPage" styleClass="sf-link pull-right">What I Follow</apex:outputlink>
+                                </div>
+                               <!-- ----------------------------------------- Exploring Partnerships --------------------------------------------------------------- -->
+                                
+                                <section id="content1">
+                                    <apex:outputPanel id="PExploringSection" rendered="{!IF(AND(NOT(ISNULL(mPartnershipCategoryCount['Exploring'])),mPartnershipCategoryCount['Exploring']>0),true,false)}">
+                                        <table class="col-xs-12 table">
+                                            <tr class="l-orange">
+                                                
+                                                <th class="col-xs-3"><apex:commandlink value="Request Name" action="{!sort}" reRender="PExploringSection">
+                                                <apex:param name="PH1" value="Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Partnership" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Name'}" /></th>
+
+                                                <th class="col-xs-2"><apex:commandlink value="Partnership Sponsor" action="{!sort}" reRender="PExploringSection">
+                                                <apex:param name="PH2" value="Partnership_Sponsor__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Partnership" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Partnership_Sponsor__c'}" /></th>
+
+                                                <th class="col-xs-3 hidden-xs">Partner Type</th>
+
+                                                <th class="col-xs-2 hidden-xs"><apex:commandlink value="Owner" action="{!sort}" reRender="PExploringSection">
+                                                <apex:param name="PH3" value="Owner.Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Partnership" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Owner.Name'}" /></th>
+
+                                                <th class="col-xs-2 hidden-xs"><apex:commandlink value="Request Status" action="{!sort}" reRender="PExploringSection">
+                                                <apex:param name="PH4" value="Request_Status__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Partnership" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Request_Status__c'}" /></th>
+
+                                            </tr>                                            
+                                            <apex:repeat value="{!mPartnershipRecordsPerStatus['Exploring']}" var="oPartnership">
+                                                <tr>
+                                                    <td><strong><apex:outputLink value="/{!oPartnership.ID}" target="_blank">{!oPartnership.Name}</apex:outputLink></strong></td>
+                                                    <td>{!oPartnership.Partnership_Sponsor__c}</td>
+                                                    <td class="hidden-xs">{!oPartnership.Type_of_Partner__c}</td>
+                                                    <td class="hidden-xs">{!oPartnership.Owner.Name}</td>
+                                                    <td class="hidden-xs">{!oPartnership.Request_Status__c}{!IF(ISNULL(oPartnership.Request_Sub_Status__c),'',' - '+oPartnership.Request_Sub_Status__c)}</td>
+                                                </tr>
+                                            </apex:repeat>                                            
+                                        </table>
+                                    </apex:outputPanel>
+                                </section>
+                                
+                                <!-- ----------------------------------------- Approved and Pursuing Partnerships --------------------------------------------------------------- -->
+
+                                <section id="content2">
+                                    <apex:outputPanel id="PPendingSection" rendered="{!IF(AND(NOT(ISNULL(mPartnershipCategoryCount['Approved and Pursuing'])),mPartnershipCategoryCount['Approved and Pursuing']>0),true,false)}">
+                                        <table class="col-xs-12 table">
+                                            <tr class="l-orange">
+                                                
+                                                <th class="col-xs-3"><apex:commandlink value="Request Name" action="{!sort}" reRender="PPendingSection">
+                                                <apex:param name="PH1" value="Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Partnership" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Name'}" /></th>
+
+                                                <th class="col-xs-2"><apex:commandlink value="Partnership Sponsor" action="{!sort}" reRender="PPendingSection">
+                                                <apex:param name="PH2" value="Partnership_Sponsor__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Partnership" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Partnership_Sponsor__c'}" /></th>
+
+                                                <th class="col-xs-3 hidden-xs">Partner Type</th>
+
+                                                <th class="col-xs-2 hidden-xs"><apex:commandlink value="Primary Contact" action="{!sort}" reRender="PPendingSection">
+                                                <apex:param name="PH3" value="Primary_Contact__r.Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Partnership" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Primary_Contact__r.Name'}" /></th>
+
+                                                <th class="col-xs-2 hidden-xs"><apex:commandlink value="Request Status" action="{!sort}" reRender="PPendingSection">
+                                                <apex:param name="PH4" value="Request_Status__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Partnership" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Request_Status__c'}" /></th>
+                                            
+                                            </tr>
+                                            <apex:repeat value="{!mPartnershipRecordsPerStatus['Approved and Pursuing']}" var="oPartnership">
+                                                <tr>
+                                                    <td><strong><apex:outputLink value="/{!oPartnership.Id}" target="_blank">{!oPartnership.Name}</apex:outputLink></strong></td>
+                                                    <td>{!oPartnership.Partnership_Sponsor__c}</td>
+                                                    <td class="hidden-xs">{!oPartnership.Type_of_Partner__c}</td>
+                                                    <td class="hidden-xs">{!oPartnership.Primary_Contact__r.Name}</td>
+                                                    <td class="hidden-xs">{!oPartnership.Request_Status__c}{!IF(ISNULL(oPartnership.Request_Sub_Status__c),'',' - '+oPartnership.Request_Sub_Status__c)}</td>
+                                                </tr>
+                                            </apex:repeat>
+                                        </table>
+                                    </apex:outputPanel>
+                                </section>
+
+                                <!-- ----------------------------------------- Approved and Active Partnerships --------------------------------------------------------------- -->
+
+                                <section id="content3">
+                                    <apex:outputPanel id="PActiveSection" rendered="{!IF(AND(NOT(ISNULL(mPartnershipCategoryCount['Approved and Active'])),mPartnershipCategoryCount['Approved and Active']>0),true,false)}">
+                                        <table class="col-xs-12 table hidden-xs">
+                                            <tr class="l-orange">
+
+                                                <th class="col-xs-3"><apex:commandlink value="Request Name" action="{!sort}" reRender="PActiveSection">
+                                                <apex:param name="PH1" value="Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Partnership" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Name'}" /></th>
+
+                                                <th class="col-xs-2"><apex:commandlink value="Partnership Sponsor" action="{!sort}" reRender="PActiveSection">
+                                                <apex:param name="PH2" value="Partnership_Sponsor__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Partnership" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Partnership_Sponsor__c'}" /></th>
+
+                                                <th class="col-xs-3">Partner Type</th>
+
+                                                <th class="col-xs-2"><apex:commandlink value="Primary Contact" action="{!sort}" reRender="PActiveSection">
+                                                <apex:param name="PH3" value="Primary_Contact__r.Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Partnership" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Primary_Contact__r.Name'}" /></th>
+
+                                                <th class="col-xs-2"><apex:commandlink value="Request Status" action="{!sort}" reRender="PActiveSection">
+                                                <apex:param name="PH4" value="Request_Status__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Partnership" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Request_Status__c'}" /></th>
+                                            
+                                            </tr>
+                                            <apex:repeat value="{!mPartnershipRecordsPerStatus['Approved and Active']}" var="oPartnership">
+                                                <tr>
+                                                    <td><strong><apex:outputLink value="/{!oPartnership.ID}" target="_blank">{!oPartnership.Name}</apex:outputLink></strong></td>
+                                                    <td>{!oPartnership.Partnership_Sponsor__c}</td>
+                                                    <td>{!oPartnership.Type_of_Partner__c}</td>
+                                                    <td>{!oPartnership.Primary_Contact__r.Name}</td>
+                                                    <td>{!oPartnership.Request_Status__c}{!IF(ISNULL(oPartnership.Request_Sub_Status__c),'',' - '+oPartnership.Request_Sub_Status__c)}</td>
+                                                </tr>
+                                            </apex:repeat> 
+                                        </table>
+                                    </apex:outputPanel>
+                                </section>
+                                
+                                
+                     <!-- ----------------------------------------- Evaluated and Not Pursued Partnerships --------------------------------------------------------------- -->
+                                <section id="content4">
+                                    <apex:outputPanel id="PNotPursuedSection" rendered="{!IF(AND(NOT(ISNULL(mPartnershipCategoryCount['Evaluated and Not Pursued'])),mPartnershipCategoryCount['Evaluated and Not Pursued']>0),true,false)}">
+                                        <table class="col-xs-12 table hidden-xs">
+                                            <tr class="l-orange">
+                                                <th class="col-xs-2"><apex:commandlink value="Request Name" action="{!sort}" reRender="PNotPursuedSection">
+                                                <apex:param name="PH1" value="Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Partnership" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Name'}" /></th>
+
+                                                <th class="col-xs-2"><apex:commandlink value="Partnership Sponsor" action="{!sort}" reRender="PNotPursuedSection">
+                                                <apex:param name="PH2" value="Partnership_Sponsor__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Partnership" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Partnership_Sponsor__c'}" /></th>
+
+                                                <th class="col-xs-2">Partner Type</th>
+
+                                                <th class="col-xs-2"><apex:commandlink value="Owner" action="{!sort}" reRender="PNotPursuedSection">
+                                                <apex:param name="PH3" value="Owner.Name" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Partnership" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Owner.Name'}" /></th>
+
+                                                <th class="col-xs-2"><apex:commandlink value="Request Status" action="{!sort}" reRender="PNotPursuedSection">
+                                                <apex:param name="PH4" value="Request_Status__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Partnership" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Request_Status__c'}" /></th>
+                                            
+                                                <th class="col-xs-2"><apex:commandlink value="Reason Partnership Not Pursued" action="{!sort}" reRender="PNotPursuedSection">
+                                                <apex:param name="PH4" value="Reason_Partnership_Not_Pursued__c" assignTo="{!sField}" />
+                                                <apex:param name="typeofObj" value="Partnership" assignTo="{!sTypeofObject}" /></apex:commandlink>
+                                                <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Reason_Partnership_Not_Pursued__c'}" /></th>
+                                                                                         
+                                            </tr>
+                                            <apex:repeat value="{!mPartnershipRecordsPerStatus['Evaluated and Not Pursued']}" var="oPartnership">
+                                                <tr>
+                                                    <td><strong><apex:outputLink value="/{!oPartnership.ID}" target="_blank">{!oPartnership.Name}</apex:outputLink></strong></td>
+                                                    <td>{!oPartnership.Partnership_Sponsor__c}</td>
+                                                    <td>{!oPartnership.Type_of_Partner__c}</td>
+                                                    <td>{!oPartnership.Owner.Name}</td>
+                                                    <td>{!oPartnership.Request_Status__c}{!IF(ISNULL(oPartnership.Request_Sub_Status__c),'',' - '+oPartnership.Request_Sub_Status__c)}</td>
+                                                    <td>{!If(LEN(oPartnership.Reason_Partnership_Not_Pursued__c)>40,(LEFT(oPartnership.Reason_Partnership_Not_Pursued__c,40)+'...'),oPartnership.Reason_Partnership_Not_Pursued__c)}</td>                                                    
+                                                </tr>
+                                            </apex:repeat>                                                                                       
+                                        </table>
+                                    </apex:outputPanel>
+                                </section>
+                 <!-- -------------------------------------------------------------------------------------------------------------------------------------------------- -->
+                            </div>
+                        </div>
+                    </div>
+                </apex:outputPanel>
+
+                </main>
+                </apex:outputPanel>
+                <div class="additional-info">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h2>My Dashboard</h2>
+                                 <p><apex:outputText escape="false" value="{!$Label.YourCompass}"/></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- Modal for approval/rejection -->
+            <apex:outputPanel id="Modal">
+            <div class="modal fade rejected" id="approval-modal" tabindex="-1" role="dialog" aria-labelledby="approvalModalLabel">
+              <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                  <div class="modal-header approved">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h1 class="modal-title approved" id="approvalModalLabelApproved">Confirm Approval</h1>
+                    <h1 class="modal-title rejected" id="approvalModalLabelRejected">Confirm Rejection</h1>
+                  </div>
+                  
+                  <div class="modal-body">
+                    <!-- start -->
+                    <p>Comments</p>
+                    <apex:inputtextarea value="{!StudyComment}" id="confirmation-comments"/>
+                    <apex:inputHidden id="HiddenId" value="{!StudyId}"/>
+                    <apex:inputHidden id="HiddenFlag" value="{!IsApprove}"/>
+                    <!-- end -->
+                  </div>
+
+
+                  <!-- modal-body ends -->
+                  <div class="modal-footer">
+                    <button type="button" class="btn button cancel-action" data-dismiss="modal">Cancel</button>
+                    <apex:commandbutton value="Confirm" styleClass="btn button confirm-action" action="{!StudyApprovalProcess}" onComplete="$('#approval-modal').modal('hide');" reRender="MainContent,HeaderSection"/>
+                </div>
+                </div>
+              </div>
+            </div>
+            </apex:outputPanel>
+        </apex:actionRegion>
+        <c:SR2_FooterComponent />
+    </body>
+    </html>
+</apex:form>
+</apex:page>

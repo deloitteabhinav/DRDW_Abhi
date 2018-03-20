@@ -1,0 +1,697 @@
+<apex:page docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="true" id="thePage" Standardcontroller="Information_Landscape__c" extensions="DRDP_CreateLandscapeController">
+ 
+    <head>
+    <title>Create an Information Source</title>
+    </head>
+    <body>
+        <div class='df_drdw content'>
+        <!-- Using df_drdws Index component for the Top Header- -->
+        <c:SR2_Index />
+        <div class="df_drdw-createstudy df_drdw-create-study create-info-source">
+            
+            <header>
+            <div class="pattern"></div> 
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xs-12 banner-properties">
+                            <!-- ------------------  Conditional header & buttons  here ----------------- -->
+                             <div class="container">
+                             <apex:outputPanel rendered="{!IF($CurrentPage.parameters.id == NULL,true,false)}">
+                                <h1><apex:outputText value="Create an Information Source"/></h1>
+                                </apex:outputPanel>
+                             <apex:outputPanel rendered="{!IF($CurrentPage.parameters.id != NULL,true,false)}">
+                                <h1><apex:outputText value="Information Source"/></h1>
+                                </apex:outputPanel>
+                                <apex:outputpanel rendered="{!IF($CurrentPage.parameters.id != NULL,true,false)}">
+                                <h1><apex:outputField value="{!oLandscape.Name}"/></h1>
+                                <p></p>
+                                </apex:outputpanel>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+                <!-- ------------------  Error OutputPanel start here ---------------- -->
+             
+                <div class="sfdc-errorMessage font-s">
+                    <apex:pagemessages escape="false"></apex:pagemessages>
+                </div>
+                <script>
+                document.body.scrollTop = document.documentElement.scrollTop = 0;
+                </script>
+
+                <!-- ------------------  Error OutputPanel ends here ---------------- --->
+
+        <!--------------------  Overall MAIN container starts here ------------------->
+
+        <main class="container">
+
+
+            <apex:outputpanel id="EditInformation_Landscape__cPanel" rendered="{!IF($CurrentPage.parameters.isEdit=='true',true,false)}">
+            <apex:form id="editInformation_Landscape__c" styleclass="create-study-form accordion">
+            
+            <section class="row">
+                <div class="col-xs-12 required-label">* REQUIRED FIELD</div>
+            </section>
+
+            <!--------------------------------Information Section starts---------------------------------------------------------->
+            <section class="row">
+                <div class="col-xs-12">
+                    <h2 class="accordion-parent">Information Source
+                    <span class="icon-large-caret pull-right down"></span></h2>
+                    <fieldset class="accordion-child">
+                    <apex:outputPanel id="Information">
+                    <apex:actionregion >
+                     
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Name.Label}</label><span class="required-label"> *</span> 
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Name.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Name.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oLandscape.Name}" required="true"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Source_Type__c.Label}</label><span class="required-label"> *</span>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Source_Type__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Source_Type__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oLandscape.Source_Type__c}" required="true"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Information_Type__c.Label}</label> <span class="required-label"> *</span>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Information_Type__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Information_Type__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oLandscape.Information_Type__c}" required="true"/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Information_Sub_Type__c.Label}</label><span class="required-label"> *</span> 
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Information_Sub_Type__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Information_Sub_Type__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oLandscape.Information_Sub_Type__c}" required="true"/>
+                        </div>
+                    </div>
+                    
+                   <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Source_Description__c.Label}</label><span class="required-label"> *</span>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Source_Description__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Source_Description__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oLandscape.Source_Description__c}" required="true"/>
+                        </div>
+                    </div>
+                    
+
+
+                    </apex:actionRegion>
+                    </apex:outputPanel>
+                    </fieldset>
+                </div>
+            </section>
+            
+            <section class="row">
+                <div class="col-xs-12">
+                    <h2 class="accordion-parent">Information Source Details
+                    <span class="icon-large-caret pull-right down"></span></h2>
+                    <fieldset class="accordion-child">
+                    <apex:outputPanel id="InfoLandscape">
+                    <apex:actionregion >
+                     
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Integration_Mechanism__c.Label}</label><span class="required-label"> *</span>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Integration_Mechanism__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Integration_Mechanism__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oLandscape.Integration_Mechanism__c}" required="true"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Regulatory_Indicator__c.Label}</label><span class="required-label"> *</span>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Regulatory_Indicator__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Regulatory_Indicator__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oLandscape.Regulatory_Indicator__c}" required="true"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.SDLC_Classification__c.Label}</label><span class="required-label"> *</span>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.SDLC_Classification__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.SDLC_Classification__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oLandscape.SDLC_Classification__c}" required="true"/>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Authentication_Type__c.Label}</label><span class="required-label"> *</span>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Authentication_Type__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Authentication_Type__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oLandscape.Authentication_Type__c}" required="true"/>
+                        </div>
+                    </div>
+                    <apex:outputPanel id="targetPanel">
+                    <apex:actionRegion >
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Target_Decommissioning_Indicator__c.Label}</label><span class="required-label"> *</span>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Target_Decommissioning_Indicator__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Target_Decommissioning_Indicator__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oLandscape.Target_Decommissioning_Indicator__c}" required="true">
+                            <apex:actionSupport event="onchange" reRender="targetPanel"/>
+                            </apex:inputField>
+                        </div>
+                    </div>
+                    
+                    <apex:outputPanel id="targetDatePanel">
+                    <apex:outputPanel rendered="{!IF(oLandscape.Target_Decommissioning_Indicator__c == 'Yes',true, false)}">
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Target_Date__c.Label}</label><span class="required-label"> *</span>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Target_Date__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Target_Date__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                        
+                            <apex:inputField value="{!oLandscape.Target_Date__c}" required="true"/>
+                        </div>
+                    </div>
+                    </apex:outputPanel>
+                    </apex:outputPanel>
+                    </apex:actionRegion>
+                    </apex:outputPanel>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Sensitivity__c.Label}</label><span class="required-label"> *</span>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Sensitivity__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Sensitivity__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oLandscape.Sensitivity__c}" required="true"/>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Source_Content__c.Label}</label><span class="required-label"> *</span>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Source_Content__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Source_Content__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oLandscape.Source_Content__c}" required="true"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Number_of_Licenses__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Number_of_Licenses__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Number_of_Licenses__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oLandscape.Number_of_Licenses__c}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Operating_Costs__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Operating_Costs__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Operating_Costs__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oLandscape.Operating_Costs__c}"/>
+                        </div>
+                    </div>
+
+
+                    </apex:actionRegion>
+                    </apex:outputPanel>
+                    </fieldset>
+                </div>
+            </section>
+            
+            <section class="row">
+                <div class="col-xs-12">
+                    <h2 class="accordion-parent">Information Source Group Details
+                    <span class="icon-large-caret pull-right down"></span></h2>
+                    <fieldset class="accordion-child">
+                    <apex:outputPanel id="Information_Landscape__cLocation">
+                    <apex:actionregion >
+                    
+                   <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Organization_Name__c.Label}</label><span class="required-label"> *</span>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Organization_Name__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Source_Description__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oLandscape.Organization_Name__c}" required="true"/>
+                        </div>
+                    </div> 
+                    
+                     <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Business_Unit__c.Label}</label><span class="required-label"> *</span>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Business_Unit__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Business_Unit__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oLandscape.Business_Unit__c}" required="true"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Group_Name__c.Label}</label><span class="required-label"> *</span>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Group_Name__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Group_Name__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oLandscape.Group_Name__c}" required="true"/>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.System_Owner__c.Label}</label><span class="required-label"> *</span>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.System_Owner__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.System_Owner__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oLandscape.System_Owner__c}" required="true"/>
+                        </div>
+                    </div> 
+                    
+                   <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Therapeutic_Area_Primary__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Therapeutic_Area_Primary__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Therapeutic_Area_Primary__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oLandscape.Therapeutic_Area_Primary__c}"/>
+                        </div>
+                    </div>
+                     
+                    
+                   
+
+                    </apex:actionRegion>
+                    </apex:outputPanel>
+                    </fieldset>
+                </div>
+            </section>
+            
+            <!---------------------------------------------------------Buttons Section---------------------------------------------------------------------------------------------->
+            <section class="row submit">
+                <div class="col-xs-12">
+                    <apex:commandButton action="{!save}" styleclass="submit-study button" value="Save" />
+                    <apex:actionFunction name="doSubmit" rerender="error" oncomplete="return false;"/>
+                    <apex:outputLink styleClass="button" value="/apex/DRDP_CreateLandscape?id={!$CurrentPage.parameters.id}&isEdit=false" rendered="{!$CurrentPage.parameters.id != null}">Cancel</apex:outputLink>
+                    <apex:outputLink styleClass="button" value="/apex/DRDP_InformationLandscapeList" rendered="{!$CurrentPage.parameters.id == null}">Cancel</apex:outputLink>                    
+                </div>
+            </section>
+            <!---------------------------------------------------------Buttons Section---------------------------------------------------------------------------------------------->
+            </apex:form>
+            </apex:outputpanel>
+<!------~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  EDIT Information_Landscape__c Form ends  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~---->
+
+    <apex:outputpanel rendered="{!IF(AND($CurrentPage.parameters.id != NULL,OR($CurrentPage.parameters.isEdit=='false',$CurrentPage.parameters.isEdit==NULL)),true,false)}">
+        <span class="hidden-xs">
+        <chatter:feedWithFollowers entityId="{!$CurrentPage.parameters.id}"/> 
+        </span>
+        <apex:form Styleclass="create-study-form accordion">
+
+
+            <!---------------------------------------------------------Buttons Section on the top---------------------------------------------------------------------------------------------->
+                    <section class="row submit hidden-xs">
+                        <div class="col-xs-12">
+                            <apex:commandButton styleClass="button" value="Edit" action="{!EditRecord}"/>
+                        </div>
+                    </section>
+                    
+                <section class="row">
+                <div class="col-xs-12">
+                    <h2 class="accordion-parent">Information Source
+                    <span class="icon-large-caret pull-right down"></span></h2>
+                    <fieldset class="accordion-child">
+                    <apex:outputPanel id="Information">
+                    <apex:actionregion >
+                     
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Name.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Name.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Name.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oLandscape.Name}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Source_Type__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Source_Type__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Source_Type__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oLandscape.Source_Type__c}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Information_Type__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Information_Type__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Information_Type__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oLandscape.Information_Type__c}" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Information_Sub_Type__c.Label}</label> 
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Information_Sub_Type__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Information_Sub_Type__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oLandscape.Information_Sub_Type__c}" />
+                        </div>
+                    </div>
+                   <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Source_Description__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Source_Description__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Source_Description__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oLandscape.Source_Description__c}"/>
+                        </div>
+                    </div>
+                    
+
+
+                    </apex:actionRegion>
+                    </apex:outputPanel>
+                    </fieldset>
+                </div>
+            </section>
+            
+            <section class="row">
+                <div class="col-xs-12">
+                    <h2 class="accordion-parent">Information Source Details
+                    <span class="icon-large-caret pull-right down"></span></h2>
+                    <fieldset class="accordion-child">
+                    <apex:outputPanel id="InfoLandscape">
+                    <apex:actionregion >
+                     
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Integration_Mechanism__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Integration_Mechanism__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Integration_Mechanism__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oLandscape.Integration_Mechanism__c}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Regulatory_Indicator__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Regulatory_Indicator__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Regulatory_Indicator__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oLandscape.Regulatory_Indicator__c}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.SDLC_Classification__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.SDLC_Classification__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.SDLC_Classification__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oLandscape.SDLC_Classification__c}"/>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Authentication_Type__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Authentication_Type__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Authentication_Type__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oLandscape.Authentication_Type__c}"/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Target_Decommissioning_Indicator__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Target_Decommissioning_Indicator__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Target_Decommissioning_Indicator__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oLandscape.Target_Decommissioning_Indicator__c}"/>
+                        </div>
+                    </div>
+                    
+                    <apex:outputPanel rendered="{!oLandScape.Target_Decommissioning_Indicator__c == 'Yes'}">
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Target_Date__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Target_Date__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Target_Date__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oLandscape.Target_Date__c}"/>
+                        </div>
+                    </div>
+                    </apex:outputPanel>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Sensitivity__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Sensitivity__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Sensitivity__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oLandscape.Sensitivity__c}"/>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Source_Content__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Source_Content__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Source_Content__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oLandscape.Source_Content__c}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Number_of_Licenses__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Number_of_Licenses__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Number_of_Licenses__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oLandscape.Number_of_Licenses__c}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Operating_Costs__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Operating_Costs__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Operating_Costs__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oLandscape.Operating_Costs__c}"/>
+                        </div>
+                    </div>
+
+
+                    </apex:actionRegion>
+                    </apex:outputPanel>
+                    </fieldset>
+                </div>
+            </section>
+            
+            <section class="row">
+                <div class="col-xs-12">
+                    <h2 class="accordion-parent">Information Source Group Details
+                    <span class="icon-large-caret pull-right down"></span></h2>
+                    <fieldset class="accordion-child">
+                    <apex:outputPanel id="Information_Landscape__cLocation">
+                    <apex:actionregion >
+                    
+                   <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Organization_Name__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Source_Description__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Organization_Name__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oLandscape.Organization_Name__c}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Business_Unit__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Business_Unit__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Business_Unit__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oLandscape.Business_Unit__c}"/>
+                        </div>
+                    </div>
+                     
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Group_Name__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Group_Name__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Group_Name__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oLandscape.Group_Name__c}"/>
+                        </div>
+                    </div>
+                    
+                    
+                   <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.System_Owner__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.System_Owner__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.System_Owner__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oLandscape.System_Owner__c}"/>
+                        </div>
+                    </div> 
+                    
+                   <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Information_Landscape__c.Fields.Therapeutic_Area_Primary__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Information_Landscape__c.Fields.Therapeutic_Area_Primary__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Information_Landscape__c.Fields.Therapeutic_Area_Primary__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oLandscape.Therapeutic_Area_Primary__c}"/>
+                        </div>
+                    </div>
+                    
+                    
+                    </apex:actionRegion>
+                    </apex:outputPanel>
+                    </fieldset>
+                </div>
+            </section>
+                    
+            
+            
+            
+            <!-- -------------------------------------------------------Buttons Section on bottom-------------------------------------------------------------------------------------------- -->
+                    <section class="row submit hidden-xs">
+                        <div class="col-xs-12">
+                            <apex:commandButton styleClass="button" value="Edit" action="{!EditRecord}" />
+                        </div>
+                    </section>
+            </apex:form>
+            </apex:outputPanel>
+
+
+    </main>
+    </div>
+    </div>
+    <apex:form >
+    <c:SR2_FooterComponent />
+    </apex:form>
+    </body>
+</apex:page>

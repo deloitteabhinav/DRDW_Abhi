@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>A junction object to link two user story records</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Allocated_Sprint__c</fullName>
+        <externalId>false</externalId>
+        <formula>User_Story_Related__r.Allocated_Sprint__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Allocated Sprint</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project_Release__c</fullName>
+        <description>This field serves as &quot;Project Release&quot; information for the Direct User Story(i.e. the User story which is being linked )</description>
+        <externalId>false</externalId>
+        <formula>User_Story_Related__r.Planned_Release__r.Name</formula>
+        <label>Project Release</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>User_Story_Link_Type__c</fullName>
+        <description>This field serves as an explanation as to why the User story is linked to another User story</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the Reason as to why you are linking  this user story.</inlineHelpText>
+        <label>User Story Link Reason</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>User_Story_Related__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <description>This field indicates the User Story to which the User Story 1 is linked to</description>
+        <externalId>false</externalId>
+        <label>Related User Story ID</label>
+        <referenceTo>TRAK_User_Story__c</referenceTo>
+        <relationshipLabel>User Story Links (Related)</relationshipLabel>
+        <relationshipName>User_Stories_Lookup</relationshipName>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>User_Story__c</fullName>
+        <description>This field indicates the User story created recently and which needs to be linked to an existing User Story</description>
+        <externalId>false</externalId>
+        <label>User Story</label>
+        <referenceTo>TRAK_User_Story__c</referenceTo>
+        <relationshipLabel>Related User Stories</relationshipLabel>
+        <relationshipName>User_Stories_Master</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <label>Related User Story</label>
+    <nameField>
+        <displayFormat>USL-{0000}</displayFormat>
+        <label>User Story Link ID</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Related User Stories</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Same_Userstory_Link_Validation</fullName>
+        <active>true</active>
+        <description>This validation rule makes sure that a user is not able to link same User Story to itself.</description>
+        <errorConditionFormula>User_Story_Related__c  =  User_Story__c</errorConditionFormula>
+        <errorMessage>You cannot link a User Story to itself.</errorMessage>
+    </validationRules>
+</CustomObject>

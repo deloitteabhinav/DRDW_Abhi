@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Template used for email notification to approver for Test Executions</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>TRAK_Cirrus_Normal</letterhead>
+    <name>TRAK NEW Test Execution Approval Request</name>
+    <style>freeForm</style>
+    <subject>Test Execution Approval Request - {!TRAK_Test__c.Name}</subject>
+    <textOnly>{!TRAK_Test__c.Submitter__c} has sent you a TEST EXECUTION to approve for {!TRAK_Test__c.00N23000000LCYw}.
+
+{!TRAK_Test__c.Name}
+{!TRAK_Test__c.Title__c}
+{!TRAK_Test__c.Introduction__c}
+
+How to approve :
+
+Please click the link below to approve this specific request.
+{!TRAK_Test__c.Link}
+
+Alternatively you can access a list of all the items waiting for your approval on your homepage, under the section &quot;Items to Approve&quot;.</textOnly>
+    <type>html</type>
+</EmailTemplate>

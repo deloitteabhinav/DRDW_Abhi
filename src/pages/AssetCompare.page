@@ -1,0 +1,39 @@
+<apex:page docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="false" controller="DataAssetList" readonly="true">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width" />
+        <apex:stylesheet value="{!URLFOR($Resource.R3Style,'vendor/bootstrap/bootstrap.css')}" />
+        <apex:stylesheet value="{!URLFOR($Resource.R3Style,'assets/pangaea-1.0.0.css')}" />
+        <div class="comparo-report">
+            <apex:form >
+                <div class="link-holder">
+                    <apex:outputlink styleClass="btn button" value="/apex/CreateRequests?recTypeName=Data_Sourcing" target="_blank">Raise a Data Sourcing Request for More Information</apex:outputlink>
+                    <apex:commandLink styleClass="btn button" action="{!ExportToExcel}"><span class="ico-full-icon-file-excel"></span>Export to Excel</apex:commandLink>
+                </div>
+                <table class="data-assets-comparo">
+                    <tr>
+                        <th>Data Asset Name</th>
+                        <apex:repeat value="{!AssetSelectedList}" var="records">
+                            <td>{!records['Name']}</td>
+                        </apex:repeat>
+                    </tr>
+
+                    <tr>
+                        <th>Asset Status</th>
+                        <apex:repeat value="{!AssetSelectedList}" var="records">
+                            <td>{!records['Asset_Status__c']}</td>
+                        </apex:repeat>
+                    </tr>
+
+                    <apex:repeat value="{!lSelectedFields}" var="Field">
+                        <tr>
+                            <th>{!mLabel[Field]}
+                                <apex:repeat value="{!AssetSelectedList}" var="records">
+                                    <td>{!records[Field]}</td>
+                                </apex:repeat>
+                            </th>
+                        </tr>
+                    </apex:repeat>
+                </table>
+            </apex:form>
+        </div>
+</apex:page>

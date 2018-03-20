@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Default_Role__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Default Role</label>
+        <referenceTo>LOV__c</referenceTo>
+        <relationshipLabel>Checklist Items</relationshipLabel>
+        <relationshipName>Checklist_Items</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Help_Text__c</fullName>
+        <description>This field contains meanings of complex words in the checklist instructions</description>
+        <externalId>false</externalId>
+        <label>Help Text</label>
+        <length>500</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Instructions_TF__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>This is a backend field</inlineHelpText>
+        <label>Instructions</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Instructions__c</fullName>
+        <externalId>false</externalId>
+        <label>Instructions</label>
+        <length>3000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Mandatory__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Check if the Checklist Item is Mandatory &amp; has no Study Attributes/Question Responses.</inlineHelpText>
+        <label>Mandatory</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Milestone__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Key Action?</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Process_TF__c</fullName>
+        <externalId>false</externalId>
+        <label>Process_TF</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Process__c</fullName>
+        <externalId>false</externalId>
+        <label>Process</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Ideation</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Secure Resources</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Study Development</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Study Execution</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Oversee Execution of Research</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Data Analysis and Reporting</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Study Deliverable(s) and Results</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Review/ Approve Study Deliverable</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Finalize, Store Study Deliverables</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Close Out</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Version_Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>Version Comments</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Checklist Item</label>
+    <listViews>
+        <fullName>All_Checklist_Items_Detailed_view</fullName>
+        <columns>NAME</columns>
+        <columns>Instructions__c</columns>
+        <columns>Process__c</columns>
+        <columns>Mandatory__c</columns>
+        <columns>Milestone__c</columns>
+        <columns>Instructions_TF__c</columns>
+        <columns>Version_Comments__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Checklist Items Detailed view</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Checklist_Mandatory</fullName>
+        <columns>NAME</columns>
+        <columns>Instructions_TF__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>Checklist Mandatory</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>CI -{000}</displayFormat>
+        <label>Checklist Item ID</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Checklist Items</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Process__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Instructions_TF__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Mandatory__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Process__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Instructions_TF__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Version_Comments__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Milestone__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Mandatory__c</lookupDialogsAdditionalFields>
+        <lookupFilterFields>NAME</lookupFilterFields>
+        <lookupFilterFields>Default_Role__c</lookupFilterFields>
+        <lookupFilterFields>Instructions_TF__c</lookupFilterFields>
+        <lookupFilterFields>Mandatory__c</lookupFilterFields>
+        <lookupFilterFields>Milestone__c</lookupFilterFields>
+        <lookupFilterFields>Process__c</lookupFilterFields>
+        <lookupPhoneDialogsAdditionalFields>Process__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Instructions_TF__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>Mandatory__c</searchFilterFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Milestone__c</searchFilterFields>
+        <searchFilterFields>Process__c</searchFilterFields>
+        <searchFilterFields>Instructions_TF__c</searchFilterFields>
+        <searchResultsAdditionalFields>Process__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Instructions_TF__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Milestone__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <webLinks>
+        <fullName>Clone_CheckListItem</fullName>
+        <availability>online</availability>
+        <description>This is created to clone the CheckListItem with all related List auto populated</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Clone Checklist Item</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&apos;//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js&apos;)} 
+{!REQUIRESCRIPT(&apos;//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js&apos;)} 
+try{ 
+jQuery(function() { 
+/*Append the jQuery CSS CDN Link to the Head tag.*/ 
+jQuery(&apos;head&apos;).append(&apos;&lt;link rel=&quot;stylesheet&quot; href=&quot;//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/start/jquery-ui.css&quot; type=&quot;text/css&quot; /&gt;&apos;); 
+
+/*Create the HTML(DIV Tag) for the Dialog.*/ 
+var html = 
+&apos;&lt;div id=&quot;dialog&quot; title=&quot;Confirm Clone&quot;&gt;&lt;p&gt;Are You sure you want to Clone the Existing Checklist?&lt;/p&gt;&lt;/div&gt;&apos;; 
+
+/*Check if the Dialog(DIV Tag) already exists if not then Append the same to the Body tag.*/ 
+if(!jQuery(&apos;[id=dialog]&apos;).size()){ 
+jQuery(&apos;body&apos;).append(html); 
+} 
+
+/*Open the jQuery Dialog.*/ 
+jQuery( &quot;#dialog&quot; ).dialog({ 
+autoOpen: true, 
+modal: true, 
+show: {  
+duration: 1000 
+}, 
+hide: { 
+duration: 1000 
+}, 
+buttons: { 
+&quot;Continue&quot;: function() { 
+var cId=&apos;{!Checklist_Item__c.Id}&apos; 
+location.replace(&apos;/apex/CloneChecklistItem?id=&apos;+cId+&apos;&amp;PageName=ChecklistItem&apos;); 
+}, 
+Cancel: function() { 
+jQuery( this ).dialog( &quot;close&quot; ); 
+} 
+} 
+}); 
+}); 
+} 
+catch(e){ 
+alert(&apos;An Error has Occured. Error: &apos; + e); 
+}</url>
+    </webLinks>
+</CustomObject>

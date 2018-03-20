@@ -1,0 +1,14 @@
+<table height="400" width="600" cellpadding="5" border="0" cellspacing="5" >
+<tr height="50" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<font face="Arial, sans-serif">Dear {!TRAK_Test_Templates__c.LastModifiedBy},</font>]]></td>
+</tr>
+<tr height="300" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r2" locked="0" aEditID="c1r2" >
+<![CDATA[<font face="Arial, sans-serif"><font size="3" style="color: rgb(0, 0, 0); font-size: 12pt;">The approval request for Test Script&nbsp;</font><font>{!TRAK_Test_Templates__c.Title__c} has been rejected.</font></font><div><div style="color: rgb(0, 0, 0); font-size: 12pt;"><div style="font-size: 12pt;"><font face="Arial, sans-serif"><br></font></div><div style="font-size: 12pt;"><font face="Arial, sans-serif">Please click the link below to view the rejection comments.&nbsp;</font></div><div style="font-size: 12pt;"><font face="Arial, sans-serif"><br></font></div></div><div><font face="Arial, sans-serif">{!TRAK_Test_Templates__c.Link}</font></div><div><div style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="arial"><br></font></div><div style="font-family: arial; color: rgb(0, 0, 0); font-size: 12pt;"><br></div></div></div>]]></td>
+</tr>
+<tr height="50" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r3" locked="0" aEditID="c1r3" >
+<![CDATA[<font face="arial" size="3" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">Many thanks,</font><div><font face="arial">{!TRAK_Test_Templates__c.Approver__c}</font></div>]]></td>
+</tr>
+</table>

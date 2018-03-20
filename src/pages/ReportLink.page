@@ -1,0 +1,30 @@
+<apex:page docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="false" cache="true">
+    <title>Pangaea Support</title>
+    <c:Index />
+    <div class='content'>
+        <div class="get-help-page">
+            <div class="container">
+                        <div class="row">
+                <div class="col-xs-12">
+                    <h1 class="font-l left">
+                        Leadership Dashboard
+                    </h1><br></br>
+                <ul class="font-m center">
+                   <li><apex:outputLink styleClass="font-r" target="_blank" value="/apex/NonFinancialReport">Non Financial Report</apex:outputLink>
+                   </li>
+                   <li><apex:outputLink styleClass="font-r" target="_blank" value="/apex/Financial_Report"> Financial Report</apex:outputLink>
+                   </li>
+                </ul>
+                <ul class="font-m center">
+                   <li><apex:outputLink styleClass="font-r" target="_blank" value="/apex/StudyTeamDashboard" > Study Team Capacity Report</apex:outputLink>
+                   </li>
+                   <li><apex:outputLink styleClass="font-r" target="_blank" value="/apex/LeadershipDashboard" >Pangaea Dashboard</apex:outputLink>
+                   </li>
+                </ul>
+                </div>
+            </div>
+             </div>
+        </div>
+            <c:Webtrends_Tracker />
+    </div>
+</apex:page>

@@ -1,0 +1,7 @@
+<apex:page standardController="Feedback__c" extensions="SendReminderController" showChat="false" showHeader="false" showQuickActionVfHeader="false"
+action="{!sendReminder}">
+    <apex:pageBlock >
+        <h1>Send Reminder Email</h1>
+        <apex:pageMessages />
+    </apex:pageBlock>
+</apex:page>

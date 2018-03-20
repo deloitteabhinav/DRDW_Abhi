@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Template used for email notification to approver for Designs</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>TRAK_Tracker_Standard</letterhead>
+    <name>TRAK Design Approval Request</name>
+    <style>formalLetter</style>
+    <subject>Design Approval Request - {!TRAK_Design__c.Name}</subject>
+    <textOnly>Dear {!TRAK_Design__c.TRAK_Approver__c},
+This is an approval request for Design {!TRAK_Design__c.Name}.
+
+Please click on the link below to review and approve the request. You can also do this from your chatter feed.
+
+{!TRAK_Design__c.Link}
+Many thanks,
+{!TRAK_Design__c.CreatedBy}</textOnly>
+    <type>html</type>
+</EmailTemplate>

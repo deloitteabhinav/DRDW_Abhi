@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>Information_Landscape__c.Source_Description__c</field>
+    </columns>
+    <columns>
+        <field>Information_Landscape__c.Business_Unit__c</field>
+    </columns>
+    <columns>
+        <field>Information_Landscape__c.Source_Type__c</field>
+    </columns>
+    <columns>
+        <field>Information_Landscape__c.Information_Type__c</field>
+    </columns>
+    <currency>USD</currency>
+    <format>Tabular</format>
+    <name>Information Landscape</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$Information_Landscape__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>Information_Landscape__c.Target_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

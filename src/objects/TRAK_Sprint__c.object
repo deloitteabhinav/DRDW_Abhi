@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Business Description: This object is used to hold details about the sprints or iterations. It includes information about start and end dates, as well as overall capacity.
+
+Used In: Release Tracker App</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Burndown__c</fullName>
+        <description>Keris old formula
+Story_Points__c -((((Today()- Start_Date__c )+1)-(round(((Today()- Start_Date__c )+1)/7,0)*2))*( Story_Points__c /(( Number_of_days_in_sprint__c -((Number_of_days_in_sprint__c /7)*2))-1))-( Story_Points__c /(( Number_of_days_in_sprint__c -((Number_of_days_in_sprint__c /7)*2))-1)))
+
+---
+
+SM: Formula includes -1 as it should essentially show yesterdays expected burdown to coincide with the snampshot at 8AM for the previous day</description>
+        <externalId>false</externalId>
+        <formula>min(Story_Points__c - (( Working_Days_Through_Sprint__c - 1) / Number_Working_Days_in_Sprint__c * Story_Points__c ),Story_Points__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Where we should be within the sprint on current selected date</inlineHelpText>
+        <label>Burndown</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Complete_Test_Executions__c</fullName>
+        <description>TRAK: This field will hold the Total Number of Test Executions that have been completed under a Sprint</description>
+        <externalId>false</externalId>
+        <label>Complete Test Executions</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Completed_story_points__c</fullName>
+        <description>Completed story points at the end of the sprint</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The number of Story Points completed during the sprint. 
+
+This field will be populated automatically on the sprint End Date. 
+
+NB It will not update during the sprint.</inlineHelpText>
+        <label>Points Completed in Sprint</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Dev_Man_Days__c</fullName>
+        <externalId>false</externalId>
+        <formula>Number_of_full_time_devs_in_sprint__c  *   Number_Working_Days_in_Sprint__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Dev Man Days</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>End_Date__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The day this Sprint is due to end. This is used when creating the Burndown chart</inlineHelpText>
+        <label>End Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Number_Working_Days_in_Sprint__c</fullName>
+        <description>Populated by workflow. Not displayed on page layout.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The approximate number of working days in the sprint. This is calculated automatically to exclude weekends, but does not count public holidays</inlineHelpText>
+        <label>Working Days (Approx)</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Number_of_days_in_sprint__c</fullName>
+        <externalId>false</externalId>
+        <label>Number of days in sprint</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Number_of_full_time_devs_in_sprint__c</fullName>
+        <description>Number of full time developer heads throughout the sprint</description>
+        <externalId>false</externalId>
+        <label>Number of full time devs in sprint</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Objective__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The primary objective of this sprint, articulated from a business perspective</inlineHelpText>
+        <label>Objective</label>
+        <length>5000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Percentage__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF((Completed_story_points__c==0 || Story_Points__c==0) ,null ,(Completed_story_points__c  / Story_Points__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Percentage of Story Points completed during the sprint.
+
+This will be calculated automatically at the end of the sprint.</inlineHelpText>
+        <label>Story Point Completion</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Populate_Story_Points_Completed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>System field, populated by workflow, used as trigger entry criteria to populate the Points Completed in Sprint</description>
+        <externalId>false</externalId>
+        <label>Populate Story Points Completed</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Remaining_Sprint_Days__c</fullName>
+        <description>WAS: Number_Working_Days_in_Sprint__c -  
+
+(CASE(MOD( Start_Date__c  - DATE(1985,6,24),7), 
+  0 , CASE( MOD( Today() - Start_Date__c ,7),1,2,2,3,3,4,4,5,5,5,6,5,1), 
+  1 , CASE( MOD( Today() - Start_Date__c ,7),1,2,2,3,3,4,4,4,5,4,6,5,1), 
+  2 , CASE( MOD( Today() - Start_Date__c ,7),1,2,2,3,3,3,4,3,5,4,6,5,1), 
+  3 , CASE( MOD(Today() - Start_Date__c ,7),1,2,2,2,3,2,4,3,5,4,6,5,1), 
+  4 , CASE( MOD( Today() - Start_Date__c ,7),1,1,2,1,3,2,4,3,5,4,6,5,1), 
+  5 , CASE( MOD( Today() - Start_Date__c ,7),1,0,2,1,3,2,4,3,5,4,6,5,0), 
+  6 , CASE( MOD( Today() - Start_Date__c ,7),1,1,2,2,3,3,4,4,5,5,6,5,0), 
+  999) 
+  + 
+  (FLOOR(( Today() - Start_Date__c )/7)*5) )</description>
+        <externalId>false</externalId>
+        <formula>Number_Working_Days_in_Sprint__c -  
+ Working_Days_Through_Sprint__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>The approximate number of whole work days remaining in the sprint</inlineHelpText>
+        <label>Days Remaining</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The day this Sprint is due to start. This is used when creating the Burndown chart</inlineHelpText>
+        <label>Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Sprints must be &quot;In Planning&quot; for the sprint planning tool to work
+They must be &quot;In Progress&quot; for the burndown to work</inlineHelpText>
+        <label>Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Not Started</fullName>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>In Planning</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>In Progress</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Testing</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Complete</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Story_Points__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The number of Story Points allocated to this sprint at the start. 
+
+This field will be populated automatically when your sprint moves to &quot;In Progress&quot;.</inlineHelpText>
+        <label>Points Allocated at Start</label>
+        <precision>16</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Tech1_Story_Points__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>The number of points the SFDC team has capability to deliver. Used in Sprint Planning to ensure the correct volume of User Stories are allocated to the Sprint</inlineHelpText>
+        <label>SFDC Capacity (Points)</label>
+        <precision>16</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Tech2_Story_Points__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>The number of story points the team has capability to deliver</inlineHelpText>
+        <label>Other Capacity (Points)</label>
+        <precision>16</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Capacity_Points__c</fullName>
+        <externalId>false</externalId>
+        <formula>Tech2_Story_Points__c + Tech1_Story_Points__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>The total capacity in Story Points for both SFDC and other development</inlineHelpText>
+        <label>Total Capacity (Points)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Working_Days_in_Sprint__c</fullName>
+        <externalId>false</externalId>
+        <formula>Number_Working_Days_in_Sprint__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>The number of working days (Monday-Friday) in this sprint.
+
+NB: This does not take in to account public holidays.</inlineHelpText>
+        <label>Total Working Days in Sprint</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Velocity__c</fullName>
+        <externalId>false</externalId>
+        <formula>if(Dev_Man_Days__c &gt;0, Completed_story_points__c /  Dev_Man_Days__c, 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>If Dev Man Days and Story Points Completed ispopulated, shows the velocity achieved at the end of the sprint in Points Per Dev Day. This can be used when calculating your capacity for the next sprint</inlineHelpText>
+        <label>Velocity</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Working_Days_Through_Sprint__c</fullName>
+        <externalId>false</externalId>
+        <formula>if( Start_Date__c &gt; today(),0, if(End_Date__c&lt; today(),  Number_Working_Days_in_Sprint__c ,
+
+
+IF(AND((5 - (CASE(MOD( Start_Date__c - DATE(1900, 1, 6), 7), 0, 0, 1, 5, 2, 5, 3, 4, 4, 3, 5, 2, 6, 1, 0)) &lt; (CASE(MOD( TODAY() - DATE(1900, 1, 6), 7), 0, 0, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 6, 5, 0)) ), 
+((( TODAY() - Start_Date__c ) + 1) &lt; 7)), 
+((CASE(MOD(TODAY() - DATE(1900, 1, 6), 7), 0, 0, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 6, 5, 0)) - (5 - (CASE(MOD( Start_Date__c - DATE(1900, 1, 6), 7), 0, 0, 1, 5, 2, 5, 3, 4, 4, 3, 5, 2, 6, 1, 0)))), 
+(((FLOOR((( TODAY() - Start_Date__c ) - (CASE(MOD( Start_Date__c - DATE(1900, 1, 6), 7), 0, 0, 1, 6, 2, 5, 3, 4, 4, 3, 5, 2, 6, 1, 0))) / 7)) * 5) + 
+(CASE(MOD( Start_Date__c - DATE(1900, 1, 6), 7), 0, 0, 1, 5, 2, 5, 3, 4, 4, 3, 5, 2, 6, 1, 0)) + 
+(CASE(MOD( TODAY() - DATE(1900, 1, 6), 7), 0, 0, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 6, 5, 0)))))
+
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>The approximate number of working days through the sprint</inlineHelpText>
+        <label>Days Gone</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Sprint</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Objective__c</columns>
+        <columns>Start_Date__c</columns>
+        <columns>Number_Working_Days_in_Sprint__c</columns>
+        <columns>Remaining_Sprint_Days__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>1) All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>In_Progress</fullName>
+        <columns>NAME</columns>
+        <columns>Objective__c</columns>
+        <columns>Start_Date__c</columns>
+        <columns>Number_Working_Days_in_Sprint__c</columns>
+        <columns>Remaining_Sprint_Days__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>In Progress</value>
+        </filters>
+        <label>2) In Progress</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Sprint Number</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Sprints</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Objective__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Start_Date__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>End_Date__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Number_Working_Days_in_Sprint__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Remaining_Sprint_Days__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Total_Capacity_Points__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <lookupDialogsAdditionalFields>Start_Date__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>End_Date__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Status__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Status__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Start_Date__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>End_Date__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Start_Date__c</searchFilterFields>
+        <searchFilterFields>End_Date__c</searchFilterFields>
+        <searchFilterFields>Status__c</searchFilterFields>
+        <searchResultsAdditionalFields>Start_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>End_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <webLinks>
+        <fullName>Draw_Burndown</fullName>
+        <availability>online</availability>
+        <description>Calls the webservice that creates the burndown for the sprint</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Create Burndown</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/35.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/35.0/apex.js&quot;)} 
+
+sforce.connection.sessionid = &quot;{!$Api.Session_Id}&quot;; 
+sforce.apex.execute(&quot;TRAK_automate_BurnDown&quot;,&quot;generateSprintBurndown&quot;, {sprintId:&quot;{!TRAK_Sprint__c.Id}&quot;}); 
+sforce.apex.execute(&quot;TRAK_automate_BurnDown&quot;,&quot;generateTestScriptBurndown&quot;, {sprintId:&quot;{!TRAK_Sprint__c.Id}&quot;}); 
+window.alert(&quot;The Burndown has been created!\n\nRefresh the Burndown chart below to check everything is OK. If you have problems, check your Start Date, End Date and that you have Stories ALLOCATED to this Sprint.\n\nRemember you should now update the sprint Status to In Progress to ensure the Actual Burndown line updates correctly.&quot; );</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Kanban_Board</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>page</linkType>
+        <masterLabel>Kanban Board</masterLabel>
+        <openType>newWindow</openType>
+        <page>TRAK_DigitalKanban</page>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+    </webLinks>
+    <webLinks>
+        <fullName>Plan_Sprint</fullName>
+        <availability>online</availability>
+        <description>Launches drag and drop Sprint Planning VF Page</description>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Plan Sprint</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>/{!IF(ISPICKVAL($UserRole.PortalType,&apos;Partner&apos;)
+,$Setup.TRAK_Release_Tracker__c.Community_Domain_Name__c,&apos;apex&apos;)}/TRAK_SprintPlanning?sprintID={!TRAK_Sprint__c.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Print_Stories</fullName>
+        <availability>online</availability>
+        <description>Opens VF page showing user stories, including QR codes</description>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Print Stories</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>/{!IF(ISPICKVAL($UserRole.PortalType,&apos;Partner&apos;)
+,$Setup.TRAK_Release_Tracker__c.Community_Domain_Name__c,&apos;apex&apos;)}/TRAK_PrintUserStories?sprintID={!TRAK_Sprint__c.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Traceability_Matrix</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Traceability Matrix</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>window.open(&apos;/{!IF(ISPICKVAL($UserRole.PortalType,&apos;Partner&apos;)
+,$Setup.TRAK_Release_Tracker__c.Community_Domain_Name__c,&apos;apex&apos;)}/TRAK_TraceabilityMatrix?id={!TRAK_Sprint__c.Id}&apos;);</url>
+    </webLinks>
+</CustomObject>

@@ -1,0 +1,3 @@
+<apex:page standardController="TRAK_Test_Templates__c" extensions="TRAK_TestScriptCloneController" action="{!cloneWithItems}">
+<apex:pageMessages />
+ </apex:page>

@@ -1,0 +1,2 @@
+<apex:page standardController="Simulation__c" extensions="SimulationReport" action="{!ReportRedirect}">
+</apex:page>

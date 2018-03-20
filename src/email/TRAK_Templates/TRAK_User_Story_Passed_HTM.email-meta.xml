@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>TRAK_Tracker_Standard</letterhead>
+    <name>User Story Passed (HTML version)</name>
+    <style>freeForm</style>
+    <subject>Congratulations {!User_Story__c.Developer__c}: {!User_Story__c.Name} has passed!</subject>
+    <textOnly>Congratulations {!User_Story__c.Developer__c} {!if(User_Story__c.00Ni0000000O9Jr&lt;&gt;&quot;&quot;, &quot; and &quot; &amp; User_Story__c.00Ni0000000O9Jr,&quot;&quot;)},
+
+
+User story {!User_Story__c.Name} has passed!
+
+As a {!User_Story__c.As_A__c} I want to {!User_Story__c.I_Want_To__c} so that  {!User_Story__c.So_that__c}
+
+
+
+
+Points Closed: {!User_Story__c.Story_Points_Total__c}
+
+
+
+Full details of user story are at: {!User_Story__c.Link}</textOnly>
+    <type>html</type>
+</EmailTemplate>

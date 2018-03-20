@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Business Description: This object is used to record the test steps which have been executed.
+
+Each Test Step is a copy of a &quot;Test Template Step&quot; which has been set up by a Test Manager or other Test Script writer.
+
+Tests are created by the system automatically when a user is added to the Testers Related list on a Test Template.
+
+Used In: Release Tracker App</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Comments__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Notes and Comments about the test from the tester. This should be populated if a test step is failed in any way</inlineHelpText>
+        <label>Actual Results</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Completed_by__c</fullName>
+        <externalId>false</externalId>
+        <formula>Test__r.Assigned_To__r.FirstName &amp;  &quot; &quot; &amp;Test__r.Assigned_To__r.LastName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>The name of the user who is the &quot;Completed by&quot; at the test level</inlineHelpText>
+        <label>Completed by</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Outcome__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>What was the result of this step? If it Failed or had minor issues please note what these were.</inlineHelpText>
+        <label>Outcome</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Pass</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Passed with issues</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Failed</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>N/A</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>StepNum__c</fullName>
+        <externalId>false</externalId>
+        <formula>Template_Step__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>The step number for this step</inlineHelpText>
+        <label>Step #</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TRAK_Action__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>What a user needs to do, including point and click instructions where appropriate</inlineHelpText>
+        <label>Action</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>TRAK_Expected_Results__c</fullName>
+        <externalId>false</externalId>
+        <label>Expected Results</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>TRAK_Tips__c</fullName>
+        <externalId>false</externalId>
+        <label>Tips</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Template_Step__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>A link to the template step for this test. Action, Expected, Results, Tips etc are all calculated based on this link</inlineHelpText>
+        <label>Template Step</label>
+        <referenceTo>TRAK_Test_Template_Steps__c</referenceTo>
+        <relationshipName>TRAK_Test_Step_Results</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Test_Execution_Step_Number__c</fullName>
+        <description>This field should be populated with the step number from Test Script Step</description>
+        <externalId>false</externalId>
+        <label>Test Execution Step Number</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Test__c</fullName>
+        <externalId>false</externalId>
+        <label>Test</label>
+        <referenceTo>TRAK_Test__c</referenceTo>
+        <relationshipName>TRAK_Test_Steps</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>true</writeRequiresMasterRead>
+    </fields>
+    <label>Test Execution Step</label>
+    <nameField>
+        <label>Ref</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Test Execution Steps</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>PreventFromCreateStepsUntilApproved</fullName>
+        <active>true</active>
+        <description>TRAK - This validation rule will prevent the user from creating/editing a Test Execution Step record if the Test Execution is in an &quot;Approved&quot; status</description>
+        <errorConditionFormula>ISPICKVAL(Test__r.Approval_Status__c ,&apos;Approved&apos;) ||
+ISPICKVAL(Test__r.Approval_Status__c ,&apos;Pending Approval&apos;)</errorConditionFormula>
+        <errorMessage>You cannot Create / Edit a Test Execution Step record if the Test Execution is in an &quot;Approved&quot; / &quot;Pending Approval&quot; status</errorMessage>
+    </validationRules>
+</CustomObject>

@@ -1,0 +1,3 @@
+<apex:page standardcontroller="TRAK_Release__c" extensions="TRAK_Report_Name_Redirect" action="{!actionRedirect}">
+<Apex:pageMessages ></Apex:pageMessages>
+</apex:page>

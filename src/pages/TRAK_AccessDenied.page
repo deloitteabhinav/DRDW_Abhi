@@ -1,0 +1,5 @@
+<apex:page >
+  <!-- Begin Default Content REMOVE THIS -->
+  <h1>You do not have sufficient rights for this operation. Please contact your system administrator or record owner for access.</h1>
+  <apex:messages />
+</apex:page>

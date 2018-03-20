@@ -1,0 +1,19 @@
+<apex:page standardController="Request__c" extensions="RWEFinalDeliverablesList" showHeader="False" standardStylesheets="True" sidebar="false" action="{!RequestPage}">
+<style>
+.fewerMore { display: none;}
+</style>
+<apex:pageBlock id="CustomList" title="Related Library Content">
+   <apex:pageBlockTable value="{!cdRequest}" var="c" rendered="{!(cdRequest.size>0)}" >
+        <apex:column headervalue="Title"><apex:outputLink value="/{!c.id}" target="_parent">{!c.Title}</apex:outputlink></apex:column>
+        <apex:column headerValue="Document Type" value="{!c.Document_Type__c}"/>
+        <!-- <apex:column headerValue="Library Name" value="{!c.FirstPublishLocation.Name}"/>-->
+        <apex:column headerValue="Library Name" value="{!mLibraryNameStoredInMap[c.ContentDocumentId]}"/>
+        <apex:column value="{!c.CreatedDate}"/>
+        <apex:column value="{!c.ContentModifiedDate}"/>
+        <apex:column headerValue="Author" value="{!c.Owner.Name}"/>
+       </apex:pageBlockTable>
+   <apex:pageBlockSection id="Msgid" >
+   <apex:outputLabel value="No records to display" rendered="{!(cdRequest.size==0)}" styleClass="noRowsHeader"></apex:outputLabel>
+   </apex:pageBlockSection>
+ </apex:pageblock>
+</apex:page>

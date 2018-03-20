@@ -1,0 +1,321 @@
+<apex:page Standardcontroller="Project__c" extensions="QuestionnaireDemo" docType="html-5.0" action="{!onLoadCheckNInsertQuestionaire}" sidebar="false" showHeader="false" standardStylesheets="true">
+    <html lang="en">
+    <apex:form >
+
+        <head>
+            <title>Questionnaire</title>
+        </head>
+<style>
+                /*Custom styles*/
+                
+                .ui-datepicker.ui-widget {
+                    font-size: 1em;
+                    /*In order to change the size of the datepicker, change the font-size to any positive non-zero decimal value*/
+                }
+            </style>
+            <script>
+            /* $(document).ready(initializeDatePicker); */
+
+            function initializeDatePicker() {
+             /*   $('.datepicker-control').datepicker({
+                    dateFormat: 'yy-mm-dd'
+                });
+                $('.datepicker-control').attr('readonly', 'true'); */
+            }
+        </script>
+        <body>
+            <div class='qfor content'>
+                <!-- body partial, used for adding pages to layout  -->
+
+                <div class="qfor-checklist">
+                    <header class="">
+                        <div class="return-clipboard">
+                            <a href="/apex/Clipboard"><span class="icon-large-caret left"></span>My Dashboard</a>
+                        </div>
+                        <div class="save-status">
+                            <span><apex:actionStatus id="status" startText="Saving . . ." stoptext="Saved"/></span>
+                            <span class="icon-cloud"></span>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xs-12 small-resolution-mod">
+                                    <h1>{!Project__c.Study_Project_ID__c}:&nbsp;{!Project__c.Name}</h1>
+                                    <div class="edit-study-wrapper">
+                                        <h2>{!Project__c.Study_Project_ID__c}</h2>
+                                        <fieldset>
+                                            <div class="col-xs-6 label">
+                                                <label>study owner</label>
+                                                <div class="editable">{!Project__c.Owner.Name}</div>
+                                            </div>
+                                            <div class="col-xs-6 label">
+                                                <label>{!$ObjectType.Project__c.Fields.Business_Unit_Primary__c.Label}</label>
+                                                <div class="editable">{!Project__c.Business_Unit_Primary__c}</div>
+                                            </div>
+                                            <div class="col-xs-6 label">
+                                                <label>{!$ObjectType.Project__c.Fields.Execution_Function__c.Label}</label>
+                                                <div class="editable">{!Project__c.Execution_Function__c}</div>
+                                            </div>
+                                            <div class="col-xs-6 label">
+                                                <label>{!$ObjectType.Project__c.Fields.Project_Manager__c.Label}</label>
+                                                <div class="editable">{!Project__c.Project_Manager__r.Name}</div>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset class="study-team label">
+                                            <div class="col-xs-12">
+                                                <label>Study Team</label>
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <apex:repeat value="{!mStudyTeamMembers}" var="lStudyMember">
+                                                    <div class="col-xs-2">{!mStudyTeamMembers[lStudyMember]}</div>
+                                                </apex:repeat>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset>
+                                            <div class="col-xs-6 label">
+                                                <label>{!$ObjectType.Project__c.Fields.Anticipated_Start_Date__c.Label}</label>
+                                                <div class="editable">
+                                                    <apex:outputText value=" {0,date,MM/dd/yyyy}">
+                                                        <apex:param value="{!Project__c.Anticipated_Start_Date__c}" /></apex:outputText>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6 label">
+                                                <label>{!$ObjectType.Project__c.Fields.Anticipated_End_Date__c.Label}</label>
+                                                <div class="editable">
+                                                    {!Project__c.Anticipated_End_Date__c}
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset>
+                                            <div class="col-xs-6 label">
+                                                <label>{!$ObjectType.Project__c.Fields.Is_Molecule__c.Label} ?</label>
+                                                <div class="editable">
+                                                    {!Project__c.Is_Molecule__c}
+                                                    <apex:repeat value="{!Project__c.RWE_Study_Molecule__r}" var="mole">
+                                                        {!mole.Molecule__r.name},
+                                                    </apex:repeat>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6 label">
+                                                <label>Created By</label>
+                                                <div class="editable">
+                                                    {!Project__c.CreatedBy.Name}
+                                                    <apex:outputText value=" {0,date,MM/dd/yyyy}">
+                                                        <apex:param value="{!Project__c.CreatedDate}" /></apex:outputText>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                        <div class="row">
+                                            <a href="/apex/CreateStudy?id={!Project__c.id}&isEdit=false" class="button edit-study-btn">View Study</a>
+                                        </div>
+                                    </div>
+                                    <div class="edit-study-trigger">
+                                        <label>Study Details</label> <span class="icon-large-caret down"></span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+                    <main class="container">
+                        <div class="row">
+                            <nav class="progress-indicator">
+                                <ul>
+                                    <apex:outputpanel id="sidebar">
+                                        <li class="{!if(Project__c.Study_Stage__c == 'Questionnaire Needs Review','error',if(iAnsweredQuestionsCount==lwQuestions.size,'done',if(iAnsweredQuestionsCount==0,'incomplete','inprogress')))}">
+                                            <span class="status"></span> Questionnaire
+                                            <em>{!iAnsweredQuestionsCount} of {!lwQuestions.size} questions</em>
+                                        </li>
+                                        <apex:outputlink value="/apex/Checklist?id={!Project__c.id}">
+                                            <apex:outputpanel rendered="{!if(AND(Project__c.Study_Stage__c != 'Questionnaire',Project__c.Study_Stage__c != 'Questionnaire Needs Review',Project__c.Study_Stage__c!=null,Project__c.Study_Checklist_Versions__r !=null),true,false)}">
+                                                <li>
+
+                                                    <apex:outputlink styleClass="back-to-checklist" value="/apex/Checklist?id={!Project__c.id}">
+                                                        Back to Checklist
+                                                    </apex:outputlink>
+
+                                                </li>
+                                            </apex:outputpanel>
+                                        </apex:outputlink>
+                                    </apex:outputpanel>
+                                </ul>
+                                <p class="col-xs-12">Complete and Submit the Questionnaire in order to create or revise the Study Checklist</p>
+                            </nav>
+                            <section class="main-content">
+                                <apex:outputPanel rendered="{!IsPageEnabled}">
+                                    <p class="main-notification info">
+                                        Please complete questionnaire
+                                    </p>
+                                </apex:outputPanel>
+                                <apex:pageMessages id="showmsg"></apex:pageMessages>
+                                <div class="title row">
+                                    <apex:outputpanel id="questionCount" rendered="{!IsPageEnabled}">
+                                        <div class="col-xs-12">
+                                            <h2>Questionnaire</h2>
+                                            <apex:outputPanel rendered="{!if(Project__c.Study_Stage__c == 'Questionnaire Needs Review',true,false)}">
+                                                <em class="needs-review">Needs Review &nbsp;&nbsp;</em>
+                                            </apex:outputPanel>
+                                            <em class="stage">{!iAnsweredQuestionsCount} of {!lwQuestions.size} questions</em>
+                                        </div>
+                                    </apex:outputpanel>
+                                </div>
+                                <apex:outputPanel >
+                                    <ul>
+                                        <apex:repeat value="{!lwQuestions}" var="ques">
+                                            <li class="{!if(ques.iQuestionResponse==null,'need-review row','done row')}">
+                                                <div class="status">
+                                                    <apex:outputpanel id="checkmark">
+                                                        <apex:outputpanel rendered="{!ques.IsAnswered}">
+                                                            <div class="icon-check"></div>
+                                                        </apex:outputpanel>
+                                                    </apex:outputpanel>
+                                                </div>
+                                                <div class="col-xs-8">
+                                                    <div class="question">{!ques.oQuestions.Question_Text__c}
+
+                                                        <apex:outputPanel rendered="{!If(ques.oQuestions.Help_Text__c!=NULL,true,false)}">
+                                                            <div class="helpOrb helptip">
+                                                                <span>{!ques.oQuestions.Help_Text__c}</span>
+                                                            </div>
+                                                        </apex:outputPanel>
+                                                    </div>
+                                                </div>
+                                                <div class="form-field col-xs-4 col-xs-12 radio-wrapper">
+                                                    <div class="row">
+                                                        <apex:outputPanel rendered="{!If(ques.oQuestions.Default_Study_Field__c!=null,true,false)}">
+                                                            <span class="info-tooltip pull-right"><img src="/img/msg_icons/info16.png" title="Automatically filled from study"/></span>
+                                                        </apex:outputPanel>
+                                                        <apex:selectList size="1" value="{!ques.iQuestionResponse}" disabled="{!IF((ques.oQuestions.Default_Study_Field__c)!=null || !IsPageEnabled,true,false)}" rendered="{!IF((ques.oQuestions.Response_Type__c)='Dropdown',true,false)}">
+                                                            <apex:selectOption itemLabel="--None--" rendered="{!IF(ques.iQuestionResponse==null,true,false)}" />
+                                                            <apex:selectOptions value="{!ques.lQuestionResponses}" />
+                                                            <apex:actionsupport event="onchange" rerender="SubmitQuestionnaire,dependentquestions,checkmark,questionCount,sidebar" action="{!save}" status="status">
+                                                                <apex:param value="{!ques.oQuestions.Id}" assignTo="{!sQuestionId}" name="tr" />
+                                                            </apex:actionsupport>
+                                                        </apex:selectList>
+                                                        <apex:selectRadio value="{!ques.iQuestionResponse}" disabled="{!IF((ques.oQuestions.Default_Study_Field__c)!=null || !IsPageEnabled,true,false)}" rendered="{!IF((ques.oQuestions.Response_Type__c)='Radio',true,false)}">
+                                                            <apex:selectOptions value="{!ques.lQuestionResponses}" />
+                                                            <apex:actionsupport event="onchange" rerender="SubmitQuestionnaire,dependentquestions,checkmark,questionCount,sidebar" action="{!save}" status="status">
+                                                                <apex:param value="{!ques.oQuestions.Id}" assignTo="{!sQuestionId}" name="tr" />
+                                                            </apex:actionsupport>
+                                                        </apex:selectRadio>
+                                                        <apex:outputPanel rendered="{!IF((ques.oQuestions.Response_Type__c)='Checkbox',true,false)}">
+                                                            <apex:repeat value="{!mCheckboxes[ques.oQuestions.Id]}" var="temp">
+                                                                <div class="row">
+                                                                    <apex:inputCheckbox value="{!temp.isSelected}">
+                                                                        <apex:actionsupport event="onchange" rerender="SubmitQuestionnaire,dependentquestions,checkmark,questionCount,sidebar" action="{!save}" status="status">
+                                                                            <apex:param value="{!ques.oQuestions.Id}" assignTo="{!sQuestionId}" name="tr" />
+                                                                        </apex:actionsupport>
+                                                                    </apex:inputCheckbox>
+                                                                    <label>
+                                                    <apex:outputPanel >{!temp.label}
+                                                    </apex:outputPanel>
+                                                    
+                                                    </label>
+                                                                </div>
+                                                            </apex:repeat>
+                                                        </apex:outputPanel>
+                                                         <div class="form-field col-xs-4">
+                                                            <div class="row">
+                                                                <apex:inputField value="{!ques.response.Date_Response__c}" rendered="{!AND(ques.oQuestions.Response_Type__c=='Date')}">
+                                                                    <apex:actionsupport event="onchange" rerender="SubmitQuestionnaire,dependentquestions,checkmark,questionCount,sidebar" action="{!save}" status="status">
+                                                                            <apex:param value="{!ques.oQuestions.Id}" assignTo="{!sQuestionId}" name="tr" />
+                                                                        </apex:actionsupport>
+                                                                </apex:inputField>
+                                                            </div>
+                                                        </div>
+                                                        <apex:inputText value="{!ques.commentsResponse}" disabled="{!IF((ques.oQuestions.Default_Study_Field__c)!=null || !IsPageEnabled,true,false)}" rendered="{!IF((ques.oQuestions.Response_Type__c)='Comments',true,false)}">
+                                                            <apex:actionsupport event="onchange" rerender="SubmitQuestionnaire,dependentquestions,checkmark,questionCount,sidebar" action="{!save}" status="status">
+                                                                <apex:param value="{!ques.oQuestions.Id}" assignTo="{!sQuestionId}" name="tr" />
+                                                            </apex:actionsupport>
+                                                        </apex:inputText>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 sub-question">
+                                                    <div class="row">
+                                                        <apex:outputpanel id="dependentquestions">
+
+                                                            <apex:repeat value="{!ques.lDependentQuestions}" var="dependent">
+
+                                                                <div class="sub-question">
+
+                                                                    <apex:outputpanel id="inner" rendered="{!ques.iQuestionResponse==dependent.iParentDependentResponse}">
+
+                                                                        <div class="col-xs-8 desc">
+                                                                            {!dependent.oQuestions.Question_Text__c}
+                                                                            <apex:outputPanel rendered="{!If(dependent.oQuestions.Help_Text__c!=NULL,true,false)}">
+                                                                                <div class="helpOrb helptip">
+                                                                                    <span>{!dependent.oQuestions.Help_Text__c}</span>
+                                                                                </div>
+                                                                            </apex:outputPanel>
+                                                                        </div>
+                                                                        <div class="col-xs-4 radio-wrapper">
+                                                                            <div class="row">
+                                                                                <apex:outputPanel rendered="{!If(dependent.oQuestions.Default_Study_Field__c!=null,true,false)}">
+                                                                                    <span class="info-tooltip pull-right"><img src="/img/msg_icons/info16.png" title="Automatically filled from study"/></span>
+                                                                                </apex:outputPanel>
+                                                                                <apex:selectList size="1" value="{!dependent.iQuestionResponse}" disabled="{!IF((dependent.oQuestions.Default_Study_Field__c)!=null || !IsPageEnabled,true,false)}" rendered="{!IF((dependent.oQuestions.Response_Type__c)='Dropdown' && dependent.oQuestions.Default_Study_Field__c != null,true,false)}">
+                                                                                    <apex:selectOption itemLabel="--None--" rendered="{!IF(dependent.iQuestionResponse==null,true,false)}" />
+                                                                                    <apex:selectOptions value="{!dependent.lQuestionResponses}" />
+                                                                                    <apex:actionsupport event="onchange" rerender="SubmitQuestionnaire,dependentquestions,checkmark,questionCount,sidebar" action="{!save}" status="status">
+                                                                                        <apex:param value="{!dependent.oQuestions.Id}" assignTo="{!sQuestionId}" name="tr" />
+                                                                                    </apex:actionsupport>
+                                                                                </apex:selectList>
+
+                                                                                <apex:selectList size="1" value="{!dependent.iQuestionResponse}" disabled="{!!IsPageEnabled}" rendered="{!IF((dependent.oQuestions.Response_Type__c)='Dropdown' && dependent.oQuestions.Default_Study_Field__c == null ,true,false)}">
+                                                                                    <apex:selectOption itemLabel="--None--" rendered="{!IF(dependent.iQuestionResponse==null,true,false)}" />
+                                                                                    <apex:selectOptions value="{!dependent.lQuestionResponses}" />
+                                                                                    <apex:actionsupport event="onchange" rerender="SubmitQuestionnaire,dependentquestions,checkmark,questionCount,sidebar" action="{!save}" status="status">
+                                                                                        <apex:param value="{!dependent.oQuestions.Id}" assignTo="{!sQuestionId}" name="tr" />
+                                                                                    </apex:actionsupport>
+                                                                                </apex:selectList>
+
+                                                                                <apex:selectRadio value="{!dependent.iQuestionResponse}" disabled="{!IF((dependent.oQuestions.Default_Study_Field__c)!=null || !IsPageEnabled,true,false)}" rendered="{!IF((dependent.oQuestions.Response_Type__c)='Radio' && dependent.oQuestions.Default_Study_Field__c != null,true,false)}">
+                                                                                    <apex:selectOptions value="{!dependent.lQuestionResponses}" />
+                                                                                    <apex:actionsupport event="onchange" rerender="SubmitQuestionnaire,dependentquestions,checkmark,questionCount,sidebar" action="{!save}" status="status">
+                                                                                        <apex:param value="{!dependent.oQuestions.Id}" assignTo="{!sQuestionId}" name="tr" />
+                                                                                    </apex:actionsupport>
+                                                                                </apex:selectRadio>
+
+                                                                                <apex:selectRadio value="{!dependent.iQuestionResponse}" disabled="{!!IsPageEnabled}" rendered="{!IF((dependent.oQuestions.Response_Type__c)='Radio' && dependent.oQuestions.Default_Study_Field__c == null,true,false)}">
+                                                                                    <apex:selectOptions value="{!dependent.lQuestionResponses}" />
+                                                                                    <apex:actionsupport event="onchange" rerender="SubmitQuestionnaire,dependentquestions,checkmark,questionCount,sidebar" action="{!save}" status="status">
+                                                                                        <apex:param value="{!dependent.oQuestions.Id}" assignTo="{!sQuestionId}" name="tr" />
+                                                                                    </apex:actionsupport>
+                                                                                </apex:selectRadio>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </apex:outputpanel>
+                                                                </div>
+                                                            </apex:repeat>
+                                                        </apex:outputpanel>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </apex:repeat>
+                                    </ul>
+                                </apex:outputPanel>
+                            </section>
+                        </div>
+                        <apex:outputPanel id="SubmitQuestionnaire">
+                            <apex:outputPanel rendered="{!AND(IsPageEnabled,IF(iAnsweredQuestionsCount==lwQuestions.size,true,false))}">
+                                <div class="row submit-section">
+                                    <div class="col-xs-12">
+                                        <apex:commandbutton styleClass="button" value="Submit Questionnaire" action="{!goToChecklist}" />
+                                        <p>Complete and Submit the Questionnaire in order to create or revise the Study Checklist</p>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                    </main>
+                </div>
+            </div>
+            <apex:repeat value="{!Project__c.QFOR_Study_Questionnaires__r}" var="Question" />
+
+            <!-- compiled JavaScript -->
+            <c:SR2_FooterComponent />
+
+        </body>
+        <apex:inputHidden value="{!Project__c.Study_Stage__c}" />
+    </apex:form>
+    <c:Webtrends_Tracker />
+
+    </html>
+</apex:page>

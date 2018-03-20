@@ -1,0 +1,18 @@
+<apex:page controller="PartnerShipList" cache="true" sidebar="false" standardStylesheets="False" contentType="application/vnd.ms-excel#PartnershipReport.xls">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    </head>
+    <apex:pageBlock >
+        <apex:pageBlockTable value="{!RequestSelectedList}" var="records">
+            <apex:column value="{!records.Name}">
+            </apex:column>
+            <apex:column value="{!records.Partnership_Status__c}">
+            </apex:column>
+            <apex:repeat value="{!mLabel}" var="Field">
+            <apex:column headerValue="{!mLabel[Field]}">
+            <apex:outputtext value="{!records[Field]}"/>
+            </apex:column>
+            </apex:repeat>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+</apex:page>

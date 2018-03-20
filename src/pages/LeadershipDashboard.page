@@ -1,0 +1,43 @@
+<apex:page docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="true" controller="LeadershipDashboard" cache="true" action="{!ExecuteDashboard}">
+   <apex:outputPanel rendered="{!$CurrentPage.parameters.IsError==null}">
+    <title>Leadership Dashboard</title>
+    <c:Index />
+    <apex:form >  
+        <apex:actionRegion >
+            <div class='content container'>
+                <div class="page-multiple-dashboard">
+                    <apex:outputLabel value="Select a Dashboard" styleClass="lblSelectDashboard" />                    
+                    <apex:selectList value="{!DashboardSelector}" size="1">
+                        <apex:actionSupport event="onchange" action="{!Refresh}" oncomplete="rerender();" />
+                        <apex:selectOptions value="{!lDashboardList}" />
+                    </apex:selectList>
+                    <ul id="more-dashboards">
+                      <li><a href="#">More Reports<span class="icon-arrow down"></span></a>
+                            <ul>
+                                <li><apex:outputLink target="_blank" value="/apex/NonFinancialReport">Non Financial Report</apex:outputLink></li>
+                                <li><apex:outputLink target="_blank" value="/apex/Financial_Report">Financial Report</apex:outputLink></li>
+                                <li><apex:outputLink target="_blank" value="/apex/StudyTeamDashboard">Study Team Report</apex:outputLink></li>
+                                <li><apex:outputLink target="_blank" value="/apex/ExecutiveDashboard">Executive Scorecards</apex:outputLink></li>
+                            </ul>
+                      </li>
+                    </ul>
+                    <apex:outputLink styleClass="view-more" title="View More..."  value="{!$Label.ReportsURL}">View More...</apex:outputLink>
+                </div>
+                <apex:outputPanel id="Dashboard">
+                    <div id="MainContent">
+                    </div>
+                    <script type="text/javascript">
+                        function rerender() {
+                            document.getElementById("MainContent").innerHTML = {!mDashboardMap[DashboardSelector]}
+                    </script>
+                </apex:outputPanel>
+            </div>
+        </apex:actionRegion>      
+    </apex:form> 
+      <c:Webtrends_Tracker />
+</apex:outputPanel>
+   <apex:outputPanel rendered="{!$CurrentPage.parameters.IsError!=null}">
+   <apex:pageMessage summary="There was an Error loading the report. Please contact your Administrator." severity="warning" strength="3" />
+   <apex:pageMessages />
+   </apex:outputPanel>
+</apex:page>

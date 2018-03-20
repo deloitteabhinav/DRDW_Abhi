@@ -1,0 +1,64 @@
+<apex:page standardController="TRAK_Sprint__c" extensions="TRAK_TraceabilityMatrixCntrl" contentType="application/vnd.ms-excel#TraceabilityMatrix-{!Sprintname.name}.xls">
+  
+  <apex:form >
+  
+       <apex:pageBlock >
+            <apex:pageBlockTable value="{!UserList}" var="W" border="1">
+                <apex:column value="{!W.Name}"/>
+                
+                <apex:column headerValue="US Approval Status">
+                <apex:outputfield value="{!W.Approval_Status__c}"/>
+               </apex:column>
+                
+                <apex:column headerValue="US Approval Date">
+                <!--<apex:outputfield value="{!W.TRAK_System_Owner_Approval_Date__c}"/>-->
+                <apex:outputtext rendered="{!W.User_Story_Approval_History__r.size>0}" value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!W.User_Story_Approval_History__r[0].LastModifieddate}"/></apex:outputtext>
+
+                </apex:column>
+                
+                <apex:column headerValue="Test Script Ref">
+                <apex:outputPanel rendered="{!W.TRAK_Test_Templates__r.size > 0}">
+                <apex:outputfield value="{!W.TRAK_Test_Templates__r[0].Name}"/>
+                </apex:outputPanel>
+                </apex:column>
+                
+                <apex:column headerValue="Test Script Approval Status">
+                <apex:outputPanel rendered="{!W.TRAK_Test_Templates__r.size > 0}">
+                <apex:outputfield value="{!W.TRAK_Test_Templates__r[0].Approval_Status__c}"/>
+                </apex:outputPanel>
+                </apex:column>
+                
+                <apex:column headerValue="Test Script Approval Date">
+                <apex:outputPanel rendered="{!W.TRAK_Test_Templates__r.size > 0}">
+               <!-- <apex:outputtext value="{!W.TRAK_Test_Templates__r[0].Approval_Date__c}"/>-->
+                <apex:outputtext value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!W.TRAK_Test_Templates__r[0].Approval_Date__c }"/></apex:outputtext>
+
+                </apex:outputPanel>
+                </apex:column>
+                
+                <apex:column headerValue="Test Execution">
+                <apex:outputPanel rendered="{!W.TRAK_Tests__r.size > 0}">
+                <apex:outputfield value="{!W.TRAK_Tests__r[0].Name}"/>
+                </apex:outputPanel>
+                </apex:column>
+                <apex:column headerValue="Test Execution Approval Status">
+                <apex:outputPanel rendered="{!W.TRAK_Tests__r.size > 0}">
+                <apex:outputfield value="{!W.TRAK_Tests__r[0].Approval_Status__c}"/>
+                </apex:outputPanel>
+                </apex:column>
+                <apex:column headerValue="Test Execution Approval Date">
+                <apex:outputPanel rendered="{!W.TRAK_Tests__r.size > 0}">
+               <!-- <apex:outputfield value="{!W.TRAK_Tests__r[0].Approval_Date__c }"/>-->
+                <apex:outputtext value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!W.TRAK_Tests__r[0].Approval_Date__c }"/></apex:outputtext>
+
+                </apex:outputPanel>
+                </apex:column>
+                
+                
+           </apex:pageBlockTable>
+       </apex:pageBlock>
+       
+   </apex:form>
+  
+  
+</apex:page>

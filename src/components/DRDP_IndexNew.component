@@ -1,0 +1,121 @@
+<apex:component id="theComponent">
+   
+    <apex:form >  
+     
+      <head>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+            <meta content="width=device-width, initial-scale=1" name="viewport"/>     
+            <apex:stylesheet value="{!URLFOR($Resource.R3Style,'vendor/bootstrap/bootstrap.css')}" />
+            <apex:stylesheet value="{!URLFOR($Resource.R3Style,'vendor/jqueryui/themes/base/jquery-ui.css')}" />
+            <apex:stylesheet value="{!URLFOR($Resource.R3Style,'assets/drdw-1.0.0.css')}" />
+
+            <apex:includeScript value="{!URLFOR($Resource.R3Style,'vendor/lodash/lodash.js')}" />
+            <apex:includeScript value="{!URLFOR($Resource.R3Style,'vendor/jquery/jquery.js')}" />
+            <apex:includeScript value="{!URLFOR($Resource.R3Style,'vendor/jqueryui/jquery-ui.js')}" />
+            <apex:includeScript value="{!URLFOR($Resource.R3Style,'vendor/squeezeBox/jquery.squeezeBox.js')}" />
+            <apex:includeScript value="{!URLFOR($Resource.R3Style,'vendor/bootstrap/bootstrap.min.js')}" />
+            <apex:includeScript value="{!URLFOR($Resource.R3Style,'src/js/dataSourcingReq.js')}" />
+            <apex:includeScript value="{!URLFOR($Resource.R3Style,'src/js/forms.js')}" />
+            <apex:includeScript value="{!URLFOR($Resource.R3Style,'src/helpers/helper-condition.js')}" />
+            <apex:includeScript value="{!URLFOR($Resource.R3Style,'src/js/global-search.js')}" />
+            <apex:includeScript value="{!URLFOR($Resource.R3Style,'src/js/header.js')}" />
+            <apex:includeScript value="{!URLFOR($Resource.R3Style,'src/js/home.js')}" />
+            <apex:includeScript value="{!URLFOR($Resource.R3Style,'src/js/list-view.js')}" />
+            <apex:includeScript value="{!URLFOR($Resource.R3Style,'src/js/list-view-comparo.js')}" />
+            <apex:includeScript value="{!URLFOR($Resource.R3Style,'src/js/drdw.js')}" />
+            <apex:includeScript value="{!URLFOR($Resource.R3Style,'src/js/select-request.js')}" />
+            <apex:includeScript value="{!URLFOR($Resource.R3Style,'src/js/validator.js')}" />
+                       
+
+        </head>
+
+        <body>
+            <div class='header-wrapper'>
+            <header class = 'container hidden-xs'>
+            <div class="row">
+                <div class="col-xs-3 zero-right-padding">
+                    <a href="/apex/DRDP_DFHomePage" class="dd-logo">Deloitte Digital</a>
+                    <a href="/apex/DRDP_DFHomePage" class="drdw-logo">DRDP logo</a>
+                </div>
+                <div class="col-xs-8 zero-left-padding">
+                    <ul class="nav">
+                        <li>
+                            <a href ="/apex/StudyList" class="{!IF($CurrentPage.name=='StudyList','tab-research active','tab-research')}"><span>Research</span></a>
+                            <a href ="/apex/DRDP_InformationLandscapeList" class="{!IF($CurrentPage.name=='DRDP_InformationLandscapeList','tab-info-landscape active','tab-info-landscape')}"><span>Info Landscape</span></a>
+                            <a href ="/apex/PartnerShipList" class="{!IF(OR($CurrentPage.name=='PartnerShipList',$CurrentPage.name=='CreatePartnership'),'tab-partnerships active','tab-partnerships')}"><span>Partnerships</span></a>
+                            <a href ="/apex/DRDP_RelationshipList" class="{!IF(OR($CurrentPage.name=='DRDP_RelationshipList',$CurrentPage.name=='DRDP_SelectRelationship'),'tab-relationships active','tab-relationships')}"><span>Relationships</span></a>
+                            <a href ="/apex/RequestList" class="{!IF(OR($CurrentPage.name=='RequestList',$CurrentPage.name=='CreateRequests',$CurrentPage.name=='SelectRequest'),'tab-requests active','tab-requests')}"><span>Requests</span></a>
+                            <a href="/home/home.jsp?tsid=null" class="tab-admin"><span>Admin</span></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-xs-1 zero-padding">
+                    <div class="dashboard pull-left">
+                        <a href="/apex/Clipboard">
+                            <span class="glyphicon glyphicon glyphicon-list-alt"></span>
+                        </a>
+                    </div>
+                    <div class="logout pull-right">
+                        <a href="/secur/logout.jsp">
+                            <span class="glyphicon glyphicon-log-out"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="mobile-header visible-xs navbar navbar-fixed-top navbar-inverse">
+            <div class="container-fluid zero-padding">
+                <div class="navbar-brand">
+                    <a class="hamburger pull-left">
+                        <span class="glyphicon glyphicon-menu-hamburger show-menu"></span>
+                        <span class="glyphicon glyphicon-remove hide-menu"></span>                        
+                    </a>                    
+                    <a href="/apex/DRDP_DFHomePage" class="dd-logo">Deloitte Digital</a>
+                    <a href="/apex/DRDP_DFHomePage" class="drdw-logo">DRDP logo</a>
+                    <a class="logout-button pull-right" href="#" title="Logout">
+                        <span class="icon-logout glyphicon glyphicon-log-out"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu begins -->
+        <div class="navbar navbar-fixed-left navbar-mobile hidden-lg hidden-md hidden-sm hidden">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/apex/StudyList">                        
+                        <span class="menu-text">Research</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/apex/DRDP_InformationLandscapeList" class="">
+                        <span class="menu-text">Info Landscape</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/apex/PartnerShipList" class="">
+                        <span class="menu-text">Partnerships</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/apex/DRDP_RelationshipList" class="">
+                        <span class="menu-text">Relationships</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/apex/RequestList" class="">
+                        <span class="menu-text">Requests</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/apex/Clipboard" class="">
+                        <span class="menu-text">My Dashboard</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- Mobile menu ends -->
+        </div>
+
+        </body>
+    </apex:form>
+</apex:component>

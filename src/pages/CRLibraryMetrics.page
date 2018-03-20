@@ -1,0 +1,132 @@
+<apex:page sidebar="false" tabStyle="Request__c" controller="CRLibraryMetricsController">
+	  <apex:includeScript value="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js"/>
+	  
+	  <apex:sectionHeader title="Custom Report" subtitle="RWE Library Metrics" />
+	  <apex:form id="apexForm">
+		  <apex:pageBlock mode="mainDetail">
+	  		<label class="labelCol" >Library</label>
+	  		<select size="1" id="library">
+	  			<apex:repeat value="{!Libraries}" var="l">
+	  				<option value="{!l.Value}">{!l.label}</option>
+	  			</apex:repeat>
+	  		</select>
+	  		<input id="btnRunReport" value=" Run Report " class="btn" title="Run Report" type="button" onclick="onLibraryChanged();"/>
+		  	<div style="margin:10px"></div>
+		  	<table class="list reportTable tabularReportTable" id="report" border="0" cellpadding="0" cellspacing="0"></table>
+		  </apex:pageBlock>
+	  </apex:form>
+	  
+	  <script>
+		var report;
+		var fileIds;
+		var lastSortBy = -1;
+		var lastSortByDir = '';
+		
+	    jQuery(document).ready(function($) {	      
+	      $.ajax('/services/data/v31.0/analytics/reports/'+ '00Ob0000003fRXM' + '?includeDetails=true',
+	        {
+	          beforeSend: function(xhr) {
+	            //Set the OAuth header from the session ID
+	            xhr.setRequestHeader('Authorization', 'Bearer {!$Api.Session_ID}');
+	          },
+	          success: function(response) {
+	          	report = response;
+	          },
+	          error: function(jqXHR, textStatus, errorThrown) {
+	            alert(jqXHR.status + ': ' + errorThrown);
+	          }
+	        }
+	      );
+	    });
+	    
+	    function onLibraryChanged(){
+	    	var libraryId = $("#library").val();
+			
+			toggleButtonStatus($("#btnRunReport"),true);
+			
+			//get all document ids after filtered by library id	    	
+	    	Visualforce.remoting.Manager.invokeAction(
+	    		'{!$RemoteAction.CRLibraryMetricsController.getContentDocIds}',
+	    		libraryId,
+	    		function(result,event){
+	    			fileIds = result;
+	    			renderReport(-1);
+	    			toggleButtonStatus($("#btnRunReport"),false);
+	    		},
+	    		{escape:true}
+	    	);
+	    }
+	    
+	    function toggleButtonStatus(btn,flag){
+	    	if(flag){
+	    		btn.attr("disabled","disabled");
+				btn.removeClass("btn").addClass("btnDisabled");	
+				
+	    	}else{
+	    		btn.removeAttr("disabled");
+				btn.removeClass("btnDisabled").addClass("btn");	    
+	    	}
+	    }
+	    
+	    function renderReport(sortBy){
+	    	var sortByDir = 'sortAsc';
+    		if(sortBy == lastSortBy){
+    			if(lastSortByDir == 'sortAsc'){
+    				sortByDir = 'sortDesc';	
+    			}	
+    		}
+    		
+    		lastSortBy = sortBy;
+    		lastSortByDir = sortByDir;
+	    	
+	    	var index = 0;   
+	    	var html = '<thead ><tr bgcolor="#aaaaff" class=" headerRow ">';  
+            $.each(report.reportExtendedMetadata.detailColumnInfo,function(i,v){
+            	html = html + '<th class="sortCol" align="left" scope="col" >' + '<a href="javascript:renderReport(' + index + ');">' + v.label + '</a>';
+            	
+            	if(index == sortBy){
+            	 	html = html + '<img src="/s.gif" class="' + sortByDir + '"/>';
+            	 }
+            	
+            	html = html + '</th>';
+            	index++;	
+            });
+            html = html + '</tr></thead><tbody>';	                                       
+            
+            //sort table by column clicked
+            sortRows(sortBy,sortByDir);
+                                                                                      
+            $.each(report.factMap["T!T"].rows,function(i,v){
+            	var flag = false;
+            	var htmlRow = '<tr class="dataRow even  first">';	            	
+            	$.each(v.dataCells,function(i,w){
+            		htmlRow = htmlRow + '<td class=" dataCell  " >' + w.label + '</td>';
+            		//filter documents by library id
+            		if($.inArray(w.value,fileIds) > -1) flag = true;
+            	});
+            	htmlRow += '</tr>';
+            	
+            	if(flag) html = html + htmlRow;
+            });
+            html = html + '</tbody>';
+            	                     
+            $("#report").html(html);	
+	    }
+	    
+	    
+	    function sortRows(sortBy, sortByDir){
+	    	if(sortBy > -1){
+		    	report.factMap["T!T"].rows.sort(function(a,b){
+		    		var va = a.dataCells[sortBy].value;
+		    		var vb = b.dataCells[sortBy].value;
+		    		
+		    		if(sortByDir == 'sortAsc'){
+		    			return (va > vb)?1:((va < vb)?-1 : 0);	
+		    		}else{
+		    			return (va > vb)?-1:((va < vb)?1 : 0);
+		    		}
+		    	});	
+	    	}
+	    }
+	  </script>	  
+</apex:page>

@@ -1,0 +1,31 @@
+<apex:page standardcontroller="Project__c" extensions="FirewallChecker" action="{!onload}" docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="false">
+  <html lang="en">
+  <head>
+    <title>Native Firewall</title>
+
+    <!-- compiled CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.QFOR_R1Style,'vendor/bootstrap/bootstrap.css')}" />
+            <apex:stylesheet value="{!URLFOR($Resource.QFOR_R1Style,'assets/QFOR-1.0.0.css')}" />
+    
+
+  </head>
+    <main class="container">
+        <apex:form styleclass="qfor-firewall">
+            <section class="row firewall-warning">
+                <div class="col-xs-12 firewall-content-wrapper">
+                    <h1 class="warning-header">
+                        <span class="ico-full-warning"></span>WARNING</h1>
+                    <p class="warning-content"><apex:outputText >{!sFireWallMessage}</apex:outputText>                     
+                    </p>
+                </div>
+            </section>           
+            <section class="row submit">
+                <div class="col-xs-12">
+                    <apex:commandbutton value="I Acknowledge" styleclass="acknowledge-warning button" action="{!acknowledge}"/>
+                    <apex:commandbutton value="Cancel" styleclass="cancel-warning button" action="{!back}"/>
+                </div>
+            </section>
+        </apex:form>
+    </main>
+</html>
+</apex:page>

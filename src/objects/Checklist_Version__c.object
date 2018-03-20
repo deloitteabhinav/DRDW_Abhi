@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Active</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Checklists__c</fullName>
+        <externalId>false</externalId>
+        <label># Checklists</label>
+        <summaryForeignKey>Checklist_Versionaire__c.Checklist_Version_Id__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Sequence_Unique_Check__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>false</externalId>
+        <label>Sequence Unique Check</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Study_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Study Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Clinical Study</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Applied</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Theoretical</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Therapy Study</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Prognostic Study</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Diagnostic Study</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Observational Study w/ Drugs</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Secondary Data Analysis</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Case Series</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Single Case Report</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Experimental</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Observational</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Meta Analysis</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Review</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Systematic</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Simple (Narrative)</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>In Vivo</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>In Vitro</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Version_Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>Version Comments</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <label>Checklist Master</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Active__c</columns>
+        <columns>Study_Type__c</columns>
+        <columns>Version_Comments__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>CH-{0000}</displayFormat>
+        <label>Checklist Master ID</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Checklist Masters</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>No_ChecklistItems_when_Active</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(ISCHANGED(Checklists__c ),  Active__c ==TRUE)</errorConditionFormula>
+        <errorMessage>Cannot Add/Delete Checklist Items from an already Activated Checklist Master version.</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>Clone_Checklist</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Clone Checklist</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&apos;//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js&apos;)} 
+{!REQUIRESCRIPT(&apos;//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js&apos;)} 
+try{ 
+jQuery(function() { 
+/*Append the jQuery CSS CDN Link to the Head tag.*/ 
+jQuery(&apos;head&apos;).append(&apos;&lt;link rel=&quot;stylesheet&quot; href=&quot;//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/start/jquery-ui.css&quot; type=&quot;text/css&quot; /&gt;&apos;); 
+
+/*Create the HTML(DIV Tag) for the Dialog.*/ 
+var html = 
+&apos;&lt;div id=&quot;dialog&quot; title=&quot;Confirm Clone&quot;&gt;&lt;p&gt;Are You sure you want to Clone the Existing Checklist?&lt;/p&gt;&lt;/div&gt;&apos;; 
+
+/*Check if the Dialog(DIV Tag) already exists if not then Append the same to the Body tag.*/ 
+if(!jQuery(&apos;[id=dialog]&apos;).size()){ 
+jQuery(&apos;body&apos;).append(html); 
+} 
+
+/*Open the jQuery Dialog.*/ 
+jQuery( &quot;#dialog&quot; ).dialog({ 
+autoOpen: true, 
+modal: true, 
+show: {  
+duration: 1000 
+}, 
+hide: { 
+duration: 1000 
+}, 
+buttons: { 
+&quot;Continue&quot;: function() { 
+var cId=&apos;{!Checklist_Version__c.Id}&apos; 
+location.replace(&apos;/apex/CloneChecklistMaster?id=&apos;+cId+&apos;&amp;PageName=ChecklistMaster&apos;); 
+}, 
+Cancel: function() { 
+jQuery( this ).dialog( &quot;close&quot; ); 
+} 
+} 
+}); 
+}); 
+} 
+catch(e){ 
+alert(&apos;An Error has Occured. Error: &apos; + e); 
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Push_Checklist</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>page</linkType>
+        <masterLabel>Push Checklist</masterLabel>
+        <openType>replace</openType>
+        <page>Push_Checklist</page>
+        <protected>false</protected>
+    </webLinks>
+</CustomObject>

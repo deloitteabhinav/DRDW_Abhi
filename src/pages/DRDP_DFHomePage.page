@@ -1,0 +1,320 @@
+<apex:page sidebar="false" showHeader="false" standardStylesheets="false" controller="HomePage">
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Digital R&amp;D Workbench</title>
+    <apex:stylesheet value="{!URLFOR($Resource.KMSR,'vendor/bootstrap-3.3.7-dist/css/bootstrap.min.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.KMSR,'css/digitalfoundry.css')}" />
+    <apex:stylesheet value="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+    <apex:stylesheet value="https://jqueryui.com//resources/demos/style.css"/>
+    <apex:includeScript value="https://code.jquery.com/jquery-1.12.4.js"/>
+    <apex:includeScript value="https://code.jquery.com/ui/1.12.1/jquery-ui.js"/>
+    <apex:includeScript value="{!URLFOR($Resource.KMSR,'vendor/jquery/jquery-3.1.1.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.KMSR,'vendor/bootstrap-3.3.7-dist/js/bootstrap.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.KMSR,'js/index.js')}"/>
+    <script type='text/javascript'>
+          
+            function isValidSearchString(searchString) {
+                var SEARCH_TRIGGER_THRESHOLD = 2;
+                var trimmedSearchString = searchString.trim();
+    
+                    if (trimmedSearchString.length >= SEARCH_TRIGGER_THRESHOLD) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+            }
+            
+            function clickSearch(ev)  {
+                if (window.event && window.event.keyCode == 13 || ev.which == 13) {
+                        var searchString = (document.getElementsByClassName("keyword_Global_Search"))[0].value;
+                        if (isValidSearchString(searchString)){
+                            doSearchglobal();
+                        }
+                        searchString = (document.getElementsByClassName("keyword_Global_SearchMobile"))[0].value;      
+                        if (isValidSearchString(searchString)){
+                            doSearchglobal();
+                        }
+                    return false;
+                } else {
+                    return true;
+                }
+             }
+             
+            </script> 
+</head>
+
+<body>
+    <apex:form >
+    <apex:actionFunction name="doSearchglobal" action="{!populateGlobalURL}"/>
+    <div id="wrap">
+        <div id="header" class="hidden-xs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-3 zero-right-padding">
+                        <a class="dd-logo">Deloitte Digital</a>
+                        <a class="drdw-logo">DRDP logo</a>
+                    </div>
+                    <div class="col-xs-8 zero-left-padding">
+                        <ul class="nav">
+                            <li>
+                            <a href ="/apex/StudyList" class="tab-research"><span>Research</span></a>
+                            <a href ="/apex/DRDP_InformationLandscapeList" class="tab-info-landscape"><span>Info Landscape</span></a>
+                            <a href ="/apex/PartnerShipList" class="tab-partnerships"><span>Partnerships</span></a>
+                            <a href ="/apex/DRDP_RelationshipList" class="tab-relationships"><span>Relationships</span></a>
+                            <a href ="/apex/RequestList" class="tab-requests"><span>Requests</span></a>
+                            <a href="/home/home.jsp?tsid=null" class="tab-admin hidden-sm hidden-md"><span>Admin</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-1 zero-padding">
+                        <div class="dashboard pull-left">
+                            <a href="/apex/Clipboard">
+                                <span class="glyphicon glyphicon glyphicon-list-alt"></span>
+                            </a>
+                        </div>
+                        <div class="logout pull-right">
+                            <a href="/secur/logout.jsp">
+                                <span class="glyphicon glyphicon-log-out"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mobile-header visible-xs navbar navbar-fixed-top navbar-inverse">
+            <div class="container-fluid zero-padding">
+                <div class="navbar-brand">
+                    <a class="hamburger pull-left">
+                        <span class="glyphicon glyphicon-menu-hamburger show-menu"></span>
+                        <span class="glyphicon glyphicon-remove hide-menu"></span>                        
+                    </a>                    
+                    <a class="logo dd-logo pull-left">Deloitte Digital</a>
+                    <a class="logo drdw-logo pull-left">DRDP logo</a>
+                    <a class="logout-button pull-right" href="#" title="Logout">
+                        <span class="icon-logout glyphicon glyphicon-log-out"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu begins -->
+        <div class="navbar navbar-fixed-left navbar-mobile hidden-lg hidden-md hidden-sm hidden">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/apex/StudyList">                        
+                        <span class="menu-text">Research</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/apex/DRDP_InformationLandscapeList" class="">
+                        <span class="menu-text">Info Landscape</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/apex/PartnerShipList" class="">
+                        <span class="menu-text">Partnerships</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/apex/DRDP_RelationshipList" class="">
+                        <span class="menu-text">Relationships</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/apex/RequestList" class="">
+                        <span class="menu-text">Requests</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/apex/Clipboard" class="">
+                        <span class="menu-text">My Dashboard</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- Mobile menu ends -->
+        <div class="offset visible-xs">            
+        </div>
+        <div id="main">
+            <section class="section-1 container-fluid banner-color-black hidden-xs">
+                <div class="pattern"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-offset-2 col-md-8 col-xs-12">
+                            <div class="media ">
+                                <div class="media-left pull-right">
+                                    <div class="media-object logo-brain"/>
+                                </div>
+                                <div class="media-body">
+                                    <h1 class="media-heading">Digital Research Workbench</h1>
+                                    <hr/>
+                                    <p class="media-tagline">Digitization of Research Processes - Process Automation, Electronic Data Capture and Linking Data
+                                    </p>
+                                    <apex:inputText rendered="{!!IsMobile}" id="auto11" required="false" html-placeholder="Search..." onkeypress="return clickSearch(event);" styleclass="keyword_Global_Search" value="{!searchWord}">
+                                    <apex:outputPanel rendered="{!!IsMobile}">
+                                    <c:Nugget_AutoCompleteComponent objectname="Project__c" input_id="{!$Component.auto11}" numberOfResultsToDisplay="10" wildcardBefore="false"/>
+                                    </apex:outputPanel>
+                                    </apex:inputText>
+
+                                    <apex:inputText rendered="{!IsMobile}" id="auto13" required="false" html-placeholder="Search..." onkeypress="return clickSearch(event);" styleclass="keyword_Global_Search" value="{!searchWord}">
+                                    <apex:outputPanel rendered="{!IsMobile}">
+                                    <c:Nugget_AutoCompleteComponent objectname="Project__c" input_id="{!$Component.auto13}" numberOfResultsToDisplay="10" wildcardBefore="false"/>
+                                    </apex:outputPanel>
+                                    </apex:inputText>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="search-box">
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section-1 mobile-mods container-fluid banner-color-black visible-xs">
+                <div class="pattern"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-offset-2 col-md-8 col-xs-12">
+                            <div class="media ">
+                                <div class="media-left pull-right">
+                                    <div class="media-object logo-brain" />
+                                </div>
+                                <div class="media-body">
+                                    <h1 class="media-heading">Digital Research Workbench</h1>
+                                </div>
+                            </div>
+                            <hr/>
+                            <p class="media-tagline">Digitization of Research Processes - Process Automation, Electronic Data Capture and Linking Data
+                            </p>
+                            <apex:inputText id="auto12" required="false" html-placeholder="Search..." onkeypress="return clickSearch(event);" styleclass="keyword_Global_SearchMobile" value="{!searchWordMobile}">
+                            <apex:outputPanel rendered="{!IsMobile}">
+                            <c:Nugget_AutoCompleteComponent objectname="Project__c" input_id="{!$Component.auto12}" numberOfResultsToDisplay="10" wildcardBefore="false"/>
+                            </apex:outputPanel>
+                            </apex:inputText>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="search-box">
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section-2 container-fluid">
+                <div class="container">
+                    <div class="row">
+                        <div class="text-center">
+                            <div class="center-block">
+                                <a href="/{!$Label.DashboardLink}">
+                                    <div class="card">
+                                        <img class="card-icon" src="{!URLFOR($Resource.KMSR,'assets/img/analytics.png')}"/>
+                                        <div class="card-content">
+                                            Reports
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="/_ui/core/chatter/ui/ChatterPage">
+                                    <div class="card">
+                                        <img class="card-icon" src="{!URLFOR($Resource.KMSR,'assets/img/users-1.png')}"/>
+                                        <div class="card-content">
+                                            Connect
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="/apex/DRDP_Contents?page=linkspage">
+                                    <div class="card">
+                                        <img class="card-icon" src="{!URLFOR($Resource.KMSR,'assets/img/green-link.png')}"/>
+                                        <div class="card-content">
+                                            Links
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section-3 container-fluid">
+                <div class="pattern"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-5 hidden-xs hidden-sm hidden-md">
+                            <div class="card">
+                                <h3>Help Us Grow</h3>
+                                <p class="hidden-xs">Share your ideas for future functionality</p>
+                                <div>
+                                    <a href="/ideas/ideaList.apexp" class="button btn-share-idea font-r">Share Your Ideas</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-xs-12">
+                            <div class="card">
+                                <h3>Support</h3>
+                                <p class="hidden-xs">Access training materials, FAQs, technical support</p>
+                                <div>
+                                    <a href="/apex/DRDP_Contents?page=AboutDigitalR%26DWorkbench" class="button btn-share-idea font-r">Get Help</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="container">
+            <a href="" class="dd-logo hidden-xs">Deloitte Digital</a>
+            <span class="copyright-text pull-right">&copy; Copyright 2017. All rights reserved.</span>
+            <a href="#" class="pull-right feedback-button" data-toggle="modal" data-target="#myModal">
+                <!-- <span class="bracket">[</span>
+                <span class="plus">+</span>
+                <span class="bracket">]</span> -->
+                <span class="plus">[+]</span>
+                <span class="feedback-text">[Feedback]</span>
+            </a>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Feedback</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label bold">Feedback on:</label>
+                            <apex:inputField styleclass="form-control" value="{!oFeedback.Feedback_Page__c}"/>
+                        </div>
+                        <label for="recipient-name" class="control-label bold">Rate your experience</label>
+                        <div class="form-group">
+                            <apex:selectRadio value="{!sSelectedExperience}">
+                                <apex:selectOptions value="{!lExperience}"/>
+                            </apex:selectRadio>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="control-label bold">Your comments:</label>
+                            <apex:inputtextarea styleclass="form-control" value="{!oFeedback.Comments__c}" id="message-text"/>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <apex:commandbutton styleclass="btn btn-primary" value="Send Feedback" action="{!SaveFeedback}"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.modal -->
+    </apex:form>
+</body>
+</html>
+
+</apex:page>

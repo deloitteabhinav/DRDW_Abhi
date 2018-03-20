@@ -1,0 +1,1040 @@
+<apex:page docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="true" id="thePage" Standardcontroller="Contact" extensions="DRDP_CreateRelationshipContactController">
+ 
+    <head>
+    <title>Create Contact</title>
+    </head>
+    <body>
+        <div class='df_drdw content'>
+        <!-- Using QFORs Index component for the Top Header- -->
+        <c:SR2_Index />
+        <div class="df_drdw-createstudy df_drdw-create-bp ">
+            
+            <header>
+            <div class="pattern"></div> 
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xs-12 banner-properties">
+                            <!-- ------------------  Conditional header & buttons  here ----------------- -->
+                             <div class="container">
+                                <apex:outputpanel rendered="{!IF($CurrentPage.parameters.id != NULL,true,false)}">
+                                <h1><apex:outputText value="Contact"/></h1>
+                                </apex:outputpanel>
+                                <apex:outputpanel rendered="{!IF($CurrentPage.parameters.id == NULL,true,false)}">
+                                <h1><apex:outputText value="Create Contact"/></h1>
+                                </apex:outputpanel>
+                                <apex:outputpanel rendered="{!IF($CurrentPage.parameters.id != NULL,true,false)}">
+                                <h1><apex:outputField value="{!oContact.Name}"/></h1>
+                                <p></p>
+                                </apex:outputpanel>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+                <!-- ------------------  Error OutputPanel start here ---------------- -->
+             
+                <div class="sfdc-errorMessage font-s">
+                    <apex:pagemessages escape="false"></apex:pagemessages>
+                </div>
+                <script>
+                document.body.scrollTop = document.documentElement.scrollTop = 0;
+                </script>
+
+                <!-- ------------------  Error OutputPanel ends here ---------------- --->
+
+        <!--------------------  Overall MAIN container starts here ------------------->
+
+        <main class="container">
+
+
+            <apex:outputpanel id="EditContactPanel" rendered="{!IF($CurrentPage.parameters.isEdit=='true',true,false)}">
+            <apex:form id="editContact" styleclass="create-study-form accordion">
+            
+            <section class="row">
+                <div class="col-xs-12 required-label">* REQUIRED FIELD</div>
+            </section>
+
+            <!--------------------------------Information Section starts---------------------------------------------------------->
+            <section class="row">
+                <div class="col-xs-12">
+                    <h2 class="accordion-parent">Contact Information
+                    <span class="icon-large-caret pull-right down"></span></h2>
+                    <fieldset class="accordion-child">
+                    <apex:outputPanel id="Information">
+                    <apex:actionregion >
+                    
+                     
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Salutation.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Salutation.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Salutation.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oContact.Salutation}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Title.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Title.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Title.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oContact.Title}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.FirstName.Label}</label><span class="required-label"> *</span> 
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.FirstName.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.FirstName.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oContact.FirstName}" styleClass="required"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.LastName.Label}</label><span class="required-label"> *</span> 
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.LastName.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.LastName.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oContact.LastName}" styleClass="required"/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>Organization Name</label><span class="required-label"> *</span>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oContact.AccountId}" styleClass="select-based-lookup required"/>
+                        </div>
+                    </div>
+                    
+                   <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Phone.Label}</label><span class="required-label"> *</span>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Phone.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Phone.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oContact.Phone}" required="true"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Fax.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Fax.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Fax.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oContact.Fax}"/>
+                        </div>
+                    </div>
+                   <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.MobilePhone.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.MobilePhone.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.MobilePhone.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oContact.MobilePhone}"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.HomePhone.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.HomePhone.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.HomePhone.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oContact.HomePhone}"/>
+                        </div>
+                    </div>
+                    
+                   <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.OtherPhone.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.OtherPhone.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.OtherPhone.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oContact.OtherPhone}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Email.Label}</label><span class="required-label"> *</span>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Email.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Email.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oContact.Email}" required="true"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Department.Label}</label><span class="required-label"> *</span>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Department.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Department.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oContact.Department}" required="true"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Source__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Source__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Source__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oContact.Source__c}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Contact_Function__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Contact_Function__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Contact_Function__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oContact.Contact_Function__c}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Role__c.Label}</label><span class="required-label"> *</span>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Role__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Role__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oContact.Role__c}" required="true"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Speciality__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Speciality__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Speciality__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oContact.Speciality__c}"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Language_s__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Language_s__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Language_s__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oContact.Language_s__c}"/>
+                        </div>
+                    </div>
+                    
+                   <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Status__c.Label}</label><span class="required-label"> *</span>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Status__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Status__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oContact.Status__c}" required="true"/>
+                        </div>
+                    </div>
+                   
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Therapeutic_Area__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Therapeutic_Area__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Therapeutic_Area__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oContact.Therapeutic_Area__c}"/>
+                        </div>
+                    </div>
+                   
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Academic_Society_Research_Group__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Academic_Society_Research_Group__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Academic_Society_Research_Group__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oContact.Academic_Society_Research_Group__c}"/>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Photo_URL__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Photo_URL__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Photo_URL__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oContact.Photo_URL__c}"/>
+                        </div>
+                    </div>
+                    
+                   
+
+
+                    </apex:actionRegion>
+                    </apex:outputPanel>
+                    </fieldset>
+                </div>
+            </section>
+            
+            
+            <section class="row">
+                <div class="col-xs-12">
+                    <h2 class="accordion-parent">Contact Location
+                    <span class="icon-large-caret pull-right down"></span></h2>
+                    <fieldset class="accordion-child">
+                    <apex:outputPanel id="ContactLocation">
+                    <apex:actionregion >
+                     
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.MailingStreet.Label}</label><span class="required-label"> *</span>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.MailingStreet.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.MailingStreet.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oContact.MailingStreet}" required="true" />
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.MailingCity.Label}</label><span class="required-label"> *</span>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.MailingCity.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.MailingCity.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oContact.MailingCity}" required="true" />
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.MailingState.Label}</label><span class="required-label"> *</span>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.MailingState.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.MailingState.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oContact.MailingState}" required="true" />
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.MailingPostalCode.Label}</label><span class="required-label"> *</span>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.MailingPostalCode.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.MailingPostalCode.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oContact.MailingPostalCode}" required="true"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.MailingCountry.Label}</label><span class="required-label"> *</span>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.MailingCountry.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.MailingCountry.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oContact.MailingCountry}" required="true"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Mailing_Location__Latitude__s.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Mailing_Location__Latitude__s.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Mailing_Location__Latitude__s.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oContact.Mailing_Location__Latitude__s}"/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Mailing_Location__Longitude__s.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Mailing_Location__Longitude__s.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Mailing_Location__Longitude__s.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oContact.Mailing_Location__Longitude__s}"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Mailing_Geocode_Accuracy__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Mailing_Geocode_Accuracy__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Mailing_Geocode_Accuracy__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oContact.Mailing_Geocode_Accuracy__c}"/>
+                        </div>
+                    </div>
+                    </apex:actionRegion>
+                    </apex:outputPanel>
+                    </fieldset>
+                </div>
+            </section>
+            
+            <section class="row">
+                <div class="col-xs-12">
+                    <h2 class="accordion-parent">Contact Assistant
+                    <span class="icon-large-caret pull-right down"></span></h2>
+                    <fieldset class="accordion-child">
+                    <apex:outputPanel id="ContactAssistant">
+                    <apex:actionregion >
+                     
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.AssistantName.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.AssistantName.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.AssistantName.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oContact.AssistantName}"/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.AssistantPhone.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.AssistantPhone.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.AssistantPhone.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oContact.AssistantPhone}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Assistant_Email__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Assistant_Email__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Assistant_Email__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oContact.Assistant_Email__c}"/>
+                        </div>
+                    </div>
+
+
+                    </apex:actionRegion>
+                    </apex:outputPanel>
+                    </fieldset>
+                </div>
+            </section>
+            
+            
+            <section class="row">
+                <div class="col-xs-12">
+                    <h2 class="accordion-parent">Contact Privacy and Preference
+                    <span class="icon-large-caret pull-right down"></span></h2>
+                    <fieldset class="accordion-child">
+                    <apex:outputPanel id="ContactPrivacy">
+                    <apex:actionregion >
+                     
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Preferred_Communication_Method__c.Label}</label><span class="required-label"> *</span>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Preferred_Communication_Method__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Preferred_Communication_Method__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oContact.Preferred_Communication_Method__c}" required="true"/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Preferred_Meeting_Day__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Preferred_Meeting_Day__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Preferred_Meeting_Day__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:inputField value="{!oContact.Preferred_Meeting_Day__c}"/>
+                        </div>
+                    </div>
+                
+
+                    </apex:actionRegion>
+                    </apex:outputPanel>
+                    </fieldset>
+                </div>
+            </section>
+            
+            <!---------------------------------------------------------Buttons Section---------------------------------------------------------------------------------------------->
+            <section class="row submit">
+                <div class="col-xs-12">
+                    <apex:commandButton action="{!save}" styleclass="submit-study button" value="Save" />
+                    <apex:actionFunction name="doSubmit" rerender="error" oncomplete="return false;"/>
+                    <apex:outputLink rendered="{!IF($CurrentPage.parameters.id==NULL,True,False)}" styleClass="button" value="/apex/DRDP_SelectRelationship">Cancel</apex:outputLink>
+                    <apex:outputLink rendered="{!IF($CurrentPage.parameters.id!=NULL,True,False)}" styleClass="button" value="/apex/DRDP_CreateRelationshipContact?id={!$CurrentPage.parameters.id}&recTypeName={!$CurrentPage.parameters.currentContactType}&isEdit=false">Cancel</apex:outputLink>
+                </div>
+            </section>
+            <!---------------------------------------------------------Buttons Section---------------------------------------------------------------------------------------------->
+            </apex:form>
+            </apex:outputpanel>
+<!------~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  EDIT Contact Form ends  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~---->
+
+    <apex:outputpanel rendered="{!IF(AND($CurrentPage.parameters.id != NULL,OR($CurrentPage.parameters.isEdit=='false',$CurrentPage.parameters.isEdit==NULL)),true,false)}">
+        <span class="hidden-xs">
+        <chatter:feedWithFollowers entityId="{!$CurrentPage.parameters.id}"/> 
+        </span>
+        <apex:form Styleclass="create-study-form accordion">
+
+
+            <!---------------------------------------------------------Buttons Section on the top---------------------------------------------------------------------------------------------->
+                    <section class="row submit hidden-xs">
+                        <div class="col-xs-12">
+                            <apex:commandButton styleClass="button" value="Edit" action="{!EditRecord}"/>
+                        </div>
+                    </section>
+                    
+
+            <!--------------------------------Information Section starts---------------------------------------------------------->
+            <section class="row">
+                <div class="col-xs-12">
+                    <h2 class="accordion-parent">Contact Information
+                    <span class="icon-large-caret pull-right down"></span></h2>
+                    <fieldset class="accordion-child">
+                    <apex:outputPanel id="Information">
+                    <apex:actionregion >
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Contact_ID__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Contact_ID__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Contact_ID__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.Contact_ID__c}"/>
+                        </div>
+                    </div>
+                     
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Salutation.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Salutation.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Salutation.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.Salutation}"/>
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Title.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Title.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Title.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.Title}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.FirstName.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.FirstName.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.FirstName.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.FirstName}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.LastName.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.LastName.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.LastName.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.LastName}"/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>Organization Name</label>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.Account.Name}"/>
+                        </div>
+                    </div>
+                    
+                   <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Phone.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Phone.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Phone.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.Phone}"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Fax.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Fax.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Fax.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.Fax}"/>
+                        </div>
+                    </div>
+                    
+                   <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.MobilePhone.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.MobilePhone.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.MobilePhone.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.MobilePhone}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.HomePhone.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.HomePhone.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.HomePhone.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.HomePhone}"/>
+                        </div>
+                    </div>
+                    
+                   <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.OtherPhone.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.OtherPhone.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.OtherPhone.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.OtherPhone}"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Email.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Email.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Email.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.Email}"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Department.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Department.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Department.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.Department}"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Source__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Source__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Source__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.Source__c}"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Contact_Function__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Contact_Function__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Contact_Function__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.Contact_Function__c}"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Role__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Role__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Role__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.Role__c}"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Speciality__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Speciality__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Speciality__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.Speciality__c}"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Language_s__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Language_s__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Language_s__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.Language_s__c}"/>
+                        </div>
+                    </div>
+                    
+                   <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Status__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Status__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Status__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.Status__c}"/>
+                        </div>
+                    </div>
+                    
+                    
+                   <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Therapeutic_Area__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Therapeutic_Area__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Therapeutic_Area__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.Therapeutic_Area__c}"/>
+                        </div>
+                    </div>
+                    
+                    
+                   <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Academic_Society_Research_Group__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Academic_Society_Research_Group__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Academic_Society_Research_Group__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.Academic_Society_Research_Group__c}"/>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Photo_URL__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Photo_URL__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Photo_URL__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.Photo_URL__c}"/>
+                        </div>
+                    </div>
+
+                    </apex:actionRegion>
+                    </apex:outputPanel>
+                    </fieldset>
+                </div>
+            </section>
+            
+            <section class="row">
+                <div class="col-xs-12">
+                    <h2 class="accordion-parent">Contact Location
+                    <span class="icon-large-caret pull-right down"></span></h2>
+                    <fieldset class="accordion-child">
+                    <apex:outputPanel id="ContactLocation">
+                    <apex:actionregion >
+                     
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.MailingStreet.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.MailingStreet.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.MailingStreet.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.MailingStreet}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.MailingCity.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.MailingCity.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.MailingCity.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.MailingCity}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.MailingState.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.MailingState.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.MailingState.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.MailingState}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.MailingPostalCode.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.MailingPostalCode.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.MailingPostalCode.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.MailingPostalCode}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.MailingCountry.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.MailingCountry.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.MailingCountry.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.MailingCountry}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Mailing_Location__Latitude__s.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Mailing_Location__Latitude__s.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Mailing_Location__Latitude__s.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.Mailing_Location__Latitude__s}"/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Mailing_Location__Longitude__s.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Mailing_Location__Longitude__s.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Mailing_Location__Longitude__s.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.Mailing_Location__Longitude__s}"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Mailing_Geocode_Accuracy__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Mailing_Geocode_Accuracy__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Mailing_Geocode_Accuracy__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.Mailing_Geocode_Accuracy__c}"/>
+                        </div>
+                    </div>
+
+                    </apex:actionRegion>
+                    </apex:outputPanel>
+                    </fieldset>
+                </div>
+            </section>
+            
+            <section class="row">
+                <div class="col-xs-12">
+                    <h2 class="accordion-parent">Contact Assistant
+                    <span class="icon-large-caret pull-right down"></span></h2>
+                    <fieldset class="accordion-child">
+                    <apex:outputPanel id="ContactAssistant">
+                    <apex:actionregion >
+                     
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.AssistantName.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.AssistantName.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.AssistantName.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.AssistantName}"/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.AssistantPhone.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.AssistantPhone.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.AssistantPhone.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.AssistantPhone}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Assistant_Email__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Assistant_Email__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Assistant_Email__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.Assistant_Email__c}"/>
+                        </div>
+                    </div>
+
+
+                    </apex:actionRegion>
+                    </apex:outputPanel>
+                    </fieldset>
+                </div>
+            </section>
+            
+            
+            <section class="row">
+                <div class="col-xs-12">
+                    <h2 class="accordion-parent">Contact Privacy and Preference
+                    <span class="icon-large-caret pull-right down"></span></h2>
+                    <fieldset class="accordion-child">
+                    <apex:outputPanel id="ContactPrivacy">
+                    <apex:actionregion >
+                     
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Preferred_Communication_Method__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Preferred_Communication_Method__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Preferred_Communication_Method__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.Preferred_Communication_Method__c}"/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6 label-wrapper">
+                            <label>{!$ObjectType.Contact.Fields.Preferred_Meeting_Day__c.Label}</label>
+                            <apex:outputpanel rendered="{!IF($ObjectType.Contact.Fields.Preferred_Meeting_Day__c.inlinehelptext != NULL,true,false)}">
+                            <div class="helpOrb tooltip"><span>{!$ObjectType.Contact.Fields.Preferred_Meeting_Day__c.inlinehelptext}</span></div>          
+                            </apex:outputpanel>
+                        </div>
+                        <div class="col-xs-6 field-wrapper">
+                            <apex:outputField value="{!oContact.Preferred_Meeting_Day__c}"/>
+                        </div>
+                    </div>
+                
+
+                    </apex:actionRegion>
+                    </apex:outputPanel>
+                    </fieldset>
+                </div>
+            </section>
+            
+            
+            
+            <!-- -------------------------------------------------------Buttons Section on bottom-------------------------------------------------------------------------------------------- -->
+                    <section class="row submit hidden-xs">
+                        <div class="col-xs-12">
+                            <apex:commandButton styleClass="button" value="Edit" action="{!EditRecord}" />
+                        </div>
+                    </section>
+            </apex:form>
+            </apex:outputPanel>
+
+
+    </main>
+    </div>
+    </div>
+    <apex:form >
+    <c:SR2_FooterComponent />
+    </apex:form>
+    </body>
+</apex:page>

@@ -1,0 +1,2 @@
+<apex:page standardcontroller="Request_Tracking__c" extensions="RequestTrackingRedirect" action="{!Redirect}">
+ </apex:page>

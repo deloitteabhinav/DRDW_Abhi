@@ -1,0 +1,28 @@
+<apex:component >
+    <!-- START OF SmartSource Data Collector TAG v10.4.1 -->
+    <!-- Copyright (c) 2014 Webtrends Inc.  All rights reserved. -->
+    <script>
+    window.webtrendsAsyncInit=function(){
+        var dcs=new Webtrends.dcs().init({
+            dcsid:'{!$Label.WebtrendsDCSID}',
+            domain:"statse.webtrendslive.com",
+            timezone:-5,
+            i18n:false,
+            offsite:true,
+            download:true,
+            downloadtypes:"xls,doc,ppt,xlsx,docx,pptx,pdf,txt,csv,zip,gzip,tar,swf,wmv,exe,rar,mp4,mp3,flv",
+            anchor:true,
+            javascript: true,
+            onsitedoms:window.location.host,
+            fpcdom:".gso--c.eu2.visual.force.com",
+            plugins:{
+                hm:{src:"//s.webtrends.com/js/webtrends.hm.js"}
+            }
+            }).track();
+    };
+    (function(){
+        var s=document.createElement("script"); s.async=true; s.src="{!URLFOR($Resource.Webtrends,'')}/Webtrends/webtrends.min.js";    
+        var s2=document.getElementsByTagName("script")[0]; s2.parentNode.insertBefore(s,s2);
+    }());
+    </script>
+</apex:component>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Notification email to Owner of Request upon initial Submission</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>DRDP_ET_Owner_Status</name>
+    <style>none</style>
+    <subject>Your {!Request__c.RecordType} Request: {!Request__c.Name} was Submitted</subject>
+    <type>text</type>
+</EmailTemplate>

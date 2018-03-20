@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApexPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>31.0</apiVersion>
+    <availableInTouch>false</availableInTouch>
+    <confirmationTokenRequired>false</confirmationTokenRequired>
+    <description>TRAK: This VF page is used to re-order and bulk modify the Test Script Steps</description>
+    <label>TRAK_Manage_Test_Script_Steps</label>
+</ApexPage>

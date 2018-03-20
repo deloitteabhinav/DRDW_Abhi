@@ -1,0 +1,1384 @@
+<apex:page docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="true" id="thePage" Standardcontroller="Project__c" extensions="CreateStudyController,PublicationsAndDeliverables" >
+    <head>
+        <title>Research Topics</title>
+    </head>       
+    <body>
+        <div class='df_drdw content'>
+            <!--Using QFORs Index component for the Top Header -->
+            <c:SR2_Index />
+            <div class="df_drdw-createstudy">
+
+                <header>
+                    
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12">
+                            <apex:outputpanel rendered="{!IF($CurrentPage.parameters.id == NULL,true,false)}">
+                                <h1>Create Research Topics</h1>
+                                <p></p>
+                            </apex:outputpanel>
+                            <apex:outputpanel rendered="{!IF($CurrentPage.parameters.id != NULL,true,false)}">
+                                <h1>Research Topics:&nbsp;<apex:outputField value="{!oStudy.Study_Project_ID__c}"/>:&nbsp;<apex:outputField value="{!oStudy.Name}"/></h1>
+                                <p> <apex:outputField value="{!oStudy.Description__c}"/></p>
+                            </apex:outputpanel>
+                            </div>
+                        </div>
+                    </div>
+
+                </header>
+                <apex:outputPanel id="error">
+                <apex:outputPanel rendered="{!isError}">                
+                <div class="sfdc-errorMessage font-s">
+                    <apex:pagemessages escape="false"></apex:pagemessages>
+                </div>
+                <script>
+                    document.body.scrollTop = document.documentElement.scrollTop = 0;
+                </script>
+                </apex:outputPanel>
+                </apex:outputPanel>
+                <main class="container">
+                
+                <!-- ------------------------------------------------------------------------------Firewall Section------------------------------------------------------------------------------------------------- -->
+                <apex:outputpanel rendered="{!bIsFirewall}">
+                <main class="container">
+        <apex:form styleclass="df_drdw-firewall">
+            <section class="row firewall-warning">
+                <div class="col-xs-12 firewall-content-wrapper">
+                    <h1 class="warning-header">
+                        <span class="ico-full-warning"></span>WARNING</h1>
+                    <p class="warning-content"><apex:outputText >{!sFireWallMessage}</apex:outputText>                     
+                    </p>
+                </div>
+            </section>           
+            <section class="row submit">
+                <div class="col-xs-12">
+                    <apex:commandbutton value="I Acknowledge" styleclass="acknowledge-warning button" action="{!acknowledge}"/>
+                    <apex:commandbutton value="Cancel" styleclass="cancel-warning button" action="{!back}"/>
+                </div>
+            </section>
+        </apex:form>
+    </main>
+    </apex:outputpanel>
+                <!-------------------------------------------------------Study Creation Form Edit Outputpanel with 3 fields------------------------------------------------------------------------------------------------>
+
+                    <apex:outputpanel rendered="{!IF($CurrentPage.parameters.id == NULL,true,false)}">
+                        <apex:form Styleclass="create-study-form accordion">
+                            <!---------------------------------------------------------Research Topic Information------------------------------------------------------------------------------------>
+                            
+                            
+                            <section class="row">
+                                <!--<div class="col-xs-12 "> REQUIRED FIELD</div> -->
+                            </section>
+                            <section class="row">
+                                <div class="col-xs-12">
+                                    <h2 class="accordion-parent">Research Topic Information
+                                    <span class="icon-large-caret pull-right down"></span></h2>
+                                    <fieldset class="accordion-child">
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Project__c.Fields.Name.Label}</label><span class="required-label">*</span>
+                                                <div class="helpOrb tooltip">
+                                                    <span>Enter a descriptive Title for the item (e.g. one that might be used for a journal article)</span>
+                                                </div>       
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:inputField required="true" value="{!oStudy.Name}"></apex:inputField>
+                                                                          
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Project__c.Fields.Description__c.Label}</label><span class="required-label">*</span>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Description__c.inlinehelptext != NULL,true,false)}">
+                                                <div class="helpOrb tooltip">
+                                                    <span>{!$ObjectType.Project__c.Fields.Description__c.inlinehelptext}</span>
+                                                </div>          
+                                            </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:inputField required="true" value="{!oStudy.Description__c}" styleclass="required" />
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        </fieldset>
+                                </div>
+                            </section>
+                                        
+                                        <!---------------------------------------------------------Buttons Section---------------------------------------------------------------------------------------------->
+                            <section class="row submit">
+                                <div class="col-xs-12">
+                                    <apex:commandButton styleClass="button" value="Continue" action="{!save}" />
+                                </div>
+                            </section>
+                            <!---------------------------------------------------------Buttons Section---------------------------------------------------------------------------------------------->
+                        </apex:form>
+                    </apex:outputpanel>
+                    <!-------------------------------------------------------Study Creation Form Edit Outputpanel------------------------------------------------------------------------------------------------>
+
+                    <apex:outputpanel rendered="{!IF(AND($CurrentPage.parameters.id != NULL,$CurrentPage.parameters.isEdit=='true',bIsFirewall == FALSE),true,false)}">
+                        <apex:form id="editstudy" Styleclass="create-study-form accordion">
+                            <!---------------------------------------------------------Study Information Section------------------------------------------------------------------------------------>
+                            <!---------------------------------------------------------Buttons Section---------------------------------------------------------------------------------------------->
+                            <section class="row submit">
+                                <div class="col-xs-12">
+                                    <apex:commandButton action="{!save}" styleclass="submit-study button" value="Save" />
+                                    <apex:actionFunction name="doSubmit" rerender="error" oncomplete="return false;"/>
+                                    <apex:outputLink styleClass="button" value="/apex/Research_Topics?id={!$CurrentPage.parameters.id}&isEdit=false">Cancel</apex:outputLink>
+                                    <apex:outputpanel id="FeedbackButton1">
+                                    </apex:outputpanel>
+                                </div>
+                            </section>
+                            <!---------------------------------------------------------Buttons Section---------------------------------------------------------------------------------------------->
+                            <apex:outputPanel id="ResearchINfo">
+                            <section class="row">
+                               <!-- <div class="col-xs-12 "> REQUIRED FIELD</div>-->
+                            </section>
+                            <apex:outputPanel rendered="{!IF(AND(IsMember,oStudy.Project_Status__c !='Active'),true,false)}">
+                            <section class="row">
+                                <div class="col-xs-12">
+                                    <h2 class="accordion-parent">Research Topic Information
+                                    <span class="icon-large-caret pull-right down"></span></h2>
+                                    <fieldset class="accordion-child">
+                                      <apex:outputPanel id="StudyInformation">  
+                                        
+                    
+                                        
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Project__c.Fields.Name.Label}</label><span class="required-label">*</span> 
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Name.inlinehelptext != NULL,true,false)}">
+                                                <div class="helpOrb tooltip">
+                                                    <span>{!$ObjectType.Project__c.Fields.Name.inlinehelptext}</span>
+                                                </div>          
+                                            </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:inputField value="{!oStudy.Name}" styleclass="required"/>
+                                            </div>
+                                        </div>
+
+                                     </apex:outputPanel>  
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Project__c.Fields.Description__c.Label}</label><span class="required-label">*</span>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Description__c.inlinehelptext != NULL,true,false)}">
+                                                <div class="helpOrb tooltip">
+                                                    <span>{!$ObjectType.Project__c.Fields.Description__c.inlinehelptext}</span>
+                                                </div>          
+                                            </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:inputField value="{!oStudy.Description__c}" styleclass="required"/>
+                                            </div>
+                                        </div>
+                                     
+                                        
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Project__c.Fields.Research_Area__c.Label}</label><span class="required-label">*</span><apex:outputPanel rendered="{!If(oStudy.DataLoaded_TF__c==false,true,false)}">
+                                                <span class=""> </span></apex:outputPanel>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Research_Area__c.inlinehelptext != NULL,true,false)}">
+                                                <div class="helpOrb tooltip">
+                                                    <span>{!$ObjectType.Project__c.Fields.Research_Area__c.inlinehelptext}</span>
+                                                </div>          
+                                            </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper validate-if-enabled">
+                                                <apex:inputField value="{!oStudy.Research_Area__c}"/>
+                                            </div>
+                                        </div>
+                                        
+                                       <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>Does the Research Topic involve an internal compound?</label><span class="required-label">*</span><apex:outputPanel rendered="{!If(oStudy.DataLoaded_TF__c==false,true,false)}">
+                                                <span class=""> </span></apex:outputPanel>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Is_Molecule__c.inlinehelptext != NULL,true,false)}">
+                                                <div class="helpOrb tooltip">
+                                                    <span>{!$ObjectType.Project__c.Fields.Is_Molecule__c.inlinehelptext}</span>
+                                                </div>          
+                                            </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:inputField value="{!oStudy.Is_Molecule__c}" styleclass="required">
+                                                    <apex:actionSupport event="onchange" rerender="moleculessection,ResearchTeamMembers,ResearchINfo,ResearchPlan,ResearchExecution,LandscapeSection,ResearchPublications" oncomplete="df_drdw.createStudy.nonLookupMoleculeHandler(); df_drdw.createStudy.accordion();" />
+                                                </apex:inputField>
+                                            </div>
+                                        </div>
+                                       
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Project__c.Fields.Target_Audience__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Target_Audience__c.inlinehelptext != NULL,true,false)}">
+                                                <div class="helpOrb tooltip">
+                                                    <span>{!$ObjectType.Project__c.Fields.Target_Audience__c.inlinehelptext}</span>
+                                                </div>          
+                                            </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:inputField value="{!oStudy.Target_Audience__c}" />
+                                            </div>
+                                        </div>  
+                                       
+                                        
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>Primary Purpose of this Research Topic</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Primary_Purpose__c.inlinehelptext != NULL,true,false)}">
+                                                <div class="helpOrb tooltip">
+                                                    <span>{!$ObjectType.Project__c.Fields.Primary_Purpose__c.inlinehelptext}</span>
+                                                </div>          
+                                            </apex:outputpanel>
+                                            </div> 
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:inputField value="{!oStudy.Primary_Purpose__c}" />
+                                            </div>
+                                        </div> 
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>What is the objective for this Research Topic?</label><span class="required-label">*</span>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.What_is_the_objective_of_this_study__c.inlinehelptext != NULL,true,false)}">
+                                                <div class="helpOrb tooltip">
+                                                    <span>{!$ObjectType.Project__c.Fields.What_is_the_objective_of_this_study__c.inlinehelptext}</span>
+                                                </div>          
+                                            </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:inputField value="{!oStudy.What_is_the_objective_of_this_study__c}" styleclass="required"/> 
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                        <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Project__c.Fields.Therapeutic_Area_Primary__c.Label}</label><apex:outputPanel rendered="{!If(AND(oStudy.DataLoaded_TF__c==false,oStudy.Project_Status__c != 'Cancelled',oStudy.Project_Status__c != 'On Hold'),true,false)}">
+                                                <span class=""> </span></apex:outputPanel> 
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Therapeutic_Area_Primary__c.inlinehelptext != NULL,true,false)}">
+                                                <div class="helpOrb tooltip">
+                                                    <span>{!$ObjectType.Project__c.Fields.Therapeutic_Area_Primary__c.inlinehelptext}</span>
+                                                </div>          
+                                            </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:inputField value="{!oStudy.Therapeutic_Area_Primary__c}" styleClass="{!If(AND(oStudy.DataLoaded_TF__c==false,oStudy.Project_Status__c != 'Cancelled',oStudy.Project_Status__c != 'On Hold'),'','')}" />
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Project__c.Fields.Business_Unit_Primary__c.Label}</label><apex:outputPanel rendered="{!If(AND(oStudy.DataLoaded_TF__c==false,oStudy.Project_Status__c != 'Cancelled',oStudy.Project_Status__c != 'On Hold'),true,false)}">
+                                                <span class=""> </span></apex:outputPanel> 
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Business_Unit_Primary__c.inlinehelptext != NULL,true,false)}">
+                                                <div class="helpOrb tooltip">
+                                                    <span>{!$ObjectType.Project__c.Fields.Business_Unit_Primary__c.inlinehelptext}</span>
+                                                </div>          
+                                            </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:inputField value="{!oStudy.Business_Unit_Primary__c}" styleClass="{!If(AND(oStudy.DataLoaded_TF__c==false,oStudy.Project_Status__c != 'Cancelled',oStudy.Project_Status__c != 'On Hold'),'','')}" />
+                                            </div>
+                                        </div>  
+                                        
+
+                                    </fieldset>                                                                               
+                                </div>
+                            </section>
+                            </apex:outputPanel>
+                            </apex:outputPanel>
+                            <!-------------------------------------------------------------Research Topic Plan----------------------------------------------------->
+                             <apex:outputPanel id="ResearchPlan">
+                             <section class="row">
+                               <!-- <div class="col-xs-12 "> REQUIRED FIELD</div>-->
+                            </section>
+                            <section class="row">
+                                <div class="col-xs-12">
+                                    <h2 class="accordion-parent">Research Topic Plan
+                                    <span class="icon-large-caret pull-right down"></span></h2>
+                                    <fieldset class="accordion-child">
+                                      <apex:outputPanel id="StudyDetails"> 
+                                      
+                                      <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>Topic Lead/Owner</label><apex:outputPanel rendered="{!If(AND(oStudy.DataLoaded_TF__c==false,oStudy.Project_Status__c != 'Cancelled',oStudy.Project_Status__c != 'On Hold'),true,false)}">
+                                                <span class=""> </span></apex:outputPanel> 
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper hide-user-select">
+                                                <apex:inputField value="{!oStudy.OwnerId}" styleClass="{!If(AND(oStudy.DataLoaded_TF__c==false,oStudy.Project_Status__c != 'Cancelled',oStudy.Project_Status__c != 'On Hold'),'select-based-lookup','')}" />
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>Project Lead</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Project_Manager__c.inlinehelptext != NULL,true,false)}">
+                                                <div class="helpOrb tooltip">
+                                                    <span>{!$ObjectType.Project__c.Fields.Project_Manager__c.inlinehelptext}</span>
+                                                </div><span class=""> </span>          
+                                            </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper hide-user-select ">
+                                                <apex:inputField value="{!oStudy.Project_Manager__c}" styleClass="select-based-lookup"/>
+                                            </div>
+                                        </div> 
+                                        <apex:outputPanel rendered="{!if(oStudy.Project_Status__c == 'Active',true,false)}"> 
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Project__c.Fields.Research_Topic_Status__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Research_Topic_Status__c.inlinehelptext != NULL,true,false)}">
+                                                <div class="helpOrb tooltip">
+                                                    <span>{!$ObjectType.Project__c.Fields.Research_Topic_Status__c.inlinehelptext}</span>
+                                                </div>          
+                                            </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:inputField value="{!oStudy.Research_Topic_Status__c}">
+                                                </apex:inputField>
+                                            </div>
+                                        </div> 
+                                        </apex:outputPanel>
+
+                                        
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Project__c.Fields.Anticipated_Start_Date__c.Label}</label><apex:outputPanel rendered="{!If(AND(oStudy.DataLoaded_TF__c==false,oStudy.Project_Status__c != 'Cancelled',oStudy.Project_Status__c != 'On Hold'),true,false)}">
+                                                <span class=""> </span></apex:outputPanel> 
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Anticipated_Start_Date__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip">
+                                                        <span>{!$ObjectType.Project__c.Fields.Anticipated_Start_Date__c.inlinehelptext}</span>
+                                                    </div>          
+                                                </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:inputField value="{!oStudy.Anticipated_Start_Date__c}" styleClass="{!If(AND(oStudy.DataLoaded_TF__c==false,oStudy.Project_Status__c != 'Cancelled',oStudy.Project_Status__c != 'On Hold'),'','')}" />
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Project__c.Fields.Anticipated_End_Date__c.Label}</label><apex:outputPanel rendered="{!If(AND(oStudy.DataLoaded_TF__c==false,oStudy.Project_Status__c != 'Cancelled',oStudy.Project_Status__c != 'On Hold'),true,false)}">
+                                                <span class=""> </span></apex:outputPanel> 
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Anticipated_End_Date__c.inlinehelptext != NULL,true,false)}">
+                                                <div class="helpOrb tooltip">
+                                                    <span>{!$ObjectType.Project__c.Fields.Anticipated_End_Date__c.inlinehelptext}</span>
+                                                </div>          
+                                            </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:inputField value="{!oStudy.Anticipated_End_Date__c}" styleClass="{!If(AND(oStudy.DataLoaded_TF__c==false,oStudy.Project_Status__c != 'Cancelled',oStudy.Project_Status__c != 'On Hold'),'','')}" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Project__c.Fields.Actual_Start_Date__c.Label}</label><apex:outputPanel rendered="{!If(AND(oStudy.DataLoaded_TF__c==false,OR(oStudy.Project_Status__c == 'Active',oStudy.Project_Status__c == 'Completed',oStudy.Project_Status__c == 'Closed')),true,false)}">
+                                                <span class=""> </span></apex:outputPanel>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Actual_Start_Date__c.inlinehelptext != NULL,true,false)}">
+                                                <div class="helpOrb tooltip">
+                                                    <span>{!$ObjectType.Project__c.Fields.Actual_Start_Date__c.inlinehelptext}</span>
+                                                </div>          
+                                            </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:inputField value="{!oStudy.Actual_Start_Date__c}" styleClass="{!If(AND(oStudy.DataLoaded_TF__c==false,OR(oStudy.Project_Status__c == 'Active',oStudy.Project_Status__c == 'Completed',oStudy.Project_Status__c == 'Closed')),'','')}" />
+                                            </div>
+                                        </div> 
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Project__c.Fields.Actual_End_Date__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Actual_End_Date__c.inlinehelptext != NULL,true,false)}">
+                                                <div class="helpOrb tooltip">
+                                                    <span>{!$ObjectType.Project__c.Fields.Actual_End_Date__c.inlinehelptext}</span>
+                                                </div>          
+                                            </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:inputField value="{!oStudy.Actual_End_Date__c}" />
+                                            </div>
+                                        </div> 
+                                        </apex:outputpanel>
+                                    </fieldset>
+                                </div>
+                            </section> 
+                            </apex:outputPanel>
+                           
+ <!-- -------------------------------------------------------Research Topic Execution Approach------------------------------------------------------------------------------- -->
+                            <apex:outputPanel id="ResearchExecution">
+                            <apex:outputPanel rendered="{!IF(AND(IsMember,oStudy.Project_Status__c !='Active'),true,false)}">
+                            <section class="row">
+                                <div class="col-xs-12">
+                                    <h2 class="accordion-parent">Research Topic Execution Approach
+                                    <span class="icon-large-caret pull-right down"></span></h2>
+                                    <fieldset class="accordion-child">
+                                        <apex:outputPanel id="ExecutionApproach">
+                                        <apex:actionregion >
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Project__c.Fields.Will_be_Topic_be_executed_internally__c.Label}</label><apex:outputPanel rendered="{!If(AND(oStudy.DataLoaded_TF__c==false,OR(oStudy.Project_Status__c == 'Active',oStudy.Project_Status__c == 'Approved',oStudy.Project_Status__c == 'Completed',oStudy.Project_Status__c == 'Closed')),true,false)}">
+                                                <span class=""> </span></apex:outputPanel>
+                                                 <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Will_be_Topic_be_executed_internally__c.inlinehelptext != NULL,true,false)}">
+                                                <div class="helpOrb tooltip">
+                                                    <span>{!$ObjectType.Project__c.Fields.Will_be_Topic_be_executed_internally__c.inlinehelptext}</span>
+                                                </div>          
+                                            </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:inputField value="{!oStudy.Will_be_Topic_be_executed_internally__c}">
+                                                    <apex:actionSupport event="onchange" rerender="TPO_Execution_Function"/>
+                                                </apex:inputField>
+                                            </div>
+                                        </div>
+                                        
+                                        <apex:outputpanel id="TPO_Execution_Function">
+                                            <apex:outputpanel rendered="{!IF(oStudy.Will_be_Topic_be_executed_internally__c=='No',true,false)}">
+                                            <div class="row">
+                                                <div class="col-xs-6 label-wrapper">
+                                                    <label>{!$ObjectType.Project__c.Fields.TPO_Location__c.Label}</label><apex:outputPanel rendered="{!If(AND(oStudy.DataLoaded_TF__c==false,OR(oStudy.Project_Status__c == 'Closed',oStudy.Project_Status__c == 'Completed')),true,false)}">
+                                                    <span class=""> </span></apex:outputPanel>
+                                                    <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.TPO_Location__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip">
+                                                        <span>{!$ObjectType.Project__c.Fields.TPO_Location__c.inlinehelptext}</span>
+                                                    </div>          
+                                                </apex:outputpanel>
+                                                </div>
+                                                <div class="col-xs-6 field-wrapper">
+                                                    <apex:inputField value="{!oStudy.TPO_Location__c}" />
+                                                </div>
+                                            </div>   
+                                        </apex:outputpanel>
+                                        
+                                        <apex:outputpanel rendered="{!IF(oStudy.Will_be_Topic_be_executed_internally__c=='Yes',true,false)}">
+                                            <div class="row">
+                                                <div class="col-xs-6 label-wrapper">
+                                                    <label>{!$ObjectType.Project__c.Fields.Execution_Function__c.Label}</label><apex:outputPanel rendered="{!If(AND(oStudy.DataLoaded_TF__c==false,OR(oStudy.Project_Status__c == 'Closed',oStudy.Project_Status__c == 'Completed')),true,false)}">
+                                                    <span class=""> </span></apex:outputPanel>
+                                                    <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Execution_Function__c.inlinehelptext != NULL,true,false)}">
+                                                    <div class="helpOrb tooltip">
+                                                        <span>{!$ObjectType.Project__c.Fields.Execution_Function__c.inlinehelptext}</span>
+                                                    </div>          
+                                                </apex:outputpanel>
+                                                </div>
+                                                <div class="col-xs-6 field-wrapper">
+                                                    <apex:inputField value="{!oStudy.Execution_Function__c}"/>
+                                                </div>
+                                            </div>   
+                                        </apex:outputpanel>
+                                        </apex:outputpanel>
+                                        </apex:actionregion>
+                                        
+                                        </apex:outputPanel>
+                                    </fieldset>
+                                </div>
+                            </section>
+                            </apex:outputPanel>
+                            </apex:outputPanel>
+                            <!----------------------------------------------------------Molecule Section--------------------------------------------------------------------------------- -->                      
+                            <apex:outputPanel id="moleculessection">
+                            <section class="row">
+                                     <apex:outputpanel rendered="{!if(oStudy.Is_Molecule__c== 'Yes',true,false)}">
+                                     <div class="col-xs-12">
+                                    <h2 class="accordion-parent">Molecules
+                                    <!-- HELP ORB Markup HERE -->
+                                    <span class="helpOrb tooltip">
+                                        <span>Use this field to associate a related Molecule to the Research Topic.</span>
+                                    </span>
+                                    <span class="icon-large-caret pull-right down"></span></h2>
+                                    <fieldset class="accordion-child">
+                                    <apex:outputpanel id="MoleculesError"><apex:outputpanel rendered="{!isMoleculeError}"><div class="sfdc-errorMessage font-s">
+                                        <apex:pagemessages escape="false"></apex:pagemessages>
+                                    </div></apex:outputpanel></apex:outputpanel>
+                                        <div class="accordion-content">
+                                            <!-- Add new team member section starts -->
+                                            <fieldset class="add-new-item">
+                                                <legend>Add Molecule
+                                                <apex:outputPanel rendered="{!If(AND(oStudy.DataLoaded_TF__c==false,oStudy.Is_Molecule__c=='Yes'),true,false)}">
+                                                    <span class=""> </span>
+                                                </apex:outputPanel>
+                                                
+                                                </legend>
+                                                
+                                                <apex:inputField value="{!oMolecule.Molecule__c}" required="false" styleClass="{!If(AND(oStudy.DataLoaded_TF__c==false,oStudy.Is_Molecule__c=='Yes',lStudyMolecules.size==0),'looked-up-molecule','')}" />                    
+                                                <apex:commandButton styleClass="btn button" value="Add" action="{!AddMolecule}" rerender="theMolTable,noMolecules,MoleculesError" />
+                                                
+                                            </fieldset>
+                                            <!-- Add new team member section ends -->
+                                            
+                                            <!-- Iteration unit starts -->
+                                            <apex:outputpanel id="theMolTable">
+                                            <apex:outputpanel rendered="{!lStudyMolecules.size>0}">
+                                            <apex:repeat value="{!lStudyMolecules}" var="oMember">
+                                            <div class="custom-data-row">                                               
+                                                <span class="content"><apex:outputLink value="/{!oMember.Id}">{!oMember.Molecule__r.name}</apex:outputLink></span>
+                                                <apex:commandlink styleclass="remove-custom-data-row" value="remove" action="{!RemoveMolecule}" rerender="theMolTable,noMolecules,MoleculesError">
+                                                    <apex:param name="teamMember" value="{!oMember.Molecule__c}" assignTo="{!teamMember}" />
+                                                </apex:commandlink>
+                                                
+                                                
+                                            </div>
+                                            </apex:repeat>
+                                            </apex:outputpanel>
+                                            </apex:outputpanel>
+                                            
+                                            <apex:outputpanel id="noMolecules">
+                                            <apex:outputpanel rendered="{!lStudyMolecules.size==0}">
+                                            <span class="content"><strong>No Molecules</strong></span>
+                                            </apex:outputpanel>
+                                            </apex:outputpanel>                                            
+                                        </div>
+                                        </fieldset>
+                                        </div>
+                                        </apex:outputpanel>
+                                        </section>
+                                         </apex:outputpanel>
+                            <!----------------------------------------------------------Information Landscape Section--------------------------------------------------------------------------------- -->                      
+                            <apex:outputPanel id="LandscapeSection">
+                            <section class="row">
+                            <apex:outputPanel rendered="{!IF($CurrentPage.parameters.Id==NULL,false,true)}">
+                                <div class="col-xs-12">
+                                    <h2 class="accordion-parent">Related Information Source(s)
+                                    <!-- HELP ORB Markup HERE -->
+                                    <span class="helpOrb tooltip">
+                                        <span>Use this field to associate a related Information Source(s) to the Research Study/Research Topic.</span>
+                                    </span>
+                                    <span class="icon-large-caret pull-right down"></span></h2>
+                                    <apex:actionregion >
+                                    <fieldset class="accordion-child">
+                                    <apex:outputpanel id="RelLandscapeError">
+                                    <apex:outputpanel rendered="{!isLandscapeError}"> 
+                                    <div class="sfdc-errorMessage font-s">
+                                        <apex:pagemessages escape="false"></apex:pagemessages>
+                                    </div>
+                                    </apex:outputpanel>
+                                    </apex:outputpanel>
+                                        <div class="accordion-content">
+                                            <!-- Add new Related Information Landscape section starts -->
+                                            <fieldset class="add-new-item">
+                                                <legend>Add Related Information Source(s)</legend>
+                                                <apex:inputField value="{!oRelatedLandscape.Information_Landscape__c}" required="false" />                    
+                                                <apex:commandButton styleClass="btn button" value="Add" action="{!AddLandscape}" rerender="relLandscapeTable,noRelLandscape,RelLandscapeError,FeedbackButton1,FeedbackButton2" />
+                                            </fieldset>
+                                            <!-- Add new Related Information Landscape section ends -->
+
+                                            <!-- Iteration unit starts -->
+                                            <apex:outputpanel id="relLandscapeTable">
+                                            <apex:outputpanel rendered="{!lLandscape.size>0}">
+                                            <apex:repeat value="{!lLandscape}" var="oMember">
+                                            <div class="custom-data-row">
+                                                <span class="content"><apex:outputLink value="/{!oMember.Id}">{!oMember.Information_Landscape__r.name}</apex:outputLink></span>
+                                                <apex:commandlink styleclass="remove-custom-data-row" value="remove" action="{!RemoveLandscape}" rerender="relLandscapeTable,noRelLandscape,RelLandscapeError,FeedbackButton1,FeedbackButton2">
+                                                    <apex:param name="teamMember" value="{!oMember.Information_Landscape__c}" assignTo="{!teammember}" />
+                                                </apex:commandlink>
+                                            </div>
+                                            </apex:repeat>
+                                            </apex:outputpanel>
+                                            </apex:outputpanel>
+                                            
+                                            <apex:outputpanel id="noRelLandscape">
+                                            <apex:outputpanel rendered="{!lLandscape.size==0}">
+                                            <span class="content"><strong>No Related Information Source(s)</strong></span>
+                                            </apex:outputpanel>
+                                            </apex:outputpanel>
+                                                  
+                                        </div>
+                                    </fieldset>
+                                    </apex:actionregion>
+                                </div>
+                            </apex:outputPanel>
+                            </section>
+                            </apex:outputPanel>
+                            <!-- -------------------------------------------------------Publications & Deliverables Section------------------------------------------------------------------------------- -->
+                            <apex:outputPanel id="ResearchPublications">
+                            <section class="row">
+                                <div class="col-xs-12">
+                                    <h2 class="accordion-parent">Publications and Deliverables
+                                    <!-- HELP ORB Markup HERE -->
+                                    <span class="helpOrb tooltip">
+                                        <span>Indicate any deliverables that will be associated with the Research Topic by selecting the appropriate item(s).  In order to close a Study, if an item is checked,  a link to the source document will be required.</span>
+                                    </span>
+                                    <span class="icon-large-caret pull-right down"></span></h2>
+                                    <fieldset class="accordion-child">
+                                    <apex:actionRegion >
+                                    <apex:outputPanel id="PublicationsAndDeliverables">
+                                    <apex:actionRegion >
+                                    
+                                        <table class="publications-deliverables-table table table-bordered table-hover table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th class="col-xs-1">Select</th>
+                                                    <th class="col-xs-3">Deliverable Name</th>
+                                                    <th class="col-xs-3">Description<span class="helpOrb tooltip">
+                                                    <span>Use the enter key to add descriptions on a new line.</span>
+                                                    </span></th>
+                                                    <th class="col-xs-5">URL(s) <span class="helpOrb tooltip">
+                                                        <span>Please add comma separated URLs if you are adding more than one.</span>
+                                                    </span>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr style="display:{!IF(oStudy.Classification__c == 'Research Project' , 'None', '')}">
+                                                    <td><apex:inputField styleclass="sufficiently-required-checkbox" value="{!oStudy.Research_Topic_Report__c}">
+                                                                <apex:actionSupport event="onchange" rerender="ResearchURL,ResearchURL2,PublicationsAndDeliverables" />
+                                                        </apex:inputfield>
+                                                    </td>
+                                                    <td><label>{!$ObjectType.Project__c.Fields.Research_Topic_Report__c.Label}</label>
+                                                        <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Research_Topic_Report__c.inlinehelptext != NULL,true,false)}">
+                                                            <div class="helpOrb tooltip">
+                                                                <span>{!$ObjectType.Project__c.Fields.Research_Topic_Report__c.inlinehelptext}</span>
+                                                            </div>          
+                                                        </apex:outputpanel>
+                                                    </td>
+                                                    <td><apex:outputPanel id="ResearchURL">
+                                                        <apex:outputPanel rendered="{!oStudy.Research_Topic_Report__c}">
+                                                        <apex:inputField value="{!oStudy.Research_Topic_Report_Description__c}" styleClass="col-xs-12"/>
+                                                        </apex:outputPanel>
+                                                        </apex:outputPanel>
+                                                    </td>
+                                                    <td><apex:outputPanel id="ResearchURL2">
+                                                        <apex:outputPanel rendered="{!oStudy.Research_Topic_Report__c}">
+                                                        <apex:inputField value="{!oStudy.Research_Topic_Report_URL__c}" styleClass="{!If(AND(oStudy.DataLoaded_TF__c==false,oStudy.Final_Protocol_checkbox__c==true,oStudy.Project_Status__c == 'Completed'),'col-xs-12','col-xs-12')}"/>
+                                                        </apex:outputPanel>
+                                                        </apex:outputPanel>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><apex:inputField styleclass="sufficiently-required-checkbox" value="{!oStudy.Data_Collection_Form__c}">
+                                                                <apex:actionSupport event="onchange" rerender="DataAnalysisURL,DataAnalysisURL2" />
+                                                        </apex:inputfield>
+                                                    </td>
+                                                    <td><label>{!$ObjectType.Project__c.Fields.Data_Collection_Form__c.Label}</label>
+                                                        <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Data_Collection_Form__c.inlinehelptext != NULL,true,false)}">
+                                                            <div class="helpOrb tooltip">
+                                                                <span>{!$ObjectType.Project__c.Fields.Data_Collection_Form__c.inlinehelptext}</span>
+                                                            </div>          
+                                                        </apex:outputpanel>
+                                                    </td>
+                                                    <td><apex:outputPanel id="DataAnalysisURL">
+                                                        <apex:outputPanel rendered="{!oStudy.Data_Collection_Form__c}">
+                                                        <apex:inputField value="{!oStudy.Data_Collection_Form_Description__c}" styleClass="col-xs-12"/>
+                                                        </apex:outputPanel>
+                                                        </apex:outputPanel>
+                                                    </td>
+                                                    <td><apex:outputPanel id="DataAnalysisURL2">
+                                                        <apex:outputPanel rendered="{!oStudy.Data_Collection_Form__c}">
+                                                        <apex:inputField value="{!oStudy.Data_Collection_Form_URL__c}" styleClass="{!If(AND(oStudy.DataLoaded_TF__c==false,oStudy.Data_Collection_Form__c==true,oStudy.Project_Status__c == 'Closed'),'col-xs-12','col-xs-12')}"/>
+                                                        </apex:outputPanel>
+                                                        </apex:outputPanel>
+                                                    </td>
+                                                </tr>                                           
+                                                <tr>
+                                                    <td><apex:inputField styleclass="sufficiently-required-checkbox" value="{!oStudy.Other__c}">
+                                                                <apex:actionSupport event="onchange" rerender="OtherURL,OtherURL2" />
+                                                        </apex:inputfield>
+                                                    </td>
+                                                    <td><label>{!$ObjectType.Project__c.Fields.Other__c.Label}</label>
+                                                        <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Other__c.inlinehelptext != NULL,true,false)}">
+                                                            <div class="helpOrb tooltip">
+                                                                <span>{!$ObjectType.Project__c.Fields.Other__c.inlinehelptext}</span>
+                                                            </div>          
+                                                        </apex:outputpanel>
+                                                    </td>
+                                                    <td><apex:outputPanel id="OtherURL">
+                                                        <apex:outputPanel rendered="{!oStudy.Other__c}">
+                                                        <apex:inputField value="{!oStudy.Other_Description__c}" styleClass="col-xs-12"/>
+                                                        </apex:outputPanel>
+                                                        </apex:outputPanel>
+                                                    </td>
+                                                    <td><apex:outputPanel id="OtherURL2">
+                                                        <apex:outputPanel rendered="{!oStudy.Other__c}">
+                                                        <apex:inputField value="{!oStudy.Other_URL__c}" styleClass="{!If(AND(oStudy.DataLoaded_TF__c==false,oStudy.Other__c==true,oStudy.Project_Status__c == 'Closed'),'col-xs-12','col-xs-12')}"/>
+                                                        </apex:outputPanel>
+                                                        </apex:outputPanel>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        </apex:actionRegion>
+                                        </apex:outputPanel>
+                                       </apex:actionRegion>
+                                    </fieldset>
+                                </div>
+                            </section>
+                            </apex:outputPanel>
+<!-- -------------------------------------------------------Study Team Members Section--------------------------------------------------------------------------------- -->                      
+                             <apex:outputPanel id="ResearchTeamMembers">
+                            <section class="row">
+                                <div class="col-xs-12">
+                                    <h2 class="accordion-parent">Team Members
+                                    <!-- HELP ORB Markup HERE -->
+                                    <span class="helpOrb tooltip">
+                                        <span>Whoever needs to have “Edit” access to the Study record or associated Checklist should be added to this section.</span>
+                                    </span>
+                                    <span class="icon-large-caret pull-right down"></span>
+                                    </h2>
+                                    <apex:actionregion >
+                                    <fieldset class="accordion-child">
+                                    <apex:outputpanel id="StudyTeamErr">
+                                        <apex:outputpanel rendered="{!isStudyTeamError}">
+                                            <div class="sfdc-errorMessage font-s">
+                                                <apex:pagemessages escape="false"></apex:pagemessages>
+                                            </div>
+                                        </apex:outputpanel>
+                                    </apex:outputpanel>
+                                         <div class="accordion-content">
+                                            <!-- Add new team member section starts -->
+                                            <fieldset class="add-new-item">
+                                                <legend>Add team member</legend>
+                                                <apex:inputField value="{!oProjectShare.UserOrGroupId}" required="false" />                    
+                                                <apex:commandButton styleClass="btn button" value="Add" action="{!AddStudyTeamMember}" rerender="theTable,StudyTeamErr,noMembers" />
+                                                
+                                            </fieldset>
+                                            <!-- Add new team member section ends -->
+                                            
+                                             <!-- Iteration unit starts -->
+                                            <apex:outputpanel id="theTable">
+                                            <apex:outputpanel rendered="{!lStudyTeamMembers.size>0}">
+                                            <apex:repeat value="{!lStudyTeamMembers}" var="oMember">
+                                            <div class="custom-data-row">
+                                                <span class="content"><apex:outputLink value="/{!oMember.Id}">{!oMember.Name}</apex:outputLink></span>
+                                                <apex:commandlink value="remove" styleclass="remove-custom-data-row" action="{!RemoveStudyTeamMember}" rerender="theTable,noMembers">
+                                                    <apex:param name="teamMember" value="{!oMember.id}" assignTo="{!teamMember}" />
+                                                </apex:commandlink>
+                                           </div>
+                                           
+                                            </apex:repeat>
+                                            </apex:outputpanel>
+                                            </apex:outputpanel>
+                                            
+                                            <apex:outputpanel id="noMembers">
+                                            <apex:outputpanel rendered="{!lStudyTeamMembers.size==0}">
+                                            <span class="content"><strong>No Team Members</strong></span>
+                                            </apex:outputpanel>
+                                            </apex:outputpanel>
+                                            
+                                        </div>
+                                        
+                                    </fieldset>
+                                    </apex:actionregion>
+                                </div>
+                            </section>
+                            </apex:outputPanel>
+                            <!---------------------------------------------------------Buttons Section---------------------------------------------------------------------------------------------->
+                            <section class="row submit">
+                                <div class="col-xs-12">
+                                    <apex:commandButton action="{!save}" styleclass="submit-study button" value="Save" />
+                                    <apex:actionFunction name="doSubmit" rerender="error" oncomplete="return false;"/>
+                                    <apex:outputLink styleClass="button" value="/apex/Research_Topics?id={!$CurrentPage.parameters.id}&isEdit=false">Cancel</apex:outputLink>
+                                    <apex:outputpanel id="FeedbackButton2">
+                                    </apex:outputpanel>
+                                </div>
+                            </section>
+                            <!---------------------------------------------------------Buttons Section---------------------------------------------------------------------------------------------->
+                        </apex:form>
+                    </apex:outputpanel>
+                    <!-------------------------------------------------------End of Study Creation Form Edit Output Panel------------------------------------------------------------------------------------------------>
+
+
+
+                    <!-------------------------------------------------------Saved Study Creation Form Outputpanel------------------------------------------------------------------------------------------------>
+                    <apex:outputpanel rendered="{!IF(AND($CurrentPage.parameters.id != NULL,OR($CurrentPage.parameters.isEdit=='false',$CurrentPage.parameters.isEdit==NULL),bIsFirewall == FALSE),true,false)}">
+                        <chatter:feedWithFollowers entityId="{!$CurrentPage.parameters.id}"/> 
+                        <apex:form Styleclass="create-study-form accordion">
+                        
+                        <!---------------------------------------------------------Buttons Section on the top---------------------------------------------------------------------------------------------->
+                            <section class="row submit">
+                                <div class="col-xs-12">
+                                    <apex:commandButton styleClass="button" value="Edit" action="{!EditRecordResearch}"  rendered="{!If(AND(IsMember,oStudy.Research_Topic_Status__c == NULL),true,false)}"/>
+                                    <apex:outputPanel rendered="{!IF(AND(IsMember,oStudy.Project_Status__c =='In Progress'),true,false)}">
+                                        <apex:commandButton styleClass="btn button" value="Activate Research Topic" action="{!UpdateRecordResearchStatus}"/>
+                                    </apex:outputPanel>
+                                </div>
+                            </section>
+                            
+                            <!---------------------------------------------------------Research Topic Information------------------------------------------------------------------------------------>
+
+                            <section class="row">
+                                <div class="col-xs-12">
+                                    <h2 class="accordion-parent">Research Topic Information
+                                    <span class="icon-large-caret pull-right down"></span></h2>
+                                    <fieldset class="accordion-child">
+                                    
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Project__c.Fields.Name.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Name.inlinehelptext != NULL,true,false)}">
+                                                <div class="helpOrb tooltip">
+                                                    <span>{!$ObjectType.Project__c.Fields.Name.inlinehelptext}</span>
+                                                </div>          
+                                            </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oStudy.Name}" />
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Project__c.Fields.Description__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Description__c.inlinehelptext != NULL,true,false)}">
+                                                <div class="helpOrb tooltip">
+                                                    <span>{!$ObjectType.Project__c.Fields.Description__c.inlinehelptext}</span>
+                                                </div>          
+                                            </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oStudy.Description__c}" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Project__c.Fields.Research_Area__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Research_Area__c.inlinehelptext != NULL,true,false)}">
+                                                <div class="helpOrb tooltip">
+                                                    <span>{!$ObjectType.Project__c.Fields.Research_Area__c.inlinehelptext}</span>
+                                                </div>          
+                                            </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oStudy.Research_Area__c}" />
+                                            </div>
+                                        </div>
+                                        <apex:actionregion >
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>Does the Research Topic involve an internal compound?</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Is_Molecule__c.inlinehelptext != NULL,true,false)}">
+                                                <div class="helpOrb tooltip">
+                                                    <span>{!$ObjectType.Project__c.Fields.Is_Molecule__c.inlinehelptext}</span>
+                                                </div>          
+                                            </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oStudy.Is_Molecule__c}" />
+                                            </div>
+                                        </div>
+                                     
+                                    </apex:actionregion>   
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Project__c.Fields.Target_Audience__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Target_Audience__c.inlinehelptext != NULL,true,false)}">
+                                                <div class="helpOrb tooltip">
+                                                    <span>{!$ObjectType.Project__c.Fields.Target_Audience__c.inlinehelptext}</span>
+                                                </div>          
+                                            </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputField value="{!oStudy.Target_Audience__c}" />
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>Primary Purpose of this Research Topic</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Primary_Purpose__c.inlinehelptext != NULL,true,false)}">
+                                                <div class="helpOrb tooltip">
+                                                    <span>{!$ObjectType.Project__c.Fields.Primary_Purpose__c.inlinehelptext}</span>
+                                                </div>          
+                                            </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputField value="{!oStudy.Primary_Purpose__c}" />
+                                            </div>
+                                        </div>
+                                
+                                        <apex:outputPanel rendered="{!If(oStudy.Classification__c != 'Research Project',true,false)}">
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>What is the objective for this Research Topic?</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.What_is_the_objective_of_this_study__c.inlinehelptext != NULL,true,false)}">
+                                                <div class="helpOrb tooltip">
+                                                    <span>{!$ObjectType.Project__c.Fields.What_is_the_objective_of_this_study__c.inlinehelptext}</span>
+                                                </div>          
+                                            </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputField value="{!oStudy.What_is_the_objective_of_this_study__c}" />
+                                            </div>
+                                        </div>
+                                        </apex:outputPanel>
+                                        
+                                        
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Project__c.Fields.Therapeutic_Area_Primary__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Therapeutic_Area_Primary__c.inlinehelptext != NULL,true,false)}">
+                                                <div class="helpOrb tooltip">
+                                                    <span>{!$ObjectType.Project__c.Fields.Therapeutic_Area_Primary__c.inlinehelptext}</span>
+                                                </div>          
+                                            </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputField value="{!oStudy.Therapeutic_Area_Primary__c}" />
+                                            </div>
+                                        </div>
+                                       
+
+                                        
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Project__c.Fields.Business_Unit_Primary__c .Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Business_Unit_Primary__c .inlinehelptext != NULL,true,false)}">
+                                                <div class="helpOrb tooltip">
+                                                    <span>{!$ObjectType.Project__c.Fields.Business_Unit_Primary__c.inlinehelptext}</span>
+                                                </div>          
+                                            </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputField value="{!oStudy.Business_Unit_Primary__c}" />
+                                            </div>
+                                        </div>
+
+                                        
+                                    </fieldset>
+                                </div>
+                            </section>                           
+                            <!-- -------------------------------------------------------Research Topic Plan------------------------------------------------------------------------------- -->
+                            <section class="row">
+                                <div class="col-xs-12">
+                                    <h2 class="accordion-parent">Research Topic Plan
+                        <span class="icon-large-caret pull-right down"></span></h2>
+                                    <fieldset class="accordion-child">
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>Topic Lead/Owner</label>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oStudy.OwnerId}" />
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>Project Lead</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Project_Manager__c.inlinehelptext != NULL,true,false)}">
+                                                <div class="helpOrb tooltip">
+                                                    <span>{!$ObjectType.Project__c.Fields.Project_Manager__c.inlinehelptext}</span>
+                                                </div>          
+                                            </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oStudy.Project_Manager__c}" />
+                                            </div>
+                                        </div>
+                                        <apex:outputPanel rendered="{!if(oStudy.Project_Status__c == 'Active',true,false)}"> 
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Project__c.Fields.Research_Topic_Status__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Research_Topic_Status__c.inlinehelptext != NULL,true,false)}">
+                                                <div class="helpOrb tooltip">
+                                                    <span>{!$ObjectType.Project__c.Fields.Research_Topic_Status__c.inlinehelptext}</span>
+                                                </div>          
+                                            </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oStudy.Research_Topic_Status__c}" />
+                                            </div>
+                                        </div>
+                                        </apex:outputpanel>
+
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Project__c.Fields.Anticipated_Start_Date__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Anticipated_Start_Date__c.inlinehelptext != NULL,true,false)}">
+                                                <div class="helpOrb tooltip">
+                                                    <span>{!$ObjectType.Project__c.Fields.Anticipated_Start_Date__c.inlinehelptext}</span>
+                                                </div>          
+                                            </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                            <apex:outputfield value="{!oStudy.Anticipated_Start_Date__c}" />
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Project__c.Fields.Anticipated_End_Date__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Anticipated_End_Date__c.inlinehelptext != NULL,true,false)}">
+                                                <div class="helpOrb tooltip">
+                                                    <span>{!$ObjectType.Project__c.Fields.Anticipated_End_Date__c.inlinehelptext}</span>
+                                                </div>          
+                                            </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oStudy.Anticipated_End_Date__c}" />
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Project__c.Fields.Actual_Start_Date__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Actual_Start_Date__c.inlinehelptext != NULL,true,false)}">
+                                                <div class="helpOrb tooltip">
+                                                    <span>{!$ObjectType.Project__c.Fields.Actual_Start_Date__c.inlinehelptext}</span>
+                                                </div>          
+                                            </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oStudy.Actual_Start_Date__c}" />
+                                            </div>
+                                        </div>
+                                         <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Project__c.Fields.Actual_End_Date__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Actual_End_Date__c.inlinehelptext != NULL,true,false)}">
+                                                <div class="helpOrb tooltip">
+                                                    <span>{!$ObjectType.Project__c.Fields.Actual_End_Date__c.inlinehelptext}</span>
+                                                </div>          
+                                            </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oStudy.Actual_End_Date__c}" />
+                                            </div>
+                                        </div>                                        
+                                    </fieldset>
+                                </div>
+                            </section>
+<!-- -------------------------------------------------------Research Topic Execution Approach------------------------------------------------------------------------------- -->
+                            <section class="row">
+                                <div class="col-xs-12">
+                                    <h2 class="accordion-parent">Research Topic Execution Approach
+                                    <span class="icon-large-caret pull-right down"></span></h2>
+                                    <fieldset class="accordion-child">
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Project__c.Fields.Will_be_Topic_be_executed_internally__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Will_be_Topic_be_executed_internally__c.inlinehelptext != NULL,true,false)}">
+                                                <div class="helpOrb tooltip">
+                                                    <span>{!$ObjectType.Project__c.Fields.Will_be_Topic_be_executed_internally__c.inlinehelptext}</span>
+                                                </div>          
+                                            </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oStudy.Will_be_Topic_be_executed_internally__c}" />
+                                            </div>
+                                        </div>
+                                        
+                                        <apex:outputpanel rendered="{!IF(oStudy.Will_be_Topic_be_executed_internally__c=='No',true,false)}">
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Project__c.Fields.TPO_Location__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.TPO_Location__c.inlinehelptext != NULL,true,false)}">
+                                                <div class="helpOrb tooltip">
+                                                    <span>{!$ObjectType.Project__c.Fields.TPO_Location__c.inlinehelptext}</span>
+                                                </div>          
+                                            </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oStudy.TPO_Location__c}" />
+                                            </div>
+                                        </div>
+                                        </apex:outputpanel>
+                                        <apex:outputpanel rendered="{!IF(oStudy.Will_be_Topic_be_executed_internally__c=='Yes',true,false)}">
+                                        <div class="row">
+                                            <div class="col-xs-6 label-wrapper">
+                                                <label>{!$ObjectType.Project__c.Fields.Execution_Function__c.Label}</label>
+                                                <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Execution_Function__c.inlinehelptext != NULL,true,false)}">
+                                                <div class="helpOrb tooltip">
+                                                    <span>{!$ObjectType.Project__c.Fields.Execution_Function__c.inlinehelptext}</span>
+                                                </div>          
+                                            </apex:outputpanel>
+                                            </div>
+                                            <div class="col-xs-6 field-wrapper">
+                                                <apex:outputfield value="{!oStudy.Execution_Function__c}" />
+                                            </div>
+                                        </div>
+                                        </apex:outputpanel>
+                                    </fieldset>
+                                </div>
+                            </section>
+                            <!----------------------------------------------------------Molecule Section--------------------------------------------------------------------------------- -->                      
+                            <apex:outputPanel id="moleculessection2">
+                            <section class="row">
+                                     <apex:outputpanel rendered="{!if(oStudy.Is_Molecule__c== 'Yes',true,false)}">
+                                     <div class="col-xs-12">
+                                    <h2 class="accordion-parent">Molecules
+                                    <!-- HELP ORB Markup HERE -->
+                                    <span class="helpOrb tooltip">
+                                        <span>Use this field to associate a related Molecule to the Research Topic.</span>
+                                    </span>
+                                    <span class="icon-large-caret pull-right down"></span></h2>
+                                    <fieldset class="accordion-child">
+                                    <apex:outputpanel id="MoleculesError"><apex:outputpanel rendered="{!isMoleculeError}"><div class="sfdc-errorMessage font-s">
+                                        <apex:pagemessages escape="false"></apex:pagemessages>
+                                    </div></apex:outputpanel></apex:outputpanel>
+                                        <div class="accordion-content">
+                                            <!-- Add new team member section starts -->
+                                            <fieldset class="add-new-item">
+                                                <legend>Add Molecule
+                                                <apex:outputPanel rendered="{!If(AND(oStudy.DataLoaded_TF__c==false,oStudy.Is_Molecule__c=='Yes'),true,false)}">
+                                                    <span class=""> </span>
+                                                </apex:outputPanel>
+                                                
+                                                </legend>
+                                                
+                                                <apex:inputField value="{!oMolecule.Molecule__c}" required="false" styleClass="{!If(AND(oStudy.DataLoaded_TF__c==false,oStudy.Is_Molecule__c=='Yes',lStudyMolecules.size==0),'looked-up-molecule','')}" />                    
+                                                <apex:commandButton styleClass="btn button" value="Add" action="{!AddMolecule}" rerender="theMolTable,noMolecules,MoleculesError" />
+                                                
+                                            </fieldset>
+                                            <!-- Add new team member section ends -->
+                                            
+                                            <!-- Iteration unit starts -->
+                                            <apex:outputpanel id="theMolTable">
+                                            <apex:outputpanel rendered="{!lStudyMolecules.size>0}">
+                                            <apex:repeat value="{!lStudyMolecules}" var="oMember">
+                                            <div class="custom-data-row">
+                                            <span class="content"><apex:outputLink value="/{!oMember.Id}">{!oMember.Molecule__r.name}</apex:outputLink></span>
+                                                <apex:commandlink styleclass="remove-custom-data-row" value="remove" action="{!RemoveMolecule}" rerender="theMolTable,noMolecules,MoleculesError">
+                                                    <apex:param name="teamMember" value="{!oMember.Molecule__c}" assignTo="{!teamMember}" />
+                                                </apex:commandlink>
+                                                
+                                                
+                                            </div>
+                                            </apex:repeat>
+                                            </apex:outputpanel>
+                                            </apex:outputpanel>
+                                            
+                                            <apex:outputpanel id="noMolecules">
+                                            <apex:outputpanel rendered="{!lStudyMolecules.size==0}">
+                                            <span class="content"><strong>No Molecules</strong></span>
+                                            </apex:outputpanel>
+                                            </apex:outputpanel>                                            
+                                        </div>
+                                        </fieldset>
+                                        </div>
+                                        </apex:outputpanel>
+                                        </section>
+                                         </apex:outputpanel>
+                            <!----------------------------------------------------------Information Landscape Section--------------------------------------------------------------------------------- -->                      
+                            <apex:outputPanel id="LandscapeSection">
+                            <section class="row">
+                            <apex:outputPanel rendered="{!IF($CurrentPage.parameters.Id==NULL,false,true)}">
+                                <div class="col-xs-12">
+                                    <h2 class="accordion-parent">Related Information Source(s)
+                                    <!-- HELP ORB Markup HERE -->
+                                    <span class="helpOrb tooltip">
+                                        <span>Use this field to associate a related Information Source(s) to the Research Study/Research Topic.</span>
+                                    </span>
+                                    <span class="icon-large-caret pull-right down"></span></h2>
+                                    <apex:actionregion >
+                                    <fieldset class="accordion-child">
+                                    <apex:outputpanel id="RelLandscapeError">
+                                    <apex:outputpanel rendered="{!isLandscapeError}"> 
+                                    <div class="sfdc-errorMessage font-s">
+                                        <apex:pagemessages escape="false"></apex:pagemessages>
+                                    </div>
+                                    </apex:outputpanel>
+                                    </apex:outputpanel>
+                                        <div class="accordion-content">
+                                            <!-- Add new Related Information Landscape section starts -->
+                                            <fieldset class="add-new-item">
+                                                <legend>Add Related Information Source(s)</legend>
+                                                <apex:inputField value="{!oRelatedLandscape.Information_Landscape__c}" required="false" />                    
+                                                <apex:commandButton styleClass="btn button" value="Add" action="{!AddLandscape}" rerender="relLandscapeTable,noRelLandscape,RelLandscapeError,FeedbackButton1,FeedbackButton2" />
+                                            </fieldset>
+                                            <!-- Add new Related Information Landscape section ends -->
+
+                                            <!-- Iteration unit starts -->
+                                            <apex:outputpanel id="relLandscapeTable">
+                                            <apex:outputpanel rendered="{!lLandscape.size>0}">
+                                            <apex:repeat value="{!lLandscape}" var="oMember">
+                                            <div class="custom-data-row">
+                                                <span class="content"><apex:outputLink value="/{!oMember.Id}">{!oMember.Information_Landscape__r.name}</apex:outputLink></span>
+                                                <apex:commandlink styleclass="remove-custom-data-row" value="remove" action="{!RemoveLandscape}" rerender="relLandscapeTable,noRelLandscape,RelLandscapeError,FeedbackButton1,FeedbackButton2">
+                                                    <apex:param name="teamMember" value="{!oMember.Information_Landscape__c}" assignTo="{!teammember}" />
+                                                </apex:commandlink>
+                                            </div>
+                                            </apex:repeat>
+                                            </apex:outputpanel>
+                                            </apex:outputpanel>
+                                            
+                                            <apex:outputpanel id="noRelLandscape">
+                                            <apex:outputpanel rendered="{!lLandscape.size==0}">
+                                            <span class="content"><strong>No Related Information Source(s)</strong></span>
+                                            </apex:outputpanel>
+                                            </apex:outputpanel>
+                                                  
+                                        </div>
+                                    </fieldset>
+                                    </apex:actionregion>
+                                </div>
+                            </apex:outputPanel>
+                            </section>
+                            </apex:outputPanel>
+        <!-- -------------------------------------------------------Publications & Deliverables Section------------------------------------------------------------------------------- -->
+                           <section class="row">
+                                <div class="col-xs-12">
+                                    <h2 class="accordion-parent">Publications and Deliverables
+                                    <!-- HELP ORB Markup HERE -->
+                                    <span class="helpOrb tooltip">
+                                        <span>Indicate any deliverables that will be associated with the Research Study/Research Topic by selecting the appropriate item(s).  In order to close a Study, if an item is checked,  a link to the source document will be required.</span>
+                                    </span>
+                                    <span class="icon-large-caret pull-right down"></span></h2>
+                                    <fieldset class="accordion-child" style="display: block;">
+                                    <apex:outputPanel id="PublicationsAndDeliverables">
+                                    <apex:actionRegion >
+                                        <table class="publications-deliverables-table table table-bordered table-hover table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th class="col-xs-1">Select</th>
+                                                    <th class="col-xs-3">Deliverable Name</th>
+                                                    <th class="col-xs-3">Description</th>
+                                                    <th class="col-xs-5">URL(s)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr style="display:{!IF( oStudy.Classification__c == 'Research Project' , 'None', '')}">
+                                                    <td><apex:outputfield value="{!oStudy.Research_Topic_Report__c}"></apex:outputfield>
+                                                    </td>
+                                                    <td><label>{!$ObjectType.Project__c.Fields.Research_Topic_Report__c.Label}</label>
+                                                        <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Research_Topic_Report__c.inlinehelptext != NULL,true,false)}">
+                                                            <div class="helpOrb tooltip">
+                                                                <span>{!$ObjectType.Project__c.Fields.Research_Topic_Report__c.inlinehelptext}</span>
+                                                            </div>          
+                                                        </apex:outputpanel>
+                                                    </td>
+                                                    <td><apex:outputfield value="{!oStudy.Final_Protocol_Description__c}" styleClass="col-xs-12"/>
+                                                    </td>
+                                                    <td>
+                                                        <apex:outputPanel rendered="{!IF(AND(oStudy.Research_Topic_Report__c,oStudy.Research_Topic_Report_URL__c<>NULL),TRUE,FALSE)}">
+                                                        <ul class="url-list">
+                                                        <apex:repeat value="{!sMap[$ObjectType.Project__c.Fields.Research_Topic_Report_URL__c.Label]}" var="l">
+                                                        <apex:variable var="absoluteurl" value="{!IF(CONTAINS(l,"//"),l,"http://"+l)}"></apex:variable>
+                                                        <li><a title="{!absoluteurl}" href="{!absoluteurl}" target="__blank">{!If(LEN(absoluteurl)>50,(LEFT(absoluteurl,37)+'...'),absoluteurl)}</a></li>
+                                                        </apex:repeat>
+                                                        </ul>
+                                                        </apex:outputPanel>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><apex:outputfield value="{!oStudy.Data_Collection_Form__c}" ></apex:outputfield>
+                                                    </td>
+                                                    <td><label>{!$ObjectType.Project__c.Fields.Data_Collection_Form__c.Label}</label>
+                                                        <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Data_Collection_Form__c.inlinehelptext != NULL,true,false)}">
+                                                            <div class="helpOrb tooltip">
+                                                                <span>{!$ObjectType.Project__c.Fields.Data_Collection_Form__c.inlinehelptext}</span>
+                                                            </div>          
+                                                        </apex:outputpanel>
+                                                    </td>
+                                                    <td><apex:outputfield value="{!oStudy.Data_Collection_Form_Description__c}" styleClass="col-xs-12"/>
+                                                    </td>
+                                                    <td>
+                                                        <apex:outputPanel rendered="{!IF(AND(oStudy.Data_Collection_Form__c,oStudy.Data_Collection_Form_URL__c <>NULL),TRUE,FALSE)}">
+                                                        <ul class = "url-list">
+                                                        <apex:repeat value="{!sMap[$ObjectType.Project__c.Fields.Data_Collection_Form_URL__c.Label]}" var="l">
+                                                        <apex:variable var="absoluteurl" value="{!IF(CONTAINS(l,"//"),l,"http://"+l)}"></apex:variable>
+                                                        <li><a title="{!absoluteurl}" href="{!absoluteurl}" target="__blank">{!If(LEN(absoluteurl)>50,(LEFT(absoluteurl,37)+'...'),absoluteurl)}</a></li>
+                                                        </apex:repeat>
+                                                        </ul>
+                                                        </apex:outputPanel>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><apex:outputfield value="{!oStudy.Other__c}" ></apex:outputfield>
+                                                    </td>
+                                                    <td><label>{!$ObjectType.Project__c.Fields.Other__c.Label}</label>
+                                                        <apex:outputpanel rendered="{!IF($ObjectType.Project__c.Fields.Other__c.inlinehelptext != NULL,true,false)}">
+                                                            <div class="helpOrb tooltip">
+                                                                <span>{!$ObjectType.Project__c.Fields.Other__c.inlinehelptext}</span>
+                                                            </div>          
+                                                        </apex:outputpanel>
+                                                    </td>
+                                                    <td><apex:outputfield value="{!oStudy.Other_Description__c}" styleClass="col-xs-12"/>
+                                                    </td>
+                                                    <td>
+                                                        <apex:outputPanel rendered="{!IF(AND(oStudy.Other__c,oStudy.Other_URL__c <>NULL),TRUE,FALSE)}">
+                                                        <ul class = "url-list">
+                                                        <apex:repeat value="{!sMap[$ObjectType.Project__c.Fields.Other_URL__c.Label]}" var="l">
+                                                        <apex:variable var="absoluteurl" value="{!IF(CONTAINS(l,"//"),l,"http://"+l)}"></apex:variable>
+                                                        <li><a title="{!absoluteurl}" href="{!absoluteurl}" target="__blank">{!If(LEN(absoluteurl)>50,(LEFT(absoluteurl,37)+'...'),absoluteurl)}</a></li>
+                                                        </apex:repeat>
+                                                        </ul>
+                                                        </apex:outputPanel>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            </table>
+                                        </apex:actionRegion>
+                                        </apex:outputPanel>
+                                    </fieldset>
+                                </div>
+                            </section>
+<!-- -------------------------------------------------------Study Team Members Section--------------------------------------------------------------------------------- -->                      
+                            <section class="row">
+                                <div class="col-xs-12">
+                                    <h2 class="accordion-parent">Team Members
+                                    <!-- HELP ORB Markup HERE -->
+                                    <span class="helpOrb tooltip">
+                                        <span>Whoever needs to have “Edit” access to the Study record or associated Checklist should be added to this section.</span>
+                                    </span>
+                                    <span class="icon-large-caret pull-right down"></span>
+                                    </h2>
+                                    <apex:actionregion >
+                                    <fieldset class="accordion-child">
+                                    <apex:outputpanel id="StudyTeamError">
+                                        <apex:outputpanel rendered="{!isStudyCountryError}">
+                                            <div class="sfdc-errorMessage font-s">
+                                                <apex:pagemessages escape="false"></apex:pagemessages>
+                                            </div>
+                                        </apex:outputpanel>
+                                    </apex:outputpanel>
+                                        <div class="accordion-content">
+                                            <!-- Add new team member section starts -->
+                                            <fieldset class="add-new-item">
+                                                <legend>Add team member</legend>
+                                                <apex:inputField value="{!oProjectShare.UserOrGroupId}" required="false" />                    
+                                                <apex:commandButton styleClass="btn button" value="Add" action="{!AddStudyTeamMember}" rerender="theTable,StudyTeamError,noMembers"/>
+                                                
+                                            </fieldset>
+                                            <!-- Add new team member section ends -->
+                                            <!-- Iteration unit starts -->
+                                            <apex:outputpanel id="theTable">
+                                            <apex:outputpanel rendered="{!lStudyTeamMembers.size>0}">
+                                            <apex:repeat value="{!lStudyTeamMembers}" var="oMember">
+                                            <div class="custom-data-row">
+                                                <span class="content"><apex:outputLink value="/{!oMember.Id}">{!oMember.Name}</apex:outputLink></span>
+                                                <apex:commandlink value="remove" styleclass="remove-custom-data-row" action="{!RemoveStudyTeamMember}" rerender="theTable,noMembers">
+                                                    <apex:param name="teamMember" value="{!oMember.id}" assignTo="{!teamMember}" />
+                                                </apex:commandlink>
+                                                
+                                            </div>
+                                            </apex:repeat>
+                                            </apex:outputpanel>
+                                            </apex:outputpanel>
+                                            
+                                            <apex:outputpanel id="noMembers">
+                                            <apex:outputpanel rendered="{!lStudyTeamMembers.size==0}">
+                                            <span class="content"><strong>No Team Members</strong></span>
+                                            </apex:outputpanel>
+                                            </apex:outputpanel>
+                                        </div>
+                                        
+                                    </fieldset>
+                                    </apex:actionregion>
+                                </div>
+                            </section>  
+
+
+<!-- -------------------------------------------------------After all Sections----------------------------------------------------------------------------------->                      
+
+                            <!-- -------------------------------------------------------Buttons Section-------------------------------------------------------------------------------------------- -->
+                            <section class="row submit">
+                                <div class="col-xs-12">
+                                    <apex:commandButton styleClass="button" value="Edit" action="{!EditRecordResearch}"  rendered="{!If(AND(IsMember,oStudy.Research_Topic_Status__c == NULL),true,false)}"/>
+                                    <apex:outputPanel rendered="{!IF(AND(IsMember,oStudy.Project_Status__c =='In Progress'),true,false)}">
+                                        <apex:commandButton styleClass="btn button" value="Activate Research Topic" action="{!UpdateRecordResearchStatus}"/>
+                                    </apex:outputPanel>
+                                </div>
+                            </section>
+                            
+                        </apex:form>
+
+                        
+                      
+                       
+                    </apex:outputpanel>
+                    <!-- ---------------------------------------------------------End of Saved Study Creation Form Output Panel---------------------------------------------------------------------------------------------- -->
+                </main>
+            </div>
+        </div>
+        <c:SR2_FooterComponent />
+        <c:Webtrends_Tracker />
+   </body>
+</apex:page>

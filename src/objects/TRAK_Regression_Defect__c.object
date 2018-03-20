@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Regression Defect</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>false</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>false</enableSharing>
+    <enableStreamingApi>false</enableStreamingApi>
+    <fields>
+        <fullName>Defect_Developer__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Defect Developer</label>
+        <referenceTo>User</referenceTo>
+        <relationshipLabel>Regression Defects</relationshipLabel>
+        <relationshipName>Regression_Defects</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Defect__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Defect</label>
+        <referenceTo>TRAK_Bug__c</referenceTo>
+        <relationshipLabel>Regression Defects</relationshipLabel>
+        <relationshipName>Regression_Defects</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Problem_Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Problem Description</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Problem_Summary__c</fullName>
+        <externalId>false</externalId>
+        <label>Problem Summary</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Resolution__c</fullName>
+        <externalId>false</externalId>
+        <label>Resolution</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Root_Cause__c</fullName>
+        <externalId>false</externalId>
+        <label>Root Cause</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Sprint__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Sprint</label>
+        <referenceTo>TRAK_Sprint__c</referenceTo>
+        <relationshipLabel>Regression Defects</relationshipLabel>
+        <relationshipName>Regression_Defects</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Cancelled</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Raised</fullName>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>Backlog</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>In Analysis</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Ready for Development</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>In Development</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Ready for Test Release</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>In Test</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Passed Test</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Ready for Test PreProd</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Passed Test PreProd</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Ready for Release</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Production - Released</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Tester__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Tester</label>
+        <referenceTo>User</referenceTo>
+        <relationshipLabel>Regression Defects (Tester)</relationshipLabel>
+        <relationshipName>Regression_Defects1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Regression Defect</label>
+    <nameField>
+        <displayFormat>REGRESSION DEFECT-{0000}</displayFormat>
+        <label>Regression Defect Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Regression Defects</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Make_RootCause_and_Resolution_Mandatory</fullName>
+        <active>true</active>
+        <description>Please update the Root Cause and Resolution before updating the Regression Defect Status to Complete.</description>
+        <errorConditionFormula>AND(OR(ISPICKVAL(Status__c, &apos;Passed Test&apos;), ISPICKVAL(Status__c, &apos;Passed Test PreProd&apos;),ISPICKVAL(Status__c, &apos;Production - Released&apos;)),OR((Root_Cause__c == null), (Resolution__c == null)) )</errorConditionFormula>
+        <errorMessage>Please update the Root Cause and Resolution before updating the Regression Defect Status to Complete.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Reg_Defect_should_be_Raised_on_Creation</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(ISNEW(),NOT(ISPICKVAL(Status__c,&apos;Raised&apos;)))</errorConditionFormula>
+        <errorDisplayField>Status__c</errorDisplayField>
+        <errorMessage>A Regresion Defect can only be created with Raised status.</errorMessage>
+    </validationRules>
+</CustomObject>

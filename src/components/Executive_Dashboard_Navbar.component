@@ -1,0 +1,107 @@
+<apex:component >
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <apex:stylesheet value="{!URLFOR($Resource.ExecutiveDashboardResource,'vendor/bootstrap-3.3.7-dist/css/bootstrap.min.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.ExecutiveDashboardResource,'css/executive-dashboard.css')}" />
+    <style type="text/css">
+         .vf-surface {
+            display: inline-block;
+            position: relative;
+            width: 100%;
+            padding-bottom: 100%;
+            vertical-align: middle;
+            overflow: hidden;
+        } 
+     </style>
+ </head>
+ <body>
+       <div id="loading-results">
+            <div class="loading-message">
+                <img src="{!URLFOR($Resource.ExecutiveDashboardResource,'assets/img/cube.gif')}" alt="Fetching Results"/>
+                <span>Loading...</span>
+            </div>
+        </div>
+        <div class="navbar navbar-fixed-top">
+            <div class="container-fluid">
+                <a class="hamburger visible-xs">
+                    <apex:image styleclass="pull-left ic-hamburger" value="{!URLFOR($Resource.ExecutiveDashboardResource,'assets/img/icons/ic_menucopy9@1.5x.svg')}"/>
+                    <apex:image styleclass="pull-left ic-close-menu" value="{!URLFOR($Resource.ExecutiveDashboardResource,'assets/img/icons/ic_menucopy7@1.5x.svg')}"/>
+                </a>
+                <div class="navbar-brand">
+                    <apex:image styleclass="pull-left" value="{!URLFOR($Resource.ExecutiveDashboardResource,'assets/img/lilly_logo.png')}" width="53" height="29" />
+                    <apex:image styleclass="pull-left" value="{!URLFOR($Resource.ExecutiveDashboardResource,'assets/img/green_pangaea.png')}" width="96.6" height="20" />
+                </div>
+                <h3 class="app-title hidden-xs">Executive Scorecards</h3>
+                <a href="/secur/logout.jsp" Title="Logout" class="logout-button pull-right"><span class="icon-logout glyphicon glyphicon-log-out"></span></a>
+            </div>
+        </div>
+        <div class="navbar navbar-fixed-left hidden-xs">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/apex/ExecutiveDashboard" class="{!IF($CurrentPage.Name=='ExecutiveDashboard','active','')}">
+                        <span class="menu-icon ic-menu"></span>
+                        <span class="menu-text">Executive Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/apex/PVA_Dashboard" class="{!IF($CurrentPage.Name=='PVA_Dashboard','active','')}">
+                        <span class="menu-icon ic-value-impact-area"></span>
+                        <span class="menu-text">Value Area Impact</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/apex/Investment_Dashboard" class="{!IF($CurrentPage.Name=='Investment_Dashboard','active','')}">
+                        <span class="menu-icon ic-study-investments"></span>
+                        <span class="menu-text">Study Investments</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/apex/RWDDashboard" class="{!IF($CurrentPage.Name=='RWDDashboard','active','')}">
+                        <span class="menu-icon ic-real-world-data"></span>
+                        <span class="menu-text">Real World Data</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/apex/PartnershipDashboard" class="{!IF($CurrentPage.Name=='PartnershipDashboard','active','')}">
+                        <span class="menu-icon ic-rwe-research-partnerships"></span>
+                        <span class="menu-text">RWE Partnerships</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar navbar-fixed-left navbar-mobile hidden-lg hidden-md hidden-sm hidden">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/apex/ExecutiveDashboard" class="{!IF($CurrentPage.Name=='ExecutiveDashboard','active','')}">
+                        <span class="menu-icon ic-menu"></span>
+                        <span class="menu-text">Executive Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/apex/PVA_Dashboard" class="{!IF($CurrentPage.Name=='PVA_Dashboard','active','')}">
+                        <span class="menu-icon ic-value-impact-area"></span>
+                        <span class="menu-text">Value Area Impact</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/apex/Investment_Dashboard" class="{!IF($CurrentPage.Name=='Investment_Dashboard','active','')}">
+                        <span class="menu-icon ic-study-investments"></span>
+                        <span class="menu-text">Study Investments</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/apex/RWDDashboard" class="{!IF($CurrentPage.Name=='RWDDashboard','active','')}">
+                        <span class="menu-icon ic-real-world-data"></span>
+                        <span class="menu-text">Real World Data</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/apex/PartnershipDashboard" class="{!IF($CurrentPage.Name=='PartnershipDashboard','active','')}">
+                        <span class="menu-icon ic-rwe-research-partnerships"></span>
+                        <span class="menu-text">RWE Partnerships</span>
+                    </a>
+                </li>
+            </ul>
+        </div>       
+  </body>
+</apex:component>

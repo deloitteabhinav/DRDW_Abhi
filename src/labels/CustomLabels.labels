@@ -1,0 +1,914 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>ADDENDUM_FORM_ERROR_MSG</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ADDENDUM_FORM_ERROR_MSG</shortDescription>
+        <value>You can submit an Addendum form only if the stage is Selected.</value>
+    </labels>
+    <labels>
+        <fullName>ALREADY_IN_APPROVAL_MSG</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ALREADY_IN_APPROVAL_MSG</shortDescription>
+        <value>A form associated to this Trial Site is already in the approval process.</value>
+    </labels>
+    <labels>
+        <fullName>Access_Library_Changes</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Access_Library_Changes</shortDescription>
+        <value>https://lilly.service-now.com/ess/view_content_search.do?v=1&amp;uri=com.glideapp.servicecatalog_cat_item_view.do%3Fv%3D1%26sysparm_id%3Decd35c280f9016005200a218b1050e46%26sysparm_link_parent%3Df83a7ede6f031500fe289be44b3ee4de%26sysparm_catalog%3De0d08b13c3330100c8b837659bba8fb4&amp;sysparm_document_key=sc_cat_item,ecd35c280f9016005200a218b1050e46</value>
+    </labels>
+    <labels>
+        <fullName>AttachmentText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AttachmentText</shortDescription>
+        <value>If more than 3 documents need to be submitted, please combine them into zipped file(s). Attachment size cannot exceed 10 MB per file.</value>
+    </labels>
+    <labels>
+        <fullName>Budget_Estimate_Guidance</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Budget_Estimate_Guidance</shortDescription>
+        <value>http://lillynetcollaboration.global.lilly.com/sites/RWE/Pangaea%20Training%20Help/Budget%20Estimate%20Guidance.xlsx</value>
+    </labels>
+    <labels>
+        <fullName>Cannot_Update_Inactive_SE_Forms</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cannot Update Inactive SE Forms</shortDescription>
+        <value>You cannot associate multiple active Site Evaluation forms with the same region to the same Trial.</value>
+    </labels>
+    <labels>
+        <fullName>Cannot_change_trial_site</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cannot change trial site</shortDescription>
+        <value>You cannot change the Trial Site of an Oppty form</value>
+    </labels>
+    <labels>
+        <fullName>CertificateName</fullName>
+        <categories>NGIF</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CertificateName</shortDescription>
+        <value>trialforce_q_lilly_com</value>
+    </labels>
+    <labels>
+        <fullName>Clone_Template_Error_Msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Clone Template Error Msg</shortDescription>
+        <value>Templates containing both study specific and global questions cannot be cloned.</value>
+    </labels>
+    <labels>
+        <fullName>CommonTrialEndPoint</fullName>
+        <categories>NGIF</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CommonTrialEndPoint</shortDescription>
+        <value>https://soa-d.xh1.lilly.com:8443/IEP/odata/v1/ClinicalStudies</value>
+    </labels>
+    <labels>
+        <fullName>Connect_with_RWE_Partnership_Brain_Trust</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PANG Connect with RWE Partnership Brain Trust</shortDescription>
+        <value>https://gso.my.salesforce.com/_ui/core/chatter/groups/GroupProfilePage?g=0F9b0000000HbNk&amp;s=CoP&amp;r=1</value>
+    </labels>
+    <labels>
+        <fullName>Contact_Role_Error_SIP_Managed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Contact Role Error - SIP Managed</shortDescription>
+        <value>You cannot Add/Edit a contact role when the Trial Site is SIP Managed.</value>
+    </labels>
+    <labels>
+        <fullName>Contact_Role_Warning_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Contact Role Warning Message</shortDescription>
+        <value>System returned more than 1000 contacts and their addresses. Please use criteria to filter</value>
+    </labels>
+    <labels>
+        <fullName>Content_Type</fullName>
+        <categories>NGIF</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Content Type</shortDescription>
+        <value>application/json</value>
+    </labels>
+    <labels>
+        <fullName>Country</fullName>
+        <categories>NGIF</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Country</shortDescription>
+        <value>Country</value>
+    </labels>
+    <labels>
+        <fullName>Current</fullName>
+        <categories>NGIF</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Current</shortDescription>
+        <value>Current</value>
+    </labels>
+    <labels>
+        <fullName>DRDP_ConntectURL</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>DRDP_ConntectURL</shortDescription>
+        <value>_ui/core/chatter/groups/GroupProfilePage?g=0F941000000c8mw</value>
+    </labels>
+    <labels>
+        <fullName>DRDP_HomeURL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DRDP_HomeURL</shortDescription>
+        <value>/home/home.jsp?tsid=</value>
+    </labels>
+    <labels>
+        <fullName>DashboardLink</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DashboardLink</shortDescription>
+        <value>01Z460000006CGx</value>
+    </labels>
+    <labels>
+        <fullName>Date_of_Release</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Date of Release</shortDescription>
+        <value>2015-12-30</value>
+    </labels>
+    <labels>
+        <fullName>Dummy_Contact_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Dummy Contact Name</shortDescription>
+        <value>Dummy</value>
+    </labels>
+    <labels>
+        <fullName>Dummy_Email</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Dummy Email</shortDescription>
+        <value>noreply@salesforce.com</value>
+    </labels>
+    <labels>
+        <fullName>Duplicate_PI_Role</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SEC Duplicate PI Role</shortDescription>
+        <value>You have already created the Principal Investigator for this Trial Site!</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_MSG_UPDATE_OPPTY_FORM</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ERROR_MSG_UPDATE_OPPTY_FORM</shortDescription>
+        <value>Error occurred while updating the Oppty Form.</value>
+    </labels>
+    <labels>
+        <fullName>EmailApprove</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EmailApprove</shortDescription>
+        <value>The following item has received approval for funding and/or resources in Pangaea. &lt;/br&gt;&lt;/br&gt;This item may either be a study or a project that needs approval in regards to funding and resources. It may be part of the Business Planning event or may be a request for an addition to the plan outside of the Business Planning event. &lt;/br&gt;&lt;/br&gt;Please click on the link below to access the item&lt;/br&gt;</value>
+    </labels>
+    <labels>
+        <fullName>EmailApproveSubject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EmailApproveSubject</shortDescription>
+        <value>Notice of Approval of Study/Project Item in Pangaea!</value>
+    </labels>
+    <labels>
+        <fullName>EmailGeneric</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EmailGeneric</shortDescription>
+        <value>&lt;/br&gt;&lt;/br&gt;To see more details regarding the item, click on the underlined item identifier.&lt;/br&gt;&lt;/br&gt;Thank you</value>
+    </labels>
+    <labels>
+        <fullName>EmailReject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EmailReject</shortDescription>
+        <value>The following item has been rejected for funding and/or resources in Pangaea. &lt;/br&gt;&lt;/br&gt;This item may either be a study or a project that was submitted for approval in regards to funding and resources. It may be part of the Business Planning event or may be a request for an addition to the plan outside of the Business Planning event. &lt;/br&gt;&lt;/br&gt;Please click on the link below to access the item.&lt;/br&gt;</value>
+    </labels>
+    <labels>
+        <fullName>EmailRejectSubject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EmailRejectSubject</shortDescription>
+        <value>Notice of Rejection of Study/Project Item in Pangaea!</value>
+    </labels>
+    <labels>
+        <fullName>External_RWE_Partnership_Landscape</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>External RWE Partnership Landscape</shortDescription>
+        <value>http://www.google.com</value>
+    </labels>
+    <labels>
+        <fullName>Fetch_Address_Msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Fetch Address Msg</shortDescription>
+        <value>Error Occurred While Fetching Address.</value>
+    </labels>
+    <labels>
+        <fullName>Form_AttachmentTitle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Form_AttachmentTitle</shortDescription>
+        <value>Additional Information can be uploaded here:</value>
+    </labels>
+    <labels>
+        <fullName>GFK_ERROR_MSG</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GFK ERROR MSG</shortDescription>
+        <value>Ensure Start and end date is entered and is less than 1 month</value>
+    </labels>
+    <labels>
+        <fullName>IEPSourceName</fullName>
+        <categories>NGIF</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IEPSourceName</shortDescription>
+        <value>iepSourceName</value>
+    </labels>
+    <labels>
+        <fullName>Incomplete_Form_Error_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Incomplete Form Error Message</shortDescription>
+        <value>The form is Incomplete. Please fill all the questions and submit again.</value>
+    </labels>
+    <labels>
+        <fullName>Information_Landscape_Error</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Information Landscape Error</shortDescription>
+        <value>Please enter a Target Date if the Target Decommissioning Indicator is Yes.</value>
+    </labels>
+    <labels>
+        <fullName>LimitValue</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>LimitValue</shortDescription>
+        <value>50</value>
+    </labels>
+    <labels>
+        <fullName>Location_Mandatory_Error_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Location Mandatory Error Message</shortDescription>
+        <value>Please select the checkbox or select a location for this contact</value>
+    </labels>
+    <labels>
+        <fullName>Location_Purpose_Code</fullName>
+        <categories>NGIF</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Location Purpose Code</shortDescription>
+        <value>Location Purpose Code</value>
+    </labels>
+    <labels>
+        <fullName>Locked_Inactive_SE_Forms</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Locked Inactive SE Forms</shortDescription>
+        <value>You cannot update an inactive Site Evaluation Form.</value>
+    </labels>
+    <labels>
+        <fullName>ManagedSIPError</fullName>
+        <categories>Trial Site</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ManagedSIPError</shortDescription>
+        <value>You cannot mark this trial site as SIP Managed unless the Site and the Primany Investigator are SIP Managed.</value>
+    </labels>
+    <labels>
+        <fullName>Manager_Not_Assigned</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Manager Not Assigned</shortDescription>
+        <value>The current user does not have a Manager assigned.</value>
+    </labels>
+    <labels>
+        <fullName>NGIFDummy_Contact_Name</fullName>
+        <categories>NGIF</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NGIFDummy Contact Name</shortDescription>
+        <value>NGIFDummy</value>
+    </labels>
+    <labels>
+        <fullName>NGIF_Default_Time_Zone</fullName>
+        <categories>NGIF</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NGIF Default Time Zone</shortDescription>
+        <value>America/Panama</value>
+    </labels>
+    <labels>
+        <fullName>NGIF_Ref_Table_Error_Contact_Role_Country</fullName>
+        <categories>NGIF</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NGIF Ref Table Error Contact Role Country</shortDescription>
+        <value>Contact Role Country : This picklist value is currently disabled. Please contact Senior System Administrator.</value>
+    </labels>
+    <labels>
+        <fullName>NGIF_Ref_Table_Error_Location_Country</fullName>
+        <categories>NGIF</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NGIF Ref Table Error Location Country</shortDescription>
+        <value>Location Country : This picklist value is currently disabled. Please contact Senior System Administrator.</value>
+    </labels>
+    <labels>
+        <fullName>NGIF_Ref_Table_Error_Location_Role</fullName>
+        <categories>NGIF</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NGIF Ref Table Error Location Role</shortDescription>
+        <value>Location Role : This picklist value is currently disabled. Please contact Senior System Administrator.</value>
+    </labels>
+    <labels>
+        <fullName>NGIF_Ref_Table_Error_Mailing_Country</fullName>
+        <categories>NGIF</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NGIF Ref Table Error Mailing Country</shortDescription>
+        <value>Mailing Country : This picklist value is currently disabled. Please contact Senior System Administrator.</value>
+    </labels>
+    <labels>
+        <fullName>NGIF_Ref_Table_Error_Prof_Role</fullName>
+        <categories>NGIF</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NGIF Ref Table Error Prof Role</shortDescription>
+        <value>Professional Role: This picklist value is currently disabled. Please contact Senior System Administrator.</value>
+    </labels>
+    <labels>
+        <fullName>NGIF_Ref_Table_Error_Role</fullName>
+        <categories>NGIF</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NGIF Ref Table Error Role</shortDescription>
+        <value>Role: This picklist value is currently disabled. Please contact Senior System Administrator.</value>
+    </labels>
+    <labels>
+        <fullName>NGIF_Reference_Table_Error</fullName>
+        <categories>NGIF</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NGIF Ref Table Error Type</shortDescription>
+        <value>Site Type: This picklist value is currently disabled. Please contact Senior System Administrator.</value>
+    </labels>
+    <labels>
+        <fullName>NGIF_Site_Type_Error</fullName>
+        <categories>NGIF</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NGIF Site Type Error</shortDescription>
+        <value>Please select a valid Site Type</value>
+    </labels>
+    <labels>
+        <fullName>NGIF_TimeZone_Difference</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NGIF TimeZone Difference</shortDescription>
+        <value>3600000</value>
+    </labels>
+    <labels>
+        <fullName>NewTemplateQuestion4</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Label to store SEC Forms-Template Question custom object prefix</shortDescription>
+        <value>a0D</value>
+    </labels>
+    <labels>
+        <fullName>NoFileMSG</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NoFileMSG</shortDescription>
+        <value>No file selected for upload</value>
+    </labels>
+    <labels>
+        <fullName>Non_Lilly_RWE_Partnerships</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Non-Lilly RWE Partnerships</shortDescription>
+        <value>http://lillynet.global.lilly.com/sites/RWECollab/PTNR/Public/Non-Lilly_RWE_partnership_tracker.pdf</value>
+    </labels>
+    <labels>
+        <fullName>Non_SEC_Error_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Non SEC Error Message</shortDescription>
+        <value>Trial record can no longer be reverted back to SEC Process once the Trial Sites have been assigned.</value>
+    </labels>
+    <labels>
+        <fullName>OffSetValue</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OffSetValue</shortDescription>
+        <value>50</value>
+    </labels>
+    <labels>
+        <fullName>PartnerCommunityLibrary</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PartnerCommunityLibrary</shortDescription>
+        <value>05846000000ent9</value>
+    </labels>
+    <labels>
+        <fullName>Password</fullName>
+        <categories>NGIF</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Password</shortDescription>
+        <value>Tf2iep2@</value>
+    </labels>
+    <labels>
+        <fullName>Professional_Role</fullName>
+        <categories>NGIF</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Professional Role</shortDescription>
+        <value>Professional Role Code</value>
+    </labels>
+    <labels>
+        <fullName>Proposed_Due_Date_Help_label</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Proposed Due Date Help label</shortDescription>
+        <value>Please allow 5 business days to have consultant contact study team.</value>
+    </labels>
+    <labels>
+        <fullName>RWE_Partnership_Brain_Trust_Library</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RWE Partnership Brain Trust Library</shortDescription>
+        <value>https://gso.my.salesforce.com/sfc/#workspaceView?selectedWorkspaceId=058b0000000HgI1</value>
+    </labels>
+    <labels>
+        <fullName>Report_an_Issue</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Report_an_Issue</shortDescription>
+        <value>https://lilly.service-now.com/ess/view_content_search.do?uri=com.glideapp.servicecatalog_cat_item_view.do%3Fsysparm_id%3D4692f93a0f7d864028ed6509b1050ef9%26sysparm_link_parent%3D1e1debd8409a45001437d07d2ff6918b%26sysparm_link_parent%3D&amp;sysparm_document_key=sc_cat_item_producer,4692f93a0f7d864028ed6509b1050ef9</value>
+    </labels>
+    <labels>
+        <fullName>ReportsURL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ReportsURL</shortDescription>
+        <value>https://gso.my.salesforce.com/01Zb0000000cdOv</value>
+    </labels>
+    <labels>
+        <fullName>Request_Method</fullName>
+        <categories>NGIF</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Request Method</shortDescription>
+        <value>POST</value>
+    </labels>
+    <labels>
+        <fullName>Request_Method_2</fullName>
+        <categories>NGIF</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Request Method 2</shortDescription>
+        <value>GET</value>
+    </labels>
+    <labels>
+        <fullName>Resolution_Error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Resolution_Error</shortDescription>
+        <value>Pangaea is optimized at a high resolution.  Due to your current settings, we suggest you maximize your browser window or reduce the zoom.</value>
+    </labels>
+    <labels>
+        <fullName>Resolution_Error_Medium</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Resolution_Error_Medium</shortDescription>
+        <value>Pangaea is optimized at a high resolution.  Due to your current settings, we suggest you maximize your browser window or reduce the zoom.</value>
+    </labels>
+    <labels>
+        <fullName>RetryTrial_Count</fullName>
+        <categories>NGIF</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RetryTrial_Count</shortDescription>
+        <value>1</value>
+    </labels>
+    <labels>
+        <fullName>Role_Code</fullName>
+        <categories>NGIF</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Role Code</shortDescription>
+        <value>Role Code</value>
+    </labels>
+    <labels>
+        <fullName>SEC_Form_Demographics_Page_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SEC Form Demographics Page Name</shortDescription>
+        <value>Demographics</value>
+    </labels>
+    <labels>
+        <fullName>SE_FORM_ERROR_MSG</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SE_FORM_ERROR_MSG</shortDescription>
+        <value>You cannot submit a site evaluation form unless all feasibility forms are approved.</value>
+    </labels>
+    <labels>
+        <fullName>SIP_Managed_Error_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SIP Managed Error Message</shortDescription>
+        <value>You cannot add attachments to a SIP Managed Trial Site.</value>
+    </labels>
+    <labels>
+        <fullName>Select_Contact_Msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Contact Msg</shortDescription>
+        <value>Please select at least one contact</value>
+    </labels>
+    <labels>
+        <fullName>Site_Type</fullName>
+        <categories>NGIF</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site Type</shortDescription>
+        <value>Site Type</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_Add_An_Attachment</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TRAK_Add_An_Attachment</shortDescription>
+        <value>Add An Attachment</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_Approver_Design_Incomplete_Error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TRAK_Approver_Design_Incomplete_Error</shortDescription>
+        <value>The Design record cannot be approved as it is not in &quot;Complete&quot; status.</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_AttachFile</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TRAK_AttachFile</shortDescription>
+        <value>Attach File</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_Awaiting_Approval</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TRAK_Awaiting_Approval</shortDescription>
+        <value>Awaiting Approval</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_Burndown_Query</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TRAK_Burndown_Query</shortDescription>
+        <value>select id from TRAK_Sprint__c where Start_Date__c &lt;= today AND End_Date__c &gt;= today</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_Code_Review_Approval_Declaration</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TRAK Code Review Approval Declaration</shortDescription>
+        <value>Your approval indicates that that you have reviewed the associated source code and that: 1.) The code complies with Cirrus Developer Guidelines 2.) Any DML inserts, updates, or deletes affect only objects owned by your project. DML may not be used to update, insert, or delete records in objects owned by other projects.</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_Currency_USD</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TRAK Currency USD</shortDescription>
+        <value>USD</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_DashboardURL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DashboardURL</shortDescription>
+        <value>/servlet/servlet.ChartServer?</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_Data_Design_Fields</fullName>
+        <categories>Technical Document Generation</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Data Design Fields</shortDescription>
+        <value>Overview__c 
+Fields__c</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_Defect_ClosedComplete</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TRAK_Defect_ClosedComplete</shortDescription>
+        <value>Closed - Complete</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_Defects_Status_Closed_Complete</fullName>
+        <categories>All &apos;Closed&apos; statuses from &apos;Defect&apos; object.</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TRAK Defects Status Closed Complete</shortDescription>
+        <value>Passed Test PreProd, Production - Released</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_Design_Error</fullName>
+        <categories>Release Tracker</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TRAK Design Error</shortDescription>
+        <value>Please associate this User Story with an approved design record before updating the status to &apos;Ready for Test&apos;.</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_Error_On_Test_Execution</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Message</shortDescription>
+        <value>An attachment cannot be deleted once a Test Execution has been approved or is pending approval</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_Error_On_Test_Execution_Step</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Message</shortDescription>
+        <value>An attachment cannot be deleted once a Test Execution Step has been approved or is pending approval</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_Error_On_Test_Script</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Message when user tries to delete an attachment</shortDescription>
+        <value>An attachment cannot be deleted once a Test Script has been approved or is pending approval</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_Functional_Document_Descriptions</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Functional Document Descriptions</shortDescription>
+        <value>The purpose of this document is to specify the details (‘acceptance criteria’) for a specific set of requirements (‘user stories’).
+Its format is specific for Agile projects.</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_Generic_Error_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TRAK_Generic_Error_Message</shortDescription>
+        <value>Some Error has occured. Please contact system admin.</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_Integration_Design_Fields</fullName>
+        <categories>Technical Document Generation</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Integration Design Fields</shortDescription>
+        <value>Overview__c</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_Passed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Test Outcome label to be used in Apex Class</shortDescription>
+        <value>Passed</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_Passed_Minor_Issues</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Test Outcome label to be used in Apex Class</shortDescription>
+        <value>Passed with minor issues</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_Regression_Defect_Error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TRAK Regression Defect Error</shortDescription>
+        <value>Please fix all the associated Regression Defects before updating the status to &apos;Passed Test&apos; or &apos;&apos;Passed Test PreProd&apos;.</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_Regression_Defect_User_Story_Error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TRAK Regression Defect User Story Error</shortDescription>
+        <value>Please fix all the Regression Defects associated to this User Story before Updating the status to &apos;Passed Test&apos; or &apos;Passed Test PreProd&apos;</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_Release_Production_Approval_Declaration</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TRAK Release Production Approval Declaration</shortDescription>
+        <value>System Custodian&apos;s approval indicates that you confirm that all required validation criteria have been met and the Application should be deployed into Production.</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_Release_Rejected_Declaration</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TRAK Release Rejected Declaration</shortDescription>
+        <value>System Custodian&apos;s rejection indicates that the scope of this entire release will not go to production.</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_Release_to_Pre_Prod_Approval_Declaration</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TRAK Release to Pre Prod Approval Declaration</shortDescription>
+        <value>System Custodian&apos;s approval indicates that the scope of User Stories and Defects assigned to this release are finalized and Quality Assurance have agreed that all deliverables related to the start of formal testing have been approved to go to Pre-Production.</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_Save_Test_Execution</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error message to notify end user to complete all the test steps</shortDescription>
+        <value>Please complete all the test steps to complete the test</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_Save_Test_Execution_Button</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Name of the buttom on Run Test Script Page bottom</shortDescription>
+        <value>Save test execution</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_Save_Test_Outcome</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error message to notify end user to fill test outcome fields</shortDescription>
+        <value>Please fill overall test outcome and overall test comments to complete the test</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_Save_Test_Step</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Name of the buttom on Run Test Script Page</shortDescription>
+        <value>Save Step</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_Sprint_Design_Fields</fullName>
+        <categories>Technical Document Generation</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sprint Design Fields</shortDescription>
+        <value>Overview__c
+Data_Model__c
+Fields__c
+Objects__c
+Page_Layouts__c
+Apex_Classes__c
+Visualforce_Pages__c
+Apex_Trigger__c
+Other_Components__c</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_Submit_for_Approval</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TRAK_Submit_for_Approval</shortDescription>
+        <value>Submit for Approval</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_Submitting_request_for_approval</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TRAK_Submitting_request_for_approval</shortDescription>
+        <value>Submitting request for approval</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_Technical_Error_Msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Technical Error Msg</shortDescription>
+        <value>Some Technical Error. Please Refresh The Page &amp; Try Again.</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_TestScripClone_Error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TRAK_TestScripClone_Error</shortDescription>
+        <value>Insufficient Privileges Error</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_Test_Execution_Approved_Approval_Status</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TRAK_Test_Execution_Approved_Approval_Status</shortDescription>
+        <value>Approved</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_Test_Script_Approved_Approval_Status</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TRAK_Test_Script_Approved_Approval_Status</shortDescription>
+        <value>Approved</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_Time_Reminders_Exempt_Roles</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TRAK Time Reminders Exempt Roles</shortDescription>
+        <value>Factory Lead,Delivery Manager,Technical POC</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_UserStory_ProductionReleased</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TRAK_UserStory_ProductionReleased</shortDescription>
+        <value>Production - Released</value>
+    </labels>
+    <labels>
+        <fullName>TRAK_User_Story_Burn_Status</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TRAK User Story Burn Status</shortDescription>
+        <value>Production - Released</value>
+    </labels>
+    <labels>
+        <fullName>Technical_Error_Msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Technical Error Msg</shortDescription>
+        <value>Some Technical Error. Please Refresh The Page &amp; Try Again.</value>
+    </labels>
+    <labels>
+        <fullName>Technical_Support</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Technical Support</shortDescription>
+        <value>https://lilly.service-now.com/ess/view_content_search.do?uri=com.glideapp.servicecatalog_cat_item_view.do%3Fsysparm_id%3D4692f93a0f7d864028ed6509b1050ef9%26sysparm_link_parent%3D1e1debd8409a45001437d07d2ff6918b%26sysparm_link_parent%3D&amp;sysparm_document_key=sc_cat_item_producer,4692f93a0f7d864028ed6509b1050ef9</value>
+    </labels>
+    <labels>
+        <fullName>TotalRecordsPerBatch</fullName>
+        <categories>NGIF</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total Records Per Batch</shortDescription>
+        <value>1</value>
+    </labels>
+    <labels>
+        <fullName>TrialSite_Cannot_be_null_for_opptyform</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TrialSite Cannot be null for opptyform</shortDescription>
+        <value>This Oppty form has not been associated with a Trial Site.</value>
+    </labels>
+    <labels>
+        <fullName>Trialforce</fullName>
+        <categories>NGIF</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Trialforce</shortDescription>
+        <value>Trialforce</value>
+    </labels>
+    <labels>
+        <fullName>Username</fullName>
+        <categories>NGIF</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Username</shortDescription>
+        <value>TRIALFORCESYS</value>
+    </labels>
+    <labels>
+        <fullName>WebtrendsDCSID</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WebtrendsDCSID</shortDescription>
+        <value>dcs222vhqghgajxabeckw7trw_2f9s</value>
+    </labels>
+    <labels>
+        <fullName>YouCannotDeleteTemplateQuestion</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>YouCannotDeleteTemplateQuestion</shortDescription>
+        <value>You do not have privileges to delete this question. Please contact your senior system administrator.</value>
+    </labels>
+    <labels>
+        <fullName>YourCompass</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>YourCompass</shortDescription>
+        <value>My Dashboard provides a complete overview of all modules (Research, Requests, Partnership, Information Landscape, Relationships) to track and manage appropriately. Each user within the organization has a custom dashboard that is designed to provide an end to end life cycle overview. When tracking a Research module, the user has complete oversight of all records from active to approved state and is able to take appropriate action in a timely manner. The goal of My Dashboard is to provide quick access to information for you and your team and to ensure your organization is meeting all of its R&amp;D goals.</value>
+    </labels>
+</CustomLabels>

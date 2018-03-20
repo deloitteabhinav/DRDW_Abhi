@@ -1,0 +1,10 @@
+<apex:page sidebar="true" standardController="Account" showHeader="true" extensions="Communities" readOnly="true">
+<apex:form >
+<div id="my-timeline" style="height:750px">
+<apex:image url="{!a.Logo_URL__c}" height="100px" width="200px"/>
+<br/><br/>
+ 
+    <apex:outputField value="{!a.Organization_Welcome_Description__c}"/>
+  </div> 
+</apex:form>  
+</apex:page>

@@ -1,0 +1,724 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Business Description: This object is used to record the tests which have been executed. 
+
+Each test is a copy of a &quot;Test Template&quot; which has been set up by a Test Manager or other Test Script writer. 
+
+Tests are created by the system automatically when a user is added to the Testers Related list on a Test Template.
+
+Used In: Release Tracker App</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Approval_Date__c</fullName>
+        <description>This field will capture the date and time when Test Execution gets approved: Created on 30/07/2014 by Himanshu Babaria : TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Date this has been approved by SME</inlineHelpText>
+        <label>Approval Date</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Approval_Status__c</fullName>
+        <description>This field will capture the status of approval for Test Execution records. It will be auto-populated through the workflow process: Created on 30/07/2014 by Himanshu Babaria :TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The status of the approval. This is auto populated as the Test Execution goes through the process.</inlineHelpText>
+        <label>Approval Status</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Open</fullName>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>Pending Approval</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Approved</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Approver__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This field will capture the name of the approver for approving Test Executions: Created on 30/07/2014 by Himanshu Babaria :TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Your approval indicates that the test was properly documented, the documented test results support the overall pass or fail status of the test case or script and the test cases/scripts are accurate, complete and meet the requirements of LQP-302-18</inlineHelpText>
+        <label>Approver</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Test_Executions</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Assigned_To__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>Which user ran this test</inlineHelpText>
+        <label>Tester</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>TRAK_Test_Cases</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <externalId>false</externalId>
+        <formula>Template__r.Title__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>The description of this text script</inlineHelpText>
+        <label>Test Title</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Environment__c</fullName>
+        <description>Enter the environment that this test was performed in</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the environment that this test was performed in</inlineHelpText>
+        <label>Environment</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Dev</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>CI</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>SAT</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>UAT</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Introduction__c</fullName>
+        <externalId>false</externalId>
+        <formula>Template__r.Introduction__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>What is the overall aim of this test</inlineHelpText>
+        <label>Introduction</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Locked_For_editing__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Locked For editing</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Overall_Test_Comments__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Overall test comments. 
+
+You should note what happened in the test, e.g. for promotion creation &quot;Succesfully created promotion&quot;.
+
+This can be copy and pasted from the excel file.</inlineHelpText>
+        <label>Overall Test Comments</label>
+        <length>32000</length>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Pass_Percentage__c</fullName>
+        <externalId>false</externalId>
+        <formula>Steps_Passed__c / Total_Steps__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>The percentage of all steps that are passed or passed with minor issues</inlineHelpText>
+        <label>Pass Percentage</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Recall_Flag__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Recall Flag</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Signature_Meaning__c</fullName>
+        <defaultValue>&quot;Test Execution is complete and accurately tests the functionality of the related User Story,and that the test was properly documented and supports the overall pass or fail status of the test case. This Test Execution complies with LQP-302-18.&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>Signature Meaning</label>
+        <length>32768</length>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>SprintNew__c</fullName>
+        <externalId>false</externalId>
+        <formula>User_Story__r.Allocated_Sprint__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Sprint</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sprint__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Sprint</label>
+        <referenceTo>TRAK_Sprint__c</referenceTo>
+        <relationshipLabel>Test Executions</relationshipLabel>
+        <relationshipName>TRAK_Test_Executions</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The stage in the test lifecycle. A test case can be Status=Complete and fOutcome=&quot;Failed&quot; if a bug has been raised. Once the bug has been fixed the test case may be set to &quot;Awaiting Retest&quot; by the Test Lead</inlineHelpText>
+        <label>Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Not Started</fullName>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>Started</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Complete</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Awaiting Retest</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Parked</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Steps_Completed__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Sums the number of steps who&apos;s outcome is not N/A</inlineHelpText>
+        <label>Steps Completed</label>
+        <summaryFilterItems>
+            <field>TRAK_Test_Steps__c.Outcome__c</field>
+            <operation>notEqual</operation>
+            <value>TBC</value>
+        </summaryFilterItems>
+        <summaryForeignKey>TRAK_Test_Steps__c.Test__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Steps_Passed__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The total number of steps passed or  passed with minor issues</inlineHelpText>
+        <label>Steps Passed</label>
+        <summaryFilterItems>
+            <field>TRAK_Test_Steps__c.Outcome__c</field>
+            <operation>equals</operation>
+            <value>Pass, Passed with issues, N/A</value>
+        </summaryFilterItems>
+        <summaryForeignKey>TRAK_Test_Steps__c.Test__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Submitter__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Submitter</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Test_Executions1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Template__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>The script being executed</inlineHelpText>
+        <label>Template</label>
+        <referenceTo>TRAK_Test_Templates__c</referenceTo>
+        <relationshipName>TRAK_Test</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Test_Completion__c</fullName>
+        <externalId>false</externalId>
+        <formula>Steps_Completed__c / Total_Steps__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>The percentage of steps that have an outcome not equal to &apos;N/A&apos;</inlineHelpText>
+        <label>Test Completion</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Test_Execution_Date__c</fullName>
+        <description>TRAK Sprint 2: This field is created as a part of User Story US-35859. This field will capture the date when the Test was executed.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Date when the Test execution was last run</inlineHelpText>
+        <label>Test Execution Date</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Test_Outcome__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The overall outcome of the test at it&apos;s current stage</inlineHelpText>
+        <label>Test Outcome</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Passed</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Passed with minor issues</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Failed</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Blocked from testing</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Test_Phase__c</fullName>
+        <externalId>false</externalId>
+        <label>Test Phase</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Sprint Test</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>User Acceptance Test</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Stability Test</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Regression Test</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Performance Test</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Total_Steps__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The total number of steps in this test</inlineHelpText>
+        <label>Total Steps</label>
+        <summaryForeignKey>TRAK_Test_Steps__c.Test__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>User_Story__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>User Story</label>
+        <referenceTo>TRAK_User_Story__c</referenceTo>
+        <relationshipName>TRAK_Tests</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Test Execution</label>
+    <listViews>
+        <fullName>All_Records</fullName>
+        <columns>NAME</columns>
+        <columns>Assigned_To__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Records</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>T-{0000}</displayFormat>
+        <label>Test Execution Number</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Test Executions</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>User_Story__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Test_Phase__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Assigned_To__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Test_Outcome__c</customTabListAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Lock_Down_Approved_Record</fullName>
+        <active>false</active>
+        <description>Lock the test execution record once approved: Created by Preeti Grover on 19/08/2014:TRAK</description>
+        <errorConditionFormula>AND( ISPICKVAL(Approval_Status__c, &apos;Approved&apos;),
+OR ( 
+
+ISCHANGED(Approver__c), 
+ISCHANGED(Overall_Test_Comments__c), 
+ISCHANGED(Status__c), 
+ISCHANGED(Assigned_To__c), 
+ISCHANGED(Sprint__c), 
+ISCHANGED(Test_Outcome__c), 
+ISCHANGED(Test_Phase__c), 
+ISCHANGED(Description__c), 
+ISCHANGED(Total_Steps__c),
+ISCHANGED(Environment__c),
+ISCHANGED(Introduction__c),
+ISCHANGED(Template__c),
+ISCHANGED(Test_Execution_Date__c),
+ISCHANGED(Description__c),
+ISCHANGED(User_Story__c)
+) 
+)</errorConditionFormula>
+        <errorMessage>You can not make changes to an Approved Test Execution</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Pending_Approval_Status</fullName>
+        <active>false</active>
+        <description>TRAK - This validation rule will prevent the user from editing a Test Execution record if the Test Execution is in an &quot;Approved&quot;/&quot;Pending Approval status</description>
+        <errorConditionFormula>AND(
+OR (
+ISPICKVAL(Approval_Status__c, &apos;Approved&apos;),
+ISPICKVAL(Approval_Status__c, &apos;Pending Approval&apos;)
+),
+OR ( 
+ISCHANGED(Approver__c), 
+ISCHANGED(Overall_Test_Comments__c), 
+ISCHANGED(Status__c), 
+ISCHANGED(Assigned_To__c), 
+ISCHANGED(Sprint__c), 
+ISCHANGED(Test_Outcome__c), 
+ISCHANGED(Test_Phase__c), 
+ISCHANGED(Description__c), 
+ISCHANGED(Total_Steps__c), 
+ISCHANGED(Environment__c), 
+ISCHANGED(Introduction__c), 
+ISCHANGED(Template__c), 
+ISCHANGED(Test_Execution_Date__c), 
+ISCHANGED(Description__c), 
+ISCHANGED(User_Story__c) 
+) 
+)</errorConditionFormula>
+        <errorMessage>You cannot Edit a Test Execution if the Test Execution is in  &quot;Pending Approval/Approved&quot; status</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>TRAK_Approved_Status_Validation</fullName>
+        <active>false</active>
+        <errorConditionFormula>IF(ISPICKVAL(Approval_Status__c , &quot;Approved&quot;) &amp;&amp; ISCHANGED( Approver__c),true,false)</errorConditionFormula>
+        <errorMessage>You cannot change Approver once the Test Execution is approved</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>TRAK_CannotSetYourselfAsApprover</fullName>
+        <active>true</active>
+        <description>TRAK - The logged in user cannot select himself / herself as the Approver on the Test Execution record</description>
+        <errorConditionFormula>IF(NOT(ISBLANK(Approver__c))&amp;&amp; NOT(ISBLANK(Submitter__c)) &amp;&amp; Approver__c = Submitter__c,true,false)</errorConditionFormula>
+        <errorMessage>The submitter can not be the approver of the Test Execution. Please select a valid user to approve the request.</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>Recall_Approval_Request</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Recall Approval Request</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/apex.js&quot;)} 
+
+var templateStoryId = &quot;{!TRAK_Test__c.Id}&quot; 
+var qr = sforce.connection.query(&quot;SELECT Id, submitter__c,Approval_Status__c,recall_flag__c FROM TRAK_Test__c where Id=&apos;&quot; + &quot;{!TRAK_Test__c.Id}&quot; + &quot;&apos;&quot;); 
+
+
+var records = qr.getArray(&quot;records&quot;); 
+
+
+
+// display the field from the query 
+
+if(qr.records.Approval_Status__c==&apos;Open&apos;) 
+alert(&apos;An approval request has not been submitted for this Test Script yet. You cannot recall at this stage&apos;); 
+else if(qr.records.Approval_Status__c==&apos;Approved&apos; ) { 
+alert(&apos;An approval request cannot be recalled when the status is Approved&apos;); 
+} 
+else if(qr.records.Approval_Status__c==&apos;Rejected&apos;) 
+{ 
+alert(&apos;An approval request cannot be recalled when the status is Rejected&apos;); 
+} 
+else{ 
+var o = new sforce.SObject(&quot;TRAK_Test__c&quot;); 
+o.id = &quot;{!TRAK_Test__c.Id}&quot;; 
+
+
+
+// make the field change 
+
+o.Approval_Status__c= &quot;Open&quot;; 
+o.recall_flag__c=true; 
+o.submitter__c=window.UserContext.userId; 
+// save the change 
+sforce.connection.update([o]); 
+//alert(&apos;recall&apos;+o.submitter__c); 
+//refresh the page 
+window.location.reload(); 
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Run_Test_Script</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Run Test Script</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/28.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/28.0/apex.js&quot;)} 
+
+try{
+    var testExecId = &apos;{!TRAK_Test__c.Id}&apos;;
+	var result = sforce.apex.execute(&quot;TRAK_Test_ExecutionTriggerClass&quot;,&quot;updateTestExecutionDate&quot;, {testID:testExecId});
+    /*if(result == &apos;success&apos;) {
+        location.replace(&apos;/apex/TRAK_runTestScript?Id=&apos;+testExecId);
+    }
+    else{
+        location.replace(&apos;/apex/TRAK_runTestScript?Id=&apos;+testExecId);
+    }*/
+    window.open(&quot;/{!IF(ISPICKVAL($UserRole.PortalType,&apos;Partner&apos;) ,$Setup.TRAK_Release_Tracker__c.Community_Domain_Name__c,&apos;apex&apos;)}/TRAK_runTestScript?Id=&quot;+testExecId);
+}
+catch(err){
+    alert(&apos;An unexpected error has come. Please contact your Administrator.&apos;);
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Submit_For_Approval</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Submit For Approval</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/apex.js&quot;)}
+
+var templateStoryId = &quot;{!TRAK_Test__c.Id}&quot;
+var approvalStatus=&quot;{!TRAK_Test__c.Status__c}&quot;
+var approver=&quot;{!TRAK_Test__c.Approver__c}&quot;
+var app=&quot;{!TRAK_Test__c.Approval_Status__c}&quot; 
+var qr = sforce.connection.query(&quot;SELECT Approver__c FROM TRAK_Test__c where Id=&apos;&quot; + &quot;{!TRAK_Test__c.Id}&quot; + &quot;&apos;&quot;);
+
+
+var records = qr.getArray(&quot;records&quot;);
+
+if(approvalStatus!=&apos;Complete&apos; &amp;&amp; (approver==&apos;&apos; || approver==null))
+alert(&apos;Please ensure all mandatory information has been completed and select an Approver before submitting the Test Execution for approval.&apos;);
+
+else if(approvalStatus!=&apos;Complete&apos;) {
+alert(&apos;Please ensure all mandatory information has been complete before submitting the Test Execution for approval.&apos;)
+
+}
+
+else if(approver==&apos;&apos; || approver==null){
+alert(&apos;Please select an Approver before submitting the Test Execution for approval.&apos;)
+
+}
+
+else if(app==&apos;Pending Approval&apos;){
+alert(&apos;This Test Execution is Pending Approval and cannot be resubmitted for approval.&apos;)
+
+}
+
+else if(app==&apos;Approved&apos;){
+alert(&apos;This Test Script has already been Approved and cannot be resubmitted for approval.&apos;)
+
+}
+
+else if(app==&apos;Rejected&apos;){
+alert(&apos;This Test Execution has been Rejected and cannot be resubmitted for approval.&apos;)
+
+} 
+else if(approver!=null &amp;&amp; approver!=&apos;&apos;){
+var test = qr.records.Approver__c.toString();
+var test1 = test.substring(0,15); 
+
+if(test1==window.UserContext.userId){
+alert(&apos;The submitter can not be the approver of the Test Execution. Please select a valid user to approve the request.&apos;) 
+}
+else{
+sforce.apex.execute(&quot;TRAK_SubmitForApproval&quot;,&quot;SendEmailMethodTestExcecution&quot;,{localId:templateStoryId});
+location.reload(true);
+}
+}</url>
+    </webLinks>
+</CustomObject>

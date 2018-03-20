@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Template used for email notification to approver for Test Scripts</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>TRAK_Tracker_Standard</letterhead>
+    <name>TRAK Test Script Approval Request</name>
+    <style>formalLetter</style>
+    <subject>Test Script Approval Request - {!TRAK_Test_Templates__c.Title__c}</subject>
+    <textOnly>Dear {!TRAK_Test_Templates__c.Approver__c},
+This is an approval request for Test Script {!TRAK_Test_Templates__c.Title__c}.
+
+Please click on the link below to review and approve the request.
+.
+
+{!TRAK_Test_Templates__c.Link}
+Many thanks,
+{!TRAK_Test_Templates__c.CreatedBy}</textOnly>
+    <type>html</type>
+</EmailTemplate>

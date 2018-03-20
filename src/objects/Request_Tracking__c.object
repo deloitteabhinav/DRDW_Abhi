@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <comment>Autopopulates Request Status &amp; Request Stage</comment>
+        <content>RequestTrackingRedirect</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>To Track Notes on a Request record</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>Comments</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Estimated_Complete_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Estimated Complete Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Estimated_Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Estimated Start Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>RWE_Request__c</fullName>
+        <description>Parent Request</description>
+        <externalId>false</externalId>
+        <label>Request</label>
+        <referenceTo>Request__c</referenceTo>
+        <relationshipLabel>Request Trackings</relationshipLabel>
+        <relationshipName>RWE_Request_Trackings</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Request_Stage__c</fullName>
+        <externalId>false</externalId>
+        <label>Request Stage</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Request_Status__c</controllingField>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Submitted</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Pending Requestor Action</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Pending RWE Inc. Action</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Exploration</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Governance</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Contracting</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Launch</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Consultation</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Ready for Analysis</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Analysis</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Pending Additional Information/Review</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Ready for Validation</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Validation</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>​Initial Assessment</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Scientific Assessment</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Technical Assessment</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>New</controllingFieldValue>
+                <valueName>Submitted</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Accepted</controllingFieldValue>
+                <valueName>Pending Requestor Action</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Accepted</controllingFieldValue>
+                <valueName>Pending RWE Inc. Action</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>In Progress</controllingFieldValue>
+                <valueName>Exploration</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>In Progress</controllingFieldValue>
+                <valueName>Governance</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>In Progress</controllingFieldValue>
+                <valueName>Contracting</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>In Progress</controllingFieldValue>
+                <valueName>Launch</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>In Progress</controllingFieldValue>
+                <valueName>Consultation</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>In Progress</controllingFieldValue>
+                <valueName>Ready for Analysis</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>In Progress</controllingFieldValue>
+                <valueName>Analysis</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>In Progress</controllingFieldValue>
+                <valueName>Pending Additional Information/Review</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>In Progress</controllingFieldValue>
+                <valueName>Ready for Validation</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>In Progress</controllingFieldValue>
+                <valueName>Validation</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>In Progress</controllingFieldValue>
+                <valueName>​Initial Assessment</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>In Progress</controllingFieldValue>
+                <valueName>Scientific Assessment</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>In Progress</controllingFieldValue>
+                <valueName>Technical Assessment</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Request_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Request Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>New</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Accepted</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>In Progress</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Complete</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Archived</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Cancelled</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Deleted</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Update</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Note</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Action</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Request Tracking</label>
+    <nameField>
+        <label>Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Request Trackings</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Date_Validation</fullName>
+        <active>true</active>
+        <description>To ensure Estimated End Date &gt; Estimated Start Date</description>
+        <errorConditionFormula>Estimated_Start_Date__c &gt; Estimated_Complete_Date__c</errorConditionFormula>
+        <errorDisplayField>Estimated_Complete_Date__c</errorDisplayField>
+        <errorMessage>Estimate Complete Date cannot be before Estimate Start Date.</errorMessage>
+    </validationRules>
+</CustomObject>

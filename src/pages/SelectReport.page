@@ -1,0 +1,19 @@
+<apex:page controller="SelectReportController" sidebar="false">
+	<apex:sectionHeader title="RWE Custom Report" subtitle="Select Custom Report" />
+	<apex:form >
+		<apex:pageBlock title="Select Custom Report">
+			<apex:pageBlockButtons location="bottom">
+				<apex:commandButton value="Continue" action="{!gotoReport}"/>
+				<apex:commandButton value="Cancel" action="{!cancel}"/>	
+			</apex:pageBlockButtons>
+			<apex:pageBlockSection >
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="Custom Report"/>
+					<apex:selectList value="{!SelectedReport}" size="1">
+						<apex:selectOptions value="{!CustomReports}"/>
+					</apex:selectList>
+				</apex:pageBlockSectionItem>
+			</apex:pageBlockSection>	
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

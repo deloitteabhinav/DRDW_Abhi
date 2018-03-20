@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Lilly_Trialforce</letterhead>
+    <name>TPTO Requested</name>
+    <style>formalLetter</style>
+    <subject>A PTO request has been raised</subject>
+    <textOnly>Hi {!TPTO_PTO_Request__c.Lead__c},
+A PTO request has been raised in the PTO tracker tool. Kindly review the same.
+
+
+
+You can access the request from the below link:
+
+https://cs15.salesforce.com/{!TPTO_PTO_Request__c.Id}
+Regards,
+
+{!TPTO_PTO_Request__c.OwnerFullName}</textOnly>
+    <type>html</type>
+</EmailTemplate>

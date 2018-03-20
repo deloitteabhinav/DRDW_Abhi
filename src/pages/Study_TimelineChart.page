@@ -1,0 +1,37 @@
+<apex:page standardcontroller="Project__c" extensions="Study_TimelineChartController">
+
+    <!-- Status Chart -->
+    <div style="float:left;width: 40%;margin-left: 250px;">
+    <apex:chart height="400" width="400" data="{!StatusChartData}">
+        <apex:legend position="right"/>
+        <apex:axis type="Numeric" position="left" fields="Duration,AvgValue"  minimum="0" steps="6" title="Duration (in Days)"/>
+        <apex:axis type="Category" position="bottom" fields="StatusValue" title="Study Status"/>
+        <apex:barSeries orientation="vertical" axis="left" xField="StatusValue" yField="Duration">
+        <apex:chartTips height="20" width="100"/>
+        </apex:barSeries>
+        <apex:scatterSeries axis="left" markerType="cross" markerSize="6" xField="StatusValue" yField="AvgValue">
+        <apex:chartTips height="20" width="110"/>
+        </apex:scatterSeries> 
+    </apex:chart>
+    </div>
+    
+    <!-- Stage Chart -->
+    <apex:outputPanel rendered="{!(oStudy.Classification__c != 'Research Project')}">
+        <div style="float:left;width:40%;">
+        <apex:chart height="500" width="500" data="{!StageChartData}">
+            <apex:legend position="right"/>
+            <apex:axis type="Numeric" position="left" fields="Duration,AvgValue" minimum="0"  steps="6" title="Duration (in Days)"/>
+            <apex:axis type="Category" position="bottom" fields="StatusValue" title="Study Stage">
+            <apex:chartLabel rotate="270"/>
+            </apex:axis>
+            <apex:barSeries orientation="vertical" axis="left" xField="StatusValue" yField="Duration">
+            <apex:chartTips height="40" width="125"/>
+            </apex:barSeries>
+            <apex:scatterSeries axis="left" markerType="cross" markerSize="6" xField="StatusValue" yField="AvgValue">
+            <apex:chartTips height="40" width="130"/>
+            </apex:scatterSeries> 
+        </apex:chart> 
+        </div>
+    </apex:outputPanel>
+    
+</apex:page>

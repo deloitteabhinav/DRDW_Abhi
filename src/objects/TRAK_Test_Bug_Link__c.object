@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Business Description: This object is used to link defects to the test step they were created from if the defect was raised during the running of a test script.
+
+Used In: Mission Control App</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Bug_Description__c</fullName>
+        <externalId>false</externalId>
+        <formula>Bug__r.Problem__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Defect Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Bug__c</fullName>
+        <externalId>false</externalId>
+        <label>Defect</label>
+        <referenceTo>TRAK_Bug__c</referenceTo>
+        <relationshipLabel>Test / Defect Links</relationshipLabel>
+        <relationshipName>TRAK_Case_Bug_Links</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Test_Script__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Test Script</label>
+        <referenceTo>TRAK_Test__c</referenceTo>
+        <relationshipName>TRAK_Bug_Links</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Test_Step_Result__c</fullName>
+        <externalId>false</externalId>
+        <label>Test Step Result</label>
+        <referenceTo>TRAK_Test_Steps__c</referenceTo>
+        <relationshipName>TRAK_Case_Bug_Links</relationshipName>
+        <relationshipOrder>1</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <label>Test / Defect Link</label>
+    <nameField>
+        <displayFormat>L-{00000}</displayFormat>
+        <label>Link No:</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Test / Defect Links</pluralLabel>
+    <searchLayouts>
+        <lookupDialogsAdditionalFields>Bug__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Bug_Description__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Bug_Description__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <webLinks>
+        <fullName>New_Bug</fullName>
+        <availability>online</availability>
+        <description>New bug</description>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>New Bug</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>var URL= URLFOR({!$Action.TRAK_Bug__c.New}, null, [retURL=URLFOR($Action.TRAK_Test_steps__c.View, {!TRAK_Test_Steps__c.Id})], true);
+
+window.location=URL;</url>
+    </webLinks>
+</CustomObject>

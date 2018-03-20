@@ -1,0 +1,2791 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <content>FirewallChecker</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fieldSets>
+        <fullName>QuestionnaireFields</fullName>
+        <description>Used in Study Trigger to check if any of the fields in the field-set is change set. It will trigger the user to re submit the Questionnaire again.</description>
+        <displayedFields>
+            <field>Response_to_Unsolicited_Non_Regulatory__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Response_to_Regulatory__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Medical_Value_Summary__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>AMCP_Formulary_Submission__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>FDAMA_piece__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Study_Report__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Scientific_Disclosures__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Statistical_Analysis_Plan__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Model__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Execution_Function__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Execution_Resource__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Secondary_Study_Type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Is_Molecule__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Business_Unit_Primary__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Study_Device__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Final_Protocol_checkbox__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>QuestionnaireFields</label>
+    </fieldSets>
+    <fields>
+        <fullName>AMCP_Formulary_Submission_URL__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please add comma separated URLs if you are adding more than one</inlineHelpText>
+        <label>Payer Dossier URL</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>AMCP_Formulary_Submission__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Formulary communication documents for use with formulary decision makers.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Formulary communication documents for use with formulary decision makers.</inlineHelpText>
+        <label>Payer Dossier</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Active_Duration__c</fullName>
+        <description>Duration Study was in Active Status before moving to Completed or Closed.</description>
+        <externalId>false</externalId>
+        <formula>IF(ISNULL(Date_Completed__c ),IF(ISNULL(Date_Closed__c), TODAY()-Date_Active__c, Date_Closed__c-Date_Active__c), Date_Completed__c - Date_Active__c)</formula>
+        <inlineHelpText>Duration Study was in Active Status before moving to Completed or Closed.</inlineHelpText>
+        <label>Active Duration</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Actual_End_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Actual End Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Actual_Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the date that effort begins on the research study/ research project.</inlineHelpText>
+        <label>Actual Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Anticipated_End_Date__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Approximate date study will be completed</inlineHelpText>
+        <label>Anticipated End Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Anticipated_Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Choose the date the effort is anticipated to bein (this is NOT the expected contracting date)</inlineHelpText>
+        <label>Anticipated Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Approved_Duration__c</fullName>
+        <description>Duration Study was in Approved Status before moving to Active.</description>
+        <externalId>false</externalId>
+        <formula>IF(ISNULL(Date_Active__c ), TODAY()-Date_Approved__c, Date_Active__c - Date_Approved__c)</formula>
+        <inlineHelpText>Duration Study was in Approved Status before moving to Active.</inlineHelpText>
+        <label>Approved Duration</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Business_Unit_Primary__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Business unit that is funding the activity.</inlineHelpText>
+        <label>Business Unit (Primary)</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Animal Health</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Biotech</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Consumer Health</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Generics</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Medical Devices</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Pharmaceuticals</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Vaccines</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Classification__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Describes whether the item is a Research Study/Research Topic.</inlineHelpText>
+        <label>Classification</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Basic Research</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Clinical Research</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Epidemiological Research</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Pre-Clinical Research</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Secondary Research</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Close_Out__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Close Out</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Completed_Duration__c</fullName>
+        <description>Duration Study was in Completed Status before moving to Closed.</description>
+        <externalId>false</externalId>
+        <formula>IF(ISNULL(Date_Closed__c ), TODAY()-Date_Completed__c, Date_Closed__c - Date_Completed__c)</formula>
+        <inlineHelpText>Duration Study was in Completed Status before moving to Closed.</inlineHelpText>
+        <label>Completed Duration</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Conducted_with_an_Partner__c</fullName>
+        <externalId>false</externalId>
+        <label>Conducted with an Partner?</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Execution_Resource__c</controllingField>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>TPO</controllingFieldValue>
+                <valueName>Yes</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>TPO</controllingFieldValue>
+                <valueName>No</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>DRDW_Partner__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>Lookup and add related partnership to this Study. Only Approved &amp; Selected partnerships can be selected.</inlineHelpText>
+        <label>DRDW Partner</label>
+        <lookupFilter>
+            <active>true</active>
+            <booleanFilter>1 AND 2</booleanFilter>
+            <filterItems>
+                <field>Request__c.RecordType.DeveloperName</field>
+                <operation>equals</operation>
+                <value>RWE_Partnership_Exploration</value>
+            </filterItems>
+            <filterItems>
+                <field>Request__c.Partnership_Status__c</field>
+                <operation>equals</operation>
+                <value>Approved and Active</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Request__c</referenceTo>
+        <relationshipLabel>Research</relationshipLabel>
+        <relationshipName>RWE_Studies</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>DataLoad_ID__c</fullName>
+        <externalId>true</externalId>
+        <label>DataLoad ID</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DataLoaded_TF__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Check this check box if this study is created with  data loader rather than UI . This field excludes User from entering mandatory fields on UI</description>
+        <externalId>false</externalId>
+        <label>DataLoaded TF</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Data_Analysis_and_Reporting_Duration__c</fullName>
+        <description>Duration Study was in Stage =  Data Analysis and Reporting before moving to Study Deliverable(s) and Results</description>
+        <externalId>false</externalId>
+        <formula>IF(ISNULL(Date_Study_Deliverable_s_and_Results__c), TODAY()-Date_Data_Analysis_and_Reporting__c, Date_Study_Deliverable_s_and_Results__c- Date_Data_Analysis_and_Reporting__c)</formula>
+        <inlineHelpText>Duration Study was in Stage =  Data Analysis and Reporting before moving to Study Deliverable(s) and Results</inlineHelpText>
+        <label>Data Analysis and Reporting Duration</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Data_Collection_Form_Description__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Use the enter key to add descriptions on a new line.</inlineHelpText>
+        <label>Data Collection Form Description</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Data_Collection_Form_URL__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please add comma separated URLs if you are adding more than one</inlineHelpText>
+        <label>Data Collection Form URL</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Data_Collection_Form__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Data Collection Form</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Datavision_Number__c</fullName>
+        <description>For Data Vision number or other identifier</description>
+        <externalId>false</externalId>
+        <inlineHelpText>For Data Vision number or other identifier</inlineHelpText>
+        <label>Datavision Number</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Date_Active__c</fullName>
+        <description>Trigger updates this field when Status = Active</description>
+        <externalId>false</externalId>
+        <label>Date Active</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Approved__c</fullName>
+        <description>Trigger updates this field when Status = Approved</description>
+        <externalId>false</externalId>
+        <label>Date Approved</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Cancelled__c</fullName>
+        <description>Trigger updates this field when Status = Cancelled</description>
+        <externalId>false</externalId>
+        <label>Date Cancelled</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Close_Out__c</fullName>
+        <description>Trigger updates this field when Stage = Close Out</description>
+        <externalId>false</externalId>
+        <label>Date Close Out</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Closed__c</fullName>
+        <description>Trigger updates this field when Status = Closed</description>
+        <externalId>false</externalId>
+        <label>Date Closed</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Completed__c</fullName>
+        <description>Trigger updates this field when Status = Completed</description>
+        <externalId>false</externalId>
+        <label>Date Completed</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Data_Analysis_and_Reporting__c</fullName>
+        <description>Trigger updates this field when Stage = Data Analysis and Reporting</description>
+        <externalId>false</externalId>
+        <label>Date Data Analysis and Reporting</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Finalize_Store_Study_Deliverables__c</fullName>
+        <description>Trigger updates this field when Stage = Finalize, Store Study Deliverables</description>
+        <externalId>false</externalId>
+        <label>Date Finalize, Store Study Deliverables</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Ideation__c</fullName>
+        <description>Trigger updates this field when Stage = Ideation</description>
+        <externalId>false</externalId>
+        <label>Date Ideation</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_On_Hold__c</fullName>
+        <description>Trigger updates this field when Status = On Hold</description>
+        <externalId>false</externalId>
+        <label>Date On Hold</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Oversee_Execution_of_Research__c</fullName>
+        <description>Trigger updates this field when Stage = Oversee Execution of Research</description>
+        <externalId>false</externalId>
+        <label>Date Oversee Execution of Research</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Questionnaire__c</fullName>
+        <description>Trigger updates this field when Stage = Questionnaire</description>
+        <externalId>false</externalId>
+        <label>Date Questionnaire</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Review_Approve_Study_Deliverable__c</fullName>
+        <description>Trigger updates this field when Stage = Review/ Approve Study Deliverable</description>
+        <externalId>false</externalId>
+        <label>Date Review/ Approve Study Deliverable</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Secure_Resources__c</fullName>
+        <description>Trigger updates this field when Stage = Secure Resources</description>
+        <externalId>false</externalId>
+        <label>Date Secure Resources</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Study_Deliverable_s_and_Results__c</fullName>
+        <description>Trigger updates this field when Stage = Study Deliverable(s) and Results</description>
+        <externalId>false</externalId>
+        <label>Date Study Deliverable(s) and Results</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Study_Development__c</fullName>
+        <description>Trigger updates this field when Stage = Study Development</description>
+        <externalId>false</externalId>
+        <label>Date Study Development</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Study_Execution__c</fullName>
+        <description>Trigger updates this field when Stage = Study Execution</description>
+        <externalId>false</externalId>
+        <label>Date Study Execution</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter a comprehensive description that would include keywords that other users might use to search.</inlineHelpText>
+        <label>Description</label>
+        <length>32768</length>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Executing_Year__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(YEAR(Anticipated_End_Date__c) - YEAR(Anticipated_Start_Date__c),
+1,TEXT(YEAR(Anticipated_Start_Date__c))+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+1), 
+2,TEXT(YEAR(Anticipated_Start_Date__c))+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+1)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+2), 
+3,TEXT(YEAR(Anticipated_Start_Date__c))+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+1)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+2)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+3), 
+4,TEXT(YEAR(Anticipated_Start_Date__c))+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+1)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+2)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+3)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+4), 
+5,TEXT(YEAR(Anticipated_Start_Date__c))+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+1)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+2)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+3)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+4)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+5), 
+6,TEXT(YEAR(Anticipated_Start_Date__c))+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+1)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+2)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+3)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+4)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+5)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+6), 
+7,TEXT(YEAR(Anticipated_Start_Date__c))+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+1)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+2)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+3)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+4)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+5)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+6)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+7), 
+8,TEXT(YEAR(Anticipated_Start_Date__c))+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+1)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+2)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+3)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+4)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+5)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+6)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+7)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+8),
+9,TEXT(YEAR(Anticipated_Start_Date__c))+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+1)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+2)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+3)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+4)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+5)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+6)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+7)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+8)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+9), 
+10,TEXT(YEAR(Anticipated_Start_Date__c))+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+1)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+2)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+3)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+4)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+5)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+6)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+7)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+8)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+9)+&apos;, &apos;+TEXT(YEAR(Anticipated_Start_Date__c)+10), 
+TEXT(YEAR(Anticipated_Start_Date__c)))</formula>
+        <label>Executing Year</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Execution_Function__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The function that the owner belongs to that will be conducting the project</inlineHelpText>
+        <label>Executing Function</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>HR</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Finance</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Marketing</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>R&amp;D - Pre-Clinical</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>R&amp;D - Clinical Dev</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>R&amp;D - Discovery</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Sales</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <color>#0B24BE</color>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Execution_Resource__c</fullName>
+        <description>Will the study be fully or partially outsourced to a TPO? Or will the study be conducted using internal resources?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Will the study be fully or partially outsourced to a TPO? Or will the study be conducted using internal resources?</inlineHelpText>
+        <label>How will the Study be executed?</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Internal</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>TPO</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FDAMA_piece_Description__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Use the enter key to add descriptions on a new line.</inlineHelpText>
+        <label>FDAMA piece Description</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FDAMA_piece_URL__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please add comma separated URLs if you are adding more than one</inlineHelpText>
+        <label>FDAMA piece URL</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FDAMA_piece__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Deliverables intended to produce FDA Modernization Act, section 114 (FDAMA 114) eligible data, to determine the eligibility of the data, and promotional materials intended for use subject to FDA promotional requirements.</inlineHelpText>
+        <label>FDAMA piece</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Final_Protocol_Description__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Use the enter key to add descriptions on a new line.</inlineHelpText>
+        <label>Study Protocol Description</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Final_Protocol__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please add comma separated URLs if you are adding more than one</inlineHelpText>
+        <label>Study Protocol Link</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Final_Protocol_checkbox__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Study Protocol</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Finalize_Store_StudyDeliverable_Duration__c</fullName>
+        <description>Duration Study was in Stage =  Finalize, Store Study Deliverables before moving to Close Out</description>
+        <externalId>false</externalId>
+        <formula>IF(ISNULL(Date_Close_Out__c), TODAY()-Date_Finalize_Store_Study_Deliverables__c, Date_Close_Out__c- Date_Finalize_Store_Study_Deliverables__c)</formula>
+        <inlineHelpText>Duration Study was in Stage =  Finalize, Store Study Deliverables before moving to Close Out</inlineHelpText>
+        <label>Finalize,Store StudyDeliverable Duration</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Ideation_Duration__c</fullName>
+        <description>Duration Study was in Stage = Ideation before moving to Secure Resources.</description>
+        <externalId>false</externalId>
+        <formula>IF(ISNULL(Date_Secure_Resources__c), TODAY()-Date_Ideation__c, Date_Secure_Resources__c- Date_Ideation__c)</formula>
+        <inlineHelpText>Duration Study was in Stage = Ideation before moving to Secure Resources.</inlineHelpText>
+        <label>Ideation Duration</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Is_Molecule__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Does the study involve the assessment of an internal compound? If Yes, please pick a study molecule from the related list below</inlineHelpText>
+        <label>Study/Topic involve internal compound?</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>N/A</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Medical_Value_Summary_Description__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Use the enter key to add descriptions on a new line.</inlineHelpText>
+        <label>Medical Value Summary Description</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Medical_Value_Summary_URL__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please add comma separated URLs if you are adding more than one</inlineHelpText>
+        <label>Medical Value Summary URL</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Medical_Value_Summary__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>United States formulary communication documents (for example, dossiers and medical value summaries) for use with United States formulary decision makers.</inlineHelpText>
+        <label>Medical Value Summary</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Model_Description__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Use the enter key to add descriptions on a new line.</inlineHelpText>
+        <label>Model Description</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Model_URL__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please add comma separated URLs if you are adding more than one</inlineHelpText>
+        <label>Model URL</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Model__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Model Link for Study Type=Modeling</inlineHelpText>
+        <label>Model</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Non_Serious_Adverse_Events_Description__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Use the enter key to add descriptions on a new line.</inlineHelpText>
+        <label>Non-Serious Adverse Events Description</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Non_Serious_Adverse_Events_List_URL__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please add comma separated URLs if you are adding more than one</inlineHelpText>
+        <label>Non-Serious Adverse Events List URL</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Non_Serious_Adverse_Events_List__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Non-Serious Adverse Events List</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Notes_Log__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Use this field to keep notes, a log, or status updates on the study.</inlineHelpText>
+        <label>Notes</label>
+        <length>2000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>OrgAddress_TF__c</fullName>
+        <externalId>false</externalId>
+        <formula>LEFT($Api.Partner_Server_URL_260, FIND( &apos;/services&apos;, $Api.Partner_Server_URL_260))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>OrgAddress TF</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Other_Description__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Use the enter key to add descriptions on a new line.</inlineHelpText>
+        <label>Other - Description</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Other_URL__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please add comma separated URLs if you are adding more than one</inlineHelpText>
+        <label>Other URL</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Other__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Other</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Oversee_Execution_of_Research_Duration__c</fullName>
+        <description>Duration Study was in Stage = Oversee Execution of Research before moving to Data Analysis and Reporting</description>
+        <externalId>false</externalId>
+        <formula>IF(ISNULL(Date_Data_Analysis_and_Reporting__c), TODAY()-Date_Oversee_Execution_of_Research__c, Date_Data_Analysis_and_Reporting__c- Date_Oversee_Execution_of_Research__c)</formula>
+        <inlineHelpText>Duration Study was in Stage = Oversee Execution of Research before moving to Data Analysis and Reporting</inlineHelpText>
+        <label>Oversee Execution of Research Duration</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Payer_Dossier_Description__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Use the enter key to add descriptions on a new line.</inlineHelpText>
+        <label>Payer Dossier Description</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Primary_Purpose__c</fullName>
+        <externalId>false</externalId>
+        <label>Primary Purpose of the Study/Topic</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Advancing Health Policy Environment</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Benefit Risk Assessment</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Clinical Outcomes Assessment Measure Development</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Commercial Commitment</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Medical Communications</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Regulatory Commitment</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Regulatory Strategy</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Strategic Input</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Project_Lead_Owner_TF__c</fullName>
+        <externalId>false</externalId>
+        <label>Project_Lead_Owner_TF</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project_Manager__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>Add the Project Manager or facilitator that supports your area.  Their name will be added to the study team by adding it to this field.</inlineHelpText>
+        <label>Project Manager</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>RWE_Studies_DF</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Project_Status__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>All Research Study/Research Topic start in the Approved status. Change the status to &quot;Active&quot; when effort begins. Change to &quot;Complete&quot; when milestones are complete. Change to &quot;Closed&quot; once all documentation has been retained, etc.</inlineHelpText>
+        <label>Status</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Pending Approval</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Approved</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Active</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>On Hold</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Completed</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Closed</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Cancelled</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>In Progress</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Protocol_Approval_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Protocol Approval Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Protocol_Approval_Required__c</fullName>
+        <externalId>false</externalId>
+        <label>Protocol Approval Required?</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Protocol_Title__c</fullName>
+        <externalId>false</externalId>
+        <label>Protocol Title</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Questionnaire_Duration__c</fullName>
+        <description>Duration Study was in Stage = Questionnaire before moving to Ideation.</description>
+        <externalId>false</externalId>
+        <formula>IF(ISNULL(Date_Ideation__c), TODAY()-Date_Questionnaire__c, Date_Ideation__c- Date_Questionnaire__c)</formula>
+        <inlineHelpText>Duration Study was in Stage = Questionnaire before moving to Ideation.</inlineHelpText>
+        <label>Questionnaire Duration</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Research_Area__c</fullName>
+        <externalId>false</externalId>
+        <label>Research Area</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Affective neuroscience</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Biochemistry</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Biocontrol</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Biodynamics</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Bioinformatics</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Biology</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Biomaterials</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Biomechanics</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Biomonitoring</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Biopolymers</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Botany</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Cell biology</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Cognitive neuroscience</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Computational neuroscience</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Conservation biology</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Developmental biology</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Ecology</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Evolutionary genetics</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Genetics</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Genomics</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Immunogenetics</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Immunology</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Immunotherapy</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Medical imaging</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Microbiology</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Molecular biology</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Neuroscience</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Oncology</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Optometry</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Pathology</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Pharmacogenomics</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Pharmacology</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Physiology</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Proteomics</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Structural biology</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Systems biology</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Research_Topic_Report_Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Research Topic Report Description</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Research_Topic_Report_URL__c</fullName>
+        <externalId>false</externalId>
+        <label>Research Topic Report URL</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Research_Topic_Report__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Research Topic Report</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Research_Topic_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Research Topic Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Completed</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Cancelled</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>On Hold</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Research_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Research Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Research Topic</fullName>
+                    <color>#0B6FCE</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Research Study</fullName>
+                    <color>#78C953</color>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Response_to_Non_Regulatory_Description__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Use the enter key to add descriptions on a new line.</inlineHelpText>
+        <label>Response to Non-Regulatory Description</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Response_to_Non_Regulatory_URL__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please add comma separated URLs if you are adding more than one</inlineHelpText>
+        <label>Response to Non-Regulatory URL</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Response_to_Regulatory_Description__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Use the enter key to add descriptions on a new line.</inlineHelpText>
+        <label>Response to Regulatory Description</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Response_to_Regulatory_URL__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please add comma separated URLs if you are adding more than one</inlineHelpText>
+        <label>Response to Regulatory URL</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Response_to_Regulatory__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Investigator’s brochures; clinical study reports; periodic reports; submission docs; briefing documents; regulatory response docs</inlineHelpText>
+        <label>Response to Regulatory</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Response_to_Unsolicited_Non_Regulatory__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Applies to all responses provided by qualified personnel to unsolicited requests for medical/scientific information from an external, non-regulatory party</inlineHelpText>
+        <label>Response to Unsolicited Non-Regulatory</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Review_Approve_StudyDeliverable_Duration__c</fullName>
+        <description>Duration Study was in Stage =  Review/ Approve Study Deliverable before moving to Finalize, Store Study Deliverables</description>
+        <externalId>false</externalId>
+        <formula>IF(ISNULL(Date_Finalize_Store_Study_Deliverables__c), TODAY()-Date_Review_Approve_Study_Deliverable__c, Date_Finalize_Store_Study_Deliverables__c- Date_Review_Approve_Study_Deliverable__c)</formula>
+        <inlineHelpText>Duration Study was in Stage =  Review/ Approve Study Deliverable before moving to Finalize, Store Study Deliverables</inlineHelpText>
+        <label>Review/Approve StudyDeliverable Duration</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Scientific_Disclosures_Description__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Use the enter key to add descriptions on a new line.</inlineHelpText>
+        <label>Scientific Disclosures Description</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Scientific_Disclosures_URL__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please add comma separated URLs if you are adding more than one</inlineHelpText>
+        <label>Scientific Disclosures URL</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Scientific_Disclosures__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Journal articles, abstracts, posters, letters to the editor, supplements, oral presentations, book chapters, lecture transcripts, symposia highlights, editorials, book reviews, scientific reviews, and audio recordings</inlineHelpText>
+        <label>Scientific Disclosures</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Secondary_Study_Type__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Choose the appropriate sub type depending on the type.</inlineHelpText>
+        <label>Study Sub Type</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Study_Description__c</controllingField>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Method Development</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Analytical Measurement Procedure</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Imaging Procedure</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Biometric Procedure</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Test Development Assessment Procedure</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Animal Study</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Cell Study</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Genetic Engineering</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Biochemistry</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Material Development</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Genetic Studies</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Phase I</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Phase II</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Phase III</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Phase IV</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Intervention Study - Field Study</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Intervention Study - Group Study</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Cohort Study - Prospective</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Cohort Study - Historical</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Case Control Study</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Cross-Sectional Study</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Ecological Study</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Monitoring, surveillance</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Description with registry data</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Pharmacokinetics (PK)</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Pharmacodynamics (PD)</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Toxicology</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Experimental</controllingFieldValue>
+                <valueName>Intervention Study - Field Study</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Experimental</controllingFieldValue>
+                <valueName>Intervention Study - Group Study</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Observational</controllingFieldValue>
+                <controllingFieldValue>Theoretical</controllingFieldValue>
+                <valueName>Biometric Procedure</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Observational</controllingFieldValue>
+                <controllingFieldValue>Theoretical</controllingFieldValue>
+                <valueName>Test Development Assessment Procedure</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Observational</controllingFieldValue>
+                <controllingFieldValue>Applied</controllingFieldValue>
+                <valueName>Animal Study</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Observational</controllingFieldValue>
+                <controllingFieldValue>Applied</controllingFieldValue>
+                <valueName>Genetic Studies</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Observational</controllingFieldValue>
+                <valueName>Cohort Study - Prospective</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Observational</controllingFieldValue>
+                <valueName>Cohort Study - Historical</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Observational</controllingFieldValue>
+                <valueName>Case Control Study</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Observational</controllingFieldValue>
+                <valueName>Cross-Sectional Study</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Observational</controllingFieldValue>
+                <valueName>Ecological Study</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Observational</controllingFieldValue>
+                <valueName>Monitoring, surveillance</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Observational</controllingFieldValue>
+                <valueName>Description with registry data</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>In Vivo</controllingFieldValue>
+                <controllingFieldValue>In Vitro</controllingFieldValue>
+                <valueName>Pharmacokinetics (PK)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>In Vivo</controllingFieldValue>
+                <controllingFieldValue>In Vitro</controllingFieldValue>
+                <valueName>Pharmacodynamics (PD)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>In Vivo</controllingFieldValue>
+                <controllingFieldValue>In Vitro</controllingFieldValue>
+                <valueName>Toxicology</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Clinical Study</controllingFieldValue>
+                <valueName>Phase I</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Clinical Study</controllingFieldValue>
+                <valueName>Phase II</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Clinical Study</controllingFieldValue>
+                <valueName>Phase III</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Clinical Study</controllingFieldValue>
+                <valueName>Phase IV</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Applied</controllingFieldValue>
+                <valueName>Cell Study</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Applied</controllingFieldValue>
+                <valueName>Genetic Engineering</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Applied</controllingFieldValue>
+                <valueName>Biochemistry</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Applied</controllingFieldValue>
+                <valueName>Material Development</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Theoretical</controllingFieldValue>
+                <valueName>Method Development</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Theoretical</controllingFieldValue>
+                <valueName>Analytical Measurement Procedure</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Theoretical</controllingFieldValue>
+                <valueName>Imaging Procedure</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Secure_Resources_Duration__c</fullName>
+        <description>Duration Study was in Stage = Secure Resources before moving to Study Development.</description>
+        <externalId>false</externalId>
+        <formula>IF(ISNULL(Date_Study_Development__c), TODAY()-Date_Secure_Resources__c, Date_Study_Development__c- Date_Secure_Resources__c)</formula>
+        <inlineHelpText>Duration Study was in Stage = Secure Resources before moving to Study Development.</inlineHelpText>
+        <label>Secure Resources Duration</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Start_Date_Variance__c</fullName>
+        <description>Difference between Actual Start Date and Anticipated Start Date</description>
+        <externalId>false</externalId>
+        <formula>Actual_Start_Date__c - Anticipated_Start_Date__c</formula>
+        <inlineHelpText>Difference between Actual Start Date and Anticipated Start Date</inlineHelpText>
+        <label>Start Date Variance</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Statistical_Analysis_Plan_Description__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Use the enter key to add descriptions on a new line.</inlineHelpText>
+        <label>Statistical Analysis Plan Description</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Statistical_Analysis_Plan_URL__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please add comma separated URLs if you are adding more than one</inlineHelpText>
+        <label>Statistical Analysis Plan URL</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Statistical_Analysis_Plan__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Statistical Analysis Plan</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Study_Deliverable_s_Results_Duration__c</fullName>
+        <description>Duration Study was in Stage =  Study Deliverable(s) and Results before moving to Review/ Approve Study Deliverable</description>
+        <externalId>false</externalId>
+        <formula>IF(ISNULL(Date_Review_Approve_Study_Deliverable__c), TODAY()-Date_Study_Deliverable_s_and_Results__c, Date_Review_Approve_Study_Deliverable__c- Date_Study_Deliverable_s_and_Results__c)</formula>
+        <inlineHelpText>Duration Study was in Stage =  Study Deliverable(s) and Results before moving to Review/ Approve Study Deliverable</inlineHelpText>
+        <label>Study Deliverable(s) &amp; Results Duration</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Study_Description__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Describes the type of Research Study/Research Topic.</inlineHelpText>
+        <label>Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Classification__c</controllingField>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Clinical Study</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Applied</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Theoretical</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Therapy Study</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Prognostic Study</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Diagnostic Study</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Observational Study w/ Drugs</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Secondary Data Analysis</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Case Series</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Single Case Report</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Experimental</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Observational</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Meta Analysis</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Review</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Systematic</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Simple (Narrative)</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>In Vivo</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>In Vitro</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Basic Research</controllingFieldValue>
+                <valueName>Applied</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Basic Research</controllingFieldValue>
+                <valueName>Theoretical</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Clinical Research</controllingFieldValue>
+                <valueName>Clinical Study</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Clinical Research</controllingFieldValue>
+                <valueName>Therapy Study</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Clinical Research</controllingFieldValue>
+                <valueName>Prognostic Study</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Clinical Research</controllingFieldValue>
+                <valueName>Diagnostic Study</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Clinical Research</controllingFieldValue>
+                <valueName>Observational Study w/ Drugs</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Clinical Research</controllingFieldValue>
+                <valueName>Secondary Data Analysis</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Clinical Research</controllingFieldValue>
+                <valueName>Case Series</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Clinical Research</controllingFieldValue>
+                <valueName>Single Case Report</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Epidemiological Research</controllingFieldValue>
+                <valueName>Experimental</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Epidemiological Research</controllingFieldValue>
+                <valueName>Observational</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Secondary Research</controllingFieldValue>
+                <valueName>Meta Analysis</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Secondary Research</controllingFieldValue>
+                <valueName>Review</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Secondary Research</controllingFieldValue>
+                <valueName>Systematic</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Secondary Research</controllingFieldValue>
+                <valueName>Simple (Narrative)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Pre-Clinical Research</controllingFieldValue>
+                <valueName>In Vivo</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Pre-Clinical Research</controllingFieldValue>
+                <valueName>In Vitro</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Study_Development_Duration__c</fullName>
+        <description>Duration Study was in Stage = Study Development before moving to Study Execution</description>
+        <externalId>false</externalId>
+        <formula>IF(ISNULL(Date_Study_Execution__c), TODAY()-Date_Study_Development__c, Date_Study_Execution__c- Date_Study_Development__c)</formula>
+        <inlineHelpText>Duration Study was in Stage = Study Development before moving to Study Execution</inlineHelpText>
+        <label>Study Development Duration</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Study_Device__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Capture whether a study involves a device such as comparison of two devices, etc.  It is not meant to capture whether the molecule involved uses a device, rather whether the device is integral to the study.</inlineHelpText>
+        <label>Does the Study involve use of a Device?</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Study_Execution_Duration__c</fullName>
+        <description>Duration Study was in Stage = Study Execution before moving to Oversee Execution of Research</description>
+        <externalId>false</externalId>
+        <formula>IF(ISNULL(Date_Oversee_Execution_of_Research__c), TODAY()-Date_Study_Execution__c, Date_Oversee_Execution_of_Research__c- Date_Study_Execution__c)</formula>
+        <inlineHelpText>Duration Study was in Stage = Study Execution before moving to Oversee Execution of Research</inlineHelpText>
+        <label>Study Execution Duration</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Study_Project_ID__c</fullName>
+        <displayFormat>{YYYY}-{0000}</displayFormat>
+        <externalId>false</externalId>
+        <label>Study ID</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>AutoNumber</type>
+    </fields>
+    <fields>
+        <fullName>Study_Project_Report_Description__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Use the enter key to add descriptions on a new line.</inlineHelpText>
+        <label>Study Report Description</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Study_Region__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Choose the region that benefits from the study.  If multiple regions benefit, then choose &quot;Global&quot;.</inlineHelpText>
+        <label>Region benefiting from the study</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Asia Pacific</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>EMEA</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Emerging Markets</fullName>
+                    <color>#78C953</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Global (Multiple Regions)</fullName>
+                    <color>#F3D904</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Latin America</fullName>
+                    <color>#0B6FCE</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>North America</fullName>
+                    <color>#E27001</color>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Study_Report_Approval_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Study Report Approval Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Study_Report_Approval_Required__c</fullName>
+        <externalId>false</externalId>
+        <label>Study Report Approval Required?</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Study_Report_URL__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please add comma separated URLs if you are adding more than one</inlineHelpText>
+        <label>Study Report URL</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Study_Report__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Study Report</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Study_Stage__c</fullName>
+        <externalId>false</externalId>
+        <label>Study Stage</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Questionnaire Needs Review</fullName>
+                    <color>#0B6FCE</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Questionnaire</fullName>
+                    <color>#78C953</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Ideation</fullName>
+                    <color>#E27001</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Secure Resources</fullName>
+                    <color>#A845DC</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Study Development</fullName>
+                    <color>#F3D904</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Study Execution</fullName>
+                    <color>#A53711</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Oversee Execution of Research</fullName>
+                    <color>#66E9BD</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Data Analysis and Reporting</fullName>
+                    <color>#0B24BE</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Study Deliverable(s) and Results</fullName>
+                    <color>#419249</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Review/ Approve Study Deliverable</fullName>
+                    <color>#B6E32E</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Finalize, Store Study Deliverables</fullName>
+                    <color>#641CCF</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Close Out</fullName>
+                    <color>#F96FB7</color>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>TPO_Location__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>Search either by Name or Capability. After selecting lookup, change search choice to &quot;All Fields&quot; to search on capabilities.
+If TPO is not listed, search and select *Other* from the list.</inlineHelpText>
+        <label>TPO</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>$User.Username</field>
+                <operation>notEqual</operation>
+                <value></value>
+            </filterItems>
+            <filterItems>
+                <field>TPO_Location__c.Status__c</field>
+                <operation>equals</operation>
+                <value>Approved</value>
+            </filterItems>
+            <infoMessage>Select &apos;All Fields&apos; in order to search by Capability or Location.</infoMessage>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>TPO_Location__c</referenceTo>
+        <relationshipName>RWE_Studies</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Target_Audience__c</fullName>
+        <externalId>false</externalId>
+        <label>Target Audience</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>External</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Internal</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Therapeutic_Area_Primary__c</fullName>
+        <externalId>false</externalId>
+        <label>Therapeutic Area (Primary)</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Autoimmune Diseases</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Cardiovascular</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Dermatology</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Diabetes</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Endocrinology</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Gastroenterology</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Gynecology</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Immunology</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Neurology</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Oncology</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Psychiatry &amp; Pain</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Rheumatology</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Urology</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Vaccines</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Non-Therapeutic Area Specific</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>What_is_the_objective_of_this_study__c</fullName>
+        <externalId>false</externalId>
+        <label>Objective of this Study/Topic?</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Will_be_Topic_be_executed_internally__c</fullName>
+        <externalId>false</externalId>
+        <label>Will the Topic be executed internally?</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Research</label>
+    <listViews>
+        <fullName>All_Studies</fullName>
+        <columns>NAME</columns>
+        <columns>Project_Status__c</columns>
+        <columns>Study_Stage__c</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>Study_Project_ID__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Project_Status__c</field>
+            <operation>notContain</operation>
+            <value>Closed,Cancelled</value>
+        </filters>
+        <label>All Studies</label>
+    </listViews>
+    <listViews>
+        <fullName>BioMed_Projects</fullName>
+        <columns>NAME</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>Therapeutic_Area_Primary__c</columns>
+        <columns>Project_Status__c</columns>
+        <columns>LAST_ACTIVITY</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Project_Status__c</field>
+            <operation>notEqual</operation>
+            <value>Closed,Archived,Cancelled</value>
+        </filters>
+        <label>BioMed Studies</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>DBU_Jansen_Test</fullName>
+        <booleanFilter>1 AND (2 or 3)</booleanFilter>
+        <columns>NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Therapeutic_Area_Primary__c</field>
+            <operation>equals</operation>
+            <value>Diabetes</value>
+        </filters>
+        <filters>
+            <field>OWNER.LAST_NAME</field>
+            <operation>equals</operation>
+            <value>Jansen</value>
+        </filters>
+        <filters>
+            <field>Project_Manager__c</field>
+            <operation>contains</operation>
+            <value>Jansen</value>
+        </filters>
+        <label>DBU-Jansen_Test</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>DRDP_Study_Approval_Queue_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Study Approval Queue</label>
+        <queue>DRDP_Study_Approval_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>GPS_Projects1</fullName>
+        <columns>NAME</columns>
+        <columns>Business_Unit_Primary__c</columns>
+        <columns>Project_Status__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Project_Status__c</field>
+            <operation>notEqual</operation>
+            <value>Closed</value>
+        </filters>
+        <filters>
+            <field>Project_Status__c</field>
+            <operation>notEqual</operation>
+            <value>Archived</value>
+        </filters>
+        <filters>
+            <field>Project_Status__c</field>
+            <operation>notEqual</operation>
+            <value>Cancelled</value>
+        </filters>
+        <label>GPS Projects</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Oncology_Studies</fullName>
+        <columns>LAST_UPDATE</columns>
+        <columns>NAME</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Project_Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Therapeutic_Area_Primary__c</field>
+            <operation>equals</operation>
+            <value>Oncology</value>
+        </filters>
+        <label>Oncology Studies</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Oncology_requests</fullName>
+        <columns>LAST_UPDATE</columns>
+        <columns>NAME</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Project_Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Therapeutic_Area_Primary__c</field>
+            <operation>equals</operation>
+            <value>Oncology</value>
+        </filters>
+        <label>Oncology Studies</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>R3_Study_View_for_Testing_UI</fullName>
+        <columns>NAME</columns>
+        <columns>Therapeutic_Area_Primary__c</columns>
+        <columns>Project_Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>R3 Study View for Testing UI</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Test1</fullName>
+        <columns>NAME</columns>
+        <columns>Therapeutic_Area_Primary__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Therapeutic_Area_Primary__c</field>
+            <operation>equals</operation>
+            <value>Cardiovascular</value>
+        </filters>
+        <label>Test1</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Title</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Research</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>OWNER.FIRST_NAME</customTabListAdditionalFields>
+        <customTabListAdditionalFields>OWNER.LAST_NAME</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>OWNER.FIRST_NAME</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>OWNER.LAST_NAME</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Project_Status__c</lookupDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Therapeutic_Area_Primary__c</searchFilterFields>
+        <searchFilterFields>Project_Status__c</searchFilterFields>
+        <searchFilterFields>Study_Description__c</searchFilterFields>
+        <searchResultsAdditionalFields>Classification__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>OWNER.FIRST_NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>OWNER.LAST_NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Project_Status__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Read</sharingModel>
+    <validationRules>
+        <fullName>Anticipated_Date_Validation</fullName>
+        <active>true</active>
+        <description>Prevents Anticipated End date to be before Start Date</description>
+        <errorConditionFormula>Anticipated_End_Date__c &lt;= Anticipated_Start_Date__c</errorConditionFormula>
+        <errorDisplayField>Anticipated_End_Date__c</errorDisplayField>
+        <errorMessage>Do you have a time machine? The Anticipated End Date cannot occur before the Anticipated Start Date.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>IS_Validation</fullName>
+        <active>true</active>
+        <description>&quot;Does the Study/Project involve LY? &quot;field is required when Status= Active, Completed or Closed.</description>
+        <errorConditionFormula>AND(OR(ISPICKVAL( Project_Status__c , &apos;Active&apos;) ,ISPICKVAL( Project_Status__c , &apos;Completed&apos;) ,ISPICKVAL( Project_Status__c , &apos;Closed&apos;)), ISPICKVAL( Is_Molecule__c,&apos;&apos;), TEXT(Research_Type__c)!=&apos;Research Topic&apos;,TEXT(Study_Description__c) != &apos;Modeling&apos;, TEXT(Study_Description__c) != &apos;Systematic Literature Review&apos;)</errorConditionFormula>
+        <errorDisplayField>Is_Molecule__c</errorDisplayField>
+        <errorMessage>This field is required when Status= Active, Completed or Closed.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Valid_Protocol_Approval</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(ISPICKVAL(Protocol_Approval_Required__c,&apos;Yes&apos;),ISBLANK( Protocol_Approval_Date__c ), Final_Protocol_checkbox__c ,NOT(ISNEW()))</errorConditionFormula>
+        <errorDisplayField>Protocol_Approval_Date__c</errorDisplayField>
+        <errorMessage>This field is required.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Valid_Study_Approval</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(ISPICKVAL( Study_Report_Approval_Required__c ,&apos;Yes&apos;),ISBLANK( Study_Report_Approval_Date__c ), Study_Report__c ,NOT(ISNEW()))</errorConditionFormula>
+        <errorDisplayField>Study_Report_Approval_Date__c</errorDisplayField>
+        <errorMessage>This field is required.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Valid_VerifyStatus_ActualStartDate</fullName>
+        <active>true</active>
+        <errorConditionFormula>OR(
+AND(
+TEXT(Research_Type__c)!=&apos;Research Topic&apos;,
+NOT(ISPICKVAL(PRIORVALUE(Project_Status__c),&quot;Active&quot;)), 
+NOT(ISPICKVAL(PRIORVALUE(Project_Status__c),&quot;Completed&quot;)),
+NOT(ISPICKVAL(Project_Status__c,&quot;Active&quot;)),
+NOT(ISPICKVAL(Project_Status__c,&quot;Completed&quot;)),
+NOT(ISBLANK(Actual_Start_Date__c)),
+ISCHANGED(Actual_Start_Date__c),
+NOT(ISNEW())
+),
+AND(
+TEXT(Research_Type__c)!=&apos;Research Topic&apos;,
+NOT(ISPICKVAL(Project_Status__c,&quot;Active&quot;)),
+NOT(ISPICKVAL(Project_Status__c,&quot;Completed&quot;)),
+ISCHANGED(Actual_Start_Date__c),
+NOT(ISBLANK(Actual_Start_Date__c)),
+NOT(ISNEW())
+)
+)</errorConditionFormula>
+        <errorDisplayField>Actual_Start_Date__c</errorDisplayField>
+        <errorMessage>Oops, try again! Status must be Active or Completed to enter/update the Actual Start Date.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Valid_Verify_ActualStartDate</fullName>
+        <active>true</active>
+        <errorConditionFormula>Actual_Start_Date__c &gt; TODAY()</errorConditionFormula>
+        <errorDisplayField>Actual_Start_Date__c</errorDisplayField>
+        <errorMessage>Do you have a time machine? The Actual Start Date cannot be a future date.</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>Study_Home_Page</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Study Home Page</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>if(&apos;{!Project__c.Research_Type__c}&apos; != &apos;Research Topic&apos;) {
+window.location = &quot;/apex/CreateStudy?id={!Project__c.Id}&amp;isEdit=false&quot;;
+} else {
+window.location = &quot;/apex/Research_Topics?id={!Project__c.Id}&amp;isEdit=false&quot;;
+}</url>
+    </webLinks>
+</CustomObject>

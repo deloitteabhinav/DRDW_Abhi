@@ -1,0 +1,357 @@
+<apex:page docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="false" readonly="false" standardController="Project__c" extensions="Checklist">
+   <html lang="en">
+      <apex:form > 
+         <head>
+            <title>Checklist</title>
+         </head>
+         <body>
+            <div class='df_drdw content'>
+               <div class="df_drdw-checklist">
+                  <header class="">
+                        <div class="return-clipboard">
+                            <a href="/apex/Clipboard"><span class="icon-large-caret left"></span>My Dashboard</a>
+                        </div>
+                        <div class="save-status">
+                            <span><apex:actionStatus id="status" startText="Saving . . ." stoptext="Saved"/></span>
+                            <span class="icon-cloud"></span>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="small-resolution-mod col-xs-12">
+                                    <h1>{!Project__c.Study_Project_ID__c}: {!Project__c.Name}</h1>
+                                    <div class="edit-study-wrapper">
+                                        <h2>{!Project__c.Study_Project_ID__c}</h2>
+                                            <fieldset>
+                                                <div class="col-xs-6 label">
+                                                    <label>Owner Name</label>
+                                                    <div class="editable">{!Project__c.Owner.Name}</div>
+                                                </div>
+                                                <div class="col-xs-6 label">
+                                                    <label>{!$ObjectType.Project__c.Fields.Business_Unit_Primary__c.Label}</label>
+                                                    <div class="editable">{!Project__c.Business_Unit_Primary__c}</div>
+                                                </div>
+                                                <div class="col-xs-6 label">
+                                                    <label>{!$ObjectType.Project__c.Fields.Execution_Function__c.Label}</label>
+                                                    <div class="editable">{!Project__c.Execution_Function__c}</div>
+                                                </div>
+                                                <div class="col-xs-6 label">
+                                                    <label>{!$ObjectType.Project__c.Fields.Project_Manager__c.Label}</label>
+                                                    <div class="editable">{!Project__c.Project_Manager__r.Name}</div>
+                                                </div>
+                                            </fieldset>
+                                            <fieldset>
+                                                <div class="col-xs-6 label">
+                                                    <label>{!$ObjectType.Project__c.Fields.Anticipated_Start_Date__c.Label}</label>
+                                                    <div class="editable">
+                                                        <apex:outputText value=" {0,date,MM/dd/yyyy}">
+                                                            <apex:param value="{!Project__c.Anticipated_Start_Date__c}" /></apex:outputText>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-6 label">
+                                                    <label>{!$ObjectType.Project__c.Fields.Anticipated_End_Date__c.Label}</label>
+                                                    <div class="editable">
+                                                        {!Project__c.Anticipated_End_Date__c}
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                            <fieldset>
+                                                <div class="col-xs-6 label">
+                                                    <label>{!$ObjectType.Project__c.Fields.Is_Molecule__c.Label}</label>
+                                                    <div class="editable">
+                                                        {!Project__c.Is_Molecule__c}:
+                                                        <apex:repeat value="{!Project__c.RWE_Study_Molecule__r}" var="mole">
+                                                            {!mole.Molecule__r.name},
+                                                        </apex:repeat>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-6 label">
+                                                    <label>Created By</label>
+                                                    <div class="editable">
+                                                        {!Project__c.CreatedBy.Name}
+                                                        <apex:outputText value=" {0,date,MM/dd/yyyy}">
+                                                            <apex:param value="{!Project__c.CreatedDate}" /></apex:outputText>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                            <div class="row">
+                                                <apex:outputLink styleClass="button edit-study-btn" value="/apex/CreateStudy?id={!Project__c.id}&isEdit=false">View Study</apex:outputlink>
+                                            </div>
+                                    </div>
+                                    <div class="edit-study-trigger">
+                                        <label>Study Details</label> <span class="icon-large-caret down"></span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+                    
+                  <main class="container">
+                     <div class="row">
+                        <nav class="progress-indicator">
+                           <ul>
+                            
+                             <apex:outputlink value="/apex/Questionnaire?id={!Project__c.Id}">
+                             <li class="{!if(owQuestionsCount.iRespondedQuestions==owQuestionsCount.iTotalNumberOfQuestions,'done',if(owQuestionsCount.iRespondedQuestions==0,'incomplete','inprogress'))}" > 
+                              <span class="status"></span> 
+                             
+                             Questionnaire
+                                 <em>{!owQuestionsCount.iRespondedQuestions} of {!owQuestionsCount.iTotalNumberOfQuestions} questions</em>
+                            </li>
+                            </apex:outputlink>
+                            <apex:outputpanel id="sidebar">                      
+
+                            <apex:repeat value="{!StudyStages}" var="stage">
+                            
+                             <apex:outputpanel rendered="{!if(AND(stage!='Questionnaire',stage!='Questionnaire Needs Review',mChecklistToBeDisplayed[stage].iTotalMileStones != 0),true,false)}">    
+                             <li class="{!if(Project__c.study_stage__c==stage,if(mChecklistToBeDisplayed[stage].bNewlyAdded,'active error',if(mChecklistToBeDisplayed[stage].sProcessCount== mChecklistToBeDisplayed[stage].iTotalMileStones && mChecklistToBeDisplayed[stage].sProcessCount>0,'active done','active')),if(mChecklistToBeDisplayed[stage].sProcessCount>0,if(mChecklistToBeDisplayed[stage].sProcessCount==mChecklistToBeDisplayed[stage].iTotalMileStones,'done',if(mChecklistToBeDisplayed[stage].bNewlyAdded,'error','inprogress')),'incomplete'))}" value="/apex/Questionnaire?id={!Project__c.Id}">
+                                 <span class="status"></span>                               
+
+                                <apex:commandlink rerender="checklistpage,Submitbutton" status="status" rendered="{!if(OR(stage!='Questionnaire',stage!='Questionnaire Needs Review'),true,false)}" oncomplete="df_drdw.globalEvents.handlers();">
+
+                                  {!stage}
+                                        <apex:param value="{!stage}" assignTo="{!sProcess}" name="processname"/>
+                                  
+                                </apex:commandlink>
+
+                                 <em>{!mChecklistToBeDisplayed[stage].sProcessCount} of {!mChecklistToBeDisplayed[stage].iTotalMileStones} complete</em>
+                              </li>
+                            
+                              </apex:outputpanel>
+
+                            </apex:repeat>
+                            </apex:outputpanel>
+                          
+                           </ul>
+                           
+                        </nav>
+                        <section class="main-content ideation">
+                           
+                         <apex:outputpanel id="checklistpage">  
+                         <p class="main-notification info">
+                              <apex:outputtext value="{!if(Project__c.Study_Stage__c == sProcess,'Use your checklist during your study. Checklist progress is tracked in the menu and your actions are automatically saved.','Your current stage is '&Project__c.Study_Stage__c&'. You may browse ahead and complete Key Actions in other stages.')}"/>
+                         </p>
+                         <apex:repeat value="{!mChecklistToBeDisplayed[sProcess]}" var="Process">  
+                           <div class="title row error">
+                              <div class="col-xs-12">
+                                 <h2 >{!sProcess}</h2>
+                                 <apex:outputpanel id="stagecount">
+                                    <em class="stage">{!Process.sProcessCount} of {!Process.iTotalMileStones} complete</em>
+                                    <apex:outputpanel rendered="{!Process.bNewlyAdded}">
+                                        <span class="needs-review">Needs Review</span>
+                                    </apex:outputpanel>
+
+                                    <apex:outputpanel rendered="{!if(Process.iTotalMileStones==Process.sProcessCount,false,true)}">
+                                      <div class="pull-right error-message">Key Actions are required</div>
+                                    </apex:outputpanel>
+                                 </apex:outputpanel>
+                                 
+                              </div>
+                           </div>
+                           
+                               <ul class="milestones">
+                               <apex:repeat value="{!Process.lCheckListItems}" var="Milestones">
+                                  <li class="done row">
+                                     
+                                         <apex:outputpanel rendered="{!if(Milestones.oMilestone.Id!=null,true,false)}" id="milestonecheckbox">
+                                             <div class="col-xs-1 milestone-check">
+                                             <apex:inputcheckbox id="milestonecheck" value="{!Milestones.oMilestone.completed__c}" styleClass="regular-checkbox">
+                                              <apex:actionsupport action="{!save}" event="onchange" rerender="milestonecheckbox,milestoneroles,stagecount,sidebar,Submitbutton,newtag,milestonenotes" status="status" oncomplete="df_drdw.globalEvents.handlers();">
+                                                <apex:param value="{!Milestones.oMilestone.Id}" name="checkid" assignTo="{!iSelectedCheckListItem}"/>
+                                                <apex:param value="{!sProcess}" name="checkprocessid" assignTo="{!sProcess}"/>
+                                              </apex:actionsupport>
+                                             </apex:inputcheckbox>
+                                             <label for="{!$Component.milestonecheck}"></label>
+                                             </div>
+                                         </apex:outputpanel>
+                                         <div class="{!if(Milestones.oMilestone.Id!=null,'col-xs-11 milestone-details','col-xs-11 milestone-details standalone')}">
+                                          
+                                          <apex:outputpanel rendered="{!if(Milestones.oMilestone.Id!=null,true,false)}">
+                                            <div class="row">
+                                               <h3 class="col-xs-12">
+                                                <apex:outputpanel id="newtag">
+                                                    <apex:outputpanel rendered="{!Milestones.oMilestone.Newly_added__c}">
+                                                        <span class="new-sticker">NEW</span>
+                                                    </apex:outputpanel>
+                                                </apex:outputpanel>    
+                                                <apex:outputtext value="{!Milestones.sMileCount}"/></h3>
+                                            </div>
+                                            <div class="row">
+                                                  <apex:outputtext styleClass="col-xs-8" value="{!Milestones.oMilestone.Checklist_Item__r.Instructions__c}" escape="false"/>
+                                               <div class="form-field col-xs-4">
+                                                    <apex:outputpanel id="milestoneroles">
+                                                    <apex:selectList size="1" value="{!Milestones.oMilestone.role__c}">
+                                                        <apex:selectOption itemLabel="--None--" rendered="{!if(Milestones.oMilestone.role__c==null,true,false)}" />
+                                                        <apex:selectOptions value="{!roleLovOptions}"/>
+                                                        <apex:actionsupport action="{!save}" event="onchange" rerender="milestonecheckbox,milestoneroles,sidebar,Submitbutton,newtag,milestonenotes" status="status">
+                                                    <apex:param value="{!Milestones.oMilestone.Id}" name="checkid" assignTo="{!iSelectedCheckListItem}"/>
+                                                    <apex:param value="{!sProcess}" name="checkprocessid" assignTo="{!sProcess}"/>
+                                                  </apex:actionsupport>
+                                                    </apex:selectList>
+                                                    </apex:outputpanel>
+                                               </div>
+                                            </div>
+                                            <div class="note row">
+                                             <apex:outputpanel id="milestonenotes">  
+                                               <apex:outputpanel rendered="{!if(Milestones.sNoteFlag=='NEW',true,false)}">
+                                               <div class="col-xs-2 add-note">
+                                                  <apex:commandlink action="{!makeEdit}" oncomplete="df_drdw.checklist.textareahandler();" rerender="milestonecheckbox,milestoneroles,milestonenotes,sidebar" status="status" styleClass="add-note-trigger">Add Note
+                                                    <apex:param value="{!Milestones.oMilestone.Id}" name="checkid" assignTo="{!iSelectedCheckListItem}"/>
+                                                    <apex:param value="{!sProcess}" name="checkprocessid" assignTo="{!sProcess}"/>
+                                                  </apex:commandlink>
+                                               </div>
+                                               </apex:outputpanel>
+                                               <apex:outputpanel rendered="{!if(Milestones.sNoteFlag=='EDIT',true,false)}">
+                                                 <div class="col-xs-10 note-editable-content">
+                                                    <apex:inputtextarea html-data-field-maxlength="255" value="{!Milestones.oMilestone.comment__c}" html-placeholder="Enter notes here..."/>
+                                                 </div>
+                                               </apex:outputpanel>
+                                               <apex:outputpanel rendered="{!if(Milestones.sNoteFlag=='READ',true,false)}">
+                                                 <div class="col-xs-10 note-readonly-content">
+                                                 <p class="note-label">Notes</p>
+                                                    <apex:outputField value="{!Milestones.oMilestone.comment__c}" styleClass="content"/>
+                                                 </div>
+                                               </apex:outputpanel>
+                                               <div class="col-xs-2 note-icons">
+                                                  <apex:commandlink action="{!save}" rerender="milestonecheckbox,milestoneroles,milestonenotes,sidebar" status="status" rendered="{!if(Milestones.sNoteFlag=='EDIT',true,false)}">
+                                                    <span class="save-changes paired " title="Save changes">Save</span>
+                                                    <apex:param value="{!Milestones.oMilestone.Id}" name="checkid" assignTo="{!iSelectedCheckListItem}"/>
+                                                <apex:param value="{!sProcess}" name="checkprocessid" assignTo="{!sProcess}"/>
+                                                  </apex:commandlink> 
+
+                                                  <apex:commandlink action="{!cancel}" rerender="milestonecheckbox,milestoneroles,milestonenotes,sidebar" status="status" rendered="{!if(Milestones.sNoteFlag=='EDIT',true,false)}">
+                                                    <span class="discard-changes paired" title="Discard changes">Cancel</span>
+                                                    <apex:param value="{!Milestones.oMilestone.Id}" name="checkid" assignTo="{!iSelectedCheckListItem}"/>
+                                                <apex:param value="{!sProcess}" name="checkprocessid" assignTo="{!sProcess}"/>
+                                                  </apex:commandlink> 
+                                                  
+                                                  <apex:commandlink action="{!makeEdit}" oncomplete="df_drdw.checklist.textareahandler();" rerender="milestonecheckbox,milestoneroles,milestonenotes,sidebar" status="status" rendered="{!if(Milestones.sNoteFlag=='READ',true,false)}">                                                 
+                                                    <span class="icon-edit pull-right" title="Edit"></span>
+                                                    <apex:param value="{!Milestones.oMilestone.Id}" name="checkid" assignTo="{!iSelectedCheckListItem}"/>
+                                                    <apex:param value="{!sProcess}" name="checkprocessid" assignTo="{!sProcess}"/>
+                                                  </apex:commandlink> 
+                                               </div>
+                                              </apex:outputpanel> 
+                                            </div>
+                                        </apex:outputpanel>
+                                        
+                                        <apex:outputpanel rendered="{!if(Milestones.lCheckListItems.size>0,true,false)}">
+                                          <div class="supporting-actions row">
+                                             <div class="title col-xs-12">
+                                                <h4><apex:outputText Value="Supplemental Actions"/></h4>
+                                                <apex:outputpanel id="supportcount">
+                                                    <em>{!Milestones.iCompleted} of {!Milestones.lCheckListItems.size} complete</em>
+                                                </apex:outputpanel>
+                                                <div class="icon-large-caret down pull-right"></div>
+                                             </div>
+                                             <ul class="col-xs-12">
+                                             <apex:repeat value="{!Milestones.lCheckListItems}" var="supportActions">
+                                                <li class="row">
+                                                   <div class="col-xs-1 sa-check">
+                                                    <apex:outputpanel id="supportcheckbox">
+                                                        <apex:inputcheckbox value="{!supportActions.oSupportActions.completed__c}" id="supportcheck" styleClass="regular-checkbox"> 
+                                                          <apex:actionsupport action="{!save}" event="onchange" rerender="supportcheckbox,supportroles,supportcount,newtag,supportenotes" status="status" oncomplete="df_drdw.globalEvents.handlers();">
+                                                        <apex:param value="{!supportActions.oSupportActions.Id}" name="checkid" assignTo="{!iSelectedCheckListItem}"/>
+                                                        <apex:param value="{!sProcess}" name="checkprocessid" assignTo="{!sProcess}"/>
+                                                      </apex:actionsupport>
+                                                        </apex:inputcheckbox>
+                                                        <label for="{!$Component.supportcheck}"></label>
+                                                      </apex:outputpanel>
+                                                   </div>
+                                                      <apex:outputtext styleClass="col-xs-7 sa-desc" value="{!supportActions.oSupportActions.Checklist_Item__r.Instructions__c}" escape="false"/>
+                                                   <div class="col-xs-4 sa-multiselect">
+                                                      <apex:outputpanel id="supportroles">
+                                                        <apex:selectList size="1" value="{!supportActions.oSupportActions.role__c}">
+                                                            <apex:selectOption itemLabel="--None--" rendered="{!if(supportActions.oSupportActions.role__c==null,true,false)}" />
+                                                            <apex:selectOptions value="{!roleLovOptions}"/>
+                                                              <apex:actionsupport action="{!save}" event="onchange" rerender="supportcheckbox,supportroles,supportcount,supportenotes" status="status">
+                                                          <apex:param value="{!supportActions.oSupportActions.Id}" name="checkid" assignTo="{!iSelectedCheckListItem}"/>
+                                                          <apex:param value="{!sProcess}" name="checkprocessid" assignTo="{!sProcess}"/>
+                                                        </apex:actionsupport>
+                                                        </apex:selectList>
+                                                      </apex:outputpanel>
+                                                   </div>
+                                                   <div class="note col-xs-12">
+                                                <apex:outputpanel id="supportenotes"> 
+                                                  <apex:outputpanel rendered="{!if(supportActions.sNoteFlag=='NEW',true,false)}">
+                                                          <div class="col-xs-2 add-note">
+                                                              <apex:commandlink action="{!makeEdit}" oncomplete="df_drdw.checklist.textareahandler();" rerender="supportcheckbox,supportroles,supportenotes" status="status" styleClass="add-note-trigger">Add Note
+                                                                <apex:param value="{!supportActions.oSupportActions.Id}" name="checkid" assignTo="{!iSelectedCheckListItem}"/>
+                                                                <apex:param value="{!sProcess}" name="checkprocessid" assignTo="{!sProcess}"/>
+                                                              </apex:commandlink>
+                                                          </div>
+                                                    </apex:outputpanel>   
+                                                    
+                                                    <apex:outputpanel rendered="{!if(supportActions.sNoteFlag=='EDIT',true,false)}">      
+                                                          <div class="col-xs-10 note-editable-content">
+                                                              <apex:inputtextarea html-data-field-maxlength="255" value="{!supportActions.oSupportActions.comment__c}" html-placeholder="Enter notes here..."/>
+                                                          </div> 
+                                                    </apex:outputpanel>
+                                                    
+                                                    <apex:outputpanel rendered="{!if(supportActions.sNoteFlag=='READ',true,false)}">    
+                                                          <div class="col-xs-10 note-readonly-content">
+                                                            <p class="note-label">Notes</p>
+                                                            <apex:outputfield styleClass="timestamp" value="{!supportActions.oSupportActions.comment_date__c}"/> 
+                                                            <apex:outputField value="{!supportActions.oSupportActions.comment__c}" styleClass="content"/>
+                                                          </div>
+                                                    </apex:outputpanel>
+                                                          
+                                                          <div class="col-xs-2 note-icons">
+                                                            <apex:commandlink action="{!save}" status="status" rerender="supportcheckbox,supportroles,supportenotes" rendered="{!if(supportActions.sNoteFlag=='EDIT',true,false)}">
+                                                                <span class="save-changes paired " title="Save changes">Save</span>
+                                                                <apex:param value="{!supportActions.oSupportActions.Id}" name="checkid" assignTo="{!iSelectedCheckListItem}"/>
+                                                                <apex:param value="{!sProcess}" name="checkprocessid" assignTo="{!sProcess}"/>
+                                                              </apex:commandlink> 
+
+                                                            <apex:commandlink action="{!cancel}" rerender="supportcheckbox,supportroles,supportenotes" status="status" rendered="{!if(supportActions.sNoteFlag=='EDIT',true,false)}">
+                                                              <span class="discard-changes paired " title="Discard changes">Cancel</span>
+                                                                 <apex:param value="{!supportActions.oSupportActions.Id}" name="checkid" assignTo="{!iSelectedCheckListItem}"/>
+                                                                <apex:param value="{!sProcess}" name="checkprocessid" assignTo="{!sProcess}"/>
+                                                            </apex:commandlink>                                                                
+                                                              
+                                                              <apex:commandlink action="{!makeEdit}" oncomplete="df_drdw.checklist.textareahandler();" rerender="supportcheckbox,supportroles,supportenotes" status="status" rendered="{!if(supportActions.sNoteFlag=='READ' ,true,false)}">
+                                                               <span class="icon-edit pull-right" title="Edit"></span>
+                                                                <apex:param value="{!supportActions.oSupportActions.Id}" name="checkid" assignTo="{!iSelectedCheckListItem}"/>
+                                                                <apex:param value="{!sProcess}" name="checkprocessid" assignTo="{!sProcess}"/>
+                                                              </apex:commandlink> 
+                                                          </div>
+                                                
+                                                </apex:outputpanel>
+                                            </div>
+                                                   
+                                                   
+                                                </li>
+                                               </apex:repeat> 
+                                             </ul>
+                                          </div>
+                                     </apex:outputpanel>  
+                                     </div>
+                                  </li>
+                                </apex:repeat>
+                                  
+                               </ul>
+                           </apex:repeat>
+                         </apex:outputpanel>
+                        </section>
+                     </div>
+                     <apex:outputpanel id="Submitbutton" >
+                    <div class="row submit-section">
+                  <div class="col-xs-12">
+                      
+                      <apex:commandbutton styleClass="button" status="status" rendered="{!if(Project__c.Study_Stage__c==sProcess && mChecklistToBeDisplayed[sProcess].sProcessCount==mChecklistToBeDisplayed[sProcess].iTotalMileStones && Project__c.Close_Out__c==false,true,false)}" oncomplete="df_drdw.globalEvents.handlers();" value="Complete {!if(Project__c.Study_Stage__c==null,'Ideation',Project__c.Study_Stage__c)}" action="{!Submit}" rerender="checklistpage,sidebar,Submitbutton,studystage"/>
+                      <apex:commandbutton styleClass="button" rendered="{!if(Project__c.Close_Out__c==true,true,false)}" action="{!redirectToStudyHome}" Value="View Study"/>  
+                  </div>
+              </div>
+              </apex:outputpanel>
+                  </main>
+                  
+               </div>
+            </div>
+            
+            <c:SR2_FooterComponent />
+         </body>
+            <apex:outputpanel id="studystage">
+                <apex:inputHidden value="{!Project__c.Study_Stage__c}"/>
+            </apex:outputpanel>
+      </apex:form>
+        <c:Webtrends_Tracker />
+   </html>
+</apex:page>

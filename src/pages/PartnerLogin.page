@@ -1,0 +1,65 @@
+<apex:page sidebar="false" standardController="Account" showHeader="false" extensions="Communities" standardStylesheets="false" readOnly="true" >
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Partner Portal</title>
+     <apex:stylesheet value="{!URLFOR($Resource.KMSR, 'vendor/bootstrap-3.3.7-dist/css/bootstrap.min.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.KMSR, 'css/partner-portal-compiled.css')}" />
+</head>
+
+<body>
+    <div id="wrap">
+        <div id="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-3 zero-right-padding">
+                        <!-- <a class="dd-logo">Deloitte Digital</a>
+                        <a class="drdw-logo">DRDP logo</a> -->
+                        <img src="{!a.Logo_URL__c}" width="80%"/>
+                    </div>
+                    <div class="col-xs-8 zero-left-padding center-text">
+                        <ul class="nav">
+                            <li>
+                                <a href="/DigitalFoundry/sfc/#workspaceView?selectedWorkspaceId={!$Label.PartnerCommunityLibrary}" class="tab-documents"><span>My Documents</span></a>
+                                <a href="/DigitalFoundry/007" class="tab-tasks"><span>My Tasks</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-1">
+                        <div class="logout pull-right">
+                            <a href="/DigitalFoundry/secur/logout.jsp">
+                                <span class="glyphicon glyphicon-log-out"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="main">
+            <!-- content -->
+            <div class="partner-portal-content container">
+                <!-- Panel 1 starts -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{!a.Name}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <apex:outputText value="{!a.Organization_Welcome_Description__c}" escape="false"/>           
+                    </div>
+                </div>
+                <!-- Panel 1 ends -->
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="container">
+            <a href="" class="dd-logo hidden-xs">Deloitte Digital</a>
+            <span class="copyright-text pull-right">&copy; Copyright 2017. All rights reserved.</span>
+        </div>
+    </div>
+</body>
+
+</html>
+</apex:page>

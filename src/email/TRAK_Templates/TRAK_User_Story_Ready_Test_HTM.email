@@ -1,0 +1,10 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><br></p>
+<p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">&nbsp;</p>
+<p style="color: rgb(0, 0, 0); font-family: arial;"><strong style="color: rgb(0, 0, 0); font-family: arial;">User story&nbsp;</strong><font face="arial"><b>{!TRAK_User_Story__c.Name}</b></font><strong style="color: rgb(0, 0, 0); font-family: arial;">&nbsp;is ready to test.</strong></p><p style="color: rgb(0, 0, 0); font-family: arial;"><font face="arial"><i>{!TRAK_User_Story__c.Full_User_Story__c}</i></font></p>
+<p style="color: rgb(0, 0, 0); font-family: arial;">&nbsp;</p><p style="color: rgb(0, 0, 0); font-family: arial;"><br></p>
+<p><font size="1" face="Verdana, Helvetica, sans-serif"><font color="#666666">This email was sent from Mission Control. You are&nbsp;receiving&nbsp;this email as you have worked on this User Story and are part of the the&nbsp;</font><font color="#666666">{!TRAK_User_Story__c.00N23000000LCYz} project team</font><font color="#666666">.</font></font></p>]]></td>
+</tr>
+</table>

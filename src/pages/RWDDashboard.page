@@ -1,0 +1,270 @@
+<apex:page controller="RWDDashboard" docType="html-5.0" readonly="true" standardStylesheets="false" showHeader="false" sidebar="false">
+    <html>
+
+    <head>
+        <title>Real World Data</title>
+    </head>
+
+    <body>
+        <div class="executive-dashboard">
+            <c:Executive_Dashboard_Navbar />
+            <div class="container top-nav-offset detail-page">
+                <h3 class="app-title visible-xs">Executive Scorecards</h3>
+                <div class="row zero-margin">
+                    <!-- Panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                    <img class="panel-icon" src="{!URLFOR($Resource.ExecutiveDashboardResource,'assets/img/icons/ic_data@1.5x.svg')}"/>
+                    Real World Data</h3>
+                        </div>
+                        <div id="responseErrors"></div>
+                        <!-- .panel-heading-ends -->
+                        <div class="panel-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-2 col-lg-2 contains-highlight-numbers">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12">
+                                                <p class="highlight-data">
+                                                    <span id="RWDAssetCount" class="highlight-number red"></span>
+                                                    <span class="highlight-data-text">Data Assets tracked</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- .contains-highlight-numbers ends -->
+                                    <div class="col-xs-12 col-md-10 col-lg-10 contains-graphics">
+                                        <p class="section-title bold"><span id="RWDAssetCount2"></span> DATA ASSETS AVAILABLE FOR USE TO-DATE</p>
+                                        <div class="row item-row item-container-margin-offset">
+                                            <div class="col-xs-12 col-md-6 col-lg-6">
+                                                <div class="item-container">
+                                                    <p class="item-title">Data Assets by Type of Database</p>
+                                                    <div class="TypeRWDChart">
+                                                        <apex:chart resizable="false" data="getTypeRWDChart" name="RemotingChart1" height="250" width="500">
+                                                            <apex:axis type="Category" position="left" fields="name">
+                                                                <apex:chartLabel />
+                                                            </apex:axis>
+                                                            <apex:axis type="Numeric" minimum="0" steps="4" position="bottom" fields="data">
+                                                                <apex:chartLabel />
+                                                            </apex:axis>
+                                                            <apex:barSeries yPadding="0" colorSet="#FD5D52" title="2017,2018" orientation="horizontal" axis="bottom" xField="data" yField="name">
+                                                                <apex:chartTips height="40" width="120" />
+                                                            </apex:barSeries>
+                                                        </apex:chart>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-md-6 col-lg-6">
+                                                <div class="item-container">
+                                                    <p class="item-title">Data Assets by Access Method</p>
+                                                    <div class="AccessRWDChart">
+                                                        <apex:chart resizable="false" data="getAccessRWDChart" name="RemotingChart2" height="250" width="500">
+                                                            <apex:axis type="Category" position="left" fields="name">
+                                                                <apex:chartLabel />
+                                                            </apex:axis>
+                                                            <apex:axis type="Numeric" minimum="0" steps="4" position="bottom" fields="data">
+                                                                <apex:chartLabel />
+                                                            </apex:axis>
+                                                            <apex:barSeries yPadding="0" colorSet="#FD5D52" title="2017,2018" orientation="horizontal" axis="bottom" xField="data" yField="name">
+                                                                <apex:chartTips height="40" width="120" />
+                                                            </apex:barSeries>
+                                                        </apex:chart>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-md-6 col-lg-6">
+                                                <div class="item-container">
+                                                    <p class="item-title">Data Assets by Data Asset Region</p>
+                                                    <div class="RegionRWDChart">
+                                                        <apex:chart resizable="false" data="getRegionRWDChart" name="RemotingChart3" height="250" width="500">
+                                                            <apex:axis type="Category" position="left" fields="name">
+                                                                <apex:chartLabel />
+                                                            </apex:axis>
+                                                            <apex:axis type="Numeric" minimum="0" steps="4" position="bottom" fields="data">
+                                                                <apex:chartLabel />
+                                                            </apex:axis>
+                                                            <apex:barSeries yPadding="0" colorSet="#FD5D52" title="2017,2018" orientation="horizontal" axis="bottom" xField="data" yField="name">
+                                                                <apex:chartTips height="40" width="120" />
+                                                            </apex:barSeries>
+                                                        </apex:chart>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- .row.item-row ends -->
+                                        <hr class="separator" />
+                                        <!-- second .row.item-row begins -->
+                                        <p class="section-title bold"><span id="RWDStudyCount"></span> STUDIES UTILIZE <span id="RWDAssetinStudyCount"></span> UNIQUE DATA ASSETS</p>
+                                        <div class="row item-row item-container-margin-offset">
+                                            <div class="col-xs-12 col-md-6 col-lg-6">
+                                                <div class="item-container">
+                                                    <p class="item-title">No. of Studies utilizing Data Assets by Type of Database</p>
+                                                    <div class="TypeStudiesChart">
+                                                        <apex:chart resizable="false" data="getTypeStudiesChart" name="RemotingChart4" height="250" width="500">
+                                                            <apex:axis type="Category" position="left" fields="name">
+                                                                <apex:chartLabel />
+                                                            </apex:axis>
+                                                            <apex:axis type="Numeric" minimum="0" steps="4" position="bottom" fields="data">
+                                                                <apex:chartLabel />
+                                                            </apex:axis>
+                                                            <apex:barSeries yPadding="0" colorSet="#53A8E2" title="2017,2018" orientation="horizontal" axis="bottom" xField="data" yField="name">
+                                                                <apex:chartTips height="40" width="120" />
+                                                            </apex:barSeries>
+                                                        </apex:chart>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-md-6 col-lg-6">
+                                                <div class="item-container">
+                                                    <p class="item-title">No. of Studies utilizing Data Assets by Access Method</p>
+                                                    <div class="AccessStudiesChart">
+                                                        <apex:chart resizable="false" data="getAccessStudiesChart" name="RemotingChart5" height="250" width="500">
+                                                            <apex:axis type="Category" position="left" fields="name">
+                                                                <apex:chartLabel />
+                                                            </apex:axis>
+                                                            <apex:axis type="Numeric" minimum="0" steps="4" position="bottom" fields="data">
+                                                                <apex:chartLabel />
+                                                            </apex:axis>
+                                                            <apex:barSeries yPadding="0" colorSet="#53A8E2" title="2017,2018" orientation="horizontal" axis="bottom" xField="data" yField="name">
+                                                                <apex:chartTips height="40" width="120" />
+                                                            </apex:barSeries>
+                                                        </apex:chart>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- .row.item-row ends -->
+                                    </div>
+                                    <!-- .contains-graphics ends -->
+                                </div>
+                            </div>
+                            <!-- .panel-body .container ends -->
+                        </div>
+                        <!-- .panel-body ends -->
+                    </div>
+                    <!-- .panel.panel-default ends -->
+                </div>
+                <!-- .row.zero-margin ends -->
+            </div>
+            <!-- .detail-page ends -->
+            <div class="footer-common detail-page-footer">
+                <c:Executive_Dashboard_Footer />
+            </div>
+        </div>
+        <!-- .executive-dashboard ends -->
+    </body>
+    <script type="text/javascript">
+    function getTypeRWDChart(callback) {
+        showWaitSpinner();
+        Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.RWDDashboard.getwrapperRWD1}',
+            function(result, event) {
+                if (event.status) {
+                    // Get DOM IDs for HTML and Visualforce elements like this
+                    globalresult = result;
+                    document.getElementById('RWDAssetCount').innerHTML = (result.RWDAssetCount).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+                    document.getElementById('RWDAssetCount2').innerHTML = (result.RWDAssetCount).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+                    document.getElementById('RWDStudyCount').innerHTML = (result.RWDStudyCount).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+                    document.getElementById('RWDAssetinStudyCount').innerHTML = (result.RWDAssetinStudyCount).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+
+                    callback(result.lChart);
+                    RemotingChart1.show();
+                    hideWaitSpinner();
+
+                } else if (event.type === 'exception') {
+                    document.getElementById("responseErrors").innerHTML =
+                        event.message + "<br/>\n<pre>" + event.where + "</pre>";
+                } else {
+                    document.getElementById("responseErrors").innerHTML = event.message;
+                }
+            }, {
+                escape: true
+            }
+        );
+    }
+
+    function getAccessRWDChart(callback) {
+        showWaitSpinner();
+        Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.RWDDashboard.getwrapperRWD2}',
+            function(result, event) {
+                if (event.status) {
+                    callback(result.lChart);
+                    RemotingChart2.show();
+                    hideWaitSpinner();
+
+                } else if (event.type === 'exception') {
+                    document.getElementById("responseErrors").innerHTML =
+                        event.message + "<br/>\n<pre>" + event.where + "</pre>";
+                } else {
+                    document.getElementById("responseErrors").innerHTML = event.message;
+                }
+            }, {
+                escape: true
+            }
+        );
+    }
+
+    function getRegionRWDChart(callback) {
+        showWaitSpinner();
+        Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.RWDDashboard.getwrapperRWD3}',
+            function(result, event) {
+                if (event.status) {
+                    callback(result.lChart);
+                    RemotingChart3.show();
+                    hideWaitSpinner();
+
+                } else if (event.type === 'exception') {
+                    document.getElementById("responseErrors").innerHTML =
+                        event.message + "<br/>\n<pre>" + event.where + "</pre>";
+                } else {
+                    document.getElementById("responseErrors").innerHTML = event.message;
+                }
+            }, {
+                escape: true
+            }
+        );
+    }
+
+    function getTypeStudiesChart(callback) {
+        showWaitSpinner();
+        Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.RWDDashboard.getwrapperRWD4}',
+            function(result, event) {
+                if (event.status) {
+                    callback(result.lChart);
+                    RemotingChart4.show();
+                    hideWaitSpinner();
+
+                } else if (event.type === 'exception') {
+                    document.getElementById("responseErrors").innerHTML =
+                        event.message + "<br/>\n<pre>" + event.where + "</pre>";
+                } else {
+                    document.getElementById("responseErrors").innerHTML = event.message;
+                }
+            }, {
+                escape: true
+            }
+        );
+    }
+    
+    function getAccessStudiesChart(callback) {
+        showWaitSpinner();
+        Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.RWDDashboard.getwrapperRWD5}',
+            function(result, event) {
+                if (event.status) {
+                    callback(result.lChart);
+                    RemotingChart5.show();
+                    hideWaitSpinner();
+                } else if (event.type === 'exception') {
+                    document.getElementById("responseErrors").innerHTML =
+                        event.message + "<br/>\n<pre>" + event.where + "</pre>";
+                } else {
+                    document.getElementById("responseErrors").innerHTML = event.message;
+                }
+            }, {
+                escape: true
+            }
+        );
+    }
+    </script>
+    </html>
+</apex:page>

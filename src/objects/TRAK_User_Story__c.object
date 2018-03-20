@@ -1,0 +1,3507 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Business Description: This object is used to record User Stories with their acceptance criteria. These are linked to a sprint during sprint planning and delivered throughout the sprint process.
+
+Used In: Release Tracker App</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Acceptance_Criteria__c</fullName>
+        <description>The Acceptance Criteria for this user story
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Acceptance Criteria are the specific, testable and complete needs of this user story. They may follow a structure such as &quot;Given When Then&quot; or list out specific attributes and fields as needed. The Acceptance Criteria are used by developers and testers</inlineHelpText>
+        <label>Acceptance Criteria</label>
+        <length>32000</length>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>20</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Allocated_Sprint__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The sprint this story has been allocated to. Used for sprint planning and in the burndown
+Created on 04/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The sprint that this story has been committed to</inlineHelpText>
+        <label>Allocated Sprint</label>
+        <referenceTo>TRAK_Sprint__c</referenceTo>
+        <relationshipLabel>Allocated User Stories</relationshipLabel>
+        <relationshipName>TRAK_Allocated_User_Stories</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Approval_Status__c</fullName>
+        <description>This field is used to capture the status of the approval process in User stories: Created on 06/11/2014 by Preeti Grover:TRAK</description>
+        <externalId>false</externalId>
+        <label>Approval Status</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Open</fullName>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>Pending Approval</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Approved</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>As_A_text__c</fullName>
+        <description>The type of user(s) this story provides functionality for
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The type of user(s) this story is about. Please ensure consistency with your app user groups</inlineHelpText>
+        <label>As A...</label>
+        <length>200</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BQ_Approval_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( TRAK_Business_Quality_Approved__c = TRUE, &quot;Approved&quot;, &quot;&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>BQ Approval Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CSQ_Approval_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( TRAK_Computer_Systems_Quality_Approved__c = TRUE, &quot;Approved&quot;, &quot;&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>CSQ Approval Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Cancellation_Reason__c</fullName>
+        <description>The reason a user story has been cancelled
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The reason this User Story is no longer being considered as valid. This should only be used if the User Story Status has been set to Cancelled</inlineHelpText>
+        <label>Cancellation Reason</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Cirrus_Release__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>The release this story will be put in to</inlineHelpText>
+        <label>Release</label>
+        <referenceTo>TRAK_Release__c</referenceTo>
+        <relationshipLabel>User Stories</relationshipLabel>
+        <relationshipName>TRAK_Cirrus_User_Stories</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Close_Date__c</fullName>
+        <description>Date the user story was Done. Driven by workflow from the status field. Used in reporting
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The date a User Story was completed. This is populated automatically when the USer Story Status is set to Passed (Complete)</inlineHelpText>
+        <label>Close Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Compliance_Approve_Date__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Date this has been reviewed and approved by Compliance</inlineHelpText>
+        <label>Compliance Approved Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Compliance_Criteria__c</fullName>
+        <description>Compliance / Quality Notes
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Legal, regulatory or compliance related requirements and observations</inlineHelpText>
+        <label>Compliance Criteria</label>
+        <length>32768</length>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Compliance_Owner__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The Business Quality user responsible for this User Story
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Business Quality user responsible for this User Story</inlineHelpText>
+        <label>Business Quality</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>TRAK_User_Stories1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Computer_Systems_Quality__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The Computer Systems Quality User responsible for this User Story
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Computer Systems Quality User responsible for this User Story</inlineHelpText>
+        <label>Computer Systems Quality</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>TRAK_User_Stories5</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Critical__c</fullName>
+        <description>This field is used to capture the criticality information: Created on 06/11/2014 by Preeti Grover:TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Is this User Story considered Quality Critical</inlineHelpText>
+        <label>Quality Critical</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Not Assessed</fullName>
+                    <default>true</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Data_Steps__c</fullName>
+        <externalId>false</externalId>
+        <label>Data Steps</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Demo_Provided_Date__c</fullName>
+        <description>This field tracks the date when the demo was provided.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The date in which the development team provided a demo of the user story to the product owner or delegate.</inlineHelpText>
+        <label>Demo Provided Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Developer__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The Computer Systems Quality User responsible for this User Story
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The primary Developer responsible for developing this User Story</inlineHelpText>
+        <label>Developer</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>TRAK_User_Stories6</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Development_Stage__c</fullName>
+        <description>User story status. This drives burndown, kanban and reporting
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The stage this User Story is at in the Sprint lifecycle. User Stories are &quot;burned&quot; in the Sprint Dashboard when they are set to &quot;Passed (Complete)&quot;</inlineHelpText>
+        <label>Status</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Cancelled</fullName>
+                    <color>#663333</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Raised</fullName>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>Backlog</fullName>
+                    <color>#999999</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Story Definition</fullName>
+                    <color>#FF6666</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Ready for Development</fullName>
+                    <color>#FFCC66</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>In Development</fullName>
+                    <color>#FFCC33</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Ready for Test Release</fullName>
+                    <color>#66FF99</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>In Test</fullName>
+                    <color>#33CC00</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Passed Test</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Ready for Test PreProd</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Passed Test PreProd</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Ready for Release</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Production - Released</fullName>
+                    <color>#006600</color>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>External_Reference__c</fullName>
+        <externalId>true</externalId>
+        <inlineHelpText>An external reference that can be used to identify this User Story in another system</inlineHelpText>
+        <label>External Reference</label>
+        <length>200</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Full_User_Story__c</fullName>
+        <description>Combines the three fields As A. I Want To. So That
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <formula>&quot;As a &quot; &amp;  As_A_text__c  &amp;&quot; I want to &quot; &amp;  I_Want_To__c &amp; &quot; so that &quot; &amp; So_that__c</formula>
+        <inlineHelpText>The Complete User Story in the format &quot;As a... I want to... So That...&quot;</inlineHelpText>
+        <label>Full User Story</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Functional_Area__c</fullName>
+        <externalId>false</externalId>
+        <label>Functional Area</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Customer Services</fullName>
+                    <color>#0B6FCE</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Event</fullName>
+                    <color>#78C953</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Market Access</fullName>
+                    <color>#E27001</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Marketing / Multichannel</fullName>
+                    <color>#A845DC</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>SFA</fullName>
+                    <color>#F3D904</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Analytics / Insights</fullName>
+                    <color>#A53711</color>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>GXP__c</fullName>
+        <description>This field is used to capture GXP related information: Created on 06/11/2014 by Preeti Grover: TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Is this User Story considered subject to GxP</inlineHelpText>
+        <label>GxP</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Not Assessed</fullName>
+                    <default>true</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Has_Data_Steps__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Has Data Steps</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Has_Post_Manual_Steps__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Has Post Manual Steps</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Has_Pre_Manual_Steps__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Ticked by workflow if a story has pre deployment manual steps. Used by docusign.</description>
+        <externalId>false</externalId>
+        <label>Has Pre Manual Steps</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Has_Validation_Steps__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Has Validation Steps</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>I_Want_To__c</fullName>
+        <description>&quot;I want to&quot; part of the user story
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What the user needs to achieve. 
+
+E.g. 
+I want To...Be able to search for customers on different fields (e.g. First Name, Surname, Address, and Product Metrics) in my territory</inlineHelpText>
+        <label>I want to...</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Legal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Captures if the User Story has legal implications.
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Does this User Story have any legal implications? If checked, please ensure these are detailed in the Compliance Criteria field.</inlineHelpText>
+        <label>Legal</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Link__c</fullName>
+        <externalId>false</externalId>
+        <formula>Left($Api.Enterprise_Server_URL_190,(find(&apos;/services&apos;,$Api.Enterprise_Server_URL_190))) + Id</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Link</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Master_Priority__c</fullName>
+        <externalId>false</externalId>
+        <formula>if(value(text(Priority__c))&gt;0, value(text(Priority__c)), 99 )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Master Priority</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Non_Functional_Requirement__c</fullName>
+        <description>Non Functionals
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The non-functional qualities the solution needs to exhibit. Examples include
+Scalability (number of records processed) 
+Responsiveness (must respond in x seconds)</inlineHelpText>
+        <label>Non Functional Requirement</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Parent_Epic__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lookup to the epic 
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The high level functionality that this user story could be grouped under</inlineHelpText>
+        <label>Parent Epic</label>
+        <referenceTo>TRAK_Epic__c</referenceTo>
+        <relationshipLabel>User Stories</relationshipLabel>
+        <relationshipName>TRAK_User_Stories7</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Pending_My_Business_Quality_Review__c</fullName>
+        <description>TRUE is a user story has either QC or GxP Fields in Unassessed and the current user is the BQ assigned.</description>
+        <externalId>false</externalId>
+        <formula>AND(Compliance_Owner__c =  $User.Id, OR(ISPICKVAL(Critical__c,&quot;Not Assessed&quot;), ISPICKVAL(GXP__c,&quot;Not Assessed&quot;)))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Pending My Business Quality Review</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Planned_Release__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Internal project release, prior to joining the Cirrus process
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The internal project release for this user story</inlineHelpText>
+        <label>Project Release</label>
+        <referenceTo>TRAK_Release__c</referenceTo>
+        <relationshipLabel>User Stories</relationshipLabel>
+        <relationshipName>TRAK_User_Stories</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Post_Deployment_Manual_steps__c</fullName>
+        <description>Free text field to enter the Post deployment manual steps.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Post-deployment steps that aren&apos;t captured by part of the automated metadata deployment process. Please ensure these are clear, concise, and complete. Put N/A if none exist.</inlineHelpText>
+        <label>Post-Deployment Manual steps</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Priority__c</fullName>
+        <description>The priority of this user story, this is used in sprint planning
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The relative priority of this User Story. 1 is the most important, 99 is the least. This can be used during Sprint Planning</inlineHelpText>
+        <label>Priority</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Privacy__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Does this User Story have privacy implications
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Flag this when the user story concerns personal identifiable information linked to your process</inlineHelpText>
+        <label>Privacy</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Proposed_Sprint__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Proposed Sprint. Used in Sprint Planning
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Following Release Planning this User Story can be proposed for a particular sprint. Stories can the be taken in or rejected from this sprint during the Sprint Planning process, as determined by the Product Owner</inlineHelpText>
+        <label>Proposed Sprint</label>
+        <referenceTo>TRAK_Sprint__c</referenceTo>
+        <relationshipLabel>Proposed User Stories</relationshipLabel>
+        <relationshipName>TRAK_Proposed_User_Stories</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>QRCode__c</fullName>
+        <externalId>false</externalId>
+        <formula>IMAGE(&apos;https://chart.googleapis.com/chart?chf=bg,s,ffffff&amp;cht=qr&amp;chs=220x220&amp;chl=http://tracker.force.com/QRScan/?id=&apos;&amp; Id&amp;&apos;&amp;chld=|0&apos; , &apos;Scan the QR code to see User Story in your mobile&apos; )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>QRCode</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Release_Completeness_Indicator__c</fullName>
+        <description>Icon to show release completeness
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <formula>IF ( Release_Completeness__c , IMAGE(&quot;/img/msg_icons/confirm16.png&quot;,&quot;Complete&quot;), IMAGE(&quot;/img/msg_icons/error16.png&quot;, &quot;Not Complete&quot;))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>The manual release steps and the validation steps must be completed. If there are none, these must be specifically declared as &quot;N/A&quot;</inlineHelpText>
+        <label>Release Completeness</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Release_Completeness__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>System field to show release completeness, populated by workflow
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <label>Release Completeness</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Release_Impact_Analysis__c</fullName>
+        <description>How does this story impact the release: Created by SMatharu on 09/07/2014</description>
+        <externalId>false</externalId>
+        <inlineHelpText>How does this story impact the release?
+For example, &quot;because this story modifies overnight batch jobs, if the overnight batches fail, it would require a data fix to be a applied post-release&quot;</inlineHelpText>
+        <label>Release Impact Analysis</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Release_Impact__c</fullName>
+        <description>The impact on the release. Based on the kind of change going through as part of the release: Created by SMatharu on 09/07/2014</description>
+        <externalId>false</externalId>
+        <inlineHelpText>High -  Any batch change, any trigger/validation rule on a &apos;batched&apos; object, any high profile VF Page
+
+Medium -  class/trigger/complex VF page
+
+Low - other</inlineHelpText>
+        <label>Release Impact</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>High</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Medium</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Low</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Release_Note__c</fullName>
+        <description>The release note to be issued to the business regarding this story: Created on 09/07/2014 by SMatharu</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The release note to be issued to the business regarding this story</inlineHelpText>
+        <label>Business Release Note</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Release_Steps_Automated__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Elements which have to be deployed in an automated way (Eclipse).
+Please put N/A when not applicable</inlineHelpText>
+        <label>Release Steps (Automated)</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Release_Steps_Manual__c</fullName>
+        <description>List of manual steps needed to deploy this user story.
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Deployment steps that aren&apos;t captured by part of the automated metadata deployment process. Please ensure these are clear, concise, complete and specify whether they are pre or post deployment steps.
+
+Put N/A if none are needed</inlineHelpText>
+        <label>Pre-Deployment Manual steps</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>SC_Approval_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( TRAK_System_Custodian_Approved__c = TRUE, &quot;Approved&quot;, &quot;&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>SC Approval Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SO_Approval_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( TRAK_System_Owner_Approved__c = TRUE, &quot;Approved&quot; , &quot;&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>SO Approval Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Security__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Captures if the User Story has security implications.
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Does this User Story have any security implications? If checked, please ensure these are detailed in the Compliance Criteria field.</inlineHelpText>
+        <label>Security</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>So_that__c</fullName>
+        <description>Business Value of this User Story
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Please enter the business value of this User Story. This helps Developers and Business Analysts understand the important essence of what the user needs to ultimately achieve.
+
+I can easily find my  relevant target customer information</inlineHelpText>
+        <label>So that...</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Sprint_Tester__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The Tester responsible for this User Story
+Created on 04/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Tester responsible for testing this User Story during the sprint</inlineHelpText>
+        <label>Sprint Tester</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>TRAK_User_Stories_Tester</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Story_Points_Other__c</fullName>
+        <description>Story points for non SFDC dev
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The level of complexity as estimated in Story Points NOT related to force.com development. For example, related to Integration effort</inlineHelpText>
+        <label>Story Points (Other)</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>0</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>8</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>13</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>21</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Story_Points_Total__c</fullName>
+        <description>Total Story Points for this story. Sums SFDC and Other Story point fields
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <formula>nullvalue(value(text( Story_Points__c )), 0)  + nullvalue(value(text(  Story_Points_Other__c)),0)</formula>
+        <inlineHelpText>The total level of complexity as estimated in Story Points related to delivering this User Story. Includes both SFDC Story Points and Other Story Points</inlineHelpText>
+        <label>Story Points Total</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Story_Points__c</fullName>
+        <description>Story points for SFDC dev
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The level of complexity as estimated in Story Points related to force.com development</inlineHelpText>
+        <label>Story Points SFDC</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>0</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>8</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>13</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>21</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Sub_Process__c</fullName>
+        <externalId>false</externalId>
+        <label>Sub-Process</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Functional_Area__c</controllingField>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Account Planning</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Account Profile</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Analytics &amp; Reporting</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Call Management</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Campaign Design and Creation</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Campaign Execution</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Campaign Monitoring</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Collaboration</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Customer Feedback</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Data Feeds</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Data Quality</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Event Execution and Follow up</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Event Planning  and Approval</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Insights</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Marketing Plan</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Medical</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Mobile/Apps</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Sample Management</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Segmentation &amp; Cycle Planning</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Sharing Information</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Territory Management</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Time Registration</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Web Call</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Websites / Portal</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Email</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Webcall</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Edetail</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Customer Journey</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Message</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Webinars</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Phone</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Fax</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>SMS</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Traditional Mail</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Banner Campaign</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Push Notification on Mobile</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Social Media Campaign</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Reporting</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Automation</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Customer Request</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Call Campaign</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Web Self Care</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Customer Services</controllingFieldValue>
+                <valueName>Reporting</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Customer Services</controllingFieldValue>
+                <valueName>Automation</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Customer Services</controllingFieldValue>
+                <valueName>Customer Request</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Customer Services</controllingFieldValue>
+                <valueName>Call Campaign</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Customer Services</controllingFieldValue>
+                <valueName>Web Self Care</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Event</controllingFieldValue>
+                <valueName>Event Execution and Follow up</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Event</controllingFieldValue>
+                <valueName>Event Planning  and Approval</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Event</controllingFieldValue>
+                <valueName>Medical</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Market Access</controllingFieldValue>
+                <valueName>Account Planning</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Market Access</controllingFieldValue>
+                <valueName>Account Profile</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Market Access</controllingFieldValue>
+                <valueName>Collaboration</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Market Access</controllingFieldValue>
+                <valueName>Sharing Information</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Marketing / Multichannel</controllingFieldValue>
+                <valueName>Campaign Design and Creation</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Marketing / Multichannel</controllingFieldValue>
+                <valueName>Campaign Execution</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Marketing / Multichannel</controllingFieldValue>
+                <valueName>Campaign Monitoring</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Marketing / Multichannel</controllingFieldValue>
+                <valueName>Marketing Plan</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Marketing / Multichannel</controllingFieldValue>
+                <valueName>Mobile/Apps</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Marketing / Multichannel</controllingFieldValue>
+                <valueName>Web Call</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Marketing / Multichannel</controllingFieldValue>
+                <valueName>Websites / Portal</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Marketing / Multichannel</controllingFieldValue>
+                <valueName>Email</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Marketing / Multichannel</controllingFieldValue>
+                <valueName>Webcall</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Marketing / Multichannel</controllingFieldValue>
+                <valueName>Edetail</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Marketing / Multichannel</controllingFieldValue>
+                <valueName>Customer Journey</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Marketing / Multichannel</controllingFieldValue>
+                <valueName>Message</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Marketing / Multichannel</controllingFieldValue>
+                <valueName>Webinars</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Marketing / Multichannel</controllingFieldValue>
+                <valueName>Phone</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Marketing / Multichannel</controllingFieldValue>
+                <valueName>Fax</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Marketing / Multichannel</controllingFieldValue>
+                <valueName>SMS</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Marketing / Multichannel</controllingFieldValue>
+                <valueName>Traditional Mail</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Marketing / Multichannel</controllingFieldValue>
+                <valueName>Banner Campaign</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Marketing / Multichannel</controllingFieldValue>
+                <valueName>Push Notification on Mobile</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Marketing / Multichannel</controllingFieldValue>
+                <valueName>Social Media Campaign</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SFA</controllingFieldValue>
+                <valueName>Call Management</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SFA</controllingFieldValue>
+                <valueName>Sample Management</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SFA</controllingFieldValue>
+                <valueName>Segmentation &amp; Cycle Planning</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SFA</controllingFieldValue>
+                <valueName>Territory Management</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SFA</controllingFieldValue>
+                <valueName>Time Registration</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Analytics / Insights</controllingFieldValue>
+                <valueName>Analytics &amp; Reporting</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Analytics / Insights</controllingFieldValue>
+                <valueName>Customer Feedback</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Analytics / Insights</controllingFieldValue>
+                <valueName>Data Feeds</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Analytics / Insights</controllingFieldValue>
+                <valueName>Data Quality</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Analytics / Insights</controllingFieldValue>
+                <valueName>Insights</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Submit_for_Approval__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Submit for Approval</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Submitter__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Submitter</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>TRAK_User_Stories2</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Supporting_BA__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The Business Analyst responsible for defining the acceptance criteria
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Business Analyst responsible for helping define and refine Acceptance Criteria in this User Story</inlineHelpText>
+        <label>Business Analyst</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>TRAK_User_Stories3</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>System_Custodian__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This field will store the System Custodian information for the app: 
+Created on 06/11/2014 by Preeti Grover: TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The System Custodian for the application this User Story is related to. If not set when initially saving the User Story, it should be populated automatically based on the value on the associated App record</inlineHelpText>
+        <label>System Custodian</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>TRAK_User_Stories4</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>System_Owner__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This field is used to capture the System owner for the App: Created on 06/11/2014 by Preeti Grover: TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The System Owner for the application this User Story is related to. If not set when initially saving the User Story, it should be populated automatically based on the value on the associated App record</inlineHelpText>
+        <label>Product Owner</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>TRAK_User_Stories12</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>TRAK_Business_Quality_Approval_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Business Quality Approval Date</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>TRAK_Business_Quality_Approved__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Please review LQP -302-16 for signature meanings</inlineHelpText>
+        <label>Business Quality Approved</label>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>TRAK_Computer_System_Qty_Approval_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Computer Systems Quality Approval Date</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>TRAK_Computer_Systems_Quality_Approved__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Please review LQP -302-16 for signature meanings</inlineHelpText>
+        <label>Computer Systems Quality Approved</label>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>TRAK_Custom_Field_1__c</fullName>
+        <description>Custom Fields are used for project specific information that is not captured elsewhere on the user story.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Custom Fields are used for project specific information that is not captured elsewhere on the user story.</inlineHelpText>
+        <label>Custom Field 1</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>TRAK_Custom_Field_2__c</fullName>
+        <description>Custom Fields are used for project specific information that is not captured elsewhere on the user story.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Custom Fields are used for project specific information that is not captured elsewhere on the user story.</inlineHelpText>
+        <label>Custom Field 2</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>TRAK_Custom_Field_3__c</fullName>
+        <description>Custom Fields are used for project specific information that is not captured elsewhere on the user story.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Custom Fields are used for project specific information that is not captured elsewhere on the user story.</inlineHelpText>
+        <label>Custom Field 3</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>TRAK_Custom_Field_4__c</fullName>
+        <description>Custom Fields are used for project specific information that is not captured elsewhere on the user story.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Custom Fields are used for project specific information that is not captured elsewhere on the user story.</inlineHelpText>
+        <label>Custom Field 4</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>TRAK_Decision_Taken__c</fullName>
+        <externalId>false</externalId>
+        <label>Decision Taken</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Approved</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>TRAK_Overall_Approval_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Overall Approval Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Open</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Awaiting Approval</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Approved</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>TRAK_Send_for_approval__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This field will be used to send user stories for approval: Created on 06/19/2014 by Preeti Grover:TRAK</description>
+        <externalId>false</externalId>
+        <label>Send for approval</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>TRAK_System_Custodian_Approval_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>System Custodian Approval Date</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>TRAK_System_Custodian_Approved__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Please review LQP -302-16 for signature meanings</inlineHelpText>
+        <label>System Custodian Approved</label>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>TRAK_System_Owner_Approval_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>System Owner Approval Date</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>TRAK_System_Owner_Approved__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Please review LQP -302-16 for signature meanings</inlineHelpText>
+        <label>System Owner Approved</label>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>US_Step_no__c</fullName>
+        <externalId>false</externalId>
+        <label>US Step no</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>AutoNumber</type>
+    </fields>
+    <fields>
+        <fullName>User__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The Product Owner User responsible for this User Story
+Created on 01/07/2014 by SMills 
+TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Business/Product Owner for this User Story</inlineHelpText>
+        <label>Product / Process Owner</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>TRAK_Requirements</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Validation_steps__c</fullName>
+        <description>Validation Steps for this user story
+Created on 06/11/2014 by Preeti Grover: TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>For exception cases, please list any specific validation checks that are required to ensure this User Story has been deployed successfully. These will then be run by the Technical Release Team post deployment
+
+If none are needed please put &apos;N/A&quot;</inlineHelpText>
+        <label>Validation steps</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Version__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The source control tag related to this User Story</inlineHelpText>
+        <label>Version</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Work_Type__c</fullName>
+        <description>The type of effort involved in this user story
+Created on 06/11/2014 by Preeti Grover: TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The type of work involved in delivering this User Story. This can be used when resource planning and should be populated by Developers or other technical experts as needed</inlineHelpText>
+        <label>Work Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>SFDC Config</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>SFDC Apex</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>SFDC Visualforce</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>SFDC Reporting</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Heroku</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Integration</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Data Migration</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>6</visibleLines>
+    </fields>
+    <label>User Story</label>
+    <listViews>
+        <fullName>Backlog</fullName>
+        <columns>NAME</columns>
+        <columns>Full_User_Story__c</columns>
+        <columns>Priority__c</columns>
+        <columns>Development_Stage__c</columns>
+        <columns>Parent_Epic__c</columns>
+        <columns>Story_Points__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Development_Stage__c</field>
+            <operation>equals</operation>
+            <value>Backlog</value>
+        </filters>
+        <filters>
+            <field>Parent_Epic__c</field>
+            <operation>notEqual</operation>
+            <value>E-0004</value>
+        </filters>
+        <label>Backlog</label>
+    </listViews>
+    <listViews>
+        <fullName>High_Priority_Backlog_US</fullName>
+        <columns>NAME</columns>
+        <columns>Full_User_Story__c</columns>
+        <columns>Development_Stage__c</columns>
+        <columns>Priority__c</columns>
+        <columns>Story_Points_Total__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Development_Stage__c</field>
+            <operation>equals</operation>
+            <value>Raised,Backlog,Story Definition</value>
+        </filters>
+        <filters>
+            <field>Parent_Epic__c</field>
+            <operation>notContain</operation>
+        </filters>
+        <label>High Priority Backlog US</label>
+    </listViews>
+    <listViews>
+        <fullName>Release_12</fullName>
+        <columns>NAME</columns>
+        <columns>Full_User_Story__c</columns>
+        <columns>Parent_Epic__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Development_Stage__c</field>
+            <operation>equals</operation>
+            <value>Production - Released</value>
+        </filters>
+        <filters>
+            <field>Cirrus_Release__c</field>
+            <operation>equals</operation>
+            <value>R12</value>
+        </filters>
+        <label>Release 12</label>
+    </listViews>
+    <nameField>
+        <displayFormat>US-{0000}</displayFormat>
+        <label>US Ref</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>User Stories</pluralLabel>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Hotfix_Release</fullName>
+        <active>true</active>
+        <label>Hotfix Release</label>
+        <picklistValues>
+            <picklist>Approval_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Pending Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Critical__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Assessed</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Development_Stage__c</picklist>
+            <values>
+                <fullName>Backlog</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Test</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Passed Test</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Passed Test PreProd</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Production - Released</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Raised</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Ready for Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ready for Release</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ready for Test PreProd</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ready for Test Release</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Story Definition</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Functional_Area__c</picklist>
+            <values>
+                <fullName>Analytics %2F Insights</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Event</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Access</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing %2F Multichannel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SFA</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>GXP__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Assessed</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Release_Impact__c</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Story_Points_Other__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>13</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>21</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Story_Points__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>13</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>21</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sub_Process__c</picklist>
+            <values>
+                <fullName>Account Planning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Profile</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Analytics %26 Reporting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Automation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Banner Campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Call Campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Call Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Campaign Design and Creation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Campaign Execution</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Campaign Monitoring</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Collaboration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Feedback</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Journey</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Data Feeds</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Data Quality</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Edetail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Event Execution and Follow up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Event Planning  and Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Insights</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing Plan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Message</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mobile%2FApps</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phone</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Push Notification on Mobile</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reporting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SMS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sample Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Segmentation %26 Cycle Planning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sharing Information</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Social Media Campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Territory Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Time Registration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Traditional Mail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web Self Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Webcall</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Webinars</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Websites %2F Portal</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>TRAK_Decision_Taken__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>TRAK_Overall_Approval_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Work_Type__c</picklist>
+            <values>
+                <fullName>Data Migration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Heroku</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Integration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SFDC Apex</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SFDC Config</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SFDC Reporting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SFDC Visualforce</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Major_Release</fullName>
+        <active>true</active>
+        <label>Major Release</label>
+        <picklistValues>
+            <picklist>Approval_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Pending Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Critical__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Assessed</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Development_Stage__c</picklist>
+            <values>
+                <fullName>Backlog</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Test</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Passed Test</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Passed Test PreProd</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Production - Released</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Raised</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Ready for Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ready for Release</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ready for Test PreProd</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ready for Test Release</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Story Definition</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Functional_Area__c</picklist>
+            <values>
+                <fullName>Analytics %2F Insights</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Event</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Access</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing %2F Multichannel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SFA</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>GXP__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Assessed</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Release_Impact__c</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Story_Points_Other__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>13</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>21</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Story_Points__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>13</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>21</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sub_Process__c</picklist>
+            <values>
+                <fullName>Account Planning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Profile</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Analytics %26 Reporting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Automation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Banner Campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Call Campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Call Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Campaign Design and Creation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Campaign Execution</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Campaign Monitoring</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Collaboration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Feedback</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Journey</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Data Feeds</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Data Quality</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Edetail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Event Execution and Follow up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Event Planning  and Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Insights</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing Plan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Message</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mobile%2FApps</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phone</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Push Notification on Mobile</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reporting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SMS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sample Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Segmentation %26 Cycle Planning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sharing Information</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Social Media Campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Territory Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Time Registration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Traditional Mail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web Self Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Webcall</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Webinars</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Websites %2F Portal</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>TRAK_Decision_Taken__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>TRAK_Overall_Approval_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Work_Type__c</picklist>
+            <values>
+                <fullName>Data Migration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Heroku</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Integration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SFDC Apex</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SFDC Config</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SFDC Reporting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SFDC Visualforce</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Weekly_Release</fullName>
+        <active>true</active>
+        <label>Weekly Release</label>
+        <picklistValues>
+            <picklist>Approval_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Pending Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Critical__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Assessed</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Development_Stage__c</picklist>
+            <values>
+                <fullName>Backlog</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Test</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Passed Test</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Passed Test PreProd</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Production - Released</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Raised</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Ready for Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ready for Release</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ready for Test PreProd</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ready for Test Release</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Story Definition</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Functional_Area__c</picklist>
+            <values>
+                <fullName>Analytics %2F Insights</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Event</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Access</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing %2F Multichannel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SFA</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>GXP__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Assessed</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Release_Impact__c</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Story_Points_Other__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>13</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>21</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Story_Points__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>13</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>21</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sub_Process__c</picklist>
+            <values>
+                <fullName>Account Planning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Profile</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Analytics %26 Reporting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Automation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Banner Campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Call Campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Call Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Campaign Design and Creation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Campaign Execution</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Campaign Monitoring</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Collaboration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Feedback</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Journey</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Data Feeds</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Data Quality</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Edetail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Event Execution and Follow up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Event Planning  and Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Insights</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing Plan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Message</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mobile%2FApps</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phone</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Push Notification on Mobile</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reporting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SMS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sample Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Segmentation %26 Cycle Planning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sharing Information</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Social Media Campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Territory Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Time Registration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Traditional Mail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web Self Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Webcall</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Webinars</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Websites %2F Portal</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>TRAK_Decision_Taken__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>TRAK_Overall_Approval_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Work_Type__c</picklist>
+            <values>
+                <fullName>Data Migration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Heroku</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Integration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SFDC Apex</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SFDC Config</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SFDC Reporting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SFDC Visualforce</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>Full_User_Story__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Proposed_Sprint__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Allocated_Sprint__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Story_Points_Total__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Development_Stage__c</customTabListAdditionalFields>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <lookupDialogsAdditionalFields>As_A_text__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>I_Want_To__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>So_that__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Development_Stage__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>As_A_text__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>I_Want_To__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>So_that__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Development_Stage__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Parent_Epic__c</searchFilterFields>
+        <searchFilterFields>As_A_text__c</searchFilterFields>
+        <searchFilterFields>I_Want_To__c</searchFilterFields>
+        <searchFilterFields>So_that__c</searchFilterFields>
+        <searchFilterFields>Development_Stage__c</searchFilterFields>
+        <searchResultsAdditionalFields>As_A_text__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>I_Want_To__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>So_that__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Development_Stage__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Acceptance_Criteria_Freeze</fullName>
+        <active>true</active>
+        <description>Loclks accpetance criteria so it can only be edited by users with the &quot;Over ride Acceptance Criteria&quot; enabled on their user page</description>
+        <errorConditionFormula>AND(
+ISCHANGED( Acceptance_Criteria__c ),   
+OR(
+ISPICKVAL(Development_Stage__c,&quot;Ready for Test&quot;), 
+ISPICKVAL(Development_Stage__c,&quot;In Test&quot;), 
+ISPICKVAL(Development_Stage__c,&quot;Passed (Complete)&quot;),
+ISPICKVAL(Development_Stage__c,&quot;Production - Ready for Release&quot;),
+ISPICKVAL(Development_Stage__c,&quot;Production - Released&quot;)
+)
+)</errorConditionFormula>
+        <errorDisplayField>Acceptance_Criteria__c</errorDisplayField>
+        <errorMessage>You can&apos;t amend the Acceptance Criteria at this stage in the User Story lifecycle. If you need to make an agreed change, revert the User Story Status and Chatter why you are making a change. Late changes should be agreed with the User Story team</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Allocated_and_Proposed_Sprint_Date_valid</fullName>
+        <active>true</active>
+        <description>New User Story cannot be created with Allocated sprint earlier than the Proposed Sprint.</description>
+        <errorConditionFormula>AND( Allocated_Sprint__c &lt;&gt; NULL, Allocated_Sprint__c &lt;&gt; NULL, Allocated_Sprint__r.Start_Date__c &lt; Proposed_Sprint__r.Start_Date__c)</errorConditionFormula>
+        <errorMessage>Allocated Sprint Date should be greater than Proposed Sprint Date</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Approve_US_before_Production_Released</fullName>
+        <active>true</active>
+        <description>User Story has to be approved before updating the status to Production - Released</description>
+        <errorConditionFormula>AND(NOT(ispickval( Approval_Status__c ,&apos;Approved&apos;)),
+ispickval( Development_Stage__c ,&apos;Production - Released&apos;))</errorConditionFormula>
+        <errorDisplayField>Development_Stage__c</errorDisplayField>
+        <errorMessage>User Story has to be approved before updating the status to Production - Released</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Approved_Status</fullName>
+        <active>true</active>
+        <description>Locks the &apos;Quality Critical&apos;, &apos;GxP&apos;, &apos;Compliance Criteria&apos;, &apos;Privacy&apos;, &apos;Security &apos;, &apos;Legal&apos; fields when the Approval Status is  Approved</description>
+        <errorConditionFormula>AND(
+ISPICKVAL(Approval_Status__c,&quot;Approved&quot;), 
+OR(
+ISCHANGED(Critical__c),
+ISCHANGED(GXP__c),
+ISCHANGED(Compliance_Criteria__c ),
+IF(PRIORVALUE(Privacy__c)!=Privacy__c,true,false),
+ISCHANGED(Security__c), 
+ISCHANGED(Legal__c)
+
+
+)
+)</errorConditionFormula>
+        <errorMessage>You can&apos;t amend the  &apos;Quality Critical&apos;, &apos;GxP&apos;, &apos;Compliance Criteria&apos;, &apos;Privacy&apos;, &apos;Security &apos;, &apos;Legal&apos;  fields when the Approval Status is Approved.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Cancellation_Reason_Check</fullName>
+        <active>true</active>
+        <description>Checks that the cancellation reason is populate if the story is set to cancelled</description>
+        <errorConditionFormula>OR(AND( ISPICKVAL( Development_Stage__c , &quot;Cancelled&quot;) , ISBLANK( Cancellation_Reason__c ) ),AND(NOT(ISPICKVAL( Development_Stage__c , &quot;Cancelled&quot;)),NOT(ISBLANK( Cancellation_Reason__c ))))</errorConditionFormula>
+        <errorDisplayField>Cancellation_Reason__c</errorDisplayField>
+        <errorMessage>Please enter a Cancellation Reason for Cancelled Status. Please remove the Cancellation Reason if the status is not Cancelled.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Cannot_Populate_Closed_Date</fullName>
+        <active>true</active>
+        <description>Checks that the cancellation reason is populate if the story is set to cancelled</description>
+        <errorConditionFormula>AND(NOT(ISBLANK(Close_Date__c)), NOT(OR(ISPICKVAL(Development_Stage__c,&apos;Cancelled&apos;),ISPICKVAL(Development_Stage__c,&apos;Passed (Complete)&apos;),ISPICKVAL(Development_Stage__c,&apos;Production - Released&apos;))))</errorConditionFormula>
+        <errorDisplayField>Close_Date__c</errorDisplayField>
+        <errorMessage>The Close Date can be populated if the User Story is Cancelled , Passed (Complete) or Production - Released</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Lock_Down</fullName>
+        <active>true</active>
+        <description>Loclks accpetance criteria so it can only be edited by users with the &quot;Over ride Acceptance Criteria&quot; enabled on their user page</description>
+        <errorConditionFormula>AND(
+ISCHANGED( Acceptance_Criteria__c ), 
+ $Profile.Name &lt;&gt; &apos;System Administrator&apos;,  
+OR(
+ISPICKVAL(Development_Stage__c,&quot;5.3 Sprint Team - Awaiting Development &quot;), 
+ISPICKVAL(Development_Stage__c,&quot;5.4 Sprint Team - In Development&quot;), 
+ISPICKVAL(Development_Stage__c,&quot;5.5. Sprint - Awaiting Review&quot;), 
+ISPICKVAL(Development_Stage__c,&quot;5.6. Sprint - Awaiting Release to SAT&quot;), 
+ISPICKVAL(Development_Stage__c,&quot;5.7. Sprint - Awaiting SAT&quot;), ISPICKVAL(Development_Stage__c,&quot;5.8. Sprint - In Test&quot;),
+ISPICKVAL(Development_Stage__c,&quot;5.9. Done&quot;), 
+ISPICKVAL(Development_Stage__c,&quot;6. UAT - Awaiting testing&quot;), 
+ISPICKVAL(Development_Stage__c,&quot;7. UAT – In Test&quot;), 
+ISPICKVAL(Development_Stage__c,&quot;8. Production – Ready for Release&quot;),
+ISPICKVAL(Development_Stage__c,&quot;9. Production – Released&quot;))
+ )</errorConditionFormula>
+        <errorDisplayField>Acceptance_Criteria__c</errorDisplayField>
+        <errorMessage>You can&apos;t amend the Acceptance and/or Compliance Criteria once the user story is categorized as ready for development. Move the status back to &apos;With BPC&apos; to indicate you are working again on the Acceptance and/or Compliance Criteria and Chatter the reason</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Mandatory_GxP_and_Criticality</fullName>
+        <active>false</active>
+        <description>Makes sure users populate the GxP and criticality picklists</description>
+        <errorConditionFormula>OR( ISPICKVAL(GXP__c, &apos;&apos;), ISPICKVAL(Critical__c, &apos;&apos;))</errorConditionFormula>
+        <errorMessage>You must populate both the Quality Critical and GxP fields</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Mandatory_to_add_owner_and_custodian</fullName>
+        <active>true</active>
+        <description>Product owner and system custodian are mandatory on US</description>
+        <errorConditionFormula>OR(ISBLANK(System_Owner__c), ISBLANK(System_Custodian__c) )</errorConditionFormula>
+        <errorMessage>Please add product owner and system custodian to create the User story.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Pending_Approval_Status</fullName>
+        <active>false</active>
+        <description>Locks the &apos;As A…&apos;, &apos;I want to…&apos; or  &apos;so that…&apos;,&apos;Quality Critical&apos;, &apos;GxP&apos;, &apos;Compliance Criteria&apos;, &apos;Privacy&apos;, &apos;Security &apos;, &apos;Legal&apos;  fields when the Approval Status is Pending Approval</description>
+        <errorConditionFormula>AND(
+ISPICKVAL(Approval_Status__c,&quot;Pending Approval&quot;), 
+OR(
+ISCHANGED(As_A_text__c),
+ISCHANGED(I_Want_To__c),
+ISCHANGED(So_that__c),
+ISCHANGED(Critical__c),
+ISCHANGED(GXP__c),
+ISCHANGED(Compliance_Criteria__c ),
+IF(PRIORVALUE(Privacy__c)!=Privacy__c,true,false),
+ISCHANGED(Security__c), 
+ISCHANGED(Legal__c)
+
+
+)
+)</errorConditionFormula>
+        <errorMessage>You can&apos;t amend the  &apos;As A…&apos;, &apos;I want to…&apos; or  &apos;so that…&apos;,&apos;Quality Critical&apos;, &apos;GxP&apos;, &apos;Compliance Criteria&apos;, &apos;Privacy&apos;, &apos;Security &apos;, &apos;Legal&apos;  fields when the Approval Status is Pending Approval.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Same_Roles_for_Different_Fields</fullName>
+        <active>true</active>
+        <description>User Story cannot be created with same names in System custodian, Product owner, Business Analyst, Developer and Sprint tester fields.</description>
+        <errorConditionFormula>OR( 
+AND((Supporting_BA__c =  Developer__c), (Supporting_BA__c &lt;&gt; null), (Developer__c &lt;&gt; null)), 
+AND((Supporting_BA__c = System_Owner__c),(Supporting_BA__c &lt;&gt; null),(System_Owner__c &lt;&gt; null)),
+AND((Supporting_BA__c =  System_Custodian__c),(Supporting_BA__c &lt;&gt; null),(System_Custodian__c &lt;&gt; null)),
+AND((Supporting_BA__c =  Sprint_Tester__c), (Supporting_BA__c &lt;&gt; null), (Sprint_Tester__c &lt;&gt; null)),
+AND((Developer__c = System_Owner__c), (Developer__c &lt;&gt; null), (System_Owner__c &lt;&gt; null )),
+AND((Developer__c = System_Custodian__c), (Developer__c &lt;&gt; null), (System_Custodian__c &lt;&gt; null)),
+AND((Developer__c = Sprint_Tester__c), (Developer__c &lt;&gt; null), (Sprint_Tester__c &lt;&gt; null)),
+AND((System_Owner__c = System_Custodian__c),(System_Owner__c &lt;&gt; null),(System_Custodian__c &lt;&gt; null)),
+AND((System_Owner__c = Sprint_Tester__c), (System_Owner__c &lt;&gt; null), (Sprint_Tester__c&lt;&gt;null)),
+AND((System_Custodian__c = Sprint_Tester__c), (System_Custodian__c &lt;&gt; null), (Sprint_Tester__c &lt;&gt; null))
+)</errorConditionFormula>
+        <errorMessage>System custodian, Product owner, Business Analyst, Developer and Sprint tester fields cannot be the same.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Status_Value</fullName>
+        <active>true</active>
+        <description>Able to create a User story with &apos;Production Release&apos; status.</description>
+        <errorConditionFormula>AND( ISNEW(), NOT( ISPICKVAL( Development_Stage__c , &apos;Backlog&apos;)),NOT(ISPICKVAL( Development_Stage__c , &apos;Raised&apos;)))</errorConditionFormula>
+        <errorDisplayField>Development_Stage__c</errorDisplayField>
+        <errorMessage>User Story can only be created in &apos;Backlog&apos;  and &apos;Raised&apos; Status.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Status_Value_Change</fullName>
+        <active>true</active>
+        <description>User Stories status cannot be changed from &apos;Production Release&apos; to &apos;Backlog&apos;.</description>
+        <errorConditionFormula>CONTAINS( TEXT( PRIORVALUE(  Development_Stage__c  ) ) , &quot;Production - Released&quot;)</errorConditionFormula>
+        <errorDisplayField>Development_Stage__c</errorDisplayField>
+        <errorMessage>Status Value cannot be changed from &apos;Production-Released&apos;.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>TRAK_Approved_Status_Validation</fullName>
+        <active>true</active>
+        <errorConditionFormula>IF((ISPICKVAL(Approval_Status__c , &quot;Approved&quot;) || ISPICKVAL(Approval_Status__c , &quot;Pending Approval&quot;))&amp;&amp; (ISCHANGED(  System_Custodian__c )||  ISCHANGED(Computer_Systems_Quality__c) ||  ISCHANGED(Compliance_Owner__c) ||  ISCHANGED(System_Owner__c) ),true,false)</errorConditionFormula>
+        <errorMessage>You cannot change Approver once the User Story is approved or is in Pending Approval</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>User_Story_Approval</fullName>
+        <active>true</active>
+        <description>This user story has to be approved before setting the status to any value after &apos;Ready for Development&apos;.</description>
+        <errorConditionFormula>AND(NOT(ISPICKVAL(Approval_Status__c, &apos;Approved&apos;)),NOT(OR(ISPICKVAL(Development_Stage__c, &apos;Cancelled&apos;),ISPICKVAL(Development_Stage__c, &apos;Backlog&apos;),ISPICKVAL(Development_Stage__c, &apos;Raised&apos;),ISPICKVAL(Development_Stage__c, &apos;Story Definition&apos;))))</errorConditionFormula>
+        <errorDisplayField>Development_Stage__c</errorDisplayField>
+        <errorMessage>This user story has to be approved before setting the status to any value after &apos;Ready for Development&apos;.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Validate_Close_Date</fullName>
+        <active>true</active>
+        <description>User Story &apos;Close Date&apos; should be in the future.</description>
+        <errorConditionFormula>Close_Date__c &lt;  TODAY()</errorConditionFormula>
+        <errorDisplayField>Close_Date__c</errorDisplayField>
+        <errorMessage>Close Date cannot be in the past.</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>Acceptance_Criteria_Editor</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Acceptance Criteria Editor</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>/{!IF(ISPICKVAL($UserRole.PortalType,&apos;Partner&apos;)
+,$Setup.TRAK_Release_Tracker__c.Community_Domain_Name__c,&apos;apex&apos;)}/TRAK_User_Story_Acceptance?id={!TRAK_User_Story__c.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Create_HL_Design</fullName>
+        <availability>online</availability>
+        <description>Create high level design record</description>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Create HL Design</masterLabel>
+        <openType>noSidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>{!URLFOR($Action.TRAK_Design__c.New, TRAK_Design__c.Id, [retURL=URLFOR($Action.TRAK_Design__c.View, TRAK_Design__c.Id),  TRAK_Design__c.from_id__c=TRAK_User_Story__c.Id])}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Create_Planning_Poker_Session</fullName>
+        <availability>online</availability>
+        <description>starts planning poker with all the proposed user stories in the sprint</description>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Create Planning Poker Session</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>/{!IF(ISPICKVAL($UserRole.PortalType,&apos;Partner&apos;)
+,$Setup.TRAK_Release_Tracker__c.Community_Domain_Name__c,&apos;apex&apos;)}/TRAK_PlanningPokerFromSprint?id={!TRAK_Sprint__c.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>TRAK_Submit_for_Approval</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Submit for Approval</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/apex.js&quot;)}
+
+var userStoryId = &quot;{!TRAK_User_Story__c.Id}&quot;
+var approvalStatus=&quot;{!TRAK_User_Story__c.Approval_Status__c}&quot;
+var gxp=&quot;{!TRAK_User_Story__c.GXP__c}&quot;
+var syscustodian=&quot;{!TRAK_User_Story__c.System_Custodian__c}&quot;
+var productowner=&quot;{!TRAK_User_Story__c.System_Owner__c}&quot;
+var compliance=&quot;{!TRAK_User_Story__c.Compliance_Owner__c}&quot;
+
+if(syscustodian == &quot;&quot; || productowner == &quot;&quot;) 
+alert(&apos;Please select a System Custodian and Product Owner before submitting this user story for approval. &apos;);
+else if(approvalStatus==&apos;Pending Approval&apos;)
+alert(&apos;This User Story is Pending Approval and cannot be resubmitted for approval.&apos;)
+else if(approvalStatus==&apos;Approved&apos;)
+alert(&apos;This User Story is Approved and cannot be resubmitted for approval.&apos;)
+else{
+sforce.apex.execute(&quot;TRAK_SubmitForApproval&quot;,&quot;SendEmailMethod&quot;,{localId:userStoryId});
+location.reload(true);
+}</url>
+    </webLinks>
+</CustomObject>

@@ -1,0 +1,188 @@
+<apex:page standardController="Simulation__c" extensions="DragNdrop">
+    <apex:actionStatus id="statusSave" stopText="">
+            <apex:facet name="start">
+                <div>
+                    <div class="popupBackground" />
+                    <div class="PopupPanel">
+                        <table border="0" width="100%" height="100%">
+                            <tr>
+                                <td align="center"><b>Uploading File..</b></td>
+                            </tr>
+                            <tr>
+                                <td align="center"><img src="{!URLFOR($Resource.DragnDrop,'ajax-loader.gif')}" /></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </apex:facet>
+    </apex:actionStatus>
+    <apex:pageMessages id="msg"/>
+    <apex:form id="form" rendered="{!bIsAdmin}"> 
+    
+        <apex:stylesheet value="{!URLFOR($Resource.DragnDrop,'style.css')}" />
+        <!-- HTML to show drop box and thumbnail images-->
+        
+        <!-- Panel is Rendered when the Browser is Chrome/Firefox -->
+        <apex:outputPanel id="ChromePanel" rendered="{!!IsIE}">
+        <div id="drop_zone">
+            Load Board Information Here
+        </div><br/>
+        <div id="list"></div><br/>
+        <center>
+        <input id="file-input" type="file" name="file"/>
+        <apex:commandButton value="Upload" styleclass="ie-upload-button" onclick="uploadFile(); return false;" />
+        <apex:commandButton styleclass="ie-upload-button" value="Done" onclick="window.top.location='/{!$CurrentPage.parameters.id}'" />
+        </center>
+        </apex:outputPanel>
+        
+        <!-- Action Function called for Chrome Drag and Drop -->
+        <apex:actionFunction name="SendData" reRender="msg" action="{!saveValues}" onComplete="showStatus();">
+            <apex:param name="sAttachment" value="" assignTo="{!sAttachment}" />
+            <apex:param name="sFileType" value="" assignTo="{!sFileType}" />
+            <apex:param name="sAttachmentName" value="" assignTo="{!sAttachmentName}" />
+            <apex:param name="sShowMsg" value="" assignTo="{!sShowMsg}" />
+        </apex:actionFunction>
+        
+         <!-- Action Function called for IE Single FileUpload -->
+        <apex:actionFunction name="ShowStatusIE" reRender="IEUpload,msg" status="statusSave">
+        </apex:actionFunction>
+        
+        <!-- Action Function called for Chrome Single FileUpload -->
+        <apex:actionFunction name="SendChromeData" action="{!saveValues}" reRender="form,msg" status="statusSave">
+            <apex:param name="sAttachment" value="" assignTo="{!sAttachment}" />
+            <apex:param name="sFileType" value="" assignTo="{!sFileType}" />
+            <apex:param name="sAttachmentName" value="" assignTo="{!sAttachmentName}" />
+            <apex:param name="sShowMsg" value="" assignTo="{!sShowMsg}" />
+        </apex:actionFunction>
+        
+        <!-- Panel is Rendered when the Browser is IE -->
+        <center><apex:outputPanel id="IEUpload" rendered="{!IsIE}">
+        <apex:inputfile value="{!sAttachmentIE}" filename="{!sAttachmentName}" contentType="{!sFileType}" size="10" styleClass="file-upload-control"/>
+        <apex:commandButton styleclass="ie-upload-button" value="Upload" action="{!saveValues}" onclick="ShowStatusIE();" />
+        <apex:commandButton styleclass="ie-upload-button" value="Done" onclick="window.top.location='/{!$CurrentPage.parameters.id}'" />
+        </apex:outputPanel></center>
+        
+        
+        
+        <apex:includeScript value="../../soap/ajax/33.0/connection.js" />
+        <apex:includeScript value="{!URLFOR($Resource.DragnDrop,'script.js')}" />
+        <script type="text/javascript">
+            //On page load execution. 
+            //Declaration of variables.
+            var attachment;
+            var attachmentName;
+            var fileType;
+            var showMsg;
+            var parentId = '{!$CurrentPage.parameters.id}';
+            
+            //Binding div with id "drop_zone" to events
+            //For details of method, refer static resource
+            //Functions Called for Drag and Drop via Chrome Browser
+            bindDragEvents();
+
+            //Method to handle file drop event
+            function handleFileSelect(evt) {
+                evt.stopPropagation();
+                evt.preventDefault();
+                handleDragOut();
+                if (parentId != null && (parentId.length == 15 || parentId.length == 18)) {
+                    // Retrieves all files
+                    var files = evt.dataTransfer.files;
+                    //Iterating over the files.
+                    for (var i = 0, f; f = files[i]; i++) {
+                        var reader = new FileReader();
+
+                        // Closure to capture the file information.
+                        reader.onload = (function(theFile) {
+                            return function(e) {
+                                // Render thumbnail.
+                                attachmentName = theFile.name;
+                                fileType = theFile.type;
+                                var span = document.createElement('span');
+                                //Attaches thumbnails for image files and divs with predefined styles for other types.                        
+                                var droppedHTML = getThumbnail(theFile.type, e);
+                                span.innerHTML = droppedHTML;
+                                document.getElementById('list').insertBefore(span, null);
+                            };
+                        })(f);
+
+                        //Once file is loaded, 
+                        reader.onloadend = function(e) {
+                                attachment = this.result.split(',')[1];
+                                showMsg = 'FALSE';
+                                if (e.total <= 25000000) {
+                                    SendData(attachment, fileType, attachmentName, showMsg);
+                                } else {
+                                    alert('This file exceeds maximum attachment size - 25MB. It cannot be attached');
+                                }
+                            }
+                            // Read in the file as a data URL.
+                        reader.readAsDataURL(f);
+                    }
+                } else {
+                    alert("Please open the detail page of any record and try again.");
+                }
+            }
+            //Function Called for Single file upload via Chrome Browser
+            function uploadFile(){
+                    var input = document.getElementById('file-input');
+
+                    var filesToUpload = input.files;
+
+                    var reader = new FileReader();     
+
+                    // Keep a reference to the File in the FileReader so it can be accessed in callbacks
+                    reader.file = filesToUpload[0]; 
+                    
+                    if( document.getElementById("file-input").files.length == 0 ){
+                        attachmentName = '';
+                        fileType = '';
+                        attachment = '';
+                        showMsg = 'TRUE';
+                        SendChromeData(attachment, fileType, attachmentName,showMsg);
+                    }
+
+                    reader.onerror = function(e) 
+                    {
+                        switch(e.target.error.code) 
+                        {
+                            case e.target.error.NOT_FOUND_ERR:
+                                alert('File Not Found!');
+                                break;
+                            case e.target.error.NOT_READABLE_ERR:
+                                alert('File is not readable');
+                                break;
+                            case e.target.error.ABORT_ERR:
+                                break; // noop
+                            default:
+                                alert('An error occurred reading this file.');
+                        };
+                    };     
+
+                    reader.onabort = function(e) 
+                    {
+                        alert('File read cancelled');
+                    };
+
+                    reader.onload = function(e) 
+                    {
+                        attachmentName = this.file.name;
+                        fileType = this.file.type;
+                        attachment = btoa(e.target.result);
+                        showMsg = 'TRUE';
+                        if (e.total <= 25000000) {
+                        SendChromeData(attachment, fileType, attachmentName,showMsg);
+                        } else {
+                            alert('This file exceeds maximum attachment size - 25MB. It cannot be attached');
+                        }
+                        
+                    };
+                    
+                    if( document.getElementById("file-input").files.length != 0 ){
+                    reader.readAsBinaryString(filesToUpload[0]);
+                    }
+                
+                    }
+        </script>
+    </apex:form>
+</apex:page>

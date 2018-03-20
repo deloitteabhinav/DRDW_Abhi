@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Template used for email notification to Submitter that test execution is approved.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>TRAK_Cirrus_Normal</letterhead>
+    <name>TRAK NEW Test Execution Approved Message</name>
+    <style>freeForm</style>
+    <subject>Test Execution Approved Notification - {!TRAK_Test__c.Name}</subject>
+    <textOnly>{!TRAK_Test__c.Approver__c} has APPROVED Test Execution for {!TRAK_Test__c.00N23000000LCYw}.
+
+{!TRAK_Test__c.Name}
+{!TRAK_Test__c.Title__c}
+{!TRAK_Test__c.Introduction__c}
+
+To view comments :
+
+Please click the link below
+{!TRAK_Test__c.Link}</textOnly>
+    <type>html</type>
+</EmailTemplate>

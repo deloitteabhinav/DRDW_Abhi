@@ -1,0 +1,56 @@
+<apex:page docType="html-5.0" showHeader="false" standardStylesheets="false" id="thePage">
+
+
+    <title>Select Request</title>
+    
+    <c:DRDP_IndexNew />
+        
+    <div class='content'>
+      <!-- body partial, used for adding pages to layout -->
+      <div class= 'select-request'>
+        <div class='banner-wrapper bannercolor l-green'>
+            <div class="pattern"></div>
+            <div class='banner container'>
+                <span class='col-md-12 font-xl'>Submit your Scientific Request</span>
+                <span class='col-md-12'>Select your request type to begin the request process.</span>
+               
+            </div>
+        </div>
+        <div class='request-types-container container'>
+        
+         <div class='col-md-6 col-sm-6 col-xs-12 request-item-no-flex'>
+                <span class='name bold font-xl'>Research Study Consultation</span>
+                <p class='description font-r'>Establish a partnership with industry leading experts to identify new areas of research, draw new insights from ongoing studies, and discuss novel experimental techniques. </p>
+                <apex:outputlink styleclass="create-new button center" value="{!IF($CurrentPage.parameters.id != NULL,'/apex/CreateRequests?recTypeName=Study_Consultation&studyID='+$CurrentPage.parameters.id,'/apex/CreateRequests?recTypeName=Study_Consultation')}">Begin Request</apex:outputlink>
+             </div>
+             
+        <div class='col-md-6 col-sm-6 col-xs-12 request-item-no-flex'>
+            <span class='name bold font-xl'>Partnership Exploration Request</span>
+            <p class='description font-r'>Initiate and develop a sustainable partnership within industry and academia to minimize discovery to market timeline during drug development process.</p>
+            <apex:outputlink styleclass="create-new button center" value="{!IF($CurrentPage.parameters.id != NULL,'/apex/CreatePartnership?recTypeName=Partnership_Exploration&studyID='+$CurrentPage.parameters.id,'/apex/CreatePartnership?recTypeName=Partnership_Exploration')}">Begin Request</apex:outputlink>
+        </div>
+               
+        <div class='col-md-6 col-sm-6 col-xs-12 request-item-no-flex'>
+            <span class='name bold font-xl'>Scientific Technology Assessment</span>
+            <p class='description font-r'>Evaluation of new scientific technologies/techniques, and industry insight to improve R&amp;D productivity with the goal of decreasing overall time to market for new products. This also includes process of exploring and assessing new technologies that can support your organization.</p>
+            <apex:outputlink styleclass="create-new button center" value="{!IF($CurrentPage.parameters.id != NULL,'/apex/CreateRequests?recTypeName=Scientific_Technology&studyID='+$CurrentPage.parameters.id,'/apex/CreateRequests?recTypeName=Scientific_Technology')}">Begin Request</apex:outputlink>
+        </div>
+        
+
+    </div>
+            <div class='banner-wrapper bannercolor l-green'>
+            <div class="pattern"></div>
+            <div class='banner container'>
+                <a href="/apex/DRDP_DFHomePage" class='col-md-12'>Back to Homepage</a>
+            </div>
+        </div>
+</div>
+<apex:form >
+<c:DRDP_FooterComponent />
+
+</apex:form>
+ 
+    </div>
+
+ 
+</apex:page>

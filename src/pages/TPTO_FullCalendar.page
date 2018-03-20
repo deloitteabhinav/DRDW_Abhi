@@ -1,0 +1,85 @@
+<apex:page controller="TPTO_FullCalendar" action="{!pageLoad}" showHeader="true" sidebar="true" id="page">
+      
+  <link href="{!$Resource.TPTO_fullCalendar_css}" rel="stylesheet" />
+    <link href="{!$Resource.TPTO_fullCalendar_print_css}" rel="stylesheet" media="print" />
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script src="{!$Resource.TPTO_Moment_js}"></script>
+    <script src="{!$Resource.TPTO_fullCalendar_min_js}"></script>
+    <script src="{!$Resource.TPTO_fullCalendar_js}"></script>
+    
+    <script type="text/javascript">
+  
+    $(document).ready(function() {
+       
+        $('#calendar').fullCalendar({
+            height: 500,
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            editable: false,
+            events:
+            [
+            <apex:repeat value="{!ptoList}" var="e">
+
+                {
+              
+                title: "{!e.Owner.Name}",
+                start: '{!e.Start_Date__c}',
+                end: '{!e.End_Date__c}',
+                
+                url: '{!IF(ISPICKVAL($UserRole.PortalType,'Partner'), '/releasetracker/'+e.id, '/'+e.id)}',
+                allDay: true,                
+                status : '{!e.Status__c}'
+                },
+            </apex:repeat>
+            ],
+            eventAfterRender: function(event, element) {
+                if (event.status == "Draft") {                    
+                   element.css('background', '#99A3A4');
+               } else if(event.status == "Approved"){
+                   element.css('background','#138D75');
+               } else if(event.status == "Needs discussion"){
+                   element.css('background','red');
+               } else if(event.status == "Submitted"){
+                   element.css('background','#EB984E');
+               }
+        }
+            
+        });
+    });
+    
+    
+</script>
+    
+    <script type="text/javascript">
+            
+              $('#calendar').fullCalendar('refetchResources' );
+    </script>
+    
+
+    <apex:sectionHeader title="PTO Calendar"/>
+    <apex:outputPanel id="calPanel">
+        <apex:form id="form">
+            <div> 
+            <apex:pageBlock id="pageblock">
+
+                <apex:outputText value="Filter By" style="font-weight:bold" ></apex:outputText> &nbsp;&nbsp;
+
+                <apex:selectList value="{!userName}" size="1">
+                    <apex:actionSupport event="onchange" action="{!pageLoad}" />
+                    <apex:selectOptions value="{!items}">
+                    </apex:selectOptions>
+                </apex:selectList> 
+
+                </apex:pageBlock> 
+            </div>
+            <div id="calendar">
+            </div>
+        </apex:form>
+    </apex:outputPanel>
+    
+</apex:page>

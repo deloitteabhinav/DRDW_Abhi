@@ -1,0 +1,61 @@
+<apex:page docType="html-5.0" showHeader="false" standardStylesheets="false" id="thePage">
+
+
+    <title>Select Relationship</title>
+    
+    <c:DRDP_IndexNew />
+        
+    <div class='content'>
+      <!-- body partial, used for adding pages to layout -->
+      <div class= 'select-request'>
+        <div class='banner-wrapper bannercolor l-teal'>
+            <div class="pattern"></div>
+            <div class='banner container'>
+                <span class='col-md-12 font-xl'>Create your Relationship.</span>
+                <span class='col-md-12'>Create your Relationship to begin the process.</span>
+               
+            </div>
+        </div>
+        <div class='request-types-container container'>
+        
+        <div class='col-md-6 request-item-no-flex'>
+                <span class='name bold font-xl'>Partners</span>
+                <p class='description font-r'>Establish R&amp;D driven partnership within industry and academia to develop a robust R&amp;D pipeline to support your organizational goals.</p>
+                <div>
+                <apex:outputlink styleclass="create-new button center" value="/apex/DRDP_CreatePartnerRelationship?recTypeName=Partner&IsEdit=true">Create Org</apex:outputlink>&nbsp;&nbsp;   
+                <apex:outputlink styleclass="create-new button center" value="/apex/DRDP_CreateRelationshipContact?recTypeName=Partner&IsEdit=true">Create Contact</apex:outputlink>
+                </div>
+         </div>
+        <div class='col-md-6 request-item-no-flex'>
+                <span class='name bold font-xl'>Vendor/Service Providers</span>
+                <p class='description font-r'>Engage vendor and service providers to support your R&amp;D needs for data management, research equipment analysis, study design consultation, and explore potential joint venture opportunities. </p>
+                <div>
+                <apex:outputlink styleclass="create-new button center" value="/apex/DRDP_CreateVendorRelationship?recTypeName=Vendor&IsEdit=true">Create Org</apex:outputlink>&nbsp;&nbsp;
+                <apex:outputlink styleclass="create-new button center" value="/apex/DRDP_CreateRelationshipContact?recTypeName=Vendor&IsEdit=true">Create Contact</apex:outputlink>
+                </div>
+        </div>
+        <div class='col-md-6 request-item-no-flex'>
+            <span class='name bold font-xl'>Research Institutes</span>
+            <p class='description font-r'>Engage public and private research institutions to collaborate with academia personnel for new insight on new therapeutics, R&amp;D techniques, and patient engagement. </p>
+            <div>
+            <apex:outputlink styleclass="create-new button center" value="/apex/DRDP_CreateScientificLeadersRelationship?recTypeName=ResearchInstitutes&IsEdit=true">Create Org</apex:outputlink>&nbsp;&nbsp;
+            <apex:outputlink styleclass="create-new button center" value="/apex/DRDP_CreateRelationshipContact?recTypeName=ResearchInstitutes&IsEdit=true">Create Contact</apex:outputlink>
+            </div>
+        </div>
+        
+
+    </div>
+            <div class='banner-wrapper bannercolor l-teal'>
+            <div class="pattern"></div>
+            <div class='banner container'>
+                <a href="/apex/DRDP_DFHomePage" class='col-md-12'>Back to Homepage</a>
+            </div>
+        </div>
+</div>
+ <apex:form >
+ <c:DRDP_FooterComponent />
+ </apex:form>
+    </div>
+
+ 
+</apex:page>

@@ -1,0 +1,43 @@
+<apex:page standardController="TRAK_User_Story__c">
+    
+    <!-- Load CKeditor script new. Don't try and hack the existing SFDC implementation -->
+    <script src="//cdn.ckeditor.com/4.4.2/full/ckeditor.js"></script>
+
+    <BR/>
+    <div class="content">
+        <img src="/s.gif" alt="User Story"  class="pageTitleIcon" title="Acceptance Criteria"/>
+        <h1 class="pageType">User Story</h1><Br/>
+        <h2 class="pageDescription">{!TRAK_User_Story__c.Full_User_Story__c}</h2>
+    </div>
+    <BR/>
+    <apex:pageMessages ></apex:pageMessages>
+    <apex:form onsubmit="beforeTextSave()">
+    <BR/>
+
+    <div>
+        <apex:inputtextarea value="{!TRAK_User_Story__c.Acceptance_Criteria__c}" styleClass="ckeditor" richtext="false" id="editor1"/>
+   </div>
+   <BR/>
+   <BR/>
+
+    <CENTER>
+            <apex:commandbutton action="{!Save}" onclick="beforeTextSave()" value="Save Acceptance Crirteria">
+            <script type="text/javascript">      
+            function beforeTextSave() {
+            var objEditor = CKEDITOR.instances['{!$Component.msgpost}'];
+            document.getElementById('{!$Component.msgpost}').value = objEditor.getData();
+            }
+            </script>
+            </apex:commandbutton>
+    </CENTER>
+    
+    <BR/>
+    <BR/>
+    Hints and Tips:<br/>
+        <li>This advanced editor is Beta and may not work with all browsers</li>
+        <li>Expand the editor to full screen mode to get more editing space</li>  
+        <li>Ensure you press the <i>Save Acceptance Criteria</i> button in order to save your changes</li>
+        <li>If uploading images, use the standard editor</li>
+    
+   </apex:form>
+</apex:page>

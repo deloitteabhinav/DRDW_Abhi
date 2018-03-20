@@ -1,0 +1,10 @@
+<apex:page standardController="Boards__c" extensions="BoardAttachment">
+<apex:form >
+<apex:outputPanel rendered="{!If(currentPicture != NULL, True,False)}">
+<apex:image height="750" url="/servlet/servlet.FileDownload?file={!currentPicture}"/>
+</apex:outputPanel>
+<apex:outputPanel rendered="{!If(currentPicture == NULL, True,False)}">
+<apex:image height="750" url="{!URLFOR($Resource.DragnDrop,'NoPreview.png')}"/>
+</apex:outputPanel>
+</apex:form>
+</apex:page>

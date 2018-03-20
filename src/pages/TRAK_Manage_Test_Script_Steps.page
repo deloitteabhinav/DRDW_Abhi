@@ -1,0 +1,66 @@
+<apex:page standardController="TRAK_Test_Template_Steps__c" extensions="TRAK_Manage_Test_Script_Steps_Controller">
+    <apex:includeScript value="{!URLFOR($Resource.TRAK_Resource,'js/jquerymin.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.TRAK_Resource, 'jquery-ui-1.11.4.custom/jquery-ui.min.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.TRAK_Resource, 'jquery-ui-1.11.4.custom/jquery-ui.min.css')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.TRAK_Resource,'js/TRAKjs.js')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.TRAK_Resource, 'css/TRAK_css.css')}"/>
+
+    
+    <apex:form >        
+     <br/><br/>
+     <center>
+         <div>
+            <span class="cmdButtonStyle">
+                <apex:commandButton action="{!save}" value="Save" title="Save"/>
+            </span>
+            <span class="cmdButtonStyle">
+                <apex:commandButton action="{!cancel}" value="Cancel" title="Cancel"/>
+            </span>
+         </div>
+     </center>
+     <br/><br/>
+     <center>
+        <table class="select-testtb" width="90%">
+            <thead>
+                <tr class="ui-state-default" width="100%">
+                    <td Class="input-icoSymbol"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span></td>                        
+                    <td Class="input-name"><apex:outputLabel value="Test Script Step Ref" style="width:100%"/></td>
+                    <td Class="input-ref"><apex:outputLabel value="Test Script Step Number" style="width:100%"/></td>
+                    <td Class="input-action"><apex:outputLabel value="Action" style="width:100%"/></td>
+                    <td Class="input-er"><apex:outputLabel value="Expected Result" style="width:100%"/></td>                       
+                    <td Class="input-tips"><apex:outputLabel value="Tips" style="width:100%"/></td>
+                </tr>
+            </thead>
+            <tbody>
+                <apex:repeat value="{!testScriptSteps}" var="step">                
+                    <tr class="ui-state-default evalThis" width="100%">
+                    <td Class="input-icoSymbol"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span></td>                          
+                    <td Class="input-name"><apex:outputLabel value="{!step.Name}" style="width:100%"/></td>                        
+                    <td Class="input-ref">
+                        <apex:outputLabel value="{!step.Test_Script_Step_Number__c}" style="width:100%"/>
+                        <apex:inputField value="{!step.Test_Script_Step_Number__c}" styleClass="hiddenStep"/>
+                    </td>                        
+                    <td Class="input-action"><apex:inputField value="{!step.Action__c}" style="width:100%" styleClass="testStepInput"/></td>                        
+                    <td Class="input-er"><apex:inputField value="{!step.Expected_Result__c}" style="width:100%" styleClass="testStepInput"/></td>                        
+                    <td Class="input-tips"><apex:inputField value="{!step.Tips__c}" style="width:100%" styleClass="testStepInput"/></td>
+                    </tr>                
+                </apex:repeat>
+            </tbody>
+        </table>       
+     </center>
+     <br/>
+     <br/>
+     <center>
+         <div>
+            <span class="cmdButtonStyle">
+                <apex:commandButton action="{!save}" value="Save" title="Save"/>
+            </span>
+            <span class="cmdButtonStyle">
+                <apex:commandButton action="{!cancel}" value="Cancel" title="Cancel"/>
+            </span>
+         </div>
+     </center>
+     <br/>
+     <br/>       
+    </apex:form>    
+</apex:page>

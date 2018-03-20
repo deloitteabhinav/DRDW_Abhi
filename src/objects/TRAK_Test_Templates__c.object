@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <content>TRAK_cloneTestScriptTemplate</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Business Description: This object is used by a Test Manager or Test Script Writer to create a master test script. This master test script can then be copied to different users to execute by adding those users to the &quot;Testers&quot; related list.
+
+Used In: Release Tracker App</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Approval_Date__c</fullName>
+        <description>This field will be auto populated when the test script gets approved: Created by Preeti Grover on 30/07/2014 by Preeti Grover:TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Date this has been approved by SME</inlineHelpText>
+        <label>Approval Date</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Approval_Status__c</fullName>
+        <description>This field will capture the approval status for Test Scripts: Created by Preeti Grover on 30/07/2014: TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Status of approval is auto populated as the Test Script goes through the process</inlineHelpText>
+        <label>Approval Status</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Open</fullName>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>Pending Approval</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Approved</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Approver__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This name of the approver (SME) can be selected from this lookup field. Created by Preeti Grover on 30/07/2014: TRAK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Your approval indicates that the test case/scripts are accurate and complete and meet the requirements of LQP-302-18</inlineHelpText>
+        <label>Approver</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Test_Scripts</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Development_Stage__c</fullName>
+        <externalId>false</externalId>
+        <formula>Text(User_Story__r.Development_Stage__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Development Stage</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Epic_Ref__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Epic Ref</label>
+        <referenceTo>TRAK_Epic__c</referenceTo>
+        <relationshipLabel>Test Scripts</relationshipLabel>
+        <relationshipName>Test_Scripts</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Expected_Result__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The expected result of this test</inlineHelpText>
+        <label>Expected Result</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Introduction__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The introduction to this test script. This will be shown to testers before they start executing the test.</inlineHelpText>
+        <label>Introduction</label>
+        <required>true</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Locked_For_editing__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Locked For editing</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Recall_Flag__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Recall Flag</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Signature_Meaning__c</fullName>
+        <defaultValue>&quot;Your approval signifies that this Test Script is complete and accurately tests the functionality of the related User Story, and that the test complies with the requirements of LQP-302-18.&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>Signature Meaning</label>
+        <length>32768</length>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Sprint__c</fullName>
+        <externalId>false</externalId>
+        <formula>User_Story__r.Allocated_Sprint__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Sprint</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Not Started</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Draft Ready</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>In Progress</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Complete</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Canceled</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Submitter__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Submitter</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Test_Scripts1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Title__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The title of the test script</inlineHelpText>
+        <label>Test Title</label>
+        <length>80</length>
+        <required>true</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>USerSToryDescription__c</fullName>
+        <externalId>false</externalId>
+        <formula>User_Story__r.Full_User_Story__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>User Story Description</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>User_Story__c</fullName>
+        <externalId>false</externalId>
+        <label>User Story</label>
+        <referenceTo>TRAK_User_Story__c</referenceTo>
+        <relationshipLabel>Test Scripts</relationshipLabel>
+        <relationshipName>TRAK_Test_Templates</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <label>Test Script</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Title__c</columns>
+        <columns>Sprint__c</columns>
+        <columns>User_Story__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>PANGAEA_Sprint_4</fullName>
+        <columns>NAME</columns>
+        <columns>Title__c</columns>
+        <columns>User_Story__c</columns>
+        <columns>USerSToryDescription__c</columns>
+        <columns>Approver__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Sprint__c</field>
+            <operation>contains</operation>
+            <value>PANGAEA Sprint 4</value>
+        </filters>
+        <label>PANGAEA Sprint 4</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>PANGAEA_Sprint_41</fullName>
+        <columns>NAME</columns>
+        <columns>Title__c</columns>
+        <columns>User_Story__c</columns>
+        <columns>USerSToryDescription__c</columns>
+        <columns>Approver__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Sprint__c</field>
+            <operation>contains</operation>
+            <value>PANGAEA Sprint 4</value>
+        </filters>
+        <label>PANGAEA Sprint 4</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Pangaea_Sprint_2</fullName>
+        <columns>NAME</columns>
+        <columns>Title__c</columns>
+        <columns>Introduction__c</columns>
+        <columns>Expected_Result__c</columns>
+        <columns>Status__c</columns>
+        <columns>Development_Stage__c</columns>
+        <columns>Sprint__c</columns>
+        <columns>User_Story__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Sprint__c</field>
+            <operation>equals</operation>
+            <value>Pangaea Sprint 2</value>
+        </filters>
+        <label>Pangaea - Sprint 2</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>SafeStart_Stories</fullName>
+        <columns>NAME</columns>
+        <columns>Status__c</columns>
+        <columns>Approval_Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>SafeStart Stories</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>TS-{000000}</displayFormat>
+        <label>Test Script Ref</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Test Scripts</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Title__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Sprint__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>User_Story__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <lookupDialogsAdditionalFields>Title__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Sprint__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>User_Story__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Status__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Title__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Sprint__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>User_Story__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Status__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Title__c</searchFilterFields>
+        <searchFilterFields>Sprint__c</searchFilterFields>
+        <searchFilterFields>User_Story__c</searchFilterFields>
+        <searchFilterFields>Status__c</searchFilterFields>
+        <searchResultsAdditionalFields>Title__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Sprint__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>User_Story__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Pending_Approval_Status</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( 
+ISPICKVAL(Approval_Status__c,&quot;Pending Approval&quot;), 
+OR( 
+ISCHANGED(Approval_Date__c), 
+
+ISCHANGED(Approver__c),
+ISCHANGED(Development_Stage__c), 
+ISCHANGED(Expected_Result__c), 
+ISCHANGED(Introduction__c), 
+ISCHANGED(Sprint__c), 
+ISCHANGED(Status__c), 
+ISCHANGED(Title__c), 
+ISCHANGED(User_Story__c), 
+ISCHANGED(USerSToryDescription__c)
+) 
+)</errorConditionFormula>
+        <errorMessage>You can&apos;t edit the record if the Approval status is &apos;Pending Approval&apos;</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>TRAK_Approved_Status_Validation</fullName>
+        <active>false</active>
+        <errorConditionFormula>IF(ISPICKVAL(Approval_Status__c , &quot;Approved&quot;) &amp;&amp;  ISCHANGED( Approver__c),true,false)</errorConditionFormula>
+        <errorMessage>You cannot change Approver once the Test Script is approved</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>TRAK_TestScript_Approver_Validation</fullName>
+        <active>true</active>
+        <description>This rule will stop the current user from setting himself as the approver:Created by Preeti Grover on 04/08/2014:TRAK</description>
+        <errorConditionFormula>IF(NOT(ISBLANK(Approver__c))&amp;&amp; NOT(ISBLANK(Submitter__c)) &amp;&amp; Approver__c   =  Submitter__c,true,false)</errorConditionFormula>
+        <errorMessage>The submitter can not be the approver of the Test Script. Please select a valid user to approve the request.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>TRAK_Test_Script_islocked_after_approved</fullName>
+        <active>false</active>
+        <errorConditionFormula>AND( 
+ISPICKVAL(Approval_Status__c,&quot;Approved&quot;), 
+OR( 
+ISCHANGED(Approval_Date__c), 
+
+ISCHANGED(Approver__c),
+ISCHANGED(Development_Stage__c), 
+ISCHANGED(Expected_Result__c), 
+ISCHANGED(Introduction__c), 
+ISCHANGED(Sprint__c), 
+ISCHANGED(Status__c), 
+ISCHANGED(Title__c), 
+ISCHANGED(User_Story__c), 
+ISCHANGED(USerSToryDescription__c)
+) 
+)</errorConditionFormula>
+        <errorMessage>You Cannot edit after the test script is approved.</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>Recall_Approval_Request</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Recall Approval Request</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/apex.js&quot;)}
+
+var templateStoryId = &quot;{!TRAK_Test_Templates__c.Id}&quot; 
+var qr = sforce.connection.query(&quot;SELECT Id, submitter__c,Approval_Status__c,recall_flag__c FROM TRAK_Test_Templates__c where Id=&apos;&quot; + &quot;{!TRAK_Test_Templates__c.Id}&quot; + &quot;&apos;&quot;);
+
+
+var records = qr.getArray(&quot;records&quot;);
+
+
+
+// display the field from the query
+
+if(qr.records.Approval_Status__c==&apos;Open&apos;)
+alert(&apos;An approval request has not been submitted for this Test Script yet. You cannot recall at this stage&apos;);
+else if(qr.records.Approval_Status__c==&apos;Approved&apos;  ) {
+alert(&apos;An approval request cannot be recalled when the status is Approved&apos;);
+}
+else if(qr.records.Approval_Status__c==&apos;Rejected&apos;)
+{
+alert(&apos;An approval request cannot be recalled when the status is Rejected&apos;);
+}
+else{
+var o = new sforce.SObject(&quot;TRAK_Test_Templates__c&quot;);
+o.id = &quot;{!TRAK_Test_Templates__c.Id}&quot;;
+sforce.apex.execute(&quot;TRAK_SubmitForApproval&quot;,&quot;recallApprovalRequest&quot;,{approvalRecordId:templateStoryId}); 
+window.location.reload();
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Submit_for_Approval</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Submit for Approval</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/31.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/31.0/apex.js&quot;)} 
+
+var templateStoryId = &quot;{!TRAK_Test_Templates__c.Id}&quot; 
+var approvalStatus=&quot;{!TRAK_Test_Templates__c.Status__c}&quot; 
+var approver=&quot;{!TRAK_Test_Templates__c.Approver__c}&quot;
+var app=&quot;{!TRAK_Test_Templates__c.Approval_Status__c}&quot;
+var qr = sforce.connection.query(&quot;SELECT Approver__c FROM TRAK_Test_Templates__c where Id=&apos;&quot; + &quot;{!TRAK_Test_Templates__c.Id}&quot; + &quot;&apos;&quot;);
+
+
+var records = qr.getArray(&quot;records&quot;); 
+
+
+ if(approvalStatus!=&apos;Complete&apos; &amp;&amp; (approver==&apos;&apos; || approver==null)){
+alert(&apos;Please ensure all mandatory information has been completed and select an Approver before submitting the Test Script for approval.&apos;);
+
+}
+else if(approvalStatus!=&apos;Complete&apos;) 
+alert(&apos;Please ensure all mandatory information has been complete before submitting the Test Script for approval.&apos;)
+
+
+
+else if(approver==&apos;&apos; || approver==null){
+alert(&apos;Please select an Approver before submitting the Test Script for approval.&apos;)
+
+}
+else if(app==&apos;Pending Approval&apos;){
+alert(&apos;This Test Script is Pending Approval and cannot be resubmitted for approval.&apos;)
+
+}
+
+else if(app==&apos;Approved&apos;){
+alert(&apos;This Test Script has already been Approved and cannot be resubmitted for approval.&apos;)
+
+}
+
+else if(approver!=null &amp;&amp; approver!=&apos;&apos;){
+var test = qr.records.Approver__c.toString();
+var test1 = test.substring(0,15);
+
+if(test1==window.UserContext.userId)
+alert(&apos;The submitter can not be the approver of the Test Script. Please select a valid user to approve the request.&apos;)
+
+else{ 
+sforce.apex.execute(&quot;TRAK_SubmitForApproval&quot;,&quot;SendEmailMethodTestExcecution&quot;,{localId:templateStoryId}); 
+location.reload(true); 
+}
+}</url>
+    </webLinks>
+</CustomObject>

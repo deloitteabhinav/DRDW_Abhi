@@ -1,0 +1,2 @@
+<apex:page standardController="Data_Asset_Contact__c" extensions="RedirectOnSave" action="{!onloadFromInventory}" >
+</apex:page>

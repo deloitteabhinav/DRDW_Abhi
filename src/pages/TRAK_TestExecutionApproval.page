@@ -1,0 +1,20 @@
+<apex:page standardController="TRAK_Test__c" extensions="TRAK_TestExecutionApprovalClass">
+ 
+   <apex:sectionHeader title="Approve/Reject" />
+   <apex:form >
+   <apex:pageMessages />
+     <apex:pageBlock title="" mode="view">
+      <apex:pageBlockSection title="Approval Action" columns="2">
+        <apex:pageBlockSectionItem >
+            <apex:commandButton value="Approve" action="{!approveUserStory}" />
+            <apex:commandButton value="Reject" action="{!rejectUserStory}" />
+        </apex:pageBlockSectionItem>
+      </apex:pageBlockSection>
+      <apex:pageBlockSection title="Comments" columns="1">
+       <apex:pageBlockSectionItem >
+          <apex:inputTextArea style="width:300px; height:100px;"  value="{!comments}"/>
+      </apex:pageBlockSectionItem>
+      </apex:pageBlockSection>
+     </apex:pageBlock> 
+    </apex:form>
+</apex:page>

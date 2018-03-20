@@ -1,0 +1,64 @@
+<apex:page docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="true" controller="NewTPO" readonly="true" id="thePage">
+  <title>New Tpo</title>
+    <c:Index />
+     <div class='content'>
+        <apex:form id="datasourcingform">
+         <apex:outputPanel >
+         <div class="datasourcingrequest container-fluid">
+         <div class="col-md-12 section-1 center bannercolor l-green">
+               <div class="pattern"></div>
+               <div class="dsr-heading heading font-xxl">Create New Tpo</div>
+           </div>
+        	<div class="container">
+                 <div class="section-2 col-md-12 center">
+                     <div class="sfdc-errorMessage">
+                         <apex:pagemessages escape="false"></apex:pagemessages>
+                     </div>
+                     <div class="instruction font-s"> * Required Field</div>
+                     <div class="table">
+                           <div class="table-row">
+                               <div class="table-cell font-m bold bold">Tpo Name <span class='required'>*</span></div>
+                               <div class="table-cell font-r">
+                                   <div class="table-row" validate='true' validationtype="alphabets">
+                                       <apex:inputField required="true" value="{!Tpo.name}" />
+                                   </div>
+                               </div>
+                           </div>
+                            <div class="table-row">
+                               <div class="table-cell font-m bold bold">Tpo Location<span class='required'>*</span></div>
+                               <div class="table-cell font-r">
+                                   <div class="table-row" validate='true' validationtype="alphabets">
+                                       <apex:inputField required="true" value="{!Tpolocation.Name}" />
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="table-row">
+                               <div class="table-cell font-m bold bold">Tpo Sponsor<span class='required'>*</span></div>
+                               <div class="table-cell font-r">
+                                  <div class="table-row requestor-field">
+                                       <apex:inputField required="true" value="{!Tpo.TPO_Sponsor__c}" />
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="table-row">
+                               <div class="table-cell font-m bold bold">Tpo Capabiliities<span class='required'>*</span></div>
+                               <div class="table-cell font-r">
+                                   <div class="table-row" validate='true' validationtype="alphabets">
+                                       <apex:inputField required="true" value="{!Tpolocation.Capabiliities__c}" />
+                                   </div>
+                               </div>
+                           </div>
+                     </div>           	
+                 </div>
+                 </div>
+                 </div>
+                 <div class="center">
+                      <apex:commandButton styleClass="button btn-submit font-m" value="Submit" action="{!CreateNewTpo}" />
+                  </div>
+                  <div class="center">
+                      <apex:outputLink styleClass="lnk-cancel" value="/apex/TPOList">Cancel</apex:outputLink>
+                  </div>
+        </apex:outputPanel>
+     </apex:form>
+     </div>
+</apex:page>

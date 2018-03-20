@@ -1,0 +1,16 @@
+<apex:page standardController="TRAK_User_Story__c" extensions="TRAK_UserStoryApprovalClass">
+<script type="text/javascript">
+                function openNew(){
+                window.top.location.href = '{!approvalPageURL}';
+                  }
+                </script>
+<apex:form style="margin-left:50%;">
+
+<apex:commandButton onClick="openNew();" value="Approve/Reject" disabled="{!NOT(checkApproveRejectButton)}"/>
+<apex:outputPanel id="redirectPanel" >
+            <apex:outputText rendered="{!redirect}">
+                
+            </apex:outputText>
+    </apex:outputPanel> 
+</apex:form>
+</apex:page>

@@ -1,0 +1,1037 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <content>TRAK_New_Release_Override</content>
+        <skipRecordTypeSelect>true</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Business Description: This object is used to record releases and record approvals for a release to be made. User Stories and Defects can be assigned to a release and releases can be linked to environments to understand what user stories or defects are in what environments at any point in time.
+
+Used In: Release Tracker App</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Admin_Branch_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Admin Branch Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Admin_Commit_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>Admin Commit ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Admin_Repository_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Admin Repository Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Admin_Tag__c</fullName>
+        <externalId>false</externalId>
+        <label>Admin Tag</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Approval_Status__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The current status of the release , as it goes through the scoping and deployment approvals.</inlineHelpText>
+        <label>Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Draft</fullName>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>Cancelled</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Submitted for Approval</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Development Approved</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Development Rejected</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>In Development</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Pre - Production Deployed</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Ready for Deployment</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Pending Deployment Approval</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Deployment Approved</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Deployment Rejected</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Production - Released</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Approval__c</fullName>
+        <externalId>false</externalId>
+        <label>Approval</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Not Submitted</fullName>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>Submitted</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Approved</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Approved_for_Pre_Production__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Approved for Pre-Production</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Approved_for_Production__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Approved for Production</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Approver__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Approver</label>
+        <referenceTo>User</referenceTo>
+        <relationshipLabel>Releases</relationshipLabel>
+        <relationshipName>Releases</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Branch_Name__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The branch name in GitHub which has the the code for all User Stories and Defects associated to this release.</inlineHelpText>
+        <label>Branch Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Build_Reference_ID__c</fullName>
+        <displayFormat>REL-{00000}</displayFormat>
+        <externalId>false</externalId>
+        <label>Build Reference ID</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>AutoNumber</type>
+    </fields>
+    <fields>
+        <fullName>Business_Analyst__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>Responsibility of the Business Analyst is to monitor each release record and send the release record for approval.</inlineHelpText>
+        <label>Business Analyst</label>
+        <referenceTo>User</referenceTo>
+        <relationshipLabel>Releases (Business Analyst)</relationshipLabel>
+        <relationshipName>Releases1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CR_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>CR Number</label>
+        <length>225</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Code_Handover_Date__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The Time of Code Handover would be in EST Time Zone.</inlineHelpText>
+        <label>Code Handover Date</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Code_Review_Completed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Code Review Completed</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Commit_ID__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The Commit ID of the final Tag in GitHub which has the the code for all User Stories and Defects associated to this release.</inlineHelpText>
+        <label>Commit ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>This field can be used for adding additional details regarding the release.</inlineHelpText>
+        <label>Description</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Number_of_Defects__c</fullName>
+        <externalId>false</externalId>
+        <label>Number of Defects</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Number_of_Environments__c</fullName>
+        <externalId>false</externalId>
+        <label>Number of Environments</label>
+        <summaryForeignKey>TRAK_Environment_Release__c.Release__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Number_of_User_Stories__c</fullName>
+        <externalId>false</externalId>
+        <label>Number of User Stories</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Override_Release_Name__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>For Manually setting the Release Name, please check this checkbox</description>
+        <externalId>false</externalId>
+        <inlineHelpText>For Manually setting the Release Name, please check this checkbox</inlineHelpText>
+        <label>Override Release Name</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Planned_Start__c</fullName>
+        <externalId>false</externalId>
+        <label>Planned Start</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Product_Owner__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>Owner of the application will be responsible with overseeing and confirming scope of each release.</inlineHelpText>
+        <label>Product Owner</label>
+        <referenceTo>User</referenceTo>
+        <relationshipLabel>Releases (Product Owner)</relationshipLabel>
+        <relationshipName>Releases2</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Rejected_Reason__c</fullName>
+        <externalId>false</externalId>
+        <label>Rejected Reason</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Rejected__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Rejected</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Release_Date__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The date when the final tag of this release will be deployed to Production.</inlineHelpText>
+        <label>Production Release Date</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Release_Lead__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Release Lead</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Releases4</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Release_Number__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(AND((Name != &apos;Rejected&apos;),(!Override_Release_Name__c)), value(left(right(Name,len(Name)-1),2)),0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Release Number</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Release_Type__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The Release can be Weekly , Monthly or a Hotfix Release.</inlineHelpText>
+        <label>Release Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Weekly</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Monthly</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Hotfix</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Repository_Name__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The Name of the repository in GitHub which has the code corresponding to all the User Stories and Defects for this release.</inlineHelpText>
+        <label>Repository Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>System_Custodian__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>System Custodian is responsible for initial and final approval of each release record before deployment into Production.</inlineHelpText>
+        <label>System Custodian</label>
+        <referenceTo>User</referenceTo>
+        <relationshipLabel>Releases (System Custodian)</relationshipLabel>
+        <relationshipName>Releases3</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Tag__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The final Tag number in GitHub which has the the code for all User Stories and Defects associated to this release.</inlineHelpText>
+        <label>Tag</label>
+        <length>225</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Release</label>
+    <nameField>
+        <label>Release Name</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Releases</pluralLabel>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Creation_of_Release</fullName>
+        <active>true</active>
+        <label>Creation of Release</label>
+        <picklistValues>
+            <picklist>Approval_Status__c</picklist>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>In Development</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Approval__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Submitted</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Release_Type__c</picklist>
+            <values>
+                <fullName>Hotfix</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Monthly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Weekly</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Deployment_Approval</fullName>
+        <active>true</active>
+        <label>Deployment Approval</label>
+        <picklistValues>
+            <picklist>Approval_Status__c</picklist>
+            <values>
+                <fullName>Deployment Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deployment Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Deployment Approval</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Production - Released</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Approval__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Submitted</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Release_Type__c</picklist>
+            <values>
+                <fullName>Hotfix</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Monthly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Weekly</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>In_Development</fullName>
+        <active>true</active>
+        <label>In Development</label>
+        <picklistValues>
+            <picklist>Approval_Status__c</picklist>
+            <values>
+                <fullName>Development Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Development</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Pre - Production Deployed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ready for Deployment</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Approval__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Submitted</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Release_Type__c</picklist>
+            <values>
+                <fullName>Hotfix</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Monthly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Weekly</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Scoping_Approval</fullName>
+        <active>true</active>
+        <label>Scoping Approval</label>
+        <picklistValues>
+            <picklist>Approval_Status__c</picklist>
+            <values>
+                <fullName>Development Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Development Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted for Approval</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Approval__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Submitted</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Release_Type__c</picklist>
+            <values>
+                <fullName>Hotfix</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Monthly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Weekly</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>Description__c</customTabListAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Approvers_cannot_be_same</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(NOT(ISCHANGED(Number_of_User_Stories__c)),(AND(ISNEW(),Number_of_User_Stories__c &gt; 0)),OR((AND((NOT(ISBLANK(Business_Analyst__c))),(NOT(ISBLANK(System_Custodian__c))),(Business_Analyst__c = System_Custodian__c))),(AND((NOT(ISBLANK(Business_Analyst__c))),(NOT(ISBLANK(Product_Owner__c))),(Business_Analyst__c = Product_Owner__c))),(AND((NOT(ISBLANK(System_Custodian__c))),(NOT(ISBLANK(Product_Owner__c))),(System_Custodian__c = Product_Owner__c)))))</errorConditionFormula>
+        <errorDisplayField>Business_Analyst__c</errorDisplayField>
+        <errorMessage>The Business Analyst, Product Owner and System Custodian have to be different users.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Atleast_1_Environment_Release</fullName>
+        <active>false</active>
+        <errorConditionFormula>AND(( ISPICKVAL( Approval_Status__c , &apos;Production - Released&apos;) ),( Number_of_Environments__c = 0))</errorConditionFormula>
+        <errorDisplayField>Approval_Status__c</errorDisplayField>
+        <errorMessage>Please associate this release to an environment before updating the status to &apos;Production - Released&apos;.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Atleast_1_User_Story_or_Defect</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND((Number_of_Defects__c = 0 ), ( Number_of_User_Stories__c = 0),  ISPICKVAL( Approval_Status__c , &apos;Ready for Deployment&apos;)   )</errorConditionFormula>
+        <errorDisplayField>Approval_Status__c</errorDisplayField>
+        <errorMessage>Please associate at least 1 User Story or Defect before moving this release to &apos;Ready for Deployment&apos;.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Can_Only_Create_Release_in_Draft_Status</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(ISNEW(), NOT(ISPICKVAL(Approval_Status__c, &apos;Draft&apos;)))</errorConditionFormula>
+        <errorDisplayField>Approval_Status__c</errorDisplayField>
+        <errorMessage>A Release record can only be created in &apos;Draft&apos; status</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Cannot_Manually_Update_Release_Name</fullName>
+        <active>true</active>
+        <description>Cannot Manually Update Release Name</description>
+        <errorConditionFormula>AND(ISCHANGED(Name), (Override_Release_Name__c = false), NOT(ISNEW()))</errorConditionFormula>
+        <errorDisplayField>Name</errorDisplayField>
+        <errorMessage>You cannot update the release name. Please check the &apos;Override Release Name&apos; checkbox.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Cannot_Update_Release_Name</fullName>
+        <active>true</active>
+        <description>TRAK Cannot Update Release Name</description>
+        <errorConditionFormula>AND(ISCHANGED(Name),  (Override_Release_Name__c = false))</errorConditionFormula>
+        <errorDisplayField>Name</errorDisplayField>
+        <errorMessage>You cannot change the release name once the release record is created. Please check the override checkbox for updating the release name.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Cannot_change_Tag_Number</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(ISCHANGED( Tag__c ), OR(ISPICKVAL(Approval_Status__c, &apos;Pending Deployment Approval&apos;), ISPICKVAL(Approval_Status__c, &apos;Deployment Approved&apos;), ISPICKVAL(Approval_Status__c, &apos;Deployment Rejected&apos;), ISPICKVAL(Approval_Status__c, &apos;Production - Released&apos;)))</errorConditionFormula>
+        <errorDisplayField>Tag__c</errorDisplayField>
+        <errorMessage>Please update the Release Status to &apos;Ready for Deployment&apos; for updating the Tag number.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Cannot_update_Override_Flag</fullName>
+        <active>true</active>
+        <description>Cannot Update Override Flag</description>
+        <errorConditionFormula>AND((PRIORVALUE(Override_Release_Name__c) == true), (Override_Release_Name__c = false))</errorConditionFormula>
+        <errorDisplayField>Override_Release_Name__c</errorDisplayField>
+        <errorMessage>You cannot update the Override Release Name flag once it is checked.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Monthly_Release</fullName>
+        <active>false</active>
+        <errorConditionFormula>ISPICKVAL( Release_Type__c , &apos;Monthly&apos;)</errorConditionFormula>
+        <errorDisplayField>Release_Type__c</errorDisplayField>
+        <errorMessage>Currently Monthly Releases are not supported.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Production_Release_Date_cant_be_in_past</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND((Release_Date__c &lt; today()),OR(ISNEW(),ISCHANGED(Release_Date__c)))</errorConditionFormula>
+        <errorDisplayField>Approval_Status__c</errorDisplayField>
+        <errorMessage>Production Release Date should be a date in the future.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Release_Process_Mandatory</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(ISPICKVAL(Approval_Status__c, &apos;Ready for Deployment&apos;),  OR(ISBLANK(Branch_Name__c),ISBLANK( Repository_Name__c ),ISBLANK( Tag__c ),ISBLANK( Commit_ID__c )))</errorConditionFormula>
+        <errorDisplayField>Approval_Status__c</errorDisplayField>
+        <errorMessage>Branch Name, Commit ID, Tag Number and Repository Name are mandatory before submitting the release for approval.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>TRAK_Rejected_Reason_Validation</fullName>
+        <active>true</active>
+        <errorConditionFormula>ISNEW() &amp;&amp; Rejected__c  == FALSE &amp;&amp; NOT(ISBLANK( Rejected_Reason__c ))</errorConditionFormula>
+        <errorDisplayField>Rejected_Reason__c</errorDisplayField>
+        <errorMessage>The rejected field needs to be checked to provide a rejection reason.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Tag_Name_Format</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(NOT(Contains( Tag__c , &apos;TAG_&apos;)))</errorConditionFormula>
+        <errorDisplayField>Tag__c</errorDisplayField>
+        <errorMessage>Please enter a valid Tag Number.</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>Code_Review_Completed</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Code Review Completed</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/apex.js&quot;)} 
+
+var confirmation = confirm(&quot;{!$Label.TRAK_Code_Review_Approval_Declaration}&quot;); 
+if (confirmation == true) { 
+var releaseId = &quot;{!TRAK_Release__c.Id}&quot;; 
+var result = sforce.apex.execute(&quot;TRAK_Custom_Buttons_Utility&quot;,&quot;codeReviewCompleted&quot;,{releaseId:releaseId});
+if(result == &apos;success&apos;){ 
+location.reload(true); 
+} 
+else{ 
+alert(result); 
+}
+} 
+else { 
+
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Reject</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Reject</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/apex.js&quot;)} 
+
+var confirmation = confirm(&quot;{!$Label.TRAK_Release_Rejected_Declaration}&quot;); 
+if(confirmation == true){
+var releaseId = &quot;{!TRAK_Release__c.Id}&quot;; 
+var result = sforce.apex.execute(&quot;TRAK_Custom_Buttons_Utility&quot;,&quot;releaseRejected&quot;,{releaseId:releaseId}); 
+if(result == &apos;success&apos;){ 
+location.reload(true); 
+}
+else{ 
+alert(result); 
+}
+
+}
+else{
+
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Release_Notes</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Release Notes</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/34.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/34.0/apex.js&quot;)} 
+
+var releaseStatus = &quot;{! TRAK_Release__c.Approval_Status__c }&quot;; 
+var releaseId = &quot;{! TRAK_Release__c.Id }&quot;; 
+if((releaseStatus == &apos;In Development&apos;) || (releaseStatus == &apos;Production - Released&apos;)) {
+window.open(&quot;/{!IF(ISPICKVAL($UserRole.PortalType,&apos;Partner&apos;)
+,$Setup.TRAK_Release_Tracker__c.Community_Domain_Name__c,&apos;apex&apos;)}/TRAK_TechnicalDesignDocumentPDF?ReleaseId=&quot;+releaseId,&quot;_blank&quot;);
+} else {
+alert(&quot;Release Notes can only be generated when the status is &apos;In Development&apos; or &apos;Production - Released&apos;. &quot;);
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Release_to_Pre_Prod_Approval</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Approve for Pre-Production</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/apex.js&quot;)} 
+
+var confirmation = confirm(&quot;{!$Label.TRAK_Release_to_Pre_Prod_Approval_Declaration}&quot;); 
+if (confirmation == true) { 
+var releaseId = &quot;{!TRAK_Release__c.Id}&quot;; 
+var result = sforce.apex.execute(&quot;TRAK_Custom_Buttons_Utility&quot;,&quot;preProdReviewCompleted&quot;,{releaseId:releaseId});
+if(result == &apos;success&apos;){ 
+location.reload(true); 
+} 
+else{ 
+alert(result); 
+}
+} 
+else { 
+
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Release_to_Production_Approval</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Approve for Production</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/apex.js&quot;)} 
+
+var confirmation = confirm(&quot;{!$Label.TRAK_Release_Production_Approval_Declaration}&quot;);
+if(confirmation == true){
+var releaseId = &quot;{!TRAK_Release__c.Id}&quot;; 
+var result = sforce.apex.execute(&quot;TRAK_Custom_Buttons_Utility&quot;,&quot;prodReviewCompleted&quot;,{releaseId:releaseId}); 
+if(result == &apos;success&apos;){ 
+location.reload(true); 
+}
+else{ 
+alert(result); 
+}
+
+}
+else{
+
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>View_All_Defects</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>View All Defects</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>/{!IF(ISPICKVAL($UserRole.PortalType,&apos;Partner&apos;)
+,$Setup.TRAK_Release_Tracker__c.Community_Domain_Name__c,&apos;apex&apos;)}/TRAK_Report_Name_Redirect?reportName=TRAK_No_of_Defects_in_this_Release&amp;id={!TRAK_Release__c.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>View_All_User_Stories</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>View All User Stories</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>/{!IF(ISPICKVAL($UserRole.PortalType,&apos;Partner&apos;)
+,$Setup.TRAK_Release_Tracker__c.Community_Domain_Name__c,&apos;apex&apos;)}/TRAK_Report_Name_Redirect?reportName=Number_of_User_Stories_in_this_Release&amp;id={!TRAK_Release__c.Id}</url>
+    </webLinks>
+</CustomObject>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Release Tracker: Approval to Deploy</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Release Tracker: Approval to Deploy</name>
+    <style>none</style>
+    <subject>Release Tracker: Requesting Approval for Production Deployment</subject>
+    <textOnly>This is to confirm that the Scope for this release has been locked.
+
+Please refer to the Release record for the scope and details of the release.
+Release Link: {!TRAK_Release__c.Link}
+
+Regards,
+Trialforce Team</textOnly>
+    <type>custom</type>
+</EmailTemplate>

@@ -1,0 +1,112 @@
+<apex:page showHeader="false" sidebar="false" docType="html-5.0" readOnly="true" standardStylesheets="false">
+
+    <head>
+        <!--  apex:stylesheet value="{!URLFOR($Resource.mobilepangaea,'mobile/css/bootstrap.min.css')}" />
+        <apex:stylesheet value="{!URLFOR($Resource.mobilepangaea,'mobile/css/style.css')}" />
+        <apex:stylesheet value="https://fonts.googleapis.com/css?family=Open+Sans" />
+        <apex:includeScript value="{!URLFOR($Resource.mobilepangaea,'mobile/js/jquery-2.2.4.js')}" />
+        <apex:includeScript value="{!URLFOR($Resource.mobilepangaea,'mobile/js/bootstrap.min.js')}" />
+        <meta name="viewport" content="width=device-width" /-->
+    </head>
+
+    <body>
+        <div class="container-fluid">
+            <div class="row section-1">
+                <h2>RWE IMPACT STORY</h2>
+                <p>At RWE, Pangaea is a one stop solution bringing research from all over the globe at one location</p>
+            </div>
+            <div class="row">
+                <a href="/apex/ExecutiveDashboard">
+                    <div class="col-lg-offset-1 col-lg-4 section-2">
+                        <div class="col-xs-12">
+                        
+                            <div id="heading">
+                            
+                                <p>PRIMARY VALUE AREA</p>
+                                </div>
+                            </div>
+                        <div class="">
+                            <div class="col-xs-6 col-md-6" id="sr">
+                                <!--  img src="{!URLFOR($Resource.mobilepangaea,'mobile/images/3.png')}" width="50px" height="50px" /-->
+                                <p>25 Studies that impacted Drug/Clinical Development</p>
+                            </div>
+                            <div class="col-xs-6 col-md-6" id="sr">
+                                <!-- img src="{!URLFOR($Resource.mobilepangaea,'mobile/images/4.png')}" width="50px" height="50px" /-->
+                                <p>12 Studies that impacted Safety and Risk management</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="/apex/ExecutiveDashboard">
+                    <div class="col-lg-offset-1 col-lg-4 section-3">
+                        <div class="col-xs-12">
+                        
+                            <div id="heading">
+                            
+                                <p>FINANCIALS</p>
+                                </div>
+                            </div>
+                        <div class="col-xs-6 col-md-6" id="sr">
+                            <!--  img src="{!URLFOR($Resource.mobilepangaea,'mobile/images/2.png')}" width="50px" height="50px" /-->
+                            <p>354 Studies that impacted Access and Reimbursement</p>
+                        </div>
+                        <!-- <div class="col-xs-4 col-md-4" id="sr">
+                            <img src="{!URLFOR($Resource.mobilepangaea,'mobile/images/3.png')}" width="50px" height="50px" />
+                            <p>12 Studies that impacted Safety and Risk management</p>
+                        </div> -->
+                        <div class="col-xs-6 col-md-6" id="sr">
+                            <!--  img src="{!URLFOR($Resource.mobilepangaea,'mobile/images/4.png')}" width="50px" height="50px" /-->
+                            <p>12 Studies that impacted Safety and Risk management</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="/apex/ExecutiveDashboard">
+                    <div class="col-lg-offset-1 col-lg-4 section-4">
+                        <div class="col-xs-12">
+                        
+                            <div id="heading">
+                            
+                                <p>RWE PARTNERSHIPS</p>
+                                </div>
+                            </div>
+                        <div class="col-xs-6 col-md-6" id="sr">
+                            <!--  img src="{!URLFOR($Resource.mobilepangaea,'mobile/images/1.png')}" width="50px" height="50px" /-->
+                            <p>12 Studies that impacted Safety and Risk management</p>
+                        </div>
+                        <!-- <div class="col-xs-4 col-md-4" id="sr">
+                            <img src="{!URLFOR($Resource.mobilepangaea,'mobile/images/3.png')}" width="50px" height="50px" />
+                            <p>12 Studies that impacted Safety and Risk management</p>
+                        </div> -->
+                        <div class="col-xs-6 col-md-6" id="sr">
+                            <!--img src="{!URLFOR($Resource.mobilepangaea,'mobile/images/2.png')}" width="50px" height="50px" / -->
+                            <p>12 Studies that impacted Safety and Risk management</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="/apex/ExecutiveDashboard">
+                    <div class="col-lg-offset-1 col-lg-4 section-5">
+                        <div class="col-xs-12">
+                        
+                            <div id="heading">
+                            
+                                <p>HOLISTIC EVIDENCE PLANS</p>
+                                </div>
+                            </div>
+                        <div class="col-xs-4 col-md-4" id="sr">
+                            <!--  img src="{!URLFOR($Resource.mobilepangaea,'mobile/images/3.png')}" width="50px" height="50px" /-->
+                            <p>12 Studies that impacted Safety and Risk management</p>
+                        </div>
+                        <div class="col-xs-4 col-md-4" id="sr">
+                            <!--img src="{!URLFOR($Resource.mobilepangaea,'mobile/images/4.png')}" width="50px" height="50px" /-->
+                            <p>12 Studies that impacted Safety and Risk management</p>
+                        </div>
+                        <div class="col-xs-4 col-md-4" id="sr">
+                           <!--img src="{!URLFOR($Resource.mobilepangaea,'mobile/images/1.png')}" width="50px" height="50px" /-->
+                            <p>12 Studies that impacted Safety and Risk management</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </body>
+</apex:page>

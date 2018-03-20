@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Business Description: This object is used by a Test Manager or Test Script Writer to assign a Test Template to a user to start testing. When a Test Manager assigns a Test Template to a user with this object this system automatically copies the Test Template and associated Test Template Steps to a Test and Test Steps.
+
+Used In: Release Tracker App</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Test_Phase__c</fullName>
+        <externalId>false</externalId>
+        <label>Test Phase</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Sprint Test</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>User Acceptance Test</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Stability Test</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Regression Test</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Performance Test</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Test_Template__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Test Template</label>
+        <referenceTo>TRAK_Test_Templates__c</referenceTo>
+        <relationshipLabel>Testers</relationshipLabel>
+        <relationshipName>TRAK_Testers</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>User__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>User</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>TRAK_Testers</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Tester</label>
+    <nameField>
+        <displayFormat>TU-{00000}</displayFormat>
+        <label>Tester Number</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Testers</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>PreventFromCreatingTesterUntilApproved</fullName>
+        <active>true</active>
+        <description>TRAK - This validation rule will prevent the user from creating a tester record if the Test Script is not in &quot;Approved&quot; status</description>
+        <errorConditionFormula>AND(
+    ISNEW(),
+    NOT(ISPICKVAL(Test_Template__r.Approval_Status__c,&apos;Approved&apos;))
+)</errorConditionFormula>
+        <errorDisplayField>OwnerId</errorDisplayField>
+        <errorMessage>You cannot create a Tester record until the related Test Script is in an &quot;Approved&quot; status</errorMessage>
+    </validationRules>
+</CustomObject>

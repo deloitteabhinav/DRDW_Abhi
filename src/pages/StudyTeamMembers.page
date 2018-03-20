@@ -1,0 +1,17 @@
+<apex:page standardController="Project__c" extensions="StudyTeamMembersController" showHeader="False" standardStylesheets="True" sidebar="false">
+
+    <apex:pageBlock id="TeamMembers" title="Study Team Members">
+        <apex:pageBlockTable value="{!lStudyTeamMembers}" var="oMember" rendered="{!(lStudyTeamMembers.size>0)}">
+
+            <apex:column headervalue="Name">
+                <apex:outputLink value="/{!oMember.id}" target="_parent">{!oMember.Name}</apex:outputlink>
+            </apex:column>
+
+        </apex:pageBlockTable>
+
+        <apex:pageBlockSection id="Msgid" rendered="{!(lStudyTeamMembers.size==0)}">
+            <apex:outputLabel value="No Team Members" styleClass="noRowsHeader"></apex:outputLabel>
+        </apex:pageBlockSection>
+    </apex:pageblock>
+
+</apex:page>

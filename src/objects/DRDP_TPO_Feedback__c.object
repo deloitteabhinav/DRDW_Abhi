@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Comments__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please provide any specific comments regarding this TPO in relation to this study/project.  Examples include: exceptional or lacking skills or knowledge, quality concerns, or exceptional service.</inlineHelpText>
+        <label>Comments</label>
+        <length>131072</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Experience_TF__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(CONTAINS( TEXT(Rate_this_experience_with_this_TPO__c ), &quot;1&quot;), 1, 
+IF(CONTAINS( TEXT(Rate_this_experience_with_this_TPO__c ), &quot;2&quot;), 2, 
+IF(CONTAINS( TEXT(Rate_this_experience_with_this_TPO__c ), &quot;3&quot;), 3, 
+IF(CONTAINS( TEXT(Rate_this_experience_with_this_TPO__c ), &quot;4&quot;), 4, 
+IF(CONTAINS( TEXT(Rate_this_experience_with_this_TPO__c ), &quot;5&quot;), 5,0)))) )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Experience TF</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IsFeedbackComplete__c</fullName>
+        <description>Checks if All Required Fields are not Blank and ensure Feedback is complete or not.</description>
+        <externalId>false</externalId>
+        <formula>IF(AND(NOT(ISBLANK(TEXT(Project_Management__c))),NOT(ISBLANK(TEXT(Quality__c))),NOT(ISBLANK(TEXT(Rate_this_experience_with_this_TPO__c))),NOT(ISBLANK(TEXT(Therapeutic_and_Scientific_Excellence__c))),NOT(ISBLANK(TEXT(TPO_Oversight__c)))),true,false)</formula>
+        <label>IsFeedbackComplete</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Project_Management_TF__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(CONTAINS( TEXT(Project_Management__c), &quot;1&quot;), 1, 
+IF(CONTAINS( TEXT(Project_Management__c), &quot;2&quot;), 2, 
+IF(CONTAINS( TEXT(Project_Management__c), &quot;3&quot;), 3,0)) )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Project Management TF</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project_Management__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>TPO effectively moved the project forward, drove towards the timeline, and effectively organized and facilitated meetings, etc.</inlineHelpText>
+        <label>Project Management</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1 - Poor</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>2 - Average</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>3 - Excellent</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Quality_TF__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(CONTAINS( TEXT(Quality__c), &quot;1&quot;), 1, 
+IF(CONTAINS( TEXT(Quality__c), &quot;2&quot;), 2, 
+IF(CONTAINS( TEXT(Quality__c), &quot;3&quot;), 3,0)) )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Quality TF</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Quality__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>How would you assess the TPO&apos;s execution of the study/project related to quality based on your personal observation or team feedback?</inlineHelpText>
+        <label>Quality</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1 - Poor - Multiple issues, poor documentation, little to no understanding of local requirements, serious deviation(s)</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>2 - Average - no to a single non-serious deviation, good documentation, needed some assistance with local requirements</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>3 - Excellent - no deviations, excellent understanding of local requirements, no quality issues</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Rate_this_experience_with_this_TPO__c</fullName>
+        <externalId>false</externalId>
+        <label>Rating</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1 Star - Lowest Rating</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>2 Stars</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>3 Stars</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>4 Stars</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>5 Stars - Highest Rating</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Study_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>Study__r.Study_Project_ID__c</formula>
+        <label>Study ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Study__c</fullName>
+        <externalId>false</externalId>
+        <label>Study</label>
+        <referenceTo>Project__c</referenceTo>
+        <relationshipLabel>TPO Feedback</relationshipLabel>
+        <relationshipName>RWE_Feedbacks</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>TPO_Country__c</fullName>
+        <externalId>false</externalId>
+        <formula>TPO__r.Country__r.Name</formula>
+        <label>TPO Country</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TPO_Oversight_TF__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(CONTAINS( TEXT(TPO_Oversight__c ), &quot;1&quot;), 1, 
+IF(CONTAINS( TEXT(TPO_Oversight__c ), &quot;2&quot;), 2, 
+IF(CONTAINS( TEXT(TPO_Oversight__c ), &quot;3&quot;), 3,0)) )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>TPO Oversight TF</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TPO_Oversight__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Taking into account timelines, team dynamics, and complexity of project, what level of oversight did you need to provide to the TPO?</inlineHelpText>
+        <label>TPO Oversight</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1 - Vendor needed extensive oversight</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>2 - Vendor needed elevated oversight</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>3 - Vendor needed appropriate oversight</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>TPO_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(TPO__r.Status__c)</formula>
+        <label>TPO Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TPO__c</fullName>
+        <externalId>false</externalId>
+        <label>TPO</label>
+        <referenceTo>TPO_Location__c</referenceTo>
+        <relationshipLabel>TPO Feedback</relationshipLabel>
+        <relationshipName>RWE_Feedbacks</relationshipName>
+        <relationshipOrder>1</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Therapeutic_and_Scientific_Excellence_TF__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(CONTAINS( TEXT(Therapeutic_and_Scientific_Excellence__c), &quot;1&quot;), 1, 
+IF(CONTAINS( TEXT(Therapeutic_and_Scientific_Excellence__c), &quot;2&quot;), 2, 
+IF(CONTAINS( TEXT(Therapeutic_and_Scientific_Excellence__c), &quot;3&quot;), 3,0)) )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Therapeutic and Scientific Excellence TF</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Therapeutic_and_Scientific_Excellence__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Rate the TPO&apos;s understanding of therapeutic area, skill or knowledge for particular study/project type, understanding of tools/technologies used.</inlineHelpText>
+        <label>Therapeutic and Scientific Excellence</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1 - Poor</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>2 - Average</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>3 - Excellent</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Unique_Study_TPO_Location__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>false</externalId>
+        <label>Unique Study TPO Location</label>
+        <length>200</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>User__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Provided By</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>RWE_TPO_Feedbacks_DF</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>TPO Feedback</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>TPO__c</columns>
+        <columns>Study__c</columns>
+        <columns>User__c</columns>
+        <columns>Rate_this_experience_with_this_TPO__c</columns>
+        <columns>Quality__c</columns>
+        <columns>Project_Management__c</columns>
+        <columns>Therapeutic_and_Scientific_Excellence__c</columns>
+        <columns>TPO_Oversight__c</columns>
+        <columns>Comments__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>TPO-{00000000}</displayFormat>
+        <label>Feedback Id</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>TPO Feedbacks</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

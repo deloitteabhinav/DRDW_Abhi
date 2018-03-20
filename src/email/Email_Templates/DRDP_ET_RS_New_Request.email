@@ -1,0 +1,18 @@
+A New {!Request__c.RecordType} Request has been submitted. 
+
+Request Name: {!Request__c.Name}
+
+Request ID: {!Request__c.Request_ID__c}
+
+Requestor: {!Request__c.Requestor__c}
+
+Requestor Functional Area: {!Request__c.Requestor_Functional_Area__c}
+
+Therapeutic Area (Primary): {!Request__c.Therapeutic_Area_Primary__c}
+
+Proposed Due Date: {!Request__c.Proposed_Due_Date__c}
+
+Description: {!Request__c.Description__c}
+
+
+Link to Request: {!Request__c.Link}

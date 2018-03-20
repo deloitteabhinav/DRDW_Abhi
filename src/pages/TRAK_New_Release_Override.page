@@ -1,0 +1,2 @@
+<apex:page standardController="TRAK_Release__c" extensions="TRAK_New_Release_Override" action="{!actionRedirect}">
+</apex:page>

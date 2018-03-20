@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Template used for USA approval notifications</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>TRAK_Cirrus_Normal</letterhead>
+    <name>TRAK Generic User Story Approval</name>
+    <style>freeForm</style>
+    <subject>{!TRAK_User_Story_Approval_History__c.00N23000000LCho} User Story for your approval</subject>
+    <textOnly>{!TRAK_User_Story_Approval_History__c.CreatedBy} has sent you a User Story for approval.
+
+{!TRAK_User_Story_Approval_History__c.User_Story__c}
+
+As a {!TRAK_User_Story_Approval_History__c.As_A_text__c},
+I want to {!TRAK_User_Story_Approval_History__c.I_Want_To__c},
+So that {!TRAK_User_Story_Approval_History__c.So_that__c}
+
+
+
+Please click on the link below to review and approve the request.
+
+{!TRAK_User_Story_Approval_History__c.User_Story_URL__c}</textOnly>
+    <type>html</type>
+</EmailTemplate>

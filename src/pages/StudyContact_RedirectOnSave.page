@@ -1,0 +1,2 @@
+<apex:page standardController="Related_Contact__c" extensions="RedirectOnSave" action="{!onloadFromStudy}" >
+</apex:page>

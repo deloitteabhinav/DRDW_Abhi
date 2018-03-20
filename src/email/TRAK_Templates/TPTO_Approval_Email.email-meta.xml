@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>PTO Approval email to approvers</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Lilly_Trialforce</letterhead>
+    <name>TPTO Approval Email</name>
+    <style>freeForm</style>
+    <subject>PTO Request from {!TPTO_PTO_Request__c.CreatedBy}</subject>
+    <textOnly>Hi Team,
+
+
+{!TPTO_PTO_Request__c.CreatedBy} has requested PTO for {!TPTO_PTO_Request__c.PTO_Days__c} days :
+
+starting {!TPTO_PTO_Request__c.Start_Date__c} - {!TPTO_PTO_Request__c.End_Date__c}
+
+Reason : {!TPTO_PTO_Request__c.Absence_Comments__c}
+
+
+
+Kindly review to make the planning for the absence
+
+
+
+{!TPTO_PTO_Request__c.Link}</textOnly>
+    <type>html</type>
+</EmailTemplate>

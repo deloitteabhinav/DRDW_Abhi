@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email sent to Approvers of a User Story once it has been submitted for approval</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>TRAK_Cirrus_Normal</letterhead>
+    <name>TRAK USA To Be Approved</name>
+    <style>freeForm</style>
+    <subject>{!TRAK_User_Story_Approval_History__c.00N23000000LCho} User Story for your approval</subject>
+    <textOnly>{!TRAK_User_Story_Approval_History__c.CreatedBy} has sent you a User Story to approve for {!TRAK_User_Story_Approval_History__c.00N23000000LCho}.
+
+{!TRAK_User_Story_Approval_History__c.User_Story__c}
+
+As a {!TRAK_User_Story_Approval_History__c.As_A_text__c},
+I want to {!TRAK_User_Story_Approval_History__c.I_Want_To__c},
+So that {!TRAK_User_Story_Approval_History__c.So_that__c}
+
+
+How to approve
+
+Please click on the link below to review and approve this specific request.
+{!TRAK_User_Story_Approval_History__c.User_Story_URL__c}
+
+Alternatively you can access a list of all the User Stories waiting for your approval on your homepage under the section &quot;Items to Approve&quot;.
+{!TRAK_User_Story_Approval_History__c.Homepage_Link__c}
+
+
+You may also approve from your Chatter feed or mobile device.</textOnly>
+    <type>html</type>
+</EmailTemplate>

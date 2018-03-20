@@ -1,0 +1,39 @@
+<apex:page docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="false" controller="PartnerShipList" readonly="true">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width" />
+        <apex:stylesheet value="{!URLFOR($Resource.R3Style,'vendor/bootstrap/bootstrap.css')}" />
+        <apex:stylesheet value="{!URLFOR($Resource.R3Style,'assets/pangaea-1.0.0.css')}" />
+        <div class="comparo-report">
+            <apex:form >
+                <div class="link-holder">
+                    <apex:outputlink styleClass="btn button l-orange" value="/apex/CreatePartnership?recTypeName=RWE_Partnership_Exploration" target="_blank">Submit a New RWE Partnership Exploration request for more information</apex:outputlink>
+                    <apex:commandLink styleClass="btn button l-orange" action="{!ExportToExcel}"><span class="ico-full-icon-file-excel"></span>Export to Excel</apex:commandLink>
+                </div>
+                <table class="partnership-comparo">
+                    <tr>
+                        <th>RWE Partnership Name</th>
+                        <apex:repeat value="{!RequestSelectedList}" var="records">
+                            <td>{!records['Name']}</td>
+                        </apex:repeat>
+                    </tr>
+
+                    <tr>
+                        <th>RWE Partnership Status</th>
+                        <apex:repeat value="{!RequestSelectedList}" var="records">
+                            <td>{!records['Partnership_Status__c']}</td>
+                        </apex:repeat>
+                    </tr>
+
+                   <apex:repeat value="{!lSelectedFields}" var="Field">
+                        <tr>
+                            <th>{!mLabel[Field]}
+                                <apex:repeat value="{!RequestSelectedList}" var="records">
+                                    <td>{!records[Field]}</td>
+                                </apex:repeat>
+                            </th>
+                        </tr>
+                    </apex:repeat> 
+                </table>
+            </apex:form>
+        </div>
+</apex:page>

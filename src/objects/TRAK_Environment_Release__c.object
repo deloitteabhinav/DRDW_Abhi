@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Business Description: This object is used to link a release to an environment. This can be used to track what releases have been put in to what environment and when they were put there.
+
+Used In: Release Tracker App</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Actual_Finish__c</fullName>
+        <externalId>false</externalId>
+        <label>Actual Finish</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Actual_Start__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The date the linked release was pushed to the linked environment</inlineHelpText>
+        <label>Actual Start</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Back_out_plan__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>How would this depoyment be reversed if it failed or was found to be problematic</inlineHelpText>
+        <label>Back out plan</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>7</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Complete__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Has this release been completed to this environment?</inlineHelpText>
+        <label>Complete</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Deployment_Impact__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>What will the impact of this deployment be on the availability of the environments, and the users who are currently using them.</inlineHelpText>
+        <label>Deployment Impact</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Environment__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Environment</label>
+        <referenceTo>TRAK_Environment__c</referenceTo>
+        <relationshipLabel>Releases</relationshipLabel>
+        <relationshipName>Environment_Releases</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Impacted_Markets__c</fullName>
+        <externalId>false</externalId>
+        <label>Impacted Markets</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>GB</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Ireland</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>USA</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Planned_Finish__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The planned finish time of the release</inlineHelpText>
+        <label>Planned Finish</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Planned_Start__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The Planned Start and Finish time of this release</inlineHelpText>
+        <label>Planned Start</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Release_Owner__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>The person responsible for executing the release</inlineHelpText>
+        <label>Release Owner</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Environment_Releases</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Release__c</fullName>
+        <externalId>false</externalId>
+        <label>Release</label>
+        <referenceTo>TRAK_Release__c</referenceTo>
+        <relationshipLabel>Environment Releases</relationshipLabel>
+        <relationshipName>TRAK_Environment_Releases</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Reviewer__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>The person reviewing the release process</inlineHelpText>
+        <label>Release Reviewer</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Environment_Releases1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Environment Release</label>
+    <nameField>
+        <displayFormat>ER-/{000}</displayFormat>
+        <label>Ref</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Environment Releases</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Enter_Finish_Date_Before_Complete</fullName>
+        <active>true</active>
+        <description>Finish Date to be entered before checking the &apos;Complete&apos; box.</description>
+        <errorConditionFormula>AND( ISBLANK(Actual_Finish__c),  Complete__c = True)</errorConditionFormula>
+        <errorDisplayField>Actual_Finish__c</errorDisplayField>
+        <errorMessage>Please enter Actual Finish Date before checking &apos;Complete&apos;.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Release_Owner_and_Reviewer_Diff</fullName>
+        <active>true</active>
+        <description>The release owner and reviewer should be different.</description>
+        <errorConditionFormula>AND((Release_Owner__c =  Reviewer__c), (Release_Owner__c &lt;&gt; null), (Reviewer__c &lt;&gt; null))</errorConditionFormula>
+        <errorMessage>Release Owner and Reviewer can&apos;t be the same.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Validate_Start_and_End_Date_Actual</fullName>
+        <active>true</active>
+        <description>Start Date should not be later than End Date</description>
+        <errorConditionFormula>Actual_Start__c &gt;  Actual_Finish__c</errorConditionFormula>
+        <errorMessage>Start Date cannot be after Finish Date</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Validate_Start_and_End_Date_Planned</fullName>
+        <active>true</active>
+        <errorConditionFormula>DATEVALUE(Planned_Start__c)  &gt;   DATEVALUE(Planned_Finish__c)</errorConditionFormula>
+        <errorMessage>Planned Start cannot be after planned finish</errorMessage>
+    </validationRules>
+</CustomObject>

@@ -1,0 +1,68 @@
+<apex:page standardController="Account" extensions="SendSurveyController" tabStyle="Account" standardStylesheets="true" >
+  <apex:form id="SurveyForm">
+    <apex:sectionHeader title="Feedback Wizard" 
+                      subtitle="Step {!nWizardStepCount} of 3"/>
+    <!----------------STEP1-------------------->
+    <apex:pageBlock title="Feedback Wizard" rendered="{!mBoolToggle['Step1']}">
+     <apex:pageMessages rendered="{!bIsShowMessage}"/>
+      <apex:pageBlockSection columns="1" title="Please choose Contacts" rendered="{!!bIsShowMessage}">
+        
+        <apex:repeat value="{!mUserContactCheckboxWrapper['Contact']}" var="con" >
+      
+          <apex:pageBlockSectionItem >
+            
+            <apex:inputCheckbox value="{!con.bIsChecked}" /><apex:outputText value="{!con.oSObject['Name']}"/>
+          </apex:pageBlockSectionItem>
+        </apex:repeat>
+       </apex:pageBlockSection>
+       <apex:outputPanel rendered="{!IsAccess}">
+          <apex:commandButton value="Next" action="{!selectUsersStep}" reRender="SurveyForm"/>
+          <apex:commandButton value="Cancel" action="{!closeFeedback}"/>
+       </apex:outputPanel>
+    </apex:pageBlock>
+    <!----------------STEP2-------------------->
+    <apex:pageBlock title="Feedback Wizard" rendered="{!mBoolToggle['Step2']}">
+    <apex:pageMessages />
+     <apex:pageBlockSection columns="1" title="Please choose at least one Feedback Provider">
+        <apex:repeat value="{!mUserContactCheckboxWrapper['SupplierUser']}" var="user" >
+          <apex:pageBlockSectionItem >
+            <apex:inputCheckbox value="{!user.bIsChecked}" /><apex:outputText value="{!user.oSObject['Name']}"/>
+          </apex:pageBlockSectionItem>
+        </apex:repeat>
+        <apex:repeat value="{!mUserContactCheckboxWrapper['User']}" var="user" >
+          <apex:pageBlockSectionItem >
+            <apex:inputCheckbox value="{!user.bIsChecked}" /><apex:outputText value="{!user.oSObject['Name']}"/>
+          </apex:pageBlockSectionItem>
+        </apex:repeat>
+        <apex:outputPanel >
+          <apex:commandButton value="Previous" action="{!selectContactsStep}" reRender="SurveyForm"/>
+          <apex:commandButton value="Submit" action="{!confirmationStep}" reRender="SurveyForm"/>
+          <apex:commandButton value="Cancel" action="{!closeFeedback}"/>
+        </apex:outputPanel>
+     </apex:pageBlockSection>
+     </apex:pageBlock>
+     <!----------------STEP3-------------------->
+     <apex:pageBlock title="Feedback Wizard" rendered="{!mBoolToggle['Step3']}">
+     <apex:pageMessages />
+     <apex:pageBlockSection columns="1">
+         <p>Review sent about Organization -<b>{!oSupplierAccount.Name}</b> for the following contacts:</p>
+         <ol>
+             <apex:repeat value="{!lSelectedSupplierContacts}" var="con" rendered="{!IF(lSelectedSupplierContacts.size>0,true,false)}">
+                 <li>{!con.Name}</li>
+             </apex:repeat>
+             <apex:outputPanel rendered="{!IF(lSelectedSupplierContacts.size>0,false,true)}">
+                 <ul><li>None</li></ul>
+             </apex:outputPanel>
+         </ol>
+         
+         <p>Review sent to the following Feedback providers:</p>
+         <ol>
+             <apex:repeat value="{!lSelectedFeedbackProviders}" var="FBProvider">
+                 <li>{!FBProvider.Name}</li>
+             </apex:repeat>
+         </ol>
+     </apex:pageBlockSection>
+     <apex:commandButton value="Close" action="{!closeFeedback}"/>
+    </apex:pageBlock>
+  </apex:form>
+</apex:page>

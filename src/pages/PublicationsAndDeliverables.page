@@ -1,0 +1,21 @@
+<apex:page standardController="Project__c" extensions="PublicationsAndDeliverables" showHeader="False" standardStylesheets="True" sidebar="false">
+    <apex:form >
+       <apex:pageBlock title="Publications & Deliverables Links" >
+            <table class="list " border="0" cellpadding="0" cellspacing="0" >
+            <apex:repeat value="{!sMap}" var="s">
+                        <tr>
+                            <th>{!s}
+                            <apex:repeat value="{!sMap[s]}" var="l">
+                            <apex:variable var="absoluteurl" value="{!IF(CONTAINS(l,"//"),l,"http://"+l)}"></apex:variable>
+                               <tr><td><a href="{!absoluteurl}" target="__blank">{!absoluteurl}</a></td></tr>
+                            </apex:repeat>
+                            </th>
+                        </tr>
+            </apex:repeat>
+            </table>
+           <apex:pageBlockSection id="Msgid" rendered="{!mEmpty}">
+            <apex:outputLabel value="No Links to Display" styleClass="noRowsHeader"></apex:outputLabel>
+        </apex:pageBlockSection>
+       </apex:pageBlock>
+    </apex:form>
+</apex:page>

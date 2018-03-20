@@ -1,0 +1,92 @@
+<apex:page standardcontroller="TRAK_Test__c" extensions="TRAK_runTestScriptExtension">
+<script type="text/javascript" src="{!URLFOR($Resource.TRAK_MaxLength)}"></script>
+ 
+<apex:form >
+<apex:pageBlock mode="Edit"> 
+<apex:pageMessages rendered="{!Not(stepsComplete)}"/>
+<apex:PageBlockSection title="Test Details" columns="2">
+<apex:PageBlockSectionItem >
+<apex:outputLabel value="User Story" for="TestUS"/>
+<apex:outputField value="{!TRAK_Test__c.User_Story__c}" id="TestUS"/>
+</apex:pageblocksectionItem>
+<apex:PageBlockSectionItem >
+</apex:pageblocksectionItem>
+<apex:PageBlockSectionItem >
+<apex:outputLabel value="Test Id" for="TestName"/>
+<apex:outputField value="{!TRAK_Test__c.Name}" id="TestName"/>
+</apex:PageBlockSectionItem>
+<apex:pageblocksectionItem ><apex:outputLabel value="Test Phase"/>
+<apex:outputField value="{!TRAK_Test__c.Test_Phase__c}" id="testPhase"/>
+</apex:pageblocksectionItem>
+<apex:pageblocksectionItem >
+</apex:pageblocksectionItem>
+<apex:PageBlockSectionItem ><apex:outputLabel value="Description"/>
+<apex:outputField value="{!TRAK_Test__c.Description__c}"/></apex:PageBlockSectionItem>
+<apex:PageBlockSectionItem > <apex:outputLabel value="Introduction"/>
+<apex:outputField value="{!TRAK_Test__c.Introduction__c}"/></apex:PageBlockSectionItem>
+</apex:pageblockSection>
+</apex:pageBlock>
+<apex:pageblock >
+<apex:pageblockSection columns="1" title="New Defects" id="bugblock" collapsible="true">
+<apex:pageblocktable value="{!bugs}" var="b" columns="7" id="tablebugs" rendered="{!isnewBugs}">
+<apex:column value="{!b.Test_Phase__c}"/>
+<apex:column value="{!b.Status__c}"/>
+<apex:column headerValue="Impact"><apex:inputField value="{!b.BusinessImpact__c}"/></apex:column>
+<apex:column headerValue="Summary"><apex:inputField value="{!b.Problem__c}"/></apex:column>
+<apex:column headerValue="Description"><apex:inputtextarea cols="40" rows="5" value="{!b.Problem_Description__c}"/></apex:column>
+</apex:pageblocktable>
+</apex:pageblockSection>
+
+
+    <apex:pageblockSection columns="1" title="Test Steps" id="testStep" collapsible="true">
+        <apex:pageBlockTable value="{!TestSp}" var="step" columns="9">
+            <apex:column value="{!step.Test_Execution_Step_Number__c}" />
+            <apex:column value="{!step.name}"/>
+            <apex:column value="{!step.TRAK_Action__c}"/>
+            <apex:column value="{!step.TRAK_Expected_Results__c}"/>
+            
+            <apex:column headerValue="View Test Script Step Attachments">
+                <apex:commandLink action="{!viewAttachment}" value="Click here to view all Attachment(s)" target="_blank" rendered="{!testScriptAttachmentsMap[step.Template_Step__c]}">
+                    <apex:param name="testId1" value="{!step.Template_Step__c}"/>
+                </apex:commandLink>
+                <apex:outputText value="No Attachments on this Test Script Step" rendered="{!NOT(testScriptAttachmentsMap[step.Template_Step__c])}"/>
+            </apex:column>
+            
+            <apex:column value="{!step.TRAK_Tips__c}"/>
+            <apex:column headerValue="Test Outcome"><apex:inputField value="{!step.Outcome__c}" /></apex:column>
+            <apex:column headerValue="Actual Results"><apex:inputTextarea cols="40" rows="5" value="{!step.Comments__c}" onKeyDown="textCounter(document.getElementById(this.form.name),5);" onKeyUp="textCounter(document.getElementById(this.form.name),5);"/></apex:column>
+            
+            <apex:column headerValue="Add a Defect">
+                <apex:commandButton action="{!addBug}" value="Add Defect" reRender="bugblock">
+                    <apex:param name="testId" value="{!step.id}"/>
+                    <apex:param name="testName" value="{!step.name}"/>
+                </apex:commandButton>
+            </apex:column>
+            
+            <apex:column headerValue="{!$Label.TRAK_Add_An_Attachment}">
+                <apex:commandLink styleClass="btn" style="text-decoration:none;padding:4px;" action="{!AttachFile}" value="{!$Label.TRAK_AttachFile}">
+                    <apex:param name="testId" value="{!step.id}"/>
+                    <apex:param name="testName" value="{!step.name}"/>
+                </apex:commandLink>
+            </apex:column>
+            
+        </apex:pageBlockTable>
+    </apex:pageblockSection>
+
+    
+</apex:pageBlock>
+
+<apex:pageBlock >
+<apex:pageBlockButtons ><apex:commandButton action="{!save}" value="{!$Label.TRAK_Save_Test_Execution_Button}"/></apex:pageBlockButtons>
+<apex:PageBlockSection title="Test Outcome" columns="2">
+<apex:pageblockSection columns="1">
+<apex:PageBlockSectionItem ><apex:outputLabel value="Overall test outcome"/>
+<apex:inputField value="{!TRAK_Test__c.Test_Outcome__c}" /></apex:PageBlockSectionItem>
+<apex:PageBlockSectionItem ><apex:outputLabel value="Overall test Comments"/>
+<apex:inputtextarea value="{!TRAK_Test__c.Overall_Test_Comments__c}" cols="100" rows="5" />
+</apex:PageBlockSectionItem>
+</apex:PageBlockSection>
+</apex:PageBlockSection>
+</apex:pageBlock>
+</apex:form>
+</apex:page>

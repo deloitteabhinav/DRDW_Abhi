@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Stores settings for Data Asset &amp; Partnerships Compare Report, Leadership Dashboard links, controls Executive Dashboard picklist values.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>When Active, this picklist value will be aggregated in the charts and displayed using the value in Display Name field.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Only Active picklist values will be displayed in Executive Dashboards. If inactive, it will be grouped to Other.</inlineHelpText>
+        <label>Active</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Display_Name__c</fullName>
+        <description>The display name to be shown in the charts corresponding to this Picklist Value. Restricted to 20 characters.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter Display name of drop down if picklist value to be shown on Executive Dashboards is different. Restricted to 20 characters.</inlineHelpText>
+        <label>Display Name</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PicklistFieldValueUnique_TF__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>Field updated by workflow to ensure Unique pair of Picklist Field &amp; Picklist Value.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Field updated by workflow to ensure Unique pair of Picklist Field &amp; Picklist Value.</inlineHelpText>
+        <label>PicklistFieldValueUnique_TF</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Picklist_Field_Name__c</fullName>
+        <description>Enter the Picklist Name(eg: Region, Therapeutic Area) here and the exact correct Picklist Value in the &quot;Name&quot; field. Only Active picklist values will be displayed in Executive Dashboard Charts.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the Picklist Name(eg: Region, Therapeutic Area) here and the exact correct Picklist Value in the &quot;Name&quot; field. Only Active picklist values will be displayed in Executive Dashboard Charts.</inlineHelpText>
+        <label>Picklist Field Name</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Console</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Picklist_Field_Name__c</columns>
+        <columns>Display_Name__c</columns>
+        <columns>Active__c</columns>
+        <columns>RECORDTYPE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Executive_Dashboard</fullName>
+        <columns>NAME</columns>
+        <columns>Picklist_Field_Name__c</columns>
+        <columns>Display_Name__c</columns>
+        <columns>Active__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Console__c.Executive_Dashboard_Setting</value>
+        </filters>
+        <label>Executive Dashboard</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Console</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Executive_Dashboard_Setting</fullName>
+        <active>true</active>
+        <description>For controlling Picklist Values of specified Picklists in Executive Dashboard</description>
+        <label>Executive Dashboard Setting</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Generic_Console_Setting</fullName>
+        <active>true</active>
+        <description>For Leadership Dashboard as well as Data Asset &amp; Partnership Compare Report</description>
+        <label>Generic Console Setting</label>
+    </recordTypes>
+    <searchLayouts>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

@@ -1,0 +1,2 @@
+<apex:page standardController="Request_Data_Asset__c" extensions="RedirectOnSave" action="{!onloadFromRequest}" >
+</apex:page>

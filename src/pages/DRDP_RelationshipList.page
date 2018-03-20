@@ -1,0 +1,248 @@
+<apex:page docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="false" controller="RelationshipList" readonly="true" id="thePage">
+    <script type='text/javascript'>
+        function isValidSearchString(searchString) {
+            var SEARCH_TRIGGER_THRESHOLD = 2;
+            var trimmedSearchString = searchString.trim();
+
+                if (trimmedSearchString.length >= SEARCH_TRIGGER_THRESHOLD) {
+                    return true;
+                } else {
+                    return false;
+                }
+        }
+    
+    
+        function noenter(ev)  {
+            if (window.event && window.event.keyCode == 13 || ev.which == 13) {
+                var searchString = (document.getElementsByClassName("keyword_Request_Search_Text"))[0].value;
+                if (isValidSearchString(searchString)){
+                    doSearchAf();
+                }
+                return false;
+             } else {
+                  return true;
+             }
+         }
+    </script>
+
+    <title>Relationship Contacts</title>
+
+  <c:DRDP_IndexNew />
+
+    <apex:form id="theForm">
+
+        <apex:actionFunction name="doSearchAf" action="{!FetchDataForCriteria}" rerender="PaginationPanel,therapueticareaCol,resultsize" />
+
+        <div class='content'>
+
+            <div class='fixed-container list-view'>
+
+                <div class='filters-wrapper'>
+
+                    <!--The below page logic will display the total number of Relationships per filter-->
+                    <div class="filter-header container">
+                        <apex:outputpanel id="resultsize">
+                            <span class='result-count'>{!cRelationshipListCntlr.ResultSize} Relationship Contacts</span>
+                        </apex:outputpanel>
+                         <apex:outputlink value="/apex/DRDP_SelectRelationship" styleClass="create-new enabled l-teal hidden-xs">Create a New Relationship</apex:outputlink>
+                        <span class='icon-large-caret down'></span>
+                    </div>
+
+                    <!--The below page logic will display the check box filters for various fields and the pivot-->
+                    <div class='filter-container container'>
+
+                        <!--Start of Output Panel-->
+                        <apex:outputpanel id="therapueticareaCol">
+
+                            
+                             <!--Record Type filter checkboxes-->
+                            <div class='filter-column-wrapper col-md-3'>
+                                <ul class='filter-column'>
+                                    <li >Organization Type</li>
+                                    <apex:repeat value="{!mRelationshipObjectStructure['Account.RecordType.Name']}" var="Account">
+                                        <li class=''>
+                                            <apex:inputCheckbox value="{!Account.isSelected}">
+                                                <apex:actionSupport event="onchange" oncomplete="drdw.listView.handlerSeeMoreFilters();" action="{!FetchDataForCriteria}" rerender="PaginationPanel,therapueticareaCol,resultsize" />
+                                            </apex:inputCheckbox>
+                                            <label>{!Account.Label} ({!mCategoyCount[Account.Label]})</label>
+                                        </li>
+                                    </apex:repeat>
+                                </ul>
+                            </div> 
+                            
+
+                            <!--Region field filter checkboxes-->
+                            <div class='filter-column-wrapper col-md-3'>
+                                <ul class='filter-column'>
+                                    <li>Organization Source</li>
+                                    <apex:repeat value="{!mRelationshipObjectStructure['Source__c']}" var="Source">
+                                        <li >
+                                            <apex:inputCheckbox value="{!Source.isSelected}">
+                                                <apex:actionSupport event="onchange" oncomplete="drdw.listView.handlerSeeMoreFilters();" action="{!FetchDataForCriteria}" rerender="PaginationPanel,therapueticareaCol,resultsize" />
+                                            </apex:inputCheckbox>
+                                            <label>{!Source.Label} ({!mCategoyCount[Source.Label]})</label>
+                                        </li>
+                                    </apex:repeat>
+                                </ul>
+                            </div>
+                            
+                            <div class='filter-column-wrapper col-md-3'>
+                                <ul class='{!IF(bShowMoreFlag,"filter-column","filter-column show-scroll")}'>
+                                    <li>Professional Role</li>
+                                    <apex:repeat value="{!mRelationshipObjectStructure['Role__c']}" var="Roles">
+                                        <li>
+                                            <apex:inputCheckbox value="{!Roles.isSelected}">
+                                                <apex:actionSupport event="onchange" action="{!FetchDataForCriteria}" oncomplete="drdw.listView.handlerSeeMoreFilters();" rerender="PaginationPanel,therapueticareaCol,resultsize" />
+                                            </apex:inputCheckbox>
+                                            <label>{!Roles.Label} ({!mCategoyCount[Roles.Label]})</label>
+                                        </li>
+                                    </apex:repeat>
+                                </ul>
+                                <apex:outputPanel rendered="{!bShowMoreFlag}">
+                                    <a class="see-more-filters pull-left" onclick="toggleflagoff();">See more...</a>
+                                </apex:outputPanel>
+                            </div>
+                            
+                            
+                           <!--Source field filter checkboxes-->
+                            <div class='filter-column-wrapper col-md-3'>
+                                <ul class='filter-column'>
+                                    <li >Communication Preference</li>
+                                    <apex:repeat value="{!mRelationshipObjectStructure['Preferred_Communication_Method__c']}" var="Comm">
+                                        <li >
+                                            <apex:inputCheckbox value="{!Comm.isSelected}">
+                                                <apex:actionSupport event="onchange" action="{!FetchDataForCriteria}" rerender="PaginationPanel,therapueticareaCol,resultsize" oncomplete="drdw.listView.handlerSeeMoreFilters();" />
+                                            </apex:inputCheckbox>
+                                            <label>{!Comm.Label} ({!mCategoyCount[Comm.Label]})</label>
+                                        </li>
+                                    </apex:repeat>
+                                </ul>
+                            </div> 
+
+                            
+                            
+                           <!--Pivot for Partnership Types-->
+                            <div class='pivot-container col-md-12'>
+                                <span class='label'>Status</span>
+                                <label>
+                                <apex:selectList multiselect="false" size="1" value="{!sStatus}">
+                                    <apex:actionSupport event="onchange" action="{!FetchDataForCriteria}" rerender="PaginationPanel,therapueticareaCol,resultsize" oncomplete="drdw.listViewComparo.handlers();drdw.listView.handlerSeeMoreFilters();"/>
+                                    <apex:selectOptions value="{!lStatusOptions}" />
+                                </apex:selectList>
+                            </label>
+                            </div>
+                            
+                            
+
+                             <!--End of Output Panel-->
+                        </apex:outputpanel>
+
+                    </div>
+
+                </div>
+                
+
+                <!--Below page logic contains local search Bar-->
+                <div class='type-ahead-search-wrapper container'>
+                    <span class='icon-find'></span>
+                    <apex:inputtext value="{!sSearchWord}" html-placeholder="Search Relationship Contacts" onkeypress="return noenter(event);" styleClass="keyword_Request_Search_Text"/>
+                    <apex:commandButton Value="Go" action="{!FetchDataForCriteria}" Styleclass="button create-new l-teal" disabled="false" rerender="PaginationPanel,therapueticareaCol,resultsize" oncomplete="drdw.listViewComparo.handlers();drdw.listView.handlerSeeMoreFilters();"/>
+                    <apex:outputlink value="/apex/DRDP_RelationshipList" StyleClass="filter-reset">Clear All</apex:outputlink>
+                </div>
+                
+                
+                <!--Start of Output Panel which contains Results after filter search-->
+                <apex:outputpanel id="Listcontent">
+
+                    <!--Results container HTML-->
+                    <div class='results-header container l-teal'>
+
+                        <!--Name column of the results displayed-->
+                        <div class='result-header-item col-md-3 sort-by'>
+                            <apex:commandlink value="Contact Name" action="{!sort}" rerender="Listcontent,PaginationPanel">
+                                <apex:param name="Name" value="Name" assignTo="{!sField}" />
+                            </apex:commandlink>
+                            <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Name'}"/>
+                        </div>
+                        
+                        
+                        <!--Request Status method column of the results displayed-->
+                        <div class='result-header-item col-md-3'>
+                        Address
+                        </div>   
+                        
+                        <!--RequestorType column of the results displayed-->
+                        <div class='result-header-item col-md-3 sort-by hidden-xs'>
+                            <apex:commandlink value="Organization" action="{!sort}" rerender="Listcontent,PaginationPanel">
+                                <apex:param name="Account.Name" value="Account.Name" assignTo="{!sField}" />
+                            </apex:commandlink>                           
+                            <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Account.Name'}" /> 
+                        </div>
+                        
+                        <!--Request Status method column of the results displayed-->
+                        <div class='result-header-item col-md-3 sort-by hidden-xs'>
+                            <apex:commandlink value="Contact Function" action="{!sort}" rerender="Listcontent,PaginationPanel">
+                            <apex:param name="Contact_Function__c" value="Contact_Function__c" assignTo="{!sField}" />
+                            </apex:commandlink>
+                            <apex:outputText styleclass="{!IF(contains(sOrder,"ASC"),"icon-arrow up","icon-arrow down")}" rendered="{!sField='Contact_Function__c'}"/>
+                        </div> 
+                        
+
+                        
+                        
+
+                    </div>
+
+                    <!--End of Output Panel which contains Results after filter search-->
+                </apex:outputpanel>
+
+            </div>
+
+            <!--Start of div for pagination-->
+            <div class='results-wrapper'>
+
+                <apex:outputpanel id="PaginationPanel">
+
+                    <div class='results container'>
+                        <apex:repeat value="{!Relationships}" var="oContact">
+                            <div class='result-item col-md-12'>
+                                <apex:variable var="absoluteurl" value="{!IF(CONTAINS(oContact.Account.RecordType.Name,"Partner"),"Partner",IF(CONTAINS(oContact.Account.RecordType.Name,"Vendor"),"Vendor","ResearchInstitutes"))}"/>
+                                <div class='col-md-3'><apex:outputLink value="/apex/DRDP_CreateRelationshipContact?Id={!oContact.Id}&recTypeName={!absoluteurl}&IsEdit=false" target="_blank">{!oContact.Name}</apex:outputLink></div>                                
+                                <div class='col-md-3'>{!oContact.MailingStreet}<br/>
+                                {!oContact.MailingCity}<br/>
+                                {!oContact.MailingState}<br/>
+                                {!oContact.MailingPostalCode}<br/>
+                                {!oContact.MailingCountry}<br/>
+                                </div>
+                                <apex:variable var="pagename" value="{!IF(CONTAINS(oContact.Account.RecordType.Name,"Partner"),"DRDP_CreatePartnerRelationship",IF(CONTAINS(oContact.Account.RecordType.Name,"Vendor"),"DRDP_CreateVendorRelationship","DRDP_CreateScientificLeadersRelationship"))}"/>
+                                <div class='col-md-3 hidden-xs'><apex:outputLink value="/apex/{!pagename}?Id={!oContact.Account.Id}&recTypeName={!absoluteurl}&IsEdit=false" target="_blank">{!oContact.Account.Name}</apex:outputLink></div>
+                                <div class='col-md-3 hidden-xs'>{!oContact.Contact_Function__c}</div>
+                            </div>
+                        </apex:repeat>
+                    </div>
+                    
+                    <apex:outputPanel rendered="{!cRelationshipListCntlr.ResultSize>0}">
+                    <div class='pagination container'>
+                        <span class='col-md-12'>Displaying {!((cRelationshipListCntlr.pagenumber-1)*cRelationshipListCntlr.pagesize)+1}-{!IF(cRelationshipListCntlr.ResultSize < ((cRelationshipListCntlr.pagenumber)*cRelationshipListCntlr.pagesize),cRelationshipListCntlr.ResultSize,((cRelationshipListCntlr.pagenumber)*cRelationshipListCntlr.pagesize))} of {!cRelationshipListCntlr.ResultSize}</span>
+                        <div class='indicator-container col-md-12'>
+                            <apex:actionregion >
+                                <apex:commandlink styleClass="indicator icon-arrow left" rendered="{!IF(AND(lPageNumbers.size <> 0,lPageNumbers[0]!=1),true,false)}" action="{!PreviousPageSeries}" rerender="Listcontent,PaginationPanel"/>
+                                <apex:repeat value="{!lPageNumbers}" var="obj">
+                                    <apex:commandlink styleClass="{!if(obj==cRelationshipListCntlr.pagenumber,'indicator current','indicator')}" value="{!obj}" action="{!GoToPageNumber}" rerender="PaginationPanel">
+                                        <apex:param name="{!obj}" value="{!obj}" assignTo="{!iPageNumber}" />
+                                    </apex:commandlink>
+                                </apex:repeat>
+                                <apex:commandlink styleClass="indicator icon-arrow right" action="{!NextPageSeries}" rendered="{!IF(AND(lPageNumbers.size <> 0,dPageCount > lPageNumbers[lPageNumbers.size-1]),true,false)}" rerender="Listcontent,PaginationPanel" />
+                            </apex:actionregion>
+                        </div>
+                    </div>
+                     <c:DRDP_FooterComponent />
+                    </apex:outputPanel>
+                </apex:outputpanel>
+
+            </div>
+        </div>
+
+    </apex:form>
+    <c:Webtrends_Tracker />
+</apex:page>

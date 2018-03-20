@@ -1,0 +1,19 @@
+<apex:page standardController="Checklist_Version__c" extensions="Push_Checklist">
+<apex:pageMessages ></apex:pageMessages>
+    <apex:pageBlock rendered="{!Checklist_Version__c.Active__c}" title="Studies">
+        <apex:form >
+                <apex:pageblocktable id="StudyTable" rendered="{!lwStudy.size!=0}" var="a" value="{!lwStudy}" width="100%">
+                    <apex:column value="{!a.oStudy.name}" width="40%"/>
+                    <apex:column value="{!a.oStudy.Study_Project_ID__c}"/>
+                    <apex:column headerValue="Study Owner" value="{!a.oStudy.Owner.Name}"/>
+                    <apex:column value="{!a.oStudy.Project_Status__c}"/>
+                    <apex:column value="{!a.oStudy.Study_Stage__c}"/>
+                    <apex:column style="{!IF(a.IsError = FALSE,'color:green','color:red')}" value="{!a.sMsg}"/>
+                </apex:pageblocktable>
+                <apex:outputText rendered="{!lwStudy.size==0}" value="No Records to Display"></apex:outputText>
+                <br/>
+                <apex:commandButton rerender="StudyTable" rendered="{!lwStudy.size!=0}" value="Push" action="{!UpdateStudies}"/>
+                <apex:commandButton value="Return to Master" action="{!ReturnToMaster}"/>
+        </apex:form>
+    </apex:pageBlock>
+</apex:page>

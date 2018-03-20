@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>FeedbackProvider_EmailAlert</fullName>
+        <description>This email is sent to the Feedback Provider</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Feedback_Provider__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Email_Templates/DRDP_Feedback_Form</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Email_to_Feedback_Provider</fullName>
+        <description>Send Email to Feedback Provider</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Feedback_Provider__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Email_Templates/DRDP_Feedback_Form</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Update_checkbox_to_false</fullName>
+        <field>Send_Reminder__c</field>
+        <literalValue>0</literalValue>
+        <name>Update checkbox to false</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>SendSurveyEmail</fullName>
+        <actions>
+            <name>FeedbackProvider_EmailAlert</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Feedback_Providers__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Sent</value>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Send_Reminder_Email</fullName>
+        <actions>
+            <name>Send_Email_to_Feedback_Provider</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Update_checkbox_to_false</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Feedback_Providers__c.Send_Reminder__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

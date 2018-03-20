@@ -1,0 +1,14 @@
+<table border="0" cellpadding="5" width="600" cellspacing="5" height="400" >
+<tr valign="top" height="50" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[Hi {!TPTO_PTO_Request__c.Lead__c},]]></td>
+</tr>
+<tr valign="top" height="300" >
+<td tEditID="c1r2" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r2" locked="0" >
+<![CDATA[<p>A PTO request has been raised in the PTO tracker tool. Kindly review the same. </p><p><br></p><p>You can access the request from the below link:</p><p><a href="https://cs15.salesforce.com/{!TPTO_PTO_Request__c.Id}">https://cs15.salesforce.com/{!TPTO_PTO_Request__c.Id}</a>&nbsp;</p><p><br></p><p><br></p><p><br></p>]]></td>
+</tr>
+<tr valign="top" height="50" >
+<td tEditID="c1r3" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r3" locked="0" >
+<![CDATA[<p>Regards,</p><p>{!TPTO_PTO_Request__c.OwnerFullName}<br></p>]]></td>
+</tr>
+</table>

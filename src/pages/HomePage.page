@@ -1,0 +1,206 @@
+<apex:page docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="false" controller="HomePage" cache="true">
+  <apex:stylesheet value="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+  <apex:stylesheet value="https://jqueryui.com//resources/demos/style.css"/>
+  <apex:includeScript value="https://code.jquery.com/jquery-1.12.4.js"/>
+  <apex:includeScript value="https://code.jquery.com/ui/1.12.1/jquery-ui.js"/>
+  <script>
+  $( document ).ready(function() {
+    var availableTags = [];
+    Visualforce.remoting.Manager.invokeAction(
+        '{!$RemoteAction.HomePage.FetchResults}',
+        function(result, event){
+            if (event.status) {
+                // Get DOM IDs for HTML and Visualforce elements like this
+                availableTags = result;
+                $( "#tags" ).autocomplete({
+                  source: availableTags
+                });
+                console.log(result.result);          
+            } 
+        }, 
+        {escape: true}
+    );
+  });
+  
+  </script>
+    <title>Home</title>
+    <c:Index />
+    <div class="resolution-notification medium"><p><apex:outputText value="{!$Label.Resolution_Error_Medium}" escape="false"/><span class="icon-close pull-right"></span></p> </div>
+    <div class="resolution-notification small"><p><apex:outputText value="{!$Label.Resolution_Error}" escape="false"/><span class="icon-close pull-right"></span></p> </div>
+    <div class='content'>
+        <div class="home">
+            <div class="section-1 center bannercolor black">
+                <div class="pattern"></div>
+                <div class="middle container">
+                    <apex:image styleClass="img img-world tc" url="{!URLFOR($Resource.KMLogo)}" />
+                    <div class='tc'>
+                        <h1 class="font-xxl heading">
+                            Knowledge Management
+                        </h1>
+                        <div class="font-xl clear left">
+                            <div><strong>Knowledge is Power.</strong></div> 
+                        </div>
+                    </div>
+                </div>
+                <apex:form >
+                <div class="button-container">                       
+                    <!--<span class="spn-or font-r"> </span>
+                    <apex:outputlink styleClass="button btn-request font-m bold" value="/apex/SelectBP">Plan a Study/Project</apex:outputlink>
+                    <span class="spn-or font-r"> </span>
+                    <apex:outputlink styleClass="button btn-request font-m bold" value="/apex/SelectRequest">Submit a Request</apex:outputlink>-->
+                    <div class="font-xl clear"><strong>Search </strong>
+                    <apex:inputText id="auto11" required="false">
+                    <c:Nugget_AutoCompleteComponent objectname="Project__c" input_id="{!$Component.auto11}" numberOfResultsToDisplay="10" wildcardBefore="false"/>
+                    </apex:inputText>
+                    <!--<input id="tags"/> -->
+                    </div>
+                </div>
+                </apex:form>
+
+            </div>
+            <!--<div class="col-md-12 section-2">
+                <div class="section-content center">
+                    <div class="font-xl heading">
+                        Explore <span class='green_pangaea'></span>
+                    </div>
+                    <div class="font-r">Enter a small world with big possibilities.</div>
+                    <div class="icons-container container">
+                        <div class="">
+                            <div class="col-md-3">
+                                <apex:outputlink value="/apex/Studylist" disabled="false">
+                                    <div class="center l-blue">
+
+                                        <div class="font-xxxl counts">{!mCategoyCount['Study']}</div>
+                                        <div class="font-l icn-content">Studies</div>
+
+                                    </div>
+                                </apex:outputLink>
+
+                            </div>
+                            <div class="col-md-3">
+                                <apex:outputlink value="/apex/DRDP_InformationLandscapeList">
+                                    <div class="center l-yellow lilly-tool-tip">
+                                        <div class="font-xxxl counts">{!mCategoyCount['DataAssets']}</div>
+                                        <div class="font-l icn-content">Information Landscapes</div>
+                                    </div>
+                                </apex:outputLink>
+                            </div>
+                            <div class="col-md-3">
+                                <apex:outputlink value="/apex/partnershiplist">
+                                    <div class="center l-orange lilly-tool-tip">
+                                        <div class="font-xxxl counts">{!mCategoyCount['Partnerships']}</div>
+                                        <div class="font-l icn-content">Partnership Explorations</div>
+                                    </div>
+                                </apex:outputLink>
+                            </div>
+                            <div class="col-md-3">
+                                <apex:outputlink value="/apex/requestList">
+                                    <div class="center l-green fixed-tooltip">
+                                        <div class="font-xxxl counts">{!mCategoyCount['Request']}</div>
+                                        <div class="font-l icn-content">Requests</div>
+                                        <!-- <p class="tool-tip-content">&#42;Includes All Explored.</p>
+                                    </div>
+                                </apex:outputLink>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <div class="col-md-12 section-3">
+                <div class="section-content center">
+                    <h3 class="heading">
+                        More Ways to Connect
+                    </h3>
+                    <div class="font-r"></div>
+                    <div class="connect-container container">
+                        <div class="">
+                           <a href="https://gso.my.salesforce.com/_ui/core/chatter/groups/GroupProfilePage?g=0F9b0000000HbNu">
+                            <div class="card pull-left">
+                                <img src="{!URLFOR($Resource.R3Style,'assets/img/users.png')}" class="card-icon"/>
+                                <div class="card-content">
+                                Connect
+                                </div>
+                            </div>
+                            </a>
+                            <a href="/sfc/#workspaces">
+                            <div class="card pull-left">
+                                <img src="{!URLFOR($Resource.R3Style,'assets/img/clipboard.png')}" class="card-icon"/>
+                                <div class="card-content">
+                                Libraries
+                                </div>
+                            </div>
+                            </a>
+                            <a href="{!$Label.ReportsURL}">
+                            <div class="card pull-left">
+                                <img src="{!URLFOR($Resource.R3Style,'assets/img/analytics.png')}" class="card-icon"/>
+                                <div class="card-content">
+                                Reports
+                                </div>
+                            </div>
+                            </a>
+                            <a href="/apex/LeadershipDashboard">
+                            <div class="card pull-left">
+                                <img src="{!URLFOR($Resource.R3Style,'assets/img/leadership_dash.png')}" class="card-icon"/>
+                                <div class="card-content">
+                                Leadership Dashboards
+                                </div>
+                            </div>
+                            </a>
+                            <a href="/apex/TPOList">
+                            <div class="card pull-left">
+                                <img src="{!URLFOR($Resource.R3Style,'assets/img/tpo.png')}" class="card-icon"/>
+                                <div class="card-content">
+                                TPOs
+                                </div>
+                            </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 section-4">
+                <div class="section-content container center font-r">
+                    <div class='row'>
+                        <div class="col-md-5">
+                            <h3>Help Us Grow</h3>
+                            <p>Share your ideas for future functionality</p>
+                            <div>
+                                <apex:outputLink styleClass="button btn-share-idea font-r" value="/ideas/ideaList.apexp">Share Your Ideas</apex:outputLink>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-md-offset-2">
+                            <h3>Support</h3>
+                            <p>Access training materials, FAQs, technical support</p>
+                            <div>
+                                <apex:outputLink styleClass="button btn-share-idea font-r" value="/apex/GetHelp">Get Help</apex:outputLink>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-md-12 section-5">
+                <div class="section-content center font-l">
+                    <apex:outputLink styleClass="font-r" value="https://lillyei.northernlight.com/dashboard.php?id=133">Go to RWE External Intelligence Portal</apex:outputLink>
+                </div>
+            </div> -->
+            <div class="col-md-12 multilayer">
+                <div class="color-layer l-blue"></div>
+                <div class="color-layer l-yellow"></div>
+                <div class="color-layer l-orange"></div>
+                <div class="color-layer l-green"></div>
+            </div>
+                    <div class="col-md-12 footer">
+                <div class="container">
+                    <div class="copyright">&copy; 2016. All rights reserved</div>
+                    <!-- <div class="help">Need Help <span class="icon icn-questionmark">?</span></div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    <c:Webtrends_Tracker />
+    
+
+</apex:page>
