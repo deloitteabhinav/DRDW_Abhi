@@ -222,10 +222,6 @@
         <name>Profile</name>
     </types>
     <types>
-        <members>*</members>
-        <name>Queue</name>
-    </types>
-    <types>
         <members>Approver__c</members>
         <members>Boards__c</members>
         <members>Checklist_Item__c</members>
