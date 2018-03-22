@@ -67,10 +67,6 @@
         <name>ApexClass</name>
     </types>
     <types>
-        <members>*</members>
-        <name>ApexComponent</name>
-    </types>
-    <types>
         <members>ApproverRedirect</members>
         <members>Checklist</members>
         <members>Clipboard</members>
@@ -139,28 +135,12 @@
         <name>ApexPage</name>
     </types>
     <types>
-        <members>*</members>
-        <name>ApexTestSuite</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>ApexTrigger</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>StaticResource</name>
-    </types>
-    <types>
         <members>Force_com</members>
         <members>RWE</members>
         <members>Supplier_Management_Insights</members>
         <members>TPTO_PTO_Tracker</members>
         <members>TRAK_Release_Tracker</members>
         <name>CustomApplication</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>Layout</name>
     </types>
     <types>
         <members>Account</members>
@@ -236,10 +216,6 @@
         <name>CustomObject</name>
     </types>
     <types>
-        <members>*</members>
-        <name>PermissionSet</name>
-    </types>
-    <types>
         <members>DRDW System Administrator</members>
         <members>Admin</members>
         <members>Standard</members>
@@ -284,18 +260,6 @@
         <members>TPTO_Calendar</members>
         <members>TPTO_PTO_Request__c</members>
         <name>CustomTab</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>Workflow</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>CustomPermission</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>CustomLabels</name>
     </types>
     <types>
         <members>Email_Templates</members>
