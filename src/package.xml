@@ -23,8 +23,6 @@
         <members>ExecutiveDashboardTest</members>
         <members>ExpertMemberRedirect</members>
         <members>FillSurveyController</members>
-        <members>FirewallChecker</members>
-        <members>FirewallChecker_Request</members>
         <members>GlobalSearch</members>
         <members>ImportLandscapes</members>
         <members>Index_Controller</members>
@@ -39,8 +37,6 @@
         <members>Push_Checklist</members>
         <members>Push_Questionnaire</members>
         <members>QFOR_DataFactory</members>
-        <members>Questionnaire</members>
-        <members>QuestionnaireDemo</members>
         <members>Questions_TriggerHandler</members>
         <members>RedirectOnSave</members>
         <members>RelationshipList</members>
@@ -48,12 +44,10 @@
         <members>Request_TriggerHandler</members>
         <members>RequestList</members>
         <members>RequestTrackingRedirect</members>
-        <members>RWDDashboard</members>
         <members>RWEFinalDeliverablesList</members>
         <members>Study_TriggerHandler</members>
         <members>StudyAttribute_TriggerHandler</members>
         <members>StudyList</members>
-        <members>StudyTeamMembersController</members>
         <members>TEST_DragNdrop</members>
         <members>TPOList</members>
         <members>TPOLocation_TriggerHandler</members>
